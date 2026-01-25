@@ -3,6 +3,8 @@ export const runtime = 'edge';
 import { getConfirmToken, markConfirmTokenAsConfirmed, createDownloadToken, updateEmailStatus } from '@/lib/kv/redis';
 import { sendBlueprintEmail } from '@/lib/email/resend';
 
+import { logger } from '@/lib/logger';
+
 export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url);
@@ -28,7 +30,6 @@ export async function GET(request: NextRequest) {
                 confirmData.payload
             );
 
-            const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://batteryblueprint.com';
             return NextResponse.redirect(
                 new URL(`/blueprint/confirmed?token=${downloadToken}`, request.url)
             );
@@ -57,7 +58,7 @@ export async function GET(request: NextRequest) {
             to: confirmData.email,
             downloadUrl,
         }).catch(error => {
-            console.error('Failed to send blueprint email:', error);
+            logger.error('Failed to send blueprint email', error, { email: confirmData.email });
         });
 
         // Redirect to confirmed page with download token
@@ -66,7 +67,7 @@ export async function GET(request: NextRequest) {
         );
 
     } catch (error) {
-        console.error('Error confirming email:', error);
+        logger.error('Error confirming email', error);
         return NextResponse.redirect(new URL('/blueprint/expired', request.url));
     }
 }

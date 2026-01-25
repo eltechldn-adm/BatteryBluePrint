@@ -4,6 +4,8 @@ import { createConfirmToken } from '@/lib/kv/redis';
 import { sendConfirmEmail } from '@/lib/email/resend';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit/limiter';
 
+import { logger } from '@/lib/logger';
+
 export async function POST(request: NextRequest) {
     try {
         // Get client IP for rate limiting
@@ -24,7 +26,16 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const body = await request.json();
+        let body;
+        try {
+            body = await request.json();
+        } catch (e) {
+            return NextResponse.json(
+                { error: 'Invalid JSON body' },
+                { status: 400 }
+            );
+        }
+
         const { email, name, results, recommendations } = body;
 
         // Validate email
@@ -58,7 +69,7 @@ export async function POST(request: NextRequest) {
         });
 
         if (!emailResult.success) {
-            console.error('Failed to send confirmation email:', emailResult.error);
+            logger.error('Failed to send confirmation email', emailResult.error, { email });
             return NextResponse.json(
                 { error: 'Failed to send confirmation email. Please try again.' },
                 { status: 500 }
@@ -66,6 +77,8 @@ export async function POST(request: NextRequest) {
         }
 
         // Also save to leads for tracking (non-blocking)
+        // Note: fetch to same-origin in Cloudflare Workers can sometimes be tricky without full URL
+        // We use siteUrl to be safe.
         fetch(`${siteUrl}/api/leads`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -87,7 +100,7 @@ export async function POST(request: NextRequest) {
                     diy: recommendations.diy?.[0]?.battery.model || 'None',
                 },
             }),
-        }).catch(console.error);
+        }).catch(err => logger.error('Failed to track lead', err));
 
         return NextResponse.json({
             success: true,
@@ -95,7 +108,7 @@ export async function POST(request: NextRequest) {
         });
 
     } catch (error) {
-        console.error('Error processing blueprint request:', error);
+        logger.error('Error processing blueprint request', error);
         return NextResponse.json(
             { error: 'Failed to process request' },
             { status: 500 }

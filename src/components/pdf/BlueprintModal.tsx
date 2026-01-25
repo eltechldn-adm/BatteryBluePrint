@@ -48,7 +48,19 @@ export function BlueprintModal({ open, onOpenChange, results, recommendations }:
                 }),
             });
 
-            const data = await response.json();
+            const contentType = response.headers.get("content-type");
+            let data;
+
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                data = await response.json();
+            } else {
+                // Determine error message from text or status
+                const text = await response.text();
+                console.error("Non-JSON API response:", text);
+                throw new Error(
+                    `Server error (${response.status}). Please try the direct download.`
+                );
+            }
 
             if (!response.ok) {
                 throw new Error(data.message || data.error || 'Failed to send email');

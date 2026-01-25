@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDownloadToken, markDownloadTokenAsUsed } from '@/lib/kv/redis';
 import React from 'react';
 
+import { logger } from '@/lib/logger';
+
 export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
@@ -11,6 +13,7 @@ export async function GET(request: NextRequest) {
 
         if (!tokenString) {
             return new NextResponse('Missing token parameter', { status: 400 });
+            // Note: Returning text here is generally expected for a direct link/window.open
         }
 
         // Validate download token
@@ -53,7 +56,7 @@ export async function GET(request: NextRequest) {
         });
 
     } catch (error) {
-        console.error('Error generating PDF:', error);
+        logger.error('Error generating PDF', error);
         return new NextResponse('Failed to generate PDF', { status: 500 });
     }
 }
