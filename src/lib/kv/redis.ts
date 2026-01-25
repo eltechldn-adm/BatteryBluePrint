@@ -1,5 +1,4 @@
 import { Redis } from '@upstash/redis';
-import crypto from 'crypto';
 
 // Initialize Redis client (lazy to avoid build-time errors)
 let redis: Redis | null = null;
@@ -50,14 +49,20 @@ export interface EmailStatus {
     lastRequestAt: string;
 }
 
-// Helper: Generate secure token
+// Helper: Generate secure token (Web Crypto compatible)
 export function generateToken(): string {
-    return crypto.randomBytes(32).toString('hex');
+    const array = new Uint8Array(32);
+    crypto.getRandomValues(array);
+    return Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Helper: Hash email for key
-function hashEmail(email: string): string {
-    return crypto.createHash('sha256').update(email.toLowerCase()).digest('hex');
+// Helper: Hash email for key (Web Crypto compatible)
+async function hashEmail(email: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(email.toLowerCase());
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
 // Confirm Token Operations
@@ -177,7 +182,7 @@ export async function markDownloadTokenAsUsed(token: string): Promise<void> {
 // Email Status Operations
 export async function updateEmailStatus(email: string, updates: Partial<EmailStatus>): Promise<void> {
     const kv = getRedis();
-    const key = `email:${hashEmail(email)}`;
+    const key = `email:${await hashEmail(email)}`;
 
     const existing = await kv.get<string>(key);
     const status: EmailStatus = existing ? JSON.parse(existing) : {
@@ -194,7 +199,7 @@ export async function updateEmailStatus(email: string, updates: Partial<EmailSta
 
 export async function getEmailStatus(email: string): Promise<EmailStatus | null> {
     const kv = getRedis();
-    const key = `email:${hashEmail(email)}`;
+    const key = `email:${await hashEmail(email)}`;
     const data = await kv.get<string>(key);
 
     if (!data) return null;
