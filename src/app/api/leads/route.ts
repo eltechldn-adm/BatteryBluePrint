@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { storeLead, getLeads } from '@/lib/kv/redis';
 
 export const runtime = 'edge';
 
@@ -47,8 +48,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log lead (no file storage on Edge)
-    console.log('[Lead Received]', lead);
+    await storeLead(lead);
 
     return NextResponse.json({ success: true, leadId: lead.id }, { status: 201 });
   } catch (error) {
@@ -73,8 +73,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Return empty list as file storage is not supported on Edge
-    return NextResponse.json({ leads: [] }, { status: 200 });
+    const leads = await getLeads();
+    return NextResponse.json({ leads }, { status: 200 });
   } catch (error) {
     console.error('Error fetching leads:', error);
     return NextResponse.json(

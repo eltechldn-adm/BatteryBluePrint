@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { storeEvent } from '@/lib/kv/redis';
 
 export const runtime = 'edge';
 
@@ -6,8 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     const eventData = await request.json();
 
-    // Log to console
-    console.log('[Event]', eventData);
+    await storeEvent(eventData);
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
