@@ -27,7 +27,7 @@ export interface Lead {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = await request.json() as any;
 
     const lead: Lead = {
       id: `lead_${Date.now()}_${Math.random().toString(36).substring(7)}`,

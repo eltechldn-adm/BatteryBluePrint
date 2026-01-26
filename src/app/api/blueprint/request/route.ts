@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 export const runtime = 'edge';
-import { createConfirmToken } from '@/lib/kv/redis';
+import { createConfirmToken } from '@/lib/db/blueprint-tokens';
 import { sendConfirmEmail } from '@/lib/email/resend';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit/limiter';
 
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
         let body;
         try {
-            body = await request.json();
+            body = await request.json() as any;
         } catch (e) {
             return NextResponse.json(
                 { error: 'Invalid JSON body' },

@@ -49,7 +49,7 @@ export function BlueprintModal({ open, onOpenChange, results, recommendations }:
             });
 
             const contentType = response.headers.get("content-type");
-            let data;
+            let data: any;
 
             if (contentType && contentType.indexOf("application/json") !== -1) {
                 data = await response.json();

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDownloadToken, markDownloadTokenAsUsed } from '@/lib/kv/redis';
+import { getDownloadToken, markDownloadTokenAsUsed } from '@/lib/db/blueprint-tokens';
 import React from 'react';
 
 import { logger } from '@/lib/logger';

@@ -50,7 +50,7 @@ export default function AdminLeadsPage() {
       });
 
       if (response.ok) {
-        const data = await response.json();
+        const data = await response.json() as { leads: Lead[] };
         setLeads(data.leads);
         setIsAuthenticated(true);
       } else {
