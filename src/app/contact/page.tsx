@@ -91,7 +91,7 @@ export default function ContactPage() {
                                 </a>
                                 <button
                                     onClick={handleCopyEmail}
-                                    className="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors font-medium text-sm"
+                                    className="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors font-medium text-sm cursor-pointer"
                                     aria-label="Copy email address"
                                 >
                                     {copied ? (

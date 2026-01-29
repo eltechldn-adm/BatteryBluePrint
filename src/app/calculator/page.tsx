@@ -809,7 +809,7 @@ export default function CalculatorPage() {
 
                                 <Button
                                     onClick={handleCalculate}
-                                    className="btn-premium w-full text-lg h-14 rounded-xl shadow-lg"
+                                    className="btn-premium w-full text-lg h-14 rounded-xl shadow-lg cursor-pointer"
                                 >
                                     <Sparkles className="w-5 h-5 mr-2" />
                                     Calculate My Blueprint
@@ -835,7 +835,7 @@ export default function CalculatorPage() {
                                     </div>
                                     <Button
                                         size="lg"
-                                        className="w-full h-16 text-xl font-bold rounded-xl shadow-lg transition-all duration-200 bg-[#E35336] hover:bg-[#C94429] text-white border-2 border-[#E35336] hover:border-[#C94429] hover:shadow-[0_0_20px_rgba(227,83,54,0.4)] hover:scale-105 active:scale-100 focus-visible:ring-4 focus-visible:ring-[#E35336]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2D241E]"
+                                        className="w-full h-16 text-xl font-bold rounded-xl shadow-lg transition-all duration-200 bg-[#E35336] hover:bg-[#C94429] text-white border-2 border-[#E35336] hover:border-[#C94429] hover:shadow-[0_0_20px_rgba(227,83,54,0.4)] hover:scale-105 active:scale-100 focus-visible:ring-4 focus-visible:ring-[#E35336]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2D241E] cursor-pointer"
                                         onClick={() => handleUnlockPDF()}
                                     >
                                         Get My PDF
@@ -1139,7 +1139,7 @@ export default function CalculatorPage() {
                                         <div className="flex flex-wrap gap-2">
                                             <button
                                                 onClick={() => setFilterTier('all')}
-                                                className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${filterTier === 'all'
+                                                className={`text-xs px-3 py-1.5 rounded-full border transition-colors cursor-pointer ${filterTier === 'all'
                                                     ? 'bg-primary text-primary-foreground border-primary'
                                                     : 'bg-background border-border/40 text-muted-foreground hover:border-primary/40'
                                                     }`}
@@ -1154,7 +1154,7 @@ export default function CalculatorPage() {
                                                 <button
                                                     key={tier.value}
                                                     onClick={() => setFilterTier(tier.value)}
-                                                    className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${filterTier === tier.value
+                                                    className={`text-xs px-3 py-1.5 rounded-full border transition-colors cursor-pointer ${filterTier === tier.value
                                                         ? 'bg-primary text-primary-foreground border-primary'
                                                         : 'bg-background border-border/40 text-muted-foreground hover:border-primary/40'
                                                         }`}
@@ -1167,7 +1167,7 @@ export default function CalculatorPage() {
 
                                             <button
                                                 onClick={() => setFilterChemistry('all')}
-                                                className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${filterChemistry === 'all'
+                                                className={`text-xs px-3 py-1.5 rounded-full border transition-colors cursor-pointer ${filterChemistry === 'all'
                                                     ? 'bg-secondary text-secondary-foreground border-secondary'
                                                     : 'bg-background border-border/40 text-muted-foreground hover:border-secondary/40'
                                                     }`}
@@ -1178,7 +1178,7 @@ export default function CalculatorPage() {
                                                 <button
                                                     key={chem}
                                                     onClick={() => setFilterChemistry(chem as any)}
-                                                    className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${filterChemistry === chem
+                                                    className={`text-xs px-3 py-1.5 rounded-full border transition-colors cursor-pointer ${filterChemistry === chem
                                                         ? 'bg-secondary text-secondary-foreground border-secondary'
                                                         : 'bg-background border-border/40 text-muted-foreground hover:border-secondary/40'
                                                         }`}
@@ -1195,7 +1195,7 @@ export default function CalculatorPage() {
                                                             setFilterTier('all');
                                                             setFilterChemistry('all');
                                                         }}
-                                                        className="text-xs px-3 py-1.5 rounded-full border border-border/40 text-muted-foreground hover:border-primary/40 hover:text-foreground transition-colors"
+                                                        className="text-xs px-3 py-1.5 rounded-full border border-border/40 text-muted-foreground hover:border-primary/40 hover:text-foreground transition-colors cursor-pointer"
                                                     >
                                                         Clear Filters
                                                     </button>
@@ -1278,7 +1278,7 @@ export default function CalculatorPage() {
                                                             setFilterTier('all');
                                                             setFilterChemistry('all');
                                                         }}
-                                                        className="mt-2 text-sm text-primary hover:underline"
+                                                        className="mt-2 text-sm text-primary hover:underline cursor-pointer"
                                                     >
                                                         Clear filters
                                                     </button>
