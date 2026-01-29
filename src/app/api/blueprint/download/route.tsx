@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDownloadToken, markDownloadTokenAsUsed } from '@/lib/db/blueprint-tokens';
-import React from 'react';
-
+import { generateBlueprintPdf } from '@/lib/pdf/generate-blueprint-pdf';
 import { logger } from '@/lib/logger';
 
 export const runtime = 'edge';
@@ -13,7 +12,6 @@ export async function GET(request: NextRequest) {
 
         if (!tokenString) {
             return new NextResponse('Missing token parameter', { status: 400 });
-            // Note: Returning text here is generally expected for a direct link/window.open
         }
 
         // Validate download token
@@ -29,24 +27,14 @@ export async function GET(request: NextRequest) {
         await markDownloadTokenAsUsed(tokenString);
 
         // Generate PDF from stored payload
-        const { results, recommendations } = token.payload;
+        const results = token.payload?.results ?? {};
+        const recommendations = token.payload?.recommendations ?? {};
 
-        // Import React PDF renderer at runtime
-        const { default: ReactPDF } = await import('@react-pdf/renderer');
-        const { BlueprintDocument } = await import('@/components/pdf/BlueprintDocument');
-
-        // Generate PDF blob
-        const blob = await ReactPDF.pdf(
-            <BlueprintDocument results={results} recommendations={recommendations} />
-        ).toBlob();
-
-        // Convert blob to buffer
-        const arrayBuffer = await blob.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
+        const pdfBytes = await generateBlueprintPdf(results, recommendations);
 
         const fileName = `BatteryBlueprint-${new Date().toISOString().split('T')[0]}.pdf`;
 
-        return new NextResponse(buffer, {
+        return new NextResponse(new Blob([pdfBytes as any]), {
             status: 200,
             headers: {
                 'Content-Type': 'application/pdf',
