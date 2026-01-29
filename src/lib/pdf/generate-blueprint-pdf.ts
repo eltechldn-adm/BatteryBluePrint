@@ -1,19 +1,21 @@
 import { PDFDocument, StandardFonts, rgb, PDFFont, PDFPage } from 'pdf-lib';
 import { logger } from '@/lib/logger';
 
-// --- Colors ---
-// Cream: #F5F5DC
-const COL_BG = rgb(245 / 255, 245 / 255, 220 / 255);
-// Burnt Sienna (Primary): #F4A460
-const COL_PRIMARY = rgb(244 / 255, 164 / 255, 96 / 255);
-// Dark Text: #1F1F1F
-const COL_TEXT_DARK = rgb(31 / 255, 31 / 255, 31 / 255);
-// Muted Text: #4B4B4B
-const COL_TEXT_MUTED = rgb(75 / 255, 75 / 255, 75 / 255);
-// White (Card BG): #FFFFFF
+// --- Colors (Extracted from globals.css) ---
+// Background: #FAF8F5 (Warm Cream)
+const COL_BG = rgb(250 / 255, 248 / 255, 245 / 255);
+// Primary: #E35336 (Orange/Red)
+const COL_PRIMARY = rgb(227 / 255, 83 / 255, 54 / 255);
+// Text Dark: #2D241E (Dark Brown)
+const COL_TEXT_DARK = rgb(45 / 255, 36 / 255, 30 / 255);
+// Muted Text: #6B5B4D (Medium Brown)
+const COL_TEXT_MUTED = rgb(107 / 255, 91 / 255, 77 / 255);
+// Muted/Border: #DCCFB8 (Beige)
+const COL_BORDER = rgb(220 / 255, 207 / 255, 184 / 255);
+// White: #FFFFFF
 const COL_WHITE = rgb(1, 1, 1);
-// Soft Border: #E6E0D2
-const COL_BORDER = rgb(230 / 255, 224 / 255, 210 / 255);
+// Row Stripe: #F5F5F0 (Subtle offset from BG)
+const COL_ROW_STRIPE = rgb(245 / 255, 245 / 255, 240 / 255);
 
 export async function generateBlueprintPdf(
     results: any,
@@ -29,13 +31,15 @@ export async function generateBlueprintPdf(
     const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    // Layout State
+    // Layout Constants
+    const margin = 50;
+
+    // Initial Page
     let page = pdfDoc.addPage();
     let { width, height } = page.getSize();
-    const margin = 50;
     let y = height;
 
-    // --- Drawing Helpers ---
+    // --- Helpers ---
 
     const drawBackground = () => {
         page.drawRectangle({
@@ -48,7 +52,7 @@ export async function generateBlueprintPdf(
     };
 
     const drawHeader = () => {
-        const headerH = 80;
+        const headerH = 100;
         // Header Band
         page.drawRectangle({
             x: 0,
@@ -61,7 +65,7 @@ export async function generateBlueprintPdf(
         // Title
         page.drawText('Battery Blueprint', {
             x: margin,
-            y: height - 40,
+            y: height - 45,
             size: 28,
             font: boldFont,
             color: COL_WHITE,
@@ -70,52 +74,39 @@ export async function generateBlueprintPdf(
         // Subtitle
         page.drawText('Your personalised battery sizing report', {
             x: margin,
-            y: height - 60,
-            size: 12,
+            y: height - 70,
+            size: 14,
             font,
             color: COL_WHITE,
         });
 
         // Date
         const dateStr = new Date().toLocaleDateString();
-        const dateWidth = font.widthOfTextAtSize(dateStr, 12);
+        const dateW = font.widthOfTextAtSize(dateStr, 12);
         page.drawText(dateStr, {
-            x: width - margin - dateWidth,
-            y: height - 40,
+            x: width - margin - dateW,
+            y: height - 45,
             size: 12,
             font,
             color: COL_WHITE,
         });
 
-        // Update y to below header
-        y = height - headerH - 30; // 30px padding below header
+        // Reset Y
+        y = height - headerH - 40;
     };
-
-    const fmt = (v: unknown, dp = 2) =>
-        typeof v === "number" && Number.isFinite(v) ? v.toFixed(dp) : "N/A";
 
     const checkPageBreak = (neededH: number) => {
         if (y - neededH < margin) {
             page = pdfDoc.addPage();
             drawBackground();
-            // Draw a compact header logic or just reset Y
-            // For branded feel, let's draw a mini header or just spacer
-            // Let's re-draw full header for consistency on every page
             drawHeader();
         }
     };
 
-    const drawText = (text: string, opts: { x?: number, y?: number, size?: number, font?: PDFFont, color?: any } = {}) => {
-        page.drawText(text, {
-            x: opts.x ?? margin,
-            y: opts.y ?? y,
-            size: opts.size ?? 12,
-            font: opts.font ?? font,
-            color: opts.color ?? COL_TEXT_DARK,
-        });
-    };
+    const fmt = (v: unknown, dp = 2) =>
+        typeof v === "number" && Number.isFinite(v) ? v.toFixed(dp) : "N/A";
 
-    // Helper to extract numeric values safely (fallback logic)
+    // Safe extraction
     const getNum = (obj: any, keys: string[]): number | undefined => {
         if (!obj) return undefined;
         for (const k of keys) {
@@ -137,204 +128,207 @@ export async function generateBlueprintPdf(
         return undefined;
     };
 
-
-    // Initial Setup
+    // --- Start Drawing ---
     drawBackground();
     drawHeader();
 
+    const safeResults = results || {};
 
-    // --- 1. System Analysis Results (Card) ---
-    const resultsH = 160;
-    checkPageBreak(resultsH);
+    // --- Section 1: System Analysis Results ---
+    const s1Height = 180;
+    checkPageBreak(s1Height);
 
-    // Card BG
+    // Section Title
+    page.drawText('System Analysis Results', {
+        x: margin,
+        y,
+        size: 18,
+        font: boldFont,
+        color: COL_PRIMARY,
+    });
+    y -= 25;
+
+    // Card Panel
     page.drawRectangle({
         x: margin,
-        y: y - resultsH,
+        y: y - s1Height + 30, // Adjust for top padding
         width: width - (margin * 2),
-        height: resultsH,
+        height: s1Height - 30,
         color: COL_WHITE,
         borderColor: COL_BORDER,
         borderWidth: 1,
     });
 
-    // Content inside card
-    let cy = y - 30; // internal card y
+    let cy = y - 20; // Card Cursor
     const cx = margin + 20;
 
-    // Title
-    page.drawText('System Analysis Results', { x: cx, y: cy, size: 16, font: boldFont, color: COL_TEXT_DARK });
+    // Metrics to show
+    const loadTarget = getNum(safeResults, ['loadTarget_kWh', 'loadTarget', 'load']);
+    const usableNeeded = getNum(safeResults, ['batteryUsableNeeded_kWh', 'usableNeeded']);
+    const nameplateNeeded = getNum(safeResults, ['batteryNameplateNeeded_kWh', 'nameplateNeeded']);
+
+    // Row 1
+    page.drawText('Usable Battery Capacity Needed', { x: cx, y: cy, size: 12, font: boldFont, color: COL_TEXT_DARK });
+    page.drawText(`${fmt(usableNeeded)} kWh`, { x: width - margin - 150, y: cy, size: 14, font: boldFont, color: COL_PRIMARY });
+    cy -= 25;
+    page.drawText('Accounts for inverter efficiency losses', { x: cx, y: cy, size: 10, font, color: COL_TEXT_MUTED });
     cy -= 30;
 
-    const safeResults = results || {};
-    const usableNeeded = getNum(safeResults, ['batteryUsableNeeded_kWh', 'usableNeeded', 'usable_kWh']);
-    const nameplateNeeded = getNum(safeResults, ['batteryNameplateNeeded_kWh', 'nameplateNeeded', 'nameplate_kWh']);
-    const breakdown = safeResults?.breakdown;
-
-    // Grid Setup
-    const col2 = cx + 220;
-
-    // Row 1: Key Metrics
-    page.drawText('Usable Capacity Needed:', { x: cx, y: cy, size: 10, font: boldFont, color: COL_TEXT_DARK });
-    page.drawText(`${fmt(usableNeeded)} kWh`, { x: col2, y: cy, size: 10, font, color: COL_TEXT_DARK });
-    cy -= 20;
-
-    page.drawText('Nameplate Capacity:', { x: cx, y: cy, size: 10, font: boldFont, color: COL_TEXT_DARK });
-    page.drawText(`${fmt(nameplateNeeded)} kWh`, { x: col2, y: cy, size: 10, font, color: COL_TEXT_DARK });
-    cy -= 20;
-
-    // Divider inside card
-    page.drawLine({ start: { x: cx, y: cy - 5 }, end: { x: width - margin - 20, y: cy - 5 }, thickness: 1, color: COL_BORDER });
+    // Row 2
+    page.drawText('Recommended Nameplate Capacity', { x: cx, y: cy, size: 12, font: boldFont, color: COL_TEXT_DARK });
+    page.drawText(`${fmt(nameplateNeeded)} kWh`, { x: width - margin - 150, y: cy, size: 14, font: boldFont, color: COL_TEXT_DARK });
     cy -= 25;
+    page.drawText('Adjusted for depth-of-discharge (DoD) to protect battery life', { x: cx, y: cy, size: 10, font, color: COL_TEXT_MUTED });
+    cy -= 30;
 
-    // Row 2: Parameters (if available)
+    // Parameters (Row 3 - smaller)
+    const breakdown = safeResults?.breakdown;
     if (breakdown) {
-        const load = getNum(breakdown, ['loadBase', 'baseLoad', 'dailyLoad']);
+        const load = getNum(breakdown, ['loadBase', 'baseLoad']);
         const autonomy = getNum(breakdown, ['autonomyMult']);
         const winter = getNum(breakdown, ['winterMult']);
-        const buffer = getNum(breakdown, ['bufferMult']);
 
-        let infoStr = '';
-        if (load !== undefined) infoStr += `Daily Load: ${fmt(load)} kWh   `;
-        if (autonomy !== undefined) infoStr += `Autonomy: ${fmt(autonomy)} days   `;
-        if (winter !== undefined && winter > 1) infoStr += `Winter Mode: On (${fmt(winter)}x)`;
+        let pText = `Based on: ${fmt(load)} kWh/day, ${fmt(autonomy)} days autonomy`;
+        if (winter && winter > 1) pText += `, Winter Mode`;
 
-        page.drawText('Design Parameters:', { x: cx, y: cy, size: 9, font: boldFont, color: COL_TEXT_MUTED });
-        cy -= 15;
-        page.drawText(infoStr || 'Standard Configuration', { x: cx, y: cy, size: 9, font, color: COL_TEXT_MUTED });
-    } else {
-        page.drawText('Design Parameters: Data not available', { x: cx, y: cy, size: 9, font, color: COL_TEXT_MUTED });
+        page.drawLine({ start: { x: cx, y: cy + 10 }, end: { x: width - margin - 20, y: cy + 10 }, thickness: 1, color: COL_BORDER });
+        page.drawText(pText, { x: cx, y: cy - 5, size: 10, font, color: COL_TEXT_MUTED });
     }
 
-    y -= (resultsH + 40); // Move main cursor past card
+    y -= s1Height;
 
 
-    // --- 2. Recommended Batteries ---
-    checkPageBreak(30);
-    drawText('Recommended Batteries', { size: 18, font: boldFont, color: COL_TEXT_DARK });
+    // --- Section 2: Recommended Batteries ---
+    y -= 30;
+    checkPageBreak(50);
+
+    page.drawText('Recommended Batteries', {
+        x: margin,
+        y,
+        size: 18,
+        font: boldFont,
+        color: COL_PRIMARY,
+    });
     y -= 30;
 
     const tiers = ['premium', 'midRange', 'diy'];
     const tierLabels: Record<string, string> = { premium: 'Premium', midRange: 'Mid-Range', diy: 'DIY / Budget' };
+    const tierWhy: Record<string, string> = { premium: 'Best warranty + integrated inverter', midRange: 'Great value + reliable performance', diy: 'Lowest cost per kWh' };
 
     tiers.forEach(tierKey => {
         const items = recommendations?.[tierKey];
         if (Array.isArray(items) && items.length > 0) {
 
-            // Tier Section Check
-            checkPageBreak(50);
+            checkPageBreak(80);
 
-            // Tier Label Pill
-            const label = tierLabels[tierKey] || tierKey;
-            const labelW = boldFont.widthOfTextAtSize(label, 12) + 20;
-            const labelH = 24;
-
-            checkPageBreak(labelH + 10);
-
-            // Draw Pill
+            // Tier Box
+            // Gray-ish header bar for the tier
+            const tierHeaderH = 30;
             page.drawRectangle({
                 x: margin,
-                y: y - labelH,
-                width: labelW,
-                height: labelH,
-                color: COL_PRIMARY,
+                y: y - tierHeaderH,
+                width: width - (margin * 2),
+                height: tierHeaderH,
+                color: COL_TEXT_DARK, // Dark header
             });
-            page.drawText(label, {
+
+            const tierLabel = tierLabels[tierKey] || tierKey;
+            page.drawText(tierLabel, {
                 x: margin + 10,
-                y: y - labelH + 7, // center vertically somewhat
+                y: y - 20,
                 size: 12,
                 font: boldFont,
                 color: COL_WHITE,
             });
 
-            y -= (labelH + 15);
-
-            // Items in this tier
-            items.forEach((item: any) => {
-                const cardH = 70;
-                checkPageBreak(cardH + 10);
-
-                // Card BG
-                page.drawRectangle({
-                    x: margin,
-                    y: y - cardH,
-                    width: width - (margin * 2),
-                    height: cardH,
-                    color: COL_WHITE,
-                    borderColor: COL_BORDER,
-                    borderWidth: 1,
-                });
-
-                // Content
-                const icy = y - 25;
-                const icx = margin + 15;
-
-                // Data Extraction
-                const model = getStr(item?.battery, ['model', 'name']) || getStr(item, ['model', 'name']) || 'Unknown Model';
-                const count = getNum(item, ['count', 'units', 'quantity']) || 0;
-
-                // Total Capacity Logic: Try direct keys first, then calc
-                let totalCap = getNum(item, ['totalCapacity_kWh', 'totalCapacityKWh', 'totalUsable_kWh', 'total_kWh']);
-
-                if (totalCap === undefined) {
-                    // Try to calc
-                    const unitCap = getNum(item?.battery, ['capacity_kWh', 'capacityKwh', 'usable_kWh', 'usableKwh']);
-                    if (unitCap !== undefined && count > 0) {
-                        totalCap = unitCap * count;
-                    }
-                }
-
-                // Line 1: 2x Tesla Powerwall ...
-                page.drawText(`${fmt(count, 0)}x ${model}`, {
-                    x: icx,
-                    y: icy,
-                    size: 12,
-                    font: boldFont,
-                    color: COL_TEXT_DARK
-                });
-
-                // Line 2: Stats
-                // Right aligned total
-                const totalText = totalCap !== undefined ? `${fmt(totalCap)} kWh Total` : 'N/A kWh';
-                const totalW = boldFont.widthOfTextAtSize(totalText, 12);
-
-                page.drawText(totalText, {
-                    x: width - margin - totalW - 15,
-                    y: icy,
-                    size: 12,
-                    font: boldFont,
-                    color: COL_PRIMARY // Highlight the total
-                });
-
-                // Chemistry / Vendor
-                const chemistry = getStr(item?.battery, ['chemistry']) || 'Li-ion';
-                page.drawText(`${chemistry} Chemistry`, {
-                    x: icx,
-                    y: icy - 20,
+            const why = tierWhy[tierKey];
+            if (why) {
+                const wW = font.widthOfTextAtSize(why, 10);
+                page.drawText(why, {
+                    x: width - margin - wW - 10,
+                    y: y - 20,
                     size: 10,
                     font,
-                    color: COL_TEXT_MUTED
+                    color: rgb(0.8, 0.8, 0.8),
+                });
+            }
+
+            y -= tierHeaderH;
+
+            // List Items (Table Style)
+            items.forEach((item: any, idx: number) => {
+                const rowH = 50;
+                checkPageBreak(rowH); // Ensure row fits
+
+                // Alternating background
+                if (idx % 2 === 0) {
+                    page.drawRectangle({
+                        x: margin,
+                        y: y - rowH,
+                        width: width - (margin * 2),
+                        height: rowH,
+                        color: COL_ROW_STRIPE
+                    });
+                } else {
+                    page.drawRectangle({
+                        x: margin,
+                        y: y - rowH,
+                        width: width - (margin * 2),
+                        height: rowH,
+                        color: COL_WHITE
+                    });
+                }
+                // Row Border
+                page.drawRectangle({
+                    x: margin,
+                    y: y - rowH,
+                    width: width - (margin * 2),
+                    height: rowH,
+                    color: undefined,
+                    borderColor: COL_BORDER,
+                    borderWidth: 0.5,
                 });
 
-                y -= (cardH + 15); // Space between cards
+                // Data
+                const model = getStr(item?.battery, ['model', 'name']) || getStr(item, ['model', 'name']) || 'Unknown Model';
+                const brand = getStr(item?.battery, ['brand']) || '';
+                const count = getNum(item, ['count', 'units', 'quantity']) || 0;
+                let totalCap = getNum(item, ['totalCapacity_kWh', 'totalCapacityKWh', 'totalUsable_kWh', 'total_kWh']);
+
+                // Approx calc if missing
+                if (totalCap === undefined) {
+                    const unit = getNum(item?.battery, ['capacity_kWh', 'usable_kWh']);
+                    if (unit && count) totalCap = unit * count;
+                }
+
+                let textY = y - 30;
+
+                // Count + Name
+                page.drawText(`${fmt(count, 0)}x`, { x: margin + 15, y: textY, size: 14, font: boldFont, color: COL_PRIMARY });
+                page.drawText(`${brand} ${model}`, { x: margin + 50, y: textY, size: 12, font: boldFont, color: COL_TEXT_DARK });
+
+                // Total
+                if (totalCap !== undefined) {
+                    const tStr = `${fmt(totalCap)} kWh Total`;
+                    const tW = boldFont.widthOfTextAtSize(tStr, 12);
+                    page.drawText(tStr, { x: width - margin - tW - 15, y: textY, size: 12, font: boldFont, color: COL_TEXT_DARK });
+                }
+
+                y -= rowH;
             });
 
-            y -= 10; // Extra space between tiers
+            y -= 25; // Space after tier
         }
     });
 
     // --- Footer ---
-    // Force footer to bottom of current page
-    const footerY = 30;
-    // If y is too low, add page? Footer shouldn't overlap.
+    const footerY = 40;
     if (y < footerY + 20) {
         page = pdfDoc.addPage();
         drawBackground();
-        // No header on pure footer page? Or keep consistency.
-        drawHeader();
+        // Skip header on pure footer page or keep minimal?
     }
 
-    // Draw Footer Line
     page.drawLine({
         start: { x: margin, y: footerY + 15 },
         end: { x: width - margin, y: footerY + 15 },
@@ -346,14 +340,12 @@ export async function generateBlueprintPdf(
         x: margin,
         y: footerY,
         size: 9,
-        font,
-        color: COL_TEXT_MUTED
+        font: boldFont,
+        color: COL_PRIMARY
     });
 
-    const discText = 'Generated for planning purposes';
-    const discW = font.widthOfTextAtSize(discText, 9);
-    page.drawText(discText, {
-        x: width - margin - discW,
+    page.drawText(`Generated on ${new Date().toLocaleDateString()} • For planning purposes only`, {
+        x: margin + 120,
         y: footerY,
         size: 9,
         font,
