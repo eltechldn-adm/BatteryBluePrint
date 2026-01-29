@@ -1,9 +1,17 @@
 import { PDFDocument, StandardFonts, rgb, PDFFont, PDFPage } from 'pdf-lib';
+import { logger } from '@/lib/logger';
 
 export async function generateBlueprintPdf(
     results: any,
     recommendations: any
 ): Promise<Uint8Array> {
+
+    // Debug logging to inspect incoming payload structure
+    logger.info("PDF payload keys", {
+        resultsKeys: Object.keys(results || {}),
+        recKeys: Object.keys(recommendations || {})
+    });
+
     const pdfDoc = await PDFDocument.create();
 
     // Embed fonts
@@ -38,6 +46,10 @@ export async function generateBlueprintPdf(
         y -= (size + 5);
     };
 
+    // Safe formatter for numbers
+    const fmt = (v: unknown, dp = 2) =>
+        typeof v === "number" && Number.isFinite(v) ? v.toFixed(dp) : "N/A";
+
     // Header
     drawLine('Battery Blueprint', boldFont, 24);
     y -= 10;
@@ -49,20 +61,22 @@ export async function generateBlueprintPdf(
     y -= 10;
 
     const safeResults = results || {};
-    // Flatten and print interesting keys if they exist, or just dump JSON
-    // Let's try to format it slightly better than raw JSON if possible
 
-    if (safeResults.batteryUsableNeeded_kWh) {
-        drawLine(`Usable Battery Capacity Needed: ${safeResults.batteryUsableNeeded_kWh} kWh`, font, 12);
+    // Use optional chaining and nullish coalescing for safety
+    if (safeResults?.batteryUsableNeeded_kWh !== undefined) {
+        drawLine(`Usable Battery Capacity Needed: ${fmt(safeResults.batteryUsableNeeded_kWh)} kWh`, font, 12);
     }
-    if (safeResults.batteryNameplateNeeded_kWh) {
-        drawLine(`Nameplate Battery Capacity: ${safeResults.batteryNameplateNeeded_kWh} kWh`, font, 12);
+    if (safeResults?.batteryNameplateNeeded_kWh !== undefined) {
+        drawLine(`Nameplate Battery Capacity: ${fmt(safeResults.batteryNameplateNeeded_kWh)} kWh`, font, 12);
     }
-    if (safeResults.breakdown) {
-        drawLine(`Daily Load Base: ${safeResults.breakdown.loadBase} kWh`);
-        drawLine(`Autonomy Multiplier: ${safeResults.breakdown.autonomyMult.toFixed(2)}x`);
-        drawLine(`Winter Multiplier: ${safeResults.breakdown.winterMult.toFixed(2)}x`);
-        drawLine(`Buffer Multiplier: ${safeResults.breakdown.bufferMult.toFixed(2)}x`);
+
+    if (safeResults?.breakdown) {
+        // Safe access to nested properties
+        const b = safeResults.breakdown;
+        drawLine(`Daily Load Base: ${fmt(b?.loadBase, 2)} kWh`);
+        drawLine(`Autonomy Multiplier: ${fmt(b?.autonomyMult)}x`);
+        drawLine(`Winter Multiplier: ${fmt(b?.winterMult)}x`);
+        drawLine(`Buffer Multiplier: ${fmt(b?.bufferMult)}x`);
     }
 
     y -= 20;
@@ -83,11 +97,12 @@ export async function generateBlueprintPdf(
             drawLine(`${tierNames[tierKey] || tierKey} Options`, boldFont, 14);
 
             tierItems.forEach((item: any) => {
-                const name = item.battery?.model || 'Unknown Model';
-                const count = item.count || 0;
-                const totalCap = item.totalCapacity_kWh || 0;
+                const name = item?.battery?.model || 'Unknown Model';
+                const count = item?.count || 0;
+                const totalCap = item?.totalCapacity_kWh || 0;
+
                 // e.g. "2x Tesla Powerwall 2 (27 kWh)"
-                drawLine(`• ${count}x ${name} (Total: ${totalCap} kWh)`);
+                drawLine(`• ${count}x ${name} (Total: ${fmt(totalCap)} kWh)`);
             });
         }
     });
@@ -96,8 +111,13 @@ export async function generateBlueprintPdf(
     if (Object.keys(safeResults).length === 0 && (!recommendations || Object.keys(recommendations).length === 0)) {
         y -= 20;
         drawLine('Raw Data Dump (Debug):');
-        const dump = JSON.stringify({ results, recommendations }, null, 2).split('\n');
-        dump.forEach(line => drawLine(line, font, 8));
+        // Ensure circular references don't crash JSON.stringify (though unlikely here)
+        try {
+            const dump = JSON.stringify({ results, recommendations }, null, 2).split('\n');
+            dump.forEach(line => drawLine(line, font, 8));
+        } catch (e) {
+            drawLine('Error dumping raw data', font, 8);
+        }
     }
 
     return await pdfDoc.save();
