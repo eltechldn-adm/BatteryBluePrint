@@ -16,7 +16,7 @@ import { recommendBatteries, RecommendationResult, RecommendedBattery } from "@/
 import { BatteryCatalogItem } from "@/lib/batteries/catalog";
 import { BlueprintModal } from "@/components/pdf/BlueprintModal";
 import { analytics } from "@/lib/analytics/track";
-import { FileText, CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown } from "lucide-react";
+import { FileText, CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown, ArrowRight } from "lucide-react";
 import { LOCATION_PROFILES, getLocationProfile, detectLocationFromBrowser } from "@/data/locations";
 import { ASSUMPTION_TOOLTIPS, LOCATION_PRESET_EXPLANATION } from "@/lib/ui/assumptionTooltips";
 
@@ -840,6 +840,16 @@ export default function CalculatorPage() {
                                     >
                                         Get My PDF
                                     </Button>
+
+                                    {/* Affiliate Link */}
+                                    <Link href="/recommended-batteries" className="block pt-2">
+                                        <Button
+                                            variant="ghost"
+                                            className="w-full text-[#DCCFB8] hover:text-[#F4A460] hover:bg-[#2D241E]/50 h-12 text-base font-medium rounded-xl border border-[#4A3D32] hover:border-[#F4A460]/30 cursor-pointer transition-all"
+                                        >
+                                            See Recommended Batteries <ArrowRight className="w-4 h-4 ml-2" />
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                         )}
