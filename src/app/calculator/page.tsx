@@ -16,7 +16,7 @@ import { recommendBatteries, RecommendationResult, RecommendedBattery } from "@/
 import { BatteryCatalogItem } from "@/lib/batteries/catalog";
 import { BlueprintModal } from "@/components/pdf/BlueprintModal";
 import { analytics } from "@/lib/analytics/track";
-import { FileText, CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown, ArrowRight } from "lucide-react";
+import { FileText, CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown } from "lucide-react";
 import { LOCATION_PROFILES, getLocationProfile, detectLocationFromBrowser } from "@/data/locations";
 import { ASSUMPTION_TOOLTIPS, LOCATION_PRESET_EXPLANATION } from "@/lib/ui/assumptionTooltips";
 
@@ -370,7 +370,7 @@ export default function CalculatorPage() {
                 </div>
                 <nav className="hidden md:flex gap-6 text-sm font-medium">
                     <Link href="/calculator" className="text-foreground">Calculator</Link>
-                    <Link href="/recommendations" className="text-foreground/70 hover:text-primary transition-colors">Recommendations</Link>
+
                     <Link href="/guide" className="text-foreground/70 hover:text-primary transition-colors">Guide</Link>
                     <Link href="/about" className="text-foreground/70 hover:text-primary transition-colors">About</Link>
                     <Link href="/contact" className="text-foreground/70 hover:text-primary transition-colors">Contact</Link>
@@ -842,16 +842,6 @@ export default function CalculatorPage() {
                                         Get My PDF
                                     </Button>
 
-                                    {/* Affiliate Link */}
-                                    {/* Affiliate Link */}
-                                    <Link href="/recommendations" className="block pt-2">
-                                        <Button
-                                            variant="ghost"
-                                            className="w-full text-[#DCCFB8] hover:text-[#F4A460] hover:bg-[#2D241E]/50 h-12 text-base font-medium rounded-xl border border-[#4A3D32] hover:border-[#F4A460]/30 cursor-pointer transition-all"
-                                        >
-                                            See Recommended Batteries <ArrowRight className="w-4 h-4 ml-2" />
-                                        </Button>
-                                    </Link>
                                 </div>
                             </div>
                         )}
@@ -1103,22 +1093,7 @@ export default function CalculatorPage() {
                     </div>
                 </div>
 
-                {/* Affiliate Hardware CTA */}
-                {result && (
-                    <section className="w-full mt-12 py-12 px-6 bg-secondary/5 border-y border-border/50">
-                        <div className="max-w-4xl mx-auto text-center space-y-6">
-                            <h2 className="text-3xl font-bold text-foreground">Hardware that matches your system</h2>
-                            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                                We've curated a list of top-rated battery systems that meet these engineering requirements.
-                            </p>
-                            <Link href="/recommendations">
-                                <Button size="lg" className="h-14 px-8 text-lg font-bold rounded-xl gap-2 cursor-pointer shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-100">
-                                    See Recommended Batteries <ArrowRight className="w-5 h-5" />
-                                </Button>
-                            </Link>
-                        </div>
-                    </section>
-                )}
+
 
                 {/* Recommendations Section - Full Width */}
                 {recommendations && result && (

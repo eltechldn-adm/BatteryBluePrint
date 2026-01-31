@@ -15,12 +15,7 @@ export default function AboutPage() {
                     <Link href="/calculator" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Calculator
                     </Link>
-                    <Link href="/recommendations" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        Recommendations
-                    </Link>
-                    <Link href="/recommendations" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        Recommendations
-                    </Link>
+
                     <Link href="/guide" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                         Guide
                     </Link>
