@@ -63,8 +63,17 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     // Check for admin password
+    const password = process.env.ADMIN_PASSWORD;
+
+    if (!password) {
+      console.error('ADMIN_PASSWORD not set in environment variables');
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     const authHeader = request.headers.get('authorization');
-    const password = process.env.ADMIN_PASSWORD || 'admin123';
 
     if (authHeader !== `Bearer ${password}`) {
       return NextResponse.json(

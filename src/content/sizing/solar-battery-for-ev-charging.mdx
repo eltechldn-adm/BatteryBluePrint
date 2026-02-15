@@ -1,0 +1,126 @@
+---
+title: "Solar Batteries for EV Charging: The Math You Need to Know"
+description: "Thinking of charging your car from your home battery? Here is the brutal math on why that usually doesn't work—and the smart way to do it instead."
+updated: "2026-02-13"
+category: "sizing"
+slug: "solar-battery-for-ev-charging"
+readingMinutes: 12
+---
+
+"I want a solar battery so I can charge my Tesla at night for free."
+
+We hear this every day. It sounds logical: Store the sun during the day, dump it into the car at night. Free driving!
+
+Unfortunately, engineering math is a cruel reality check. While **charging an EV from solar** is a brilliant idea, charging an EV from a **home battery** is often physically impossible—or financially disastrous—unless you size the system massively.
+
+Here is the breakdown of the **House Battery vs Car Battery** mismatch.
+
+---
+
+## The Scale Problem: Bucket vs Swimming Pool
+
+The fundamental issue is the massive difference in scale between stationary home storage and mobile automotive storage.
+
+*   **Standard Home Battery:** 10 kWh to 13.5 kWh.
+*   **Standard EV Battery:** 60 kWh (Model 3) to 100 kWh (Model S/Trucks).
+*   **Daily Driving Need:** ~10-15 kWh (30-40 miles).
+
+### The Math of a Typical Night
+Let's look at a typical scenario for a homeowner with one Powerwall (13.5 kWh).
+
+1.  **5 PM:** Sun sets. Battery is 100% full (13.5 kWh).
+2.  **5 PM - 9 PM:** House evening load. Cooking dinner, TV, lights.
+    *   **Usage:** 4 kWh.
+    *   **Battery Remaining:** 9.5 kWh.
+3.  **9 PM:** You plug in the EV to charge.
+4.  **9:30 PM:** The EV pulls power. Even a "slow" Level 2 charger pulls 7 kW.
+    *   **Duration:** In just over **1 hour**, the car has drained the entire remaining 9.5 kWh from the house battery.
+5.  **10:30 PM:** House Battery is dead (0%).
+6.  **Result:** Your house goes dark (or switches to expensive grid power) for the rest of the night.
+7.  **Car Status:** You only added ~30 miles of range. The car is still mostly empty.
+
+**Conclusion:** You emptied your entire home's reservoir to fill 15% of your car's tank.
+
+---
+
+## The Right Way: "Solar Excess Charging"
+
+The solution is not to store energy in a *middleman* box (house battery) before moving it to the car. That adds inefficiency.
+The solution is to move energy **directly from Solar to EV**.
+
+This is called **Solar Excess Charging** (or Zappi/Eco-Charging).
+
+### How It Works:
+1.  **Smart Charger:** You need a specialized EV charger (like Zappi, Wallbox, or Tesla with Solar Charge feature).
+2.  **Logic:** The charger monitors your home's export.
+    *   Solar Generation = 5 kW.
+    *   House Load = 1 kW.
+    *   Export Available = 4 kW.
+3.  **Action:** The charger tells the car: *"Only charge at 4 kW right now."*
+4.  **Cloud Passing:** A cloud rolls over. Solar drops to 2 kw.
+    *   Export Available = 1 kW.
+5.  **Adjustment:** The charger instantly throttles the car down to 1 kW.
+
+**Result:** You drive for free on 100% sunshine, without ever cycling your expensive home battery. Your home battery stays full, reserved for the house at night.
+
+---
+
+## When Does "Battery-to-EV" Make Sense?
+
+There is one scenario where dumping a home battery into a car makes financial sense: **Price Arbitrage.**
+
+**The Scenario:**
+*   **Grid Peak Rate (4-9pm):** $0.50/kWh.
+*   **Grid Off-Peak Rate (12am):** $0.05/kWh.
+*   You come home at 5pm with 0% charge and need to drive again at 6pm.
+
+In this emergency case, using the home battery (which filled up on free solar) to give you a quick 20 miles of range saves you from buying that $0.50/kWh peak grid power.
+
+But for **routine daily charging**, it is almost always better to wait until midnight and charge from the cheap off-peak grid, or charge on weekends from solar excess.
+
+---
+
+## Sizing for the "EV Dream"
+
+If you *insist* on charging your EV from a home battery each night (perhaps you are off-grid), you need to scale up dramatically.
+
+**The Math for "Daily Driving" off Solar:**
+*   **Daily Commute:** 40 miles.
+*   **Energy Needed:** ~12 kWh.
+*   **House Nightly Usage:** ~10 kWh.
+*   **Total Battery Calculation:** 22 kWh (Usable) + 20% Buffer = **27 kWh**.
+
+**Recommendation:** You need **Two Powerwalls** (or equivalent 25-30 kWh system).
+One entire battery unit is dedicated solely to the car; the other is for the house.
+
+---
+
+## FAQ
+
+<DocsFAQ>
+    <DocsFAQItem question="Can I use my EV to power my house (V2H)?">
+    **Vehicle-to-Home (V2H)** is the holy grail. A Ford F-150 Lightning has a 130 kWh battery—equal to 10 Tesla Powerwalls.
+    *   **Status 2026:** It is becoming real. Enphase, Tesla, and Ford offer bidirectional chargers.
+    *   **The Catch:** It requires expensive proprietary hardware ($3,000+ for the bidirectional charger/gateway). But it essentially solves the whole-home backup problem instantly.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="Does fast charging hurt my solar battery?">
+    Yes and no. A home battery has a max output (e.g., 5 kW). If your EV charger tries to pull 11 kW (48 Amps), the battery will max out at 5 kW, and the grid will supply the other 6 kW. You cannot "hurt" the battery, but you will drain it in minutes.
+    </DocsFAQItem>
+</DocsFAQ>
+
+---
+
+## Summary
+
+1.  **Don't** buy a standard home battery expecting to fill your EV. It's too small.
+2.  **Do** buy a "Solar Smart" EV charger to soak up excess sun during the day.
+3.  **Do** size up to 25-30 kWh if you are off-grid and have an EV.
+
+Want to simulate adding an EV to your load? Our calculator has an "EV Mode" that adds your specific car's mileage to the sizing requirements.
+
+[**Add EV to Calculator →**](/calculator)
+
+Related Reading:
+*   [**How to Size a Solar Battery**](/sizing/how-to-size-solar-battery-uk-us)
+*   [**Comparison: Battery Chemistries**](/comparisons/lithium-vs-lead-acid)

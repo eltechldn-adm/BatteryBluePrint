@@ -1,0 +1,122 @@
+---
+title: "Battery Backup for Power Outages: The Definitive Sizing Guide"
+description: "How to plan your solar battery for 1, 3, or infinite days of backup power. Learn the difference between 'Whole Home' and 'Essential Loads' backup strategies."
+updated: "2026-02-13"
+category: "sizing"
+slug: "battery-backup-for-power-outages"
+readingMinutes: 14
+---
+
+Most people buy solar to save money. But in 2026, with grid instability rising in both the US and UK, more homeowners are buying batteries for one reason: **Security.**
+
+When the grid goes down, a standard grid-tied solar system shuts off for safety. Without a battery and a "Gateway" device to island your home, your panels are useless during a blackout.
+
+But "keeping the lights on" is a vague goal. Do you mean literally just the lights? Or do you mean the AC, the well pump, and the induction cooktop?
+
+This guide breaks down exactly how to size a battery for resilience, from short flickers to multi-day grid failures.
+
+---
+
+## Strategy 1: The "Life Support" Backup (Essential Loads)
+
+This is the most cost-effective strategy. You don't back up the whole house. instead, you install a **Critical Loads Panel** (or use a smart span panel) to power *only* the specific circuits you need to survive.
+
+### What You Back Up:
+*   **Fridge/Freezer:** Keep food safe (1.5 kWh/day).
+*   **Wifi Router:** Communication is safety (0.2 kWh/day).
+*   **LED Lights:** Kitchen and Living Room only (0.5 kWh/day).
+*   **Gas Furnace Fan:** If you have gas heat, the fan uses very little power (2 kWh/day).
+*   **Phone Chargers:** Negligible power.
+
+### What You Drop:
+*   Air Conditioning / Heat Pump (HVAC).
+*   Electric Stove / Oven.
+*   Electric Dryer.
+*   EV Charger.
+
+### Sizing Math
+*   **Daily Load:** 5 to 7 kWh.
+*   **Battery Size:** A standard 10 to 13.5 kWh battery (like a Powerwall 3 or GivEnergy All-In-One).
+*   **Result:** You can survive comfortably for **24 hours** without sun. With solar recharge, you can likely last **indefinitely** provided you don't turn on the oven.
+
+**Verdict:** Best for 90% of homeowners. Significant protection for minimal cost.
+
+---
+
+## Strategy 2: Whole Home Backup (The Heavy Lift)
+
+This is the dream: The grid goes down, and you don't even notice. You can run the AC, bake a cake, and watch TV.
+
+However, this requires massively more power (kW) and energy (kWh).
+
+### The "Surge" Problem (kW)
+The hardest part isn't keeping the fridge running—it's **starting** the Air Conditioner.
+A central AC unit might need 4,000 Watts (4 kW) to run, but **20,000 Watts (20 kW)** for a split second to start the compressor. This is called "Locked Rotor Amps" (LRA).
+
+*   **Single Battery Limit:** Most batteries output only 5 kW continuous / 7 kW surge.
+*   **Result:** If your AC tries to start, it trips the battery breaker immediately. Blackout.
+
+To run a whole home, you typically need **two to three stacked batteries** just to handle the startup surges of large motors.
+
+### Sizing Math
+*   **Daily Load:** 30 to 50 kWh (Normal life usage).
+*   **Battery Size:** You need 25 to 40 kWh of storage (two or three units).
+*   **Solar Array:** You need a massive solar array (10 kW+) to refill this beast in winter.
+
+**Verdict:** Expensive. Only necessary if you have medical needs for HVAC or simply have the budget for total independence.
+
+---
+
+## The "Solar Recharge" Factor
+
+A battery is just a bucket. In a multi-day outage, the size of the bucket matters less than the size of the hose filling it (Solar).
+
+### The Winter Trap
+Imagine a 3-day blizzard in February.
+*   **Day 1:** Grid fails. You drain the battery overnight.
+*   **Day 2:** Heavy clouds. Your 8 kW solar array—which typically makes 40 kWh in summer—only produces **4 kWh** today.
+*   **Crisis:** You used 15 kWh last night. you generated 4 kWh today. You are now in a deficit. The battery hits 0% at 8 PM, and you go dark.
+
+**Engineering Rule:** For multi-day resilience, you must assume your solar production will drop by **80-90%** during the storm that caused the outage.
+
+> **Tip:** If you need guaranteed winter backup, do not rely solely on solar + battery. Integrating a **small gas generator** to recharge the batteries during "Solar Droughts" is often cheaper than buying 5 extra batteries.
+
+---
+
+## FAQ: Outage specifics
+
+<DocsFAQ>
+    <DocsFAQItem question="Will my lights flicker when the grid fails?">
+    It depends on the system.
+    *   **UPS Grade (Uninterruptible):** Some systems (Victron, some Enphase) switch in &lt;20 milliseconds. Computers will not crash.
+    *   **Standard Backup:** Most systems (Tesla, FranklinWH) switch in 2-5 seconds. The lights will blink, clocks will reset, and wifi will reboot.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="Can I charge my EV during a blackout?">
+    Technically yes, but don't.
+    Putting 10 kWh into your car gives you only ~35 miles of range, but it robs your house of **24 hours of survival** time. In an emergency, your house is the priority.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="Does a battery protect me from voltage sags?">
+    Yes. "Brownouts" or voltage sags can damage sensitive electronics. A good hybrid inverter acts as a power conditioner, ensuring your home gets clean 120V/240V power regardless of grid quality.
+    </DocsFAQItem>
+</DocsFAQ>
+
+---
+
+## How to Calculate Your Backup Needs
+
+Don't guess. You need to sum the wattage of every device you plan to keep running.
+
+*   **Step 1:** List Essentials: Fridge (150W), Wifi (20W), Lights (100W total).
+*   **Step 2:** Add Heating/Cooling: Furnace Fan (400W)? Portable Heater (1500W)?
+*   **Step 3:** Calculate Hourly Load: Sum the watts / 1000 = kW usage.
+*   **Step 4:** Multiply by Hours: kW × 24 = Daily kWh needed.
+
+Use our calculator to do this automatically based on your appliance choices.
+
+[**Calculate Your Backup Duration →**](/calculator)
+
+Related Guides:
+*   [**kW vs kWh Explained**](/basics/kwh-explained)
+*   [**Common Scenarios**](/sizing/how-much-battery-storage-do-i-need)

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDownloadToken, markDownloadTokenAsUsed } from '@/lib/db/blueprint-tokens';
 import { generateBlueprintPdf } from '@/lib/pdf/generate-blueprint-pdf';
 import { logger } from '@/lib/logger';
+import { storeEvent } from '@/lib/kv/redis';
 
 export const runtime = 'edge';
 
@@ -29,6 +30,16 @@ export async function GET(request: NextRequest) {
         // Generate PDF from stored payload
         const results = token.payload?.results ?? {};
         const recommendations = token.payload?.recommendations ?? {};
+
+        // Log analytics event
+        await storeEvent({
+            type: 'blueprint_download',
+            timestamp: new Date().toISOString(),
+            meta: {
+                location: results.location?.address || 'unknown',
+                systemSize: results.systemSize || 0
+            }
+        });
 
         const pdfBytes = await generateBlueprintPdf(results, recommendations);
 

@@ -25,6 +25,21 @@
     --radius-lg: 0.75rem;
     --radius-xl: 1rem;
     --radius-2xl: 1.5rem;
+
+    /* Layout Dimensions */
+    --header-height: 80px;
+    --sidebar-width: 280px;
+    --toc-width: 280px;
+    --docs-gutter: 2rem;
+
+    /* Z-Index System */
+    --z-header: 50;
+    --z-sidebar: 40;
+    --z-toc: 30;
+}
+
+html {
+    scroll-padding-top: calc(var(--header-height) + 2rem);
 }
 
 body {
@@ -44,24 +59,32 @@ body {
 
 /* Animated Background Blobs */
 @keyframes blob-float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(0, 0) scale(1);
     }
+
     33% {
         transform: translate(30px, -50px) scale(1.1);
     }
+
     66% {
         transform: translate(-20px, 20px) scale(0.9);
     }
 }
 
 @keyframes blob-float-reverse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(0, 0) scale(1);
     }
+
     33% {
         transform: translate(-40px, 30px) scale(0.95);
     }
+
     66% {
         transform: translate(25px, -40px) scale(1.05);
     }
@@ -110,7 +133,7 @@ body {
 
 /* Premium Card Shadows */
 .card-premium {
-    box-shadow: 
+    box-shadow:
         0 1px 3px rgba(45, 36, 30, 0.04),
         0 4px 12px rgba(45, 36, 30, 0.06),
         0 8px 24px rgba(45, 36, 30, 0.04);
@@ -118,7 +141,7 @@ body {
 }
 
 .card-premium:hover {
-    box-shadow: 
+    box-shadow:
         0 2px 6px rgba(45, 36, 30, 0.06),
         0 8px 20px rgba(45, 36, 30, 0.08),
         0 16px 40px rgba(45, 36, 30, 0.06);
@@ -149,7 +172,7 @@ body {
 .btn-unlock:hover {
     background: linear-gradient(135deg, #3D312A 0%, #5A4D42 100%);
     transform: translateY(-2px);
-    box-shadow: 
+    box-shadow:
         0 8px 24px rgba(45, 36, 30, 0.25),
         0 4px 12px rgba(45, 36, 30, 0.15);
 }
@@ -242,6 +265,7 @@ body {
         opacity: 0;
         transform: translateY(16px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -257,7 +281,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .feature-card.animate {
@@ -271,6 +295,7 @@ body {
         opacity: 0;
         transform: translateY(24px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -325,13 +350,16 @@ body {
     perspective: 1000px;
 }
 
-.preview-card-stack > * {
+.preview-card-stack>* {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .blob-1, .blob-2, .blob-3 {
+
+    .blob-1,
+    .blob-2,
+    .blob-3 {
         width: 200px;
         height: 200px;
         filter: blur(60px);
@@ -343,6 +371,7 @@ body {
     from {
         height: 0;
     }
+
     to {
         height: var(--radix-accordion-content-height);
     }
@@ -352,6 +381,7 @@ body {
     from {
         height: var(--radix-accordion-content-height);
     }
+
     to {
         height: 0;
     }
@@ -359,11 +389,356 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
     @keyframes accordion-down {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
+
     @keyframes accordion-up {
-        from { opacity: 1; }
-        to { opacity: 0; }
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
     }
+}
+
+/* ========================================
+   PHASE 9A: Enhanced Article Typography
+   (Dyslexia-Friendly Readability)
+   ======================================== */
+
+.article-prose {
+    /* Base Readability */
+    --prose-body: var(--color-muted-foreground);
+    --prose-headings: var(--color-foreground);
+    --prose-bold: var(--color-foreground);
+    --prose-counters: var(--color-primary);
+    --prose-bullets: var(--color-primary);
+}
+
+/* 1. Rhythm & Flow */
+.article-prose p {
+    line-height: 1.8;
+    margin-bottom: 1.5em;
+    /* Specific 24px-32px range */
+    max-width: 65ch;
+    /* Optimal reading width */
+}
+
+/* 2. Strong Sectioning */
+.article-prose h2 {
+    margin-top: 3rem;
+    /* Reduced from 4rem */
+    margin-bottom: 1.25rem;
+    /* Reduced from 1.5rem */
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+    font-size: 1.75rem;
+    /* Slightly smaller */
+    font-weight: 700;
+    scroll-margin-top: calc(var(--header-height) + 2rem);
+}
+
+/* First H2 shouldn't have massive top margin if it follows H1 immediately */
+.article-prose>h2:first-of-type {
+    margin-top: 1.5em;
+}
+
+.article-prose h3 {
+    margin-top: 2rem;
+    /* Reduced from 3rem */
+    margin-bottom: 1rem;
+    font-size: 1.375rem;
+    /* Smaller */
+    font-weight: 600;
+    scroll-margin-top: calc(var(--header-height) + 2rem);
+}
+
+/* 3. List Items */
+.article-prose ul,
+.article-prose li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.6;
+    padding-left: 0.4em;
+}
+
+/* 4. Blockquotes */
+.article-prose blockquote {
+    font-style: italic;
+    border-left-width: 4px;
+    border-left-color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-muted) 15%, transparent);
+    padding: 1.5rem 2rem;
+    border-radius: 0 1rem 1rem 0;
+    margin: 2.5em 0;
+}
+
+.article-prose blockquote p {
+    margin: 0;
+    /* Remove default p margin inside quote */
+}
+
+/* 6. Tables (Responsive Wrapper) */
+.article-prose table {
+    display: block;
+    width: 100%;
+    margin: 0.5em 0;
+}
+
+.article-prose blockquote p:first-child {
+    margin-top: 0;
+}
+
+.article-prose blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Code blocks */
+.article-prose pre {
+    margin: 2em 0;
+    padding: 1.5rem;
+    background-color: color-mix(in srgb, var(--color-muted) 20%, transparent);
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+.article-prose code {
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    background-color: color-mix(in srgb, var(--color-muted) 30%, transparent);
+    border-radius: 0.25rem;
+}
+
+.article-prose pre code {
+    padding: 0;
+    background: none;
+}
+
+/* Tables */
+.article-prose table {
+    width: 100%;
+    margin: 2em 0;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.article-prose thead th {
+    background-color: color-mix(in srgb, var(--color-muted) 30%, transparent);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.article-prose tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+}
+
+/* Inline TOC - "On this page" card */
+.inline-toc {
+    background-color: color-mix(in srgb, var(--color-muted) 15%, transparent);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.inline-toc-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted-foreground);
+    margin-bottom: 1rem;
+}
+
+.inline-toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.inline-toc-item {
+    margin: 0.5rem 0;
+}
+
+.inline-toc-link {
+    display: block;
+    padding: 0.375rem 0;
+    color: var(--color-foreground);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    padding-left: 0.75rem;
+    margin-left: -0.75rem;
+    transition: all 0.15s;
+}
+
+.inline-toc-link:hover {
+    color: var(--color-primary);
+    border-left-color: var(--color-primary);
+}
+
+.inline-toc-link.active {
+    color: var(--color-primary);
+    font-weight: 500;
+    border-left-color: var(--color-primary);
+}
+
+/* ========================================
+   DOCS LAYOUT SYSTEM (Phase 10B)
+   App Shell Architecture for Base44-style docs
+   ======================================== */
+
+/* Docs Shell - Contains the entire docs layout */
+.docs-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Docs Body - Main container below header */
+.docs-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    gap: 0;
+    position: relative;
+    padding-top: var(--header-height);
+}
+
+@media (max-width: 768px) {
+    .docs-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 1280px) {
+    .docs-body {
+        grid-template-columns: var(--sidebar-width) 1fr var(--toc-width);
+    }
+}
+
+/* Docs Main - Scrollable content area */
+.docs-main {
+    overflow-y: auto;
+    height: calc(100vh - var(--header-height));
+    padding: var(--docs-gutter);
+    background-color: var(--color-background);
+}
+
+/* Premium Dark Sidebar Styling */
+.docs-sidebar {
+    position: fixed;
+    left: 0;
+    top: var(--header-height);
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+    background: linear-gradient(to bottom, rgb(24 24 27), rgb(9 9 11));
+    border-right: 1px solid rgb(39 39 42);
+    z-index: var(--z-sidebar);
+    overflow-y: auto;
+    padding: 1.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+    .docs-sidebar {
+        display: none;
+        /* Hidden on mobile, replaced by drawer */
+    }
+}
+
+/* Sidebar Search */
+.docs-sidebar-search {
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: rgb(39 39 42);
+    border: 1px solid rgb(63 63 70);
+    border-radius: 0.5rem;
+    color: rgb(228 228 231);
+    font-size: 0.875rem;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+.docs-sidebar-search:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.docs-sidebar-search::placeholder {
+    color: rgb(161 161 170);
+}
+
+/* Sidebar Section Headers */
+.docs-sidebar-section {
+    margin-bottom: 1.5rem;
+}
+
+.docs-sidebar-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgb(161 161 170);
+    margin-bottom: 0.75rem;
+    padding-left: 0.75rem;
+}
+
+/* Sidebar Links */
+.docs-sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: rgb(212 212 216);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    position: relative;
+}
+
+.docs-sidebar-link:hover {
+    background: rgb(39 39 42);
+    color: rgb(244 244 245);
+}
+
+/* Active Link - Pill + Accent Bar */
+.docs-sidebar-link-active {
+    background: rgb(39 39 42);
+    color: white;
+    font-weight: 500;
+    border-left: 3px solid var(--color-primary);
+    padding-left: calc(0.75rem - 3px);
+}
+
+/* TOC Sticky Panel */
+.docs-toc {
+    position: sticky;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    padding: var(--docs-gutter);
+    z-index: var(--z-toc);
+}
+
+@media (max-width: 1280px) {
+    .docs-toc {
+        display: none;
+    }
+}
+
+/* Article Content Scroll Margin */
+.article-prose h2,
+.article-prose h3 {
+    scroll-margin-top: calc(var(--header-height) + 2rem);
 }

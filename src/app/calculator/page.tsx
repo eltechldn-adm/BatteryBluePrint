@@ -19,6 +19,7 @@ import { analytics } from "@/lib/analytics/track";
 import { FileText, CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown } from "lucide-react";
 import { LOCATION_PROFILES, getLocationProfile, detectLocationFromBrowser } from "@/data/locations";
 import { ASSUMPTION_TOOLTIPS, LOCATION_PRESET_EXPLANATION } from "@/lib/ui/assumptionTooltips";
+import { Header } from "@/components/layout/Header";
 
 export default function CalculatorPage() {
     const [dailyLoad, setDailyLoad] = useState<string>("10");
@@ -364,20 +365,9 @@ export default function CalculatorPage() {
                 <div className="animated-blob blob-2 bottom-1/4 -left-32 opacity-10" />
             </div>
 
-            <header className="px-6 py-5 flex items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-                <div className="text-xl font-bold text-primary">
-                    <Link href="/" className="hover:opacity-80 transition-opacity">BatteryBlueprint</Link>
-                </div>
-                <nav className="hidden md:flex gap-6 text-sm font-medium">
-                    <Link href="/calculator" className="text-foreground">Calculator</Link>
+            <Header />
 
-                    <Link href="/guide" className="text-foreground/70 hover:text-primary transition-colors">Guide</Link>
-                    <Link href="/about" className="text-foreground/70 hover:text-primary transition-colors">About</Link>
-                    <Link href="/contact" className="text-foreground/70 hover:text-primary transition-colors">Contact</Link>
-                </nav>
-            </header>
-
-            <main className="flex-1 container mx-auto w-full px-4 sm:px-6 py-10 max-w-6xl relative z-10">
+            <main className="flex-1 container mx-auto w-full px-4 sm:px-6 pt-32 pb-10 max-w-6xl relative z-10">
                 <div className="mb-8">
                     <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">System Sizing Calculator</h1>
                     <p className="text-muted-foreground text-lg">Enter your requirements to get engineering-grade recommendations.</p>

@@ -63,6 +63,11 @@ class InMemoryRedis {
             try { return JSON.parse(item); } catch { return item; }
         });
     }
+
+    async llen(key: string): Promise<number> {
+        const current = await this.get<any[]>(key);
+        return current ? current.length : 0;
+    }
 }
 
 // Client interface wrapper
@@ -70,7 +75,7 @@ type RedisClient = Redis | InMemoryRedis;
 
 let redis: RedisClient | null = null;
 
-function getRedis(): RedisClient {
+export function getRedisClient(): RedisClient {
     if (!redis) {
         const url = process.env.UPSTASH_REDIS_REST_URL;
         const token = process.env.UPSTASH_REDIS_REST_TOKEN;
@@ -146,14 +151,14 @@ export async function createConfirmToken(
         expiresAt: expiresAt.toISOString(),
     };
 
-    const kv = getRedis();
+    const kv = getRedisClient();
     await kv.setex(`confirm:${token}`, 24 * 60 * 60, JSON.stringify(data));
 
     return { token, data };
 }
 
 export async function getConfirmToken(token: string): Promise<ConfirmTokenData | null> {
-    const kv = getRedis();
+    const kv = getRedisClient();
     const data = await kv.get<string>(`confirm:${token}`);
 
     if (!data) return null;
@@ -170,7 +175,7 @@ export async function getConfirmToken(token: string): Promise<ConfirmTokenData |
 }
 
 export async function markConfirmTokenAsConfirmed(token: string): Promise<void> {
-    const kv = getRedis();
+    const kv = getRedisClient();
     const data = await getConfirmToken(token);
 
     if (!data) throw new Error('Token not found');
@@ -199,14 +204,14 @@ export async function createDownloadToken(
         expiresAt: expiresAt.toISOString(),
     };
 
-    const kv = getRedis();
+    const kv = getRedisClient();
     await kv.setex(`download:${token}`, 24 * 60 * 60, JSON.stringify(data));
 
     return { token, data };
 }
 
 export async function getDownloadToken(token: string): Promise<DownloadTokenData | null> {
-    const kv = getRedis();
+    const kv = getRedisClient();
     const data = await kv.get<string>(`download:${token}`);
 
     if (!data) return null;
@@ -222,7 +227,7 @@ export async function getDownloadToken(token: string): Promise<DownloadTokenData
 }
 
 export async function markDownloadTokenAsUsed(token: string): Promise<void> {
-    const kv = getRedis();
+    const kv = getRedisClient();
     const data = await getDownloadToken(token);
 
     if (!data) return;
@@ -237,7 +242,7 @@ export async function markDownloadTokenAsUsed(token: string): Promise<void> {
 
 // Email Status Operations
 export async function updateEmailStatus(email: string, updates: Partial<EmailStatus>): Promise<void> {
-    const kv = getRedis();
+    const kv = getRedisClient();
     const key = `email:${await hashEmail(email)}`;
 
     const existing = await kv.get<string | EmailStatus>(key);
@@ -256,19 +261,19 @@ export async function updateEmailStatus(email: string, updates: Partial<EmailSta
 
 // Event & Lead Storage
 export async function storeEvent(eventData: any): Promise<void> {
-    const kv = getRedis();
+    const kv = getRedisClient();
     // Use lpush to add to a list of events
     // For Upstash, lpush is supported. For InMemory, we implemented it.
     await kv.lpush('events_log', JSON.stringify(eventData));
 }
 
 export async function storeLead(lead: any): Promise<void> {
-    const kv = getRedis();
+    const kv = getRedisClient();
     await kv.lpush('leads_log', JSON.stringify(lead));
 }
 
 export async function getLeads(): Promise<any[]> {
-    const kv = getRedis();
+    const kv = getRedisClient();
     // Get last 100 leads
     return await kv.lrange('leads_log', 0, 99);
 }

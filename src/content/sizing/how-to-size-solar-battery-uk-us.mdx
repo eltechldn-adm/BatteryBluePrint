@@ -1,0 +1,152 @@
+---
+title: "How to Size a Solar Battery Correctly: A Step-by-Step Guide"
+description: "Stop guessing. Learn the engineering method for sizing residential battery storage based on solar generation, nightly consumption, and days of autonomy."
+updated: "2026-02-13"
+category: "sizing"
+slug: "how-to-size-solar-battery-uk-us"
+readingMinutes: 12
+---
+
+Sizing a solar battery is the "Goldilocks" problem of renewable energy.
+
+*   **Too Small:** You run out of power at 2 AM, or you fail to capture all your solar generation, forcing you to export cheap power to the grid only to buy it back expensively later.
+*   **Too Big:** You spend thousands on capacity that sits empty because your solar panels effectively can't fill it, or sits 100% full because your house doesn't use it. It’s wasted capital.
+*   **Just Right:** The battery cycles fully every day, maximizing ROI, and provides just enough buffer to get you through cloudy days or outages.
+
+In this guide, we will walk through the **manual calculation method** used by solar engineers.
+
+> **Shortcut:** Don't want to do manual math? Our [Free Calculator](/calculator) automates this entire process using local solar data for your zip code.
+
+---
+
+## The 3 Variables of Sizing
+
+To size a battery, you need to balance three competing numbers. You cannot solve for one without considering the others.
+
+1.  **Consumption:** How much energy do you use at night? (Target: Self-sufficiency)
+2.  **Generation:** How much *excess* solar do you produce? (Target: Charge capability)
+3.  **Backup:** How long do you need to survive off-grid? (Target: Resilience)
+
+### Step 1: Calculate Nightly Consumption
+
+Your battery’s primary job is to cover the hours when the sun isn't shining.
+
+If you have a Smart Meter (which most homes in the UK, California, and Texas do), look at your usage graphs.
+Identify the time from **Sunset (e.g., 6 PM)** to **Sunrise (e.g., 7 AM)**.
+Sum up the kWh used in that window.
+
+**Typical Examples:**
+*   **Low User:** 3 - 5 kWh (Lights, fridge, TV, phone charging).
+*   **Medium User:** 8 - 12 kWh (Cooking, dishwasher, maybe a short laundry cycle).
+*   **High User:** 15 - 25+ kWh (EV charging, electric heating/AC overnight, hot tub).
+
+**Rule of Thumb:** Ideally, you want a battery that can cover 100% of your overnight usage so you never pull from the grid. If your nightly usage is 10 kWh, a 10 kWh battery is your *baseline minimum*.
+
+### Step 2: The Solar "Fill Factor"
+
+This is where most people mess up. **A battery is useless if you can't fill it.**
+
+It doesn't matter if you buy a massive 30 kWh battery bank if your solar panels only generate 5 kWh of *surplus* power during the day.
+
+You need to calculate your **Winter Surplus**.
+Why Winter? Because in Summer, you have abundant power. If you size for Summer, you will be disappointed in December. If you size for Winter (or at least Spring/Autumn), your system will be robust year-round.
+
+**Calculation:**
+`Total Daily Solar Generation` - `Daytime Home Consumption` = `Surplus available for charging`.
+
+*   **Scenario:** You have a 4kW solar array. In November, it generates 10 kWh total per day.
+*   **Daytime Use:** You are home, running the office and washing machine. You use 6 kWh directly.
+*   **Surplus:** 10 kWh - 6 kWh = **4 kWh**.
+*   **Constraint:** Even if you have a 13.5 kWh Tesla Powerwall, you will only charge it to **30%** (4 kWh) on this day.
+
+**Engineering Advice:** Do not size your battery significantly larger than your average daily export capacity. It’s generally better to undersize the battery slightly than to oversize it massively.
+
+### Step 3: Depth of Discharge (DoD) & Buffers
+
+Batteries have physical limits.
+*   **Usable Capacity:** A "10 kWh" lead-acid battery might only allow you to use 50% (5 kWh) before damaging it.
+*   **Modern Lithium (LFP):** Most allow 90% to 100% DoD. A 13.5 kWh Powerwall has 13.5 kWh usable.
+
+However, for **Backup Planning**, you need a **buffer**.
+If you want backup security, you never want your battery to hit 0%. You might set a "Reserve Limit" of 20%.
+*   Battery Size: 10 kWh
+*   Reserve Setting: 20% (2 kWh always kept for emergencies)
+*   Daily Usable: 8 kWh
+
+**Equation:**
+`Required Capacity` = `Nightly Consumption` / `(1.0 - Reserve %)`
+
+If you need 10 kWh usable, and keep a 20% reserve:
+10 / 0.8 = **12.5 kWh Total Capacity Required**.
+
+---
+
+## Worked Example: The "Smith" Family
+
+Let's run a realistic sizing scenario.
+
+**Profile:**
+*   Location: Austin, Texas
+*   Solar System: 8 kW array
+*   Daily Avg Generation: 35 kWh (Annual Avg)
+*   Nightly Usage: 12 kWh
+
+**Goal:** Cover nightly usage + keep a buffer for blackouts.
+
+1.  **Usage Target:** They need 12 kWh to get through the night.
+2.  **Solar Construction Check:** Their 8 kW system generates plenty of power. Even on a bad day, they likely have 15-20 kWh surplus. **Generation is not the bottleneck.**
+3.  **Buffer:** They want a 20% emergency reserve.
+    *   Target Usable: 12 kWh.
+    *   Math: 12 / 0.8 = 15 kWh.
+4.  **Hardware Selection:**
+    *   Option A: 1x Tesla Powerwall 3 (13.5 kWh). *Verdict: Slightly too small.* They will hit grid power at 4 AM or have to sacrifice their reserve.
+    *   Option B: 1x FranklinWH (13.6 kWh). *Verdict: Same issue.*
+    *   Option C: 2x Enphase 5P (5kWh each = 10 kWh). *Verdict: Way too small.*
+    *   Option D: **Stacking.** Buying 2x Powerwalls = 27 kWh.
+        *   This gives them 12 kWh for the night + 15 kWh of massive backup reserve.
+        *   **Result:** This is the robust, "energy independent" choice, though more expensive.
+
+---
+
+## The "Modular" Strategy
+
+Because battery needs change (maybe you buy an EV next year), we highly recommend **modular battery systems**.
+
+Brands like Enphase, FranklinWH, and server-rack batteries (like EG4) allow you to start small and stack more units later.
+*   **Year 1:** Install 10 kWh. See how it performs.
+*   **Year 2:** Realize you need more? Add another 5 kWh module.
+
+This is safer than buying a monolithic, non-expandable system upfront.
+
+---
+
+## FAQ
+
+<DocsFAQ>
+    <DocsFAQItem question="What happens if I undersize my battery?">
+    You will simply pull from the grid earlier in the morning. It’s not catastrophic. From a financial ROI perspective, slightly undersizing is actually *better* because every electron in the battery gets used every single night. You get 100% utilization.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="What happens if I oversize my battery?">
+    You paid for capacity you aren't using. If you have a 20 kWh battery but only use 5 kWh at night, that extra 15 kWh sits there doing nothing. It lowers your Return on Investment (ROI) significantly.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="Does the calculator account for winter?">
+    Yes. Our [Battery Blueprint Calculator](/calculator) looks at critical "Lowest Sun Month" data (usually December or January). If you size for December, you are safe for June.
+    </DocsFAQItem>
+</DocsFAQ>
+
+---
+
+## Summary Checklist
+
+1.  Determined nightly kWh usage?
+2.  Confirmed solar array is big enough to fill that capacity in Winter?
+3.  Added a 20% buffer for blackouts/resilience?
+4.  Checked the Peak Power (kW) output (see our [kW vs kWh guide](/basics/kwh-explained))?
+
+If you have those four numbers, you are ready to shop.
+
+**Next Step:** Skip the manual math. Use our algorithm to run this simulation for your specific zip code and roof angle.
+
+[**Launch System Calculator →**](/calculator)

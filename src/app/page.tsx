@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Zap, Shield, Cpu, ChevronRight, Battery, Sun } from "lucide-react";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
     const featuresRef = useRef<HTMLDivElement>(null);
@@ -41,18 +43,8 @@ export default function Home() {
             </div>
 
             {/* Header */}
-            <header className="px-6 py-5 flex items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-                <div className="text-2xl font-bold tracking-tighter text-primary">BatteryBlueprint</div>
-                <nav className="hidden md:flex gap-8 text-sm font-medium text-foreground/70">
-                    <Link href="/calculator" className="nav-link hover:text-primary transition-colors">Calculator</Link>
-                    <Link href="/guide" className="nav-link hover:text-primary transition-colors">Sizing Guide</Link>
-                </nav>
-                <div className="flex gap-4">
-                    <Link href="/calculator">
-                        <Button className="btn-premium shadow-md">Start Sizing</Button>
-                    </Link>
-                </div>
-            </header>
+            {/* Header */}
+            <Header />
 
             {/* Hero */}
             <main className="flex-1 flex flex-col relative z-10">
@@ -141,7 +133,7 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <p className="text-[10px] text-muted-foreground mb-5">Updated just now</p>
-                                        
+
                                         {/* Metrics Grid - 2 Column */}
                                         <div className="grid grid-cols-2 gap-6 mb-4">
                                             <div>
@@ -159,10 +151,10 @@ export default function Home() {
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         {/* Divider */}
                                         <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-4" />
-                                        
+
                                         {/* Nameplate Row - Full Width */}
                                         <div>
                                             <p className="text-xs uppercase tracking-wider font-medium text-muted-foreground mb-1.5">Nameplate Needed</p>
@@ -270,25 +262,8 @@ export default function Home() {
             </main>
 
             {/* Footer */}
-            <footer className="py-12 px-6 border-t border-border/50 bg-muted/20">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div className="flex flex-col items-center md:items-start gap-2">
-                            <div className="text-xl font-bold text-primary">BatteryBlueprint</div>
-                            <p className="text-sm text-muted-foreground">No-BS Solar Engineering Tools</p>
-                        </div>
-                        <nav className="flex gap-8 text-sm text-muted-foreground">
-                            <Link href="/calculator" className="hover:text-primary transition-colors">Calculator</Link>
-                            <Link href="/guide" className="hover:text-primary transition-colors">Guide</Link>
-                            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
-                            <Link href="/terms" className="hover:text-primary transition-colors">Terms</Link>
-                        </nav>
-                    </div>
-                    <div className="mt-8 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-                        <p>&copy; {new Date().getFullYear()} BatteryBlueprint. Built for engineers, by engineers.</p>
-                    </div>
-                </div>
-            </footer>
+            {/* Footer */}
+            <Footer />
         </div>
     );
 }

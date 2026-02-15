@@ -1,0 +1,140 @@
+---
+title: "kW vs kWh: The Most Important Constants in Solar Storage"
+description: "Confusing Power (kW) with Energy (kWh) is the #1 mistake homeowners make when buying batteries. Here is the definitive engineering explanation."
+updated: "2026-02-13"
+category: "basics"
+slug: "kwh-explained"
+readingMinutes: 6
+---
+
+If you only learn one technical concept before buying a solar battery, make it the difference between **kW** and **kWh**.
+
+These two acronyms appear on every datasheet, quote, and brochure. They look almost identical. Yet, confusing them can lead to buying a system that either can’t run your appliances (too little kW) or runs out of juice in 20 minutes (too little kWh).
+
+This is a recurring issue we see in failed solar projects. Homeowners buy a "10 battery," thinking that means 10 hours of backup, without realizing it only has 5kW of output—not enough to start their well pump or AC.
+
+Let’s solve this confusion once and for all.
+
+## The 30-Second Definition
+
+*   **kW (Kilowatt) = Power.** Ideally, "The Flow." This is the rate at which energy is used or generated right *now*. It determines **how many** appliances you can turn on simultaneously.
+*   **kWh (Kilowatt-hour) = Energy.** Ideally, "The Tank." This is the total amount of stored electricity. It determines **how long** you can keep those appliances running.
+
+### The Water Analogy
+Think of your battery as a water tank.
+*   **kWh** is the size of the tank (e.g., 50 gallons).
+*   **kW** is the width of the pipe or hose coming out of it (e.g., 5 gallons per minute).
+
+If you have a massive tank (high kWh) but a tiny straw to drink from (low kW), you can’t quench your thirst quickly.
+If you have a huge firehose (high kW) but a tiny bucket (low kWh), you’ll run out of water in seconds.
+
+---
+
+## Deep Dive: kW (Power / Output)
+
+When you look at your microwave, you might see "1,000 Watts" (which is 1 kW). That means the moment you hit start, it demands 1 kW of power flow from the grid or battery.
+
+Every appliance has a "power rating" measured in Watts or Kilowatts.
+
+| Appliance | Typical Power Demand (kW) |
+| :--- | :--- |
+| LED Light Bulb | 0.01 kW |
+| Refrigerator | 0.2 kW (running) |
+| Microwave | 1.0 kW |
+| Electric Kettle | 2.5 kW |
+| Central AC | 3.5 - 5.0 kW |
+| Electric Shower | 8.5 - 10.5 kW |
+
+### Why Battery kW Matters
+If your battery is rated for **5 kW continuous output** (a standard size for many units like the Tesla Powerwall 2), you simply cannot run more than 5 kW of stuff at once during a blackout.
+
+If you try to run your Electric Shower (9 kW) on a 5 kW battery during a power outage, the system will overload and shut down immediately—even if the battery is 100% full.
+
+**Key Takeaway:** You need enough **kW** to handle the "peak surge" of all the critical appliances you want to run simultaneously.
+
+---
+
+## Deep Dive: kWh (Energy / Capacity)
+
+This is the quantity of fuel in the tank. You calculate it by multiplying Power (kW) × Time (Hours).
+
+*   Running a 1 kW microwave for 1 hour uses **1 kWh** of energy.
+*   Running a 3 kW AC unit for 4 hours uses **12 kWh** of energy. (3 kW × 4 hrs = 12 kWh).
+
+### Why Battery kWh Matters
+This determines your endurance.
+
+Let’s say your home "baseload" (fridge, wifi, lights, idle devices) is 0.5 kW.
+If you have a **10 kWh battery**:
+*   Calculation: 10 kWh capacity / 0.5 kW load = 20 hours.
+*   Result: You can survive 20 hours of outage if you keep usage low.
+
+Now, turn on the AC (3.5 kW).
+*   Total Load: 4.0 kW.
+*   Calculation: 10 kWh capacity / 4.0 kW load = 2.5 hours.
+*   Result: Your battery is dead in 2.5 hours.
+
+**Key Takeaway:** You need enough **kWh** to last through the night (until the sun comes up to recharge) or through a multi-day outage if solar production is low.
+
+---
+
+## Real World Example: The "Power Shower" Trap
+
+We often see quotes for a "5kWh Battery with 3kW Output." This is a small, budget system.
+
+**Scenario:** It’s 8 PM, dark outside. No solar. The battery is full.
+*   You turn on the kettle (2.5 kW).
+*   **Result:** The battery works fine. It supplies 2.5 kW, which is below its 3 kW limit.
+*   **Tank Drain:** It’s draining fast, but it works.
+
+**Scenario 2:** It’s 8 PM. You turn on the Electric Shower (9.5 kW).
+*   **Problem:** The shower demands 9.5 kW immediately.
+*   **Result:** The battery usually has a "pass-through" mode if the grid is active, so it pulls the extra power from the grid.
+*   **Grid Down:** If this is a blackout, your lights go out immediately. The battery cannot physically push 9.5 kW through its 3 kW "pipe."
+
+---
+
+## C-Ratings: The Hidden Spec
+
+For the engineering-minded, the relationship between kWh and kW is often expressed as a **C-rating**.
+*   **1C:** The battery can discharge its full capacity in 1 hour. (e.g., 5 kWh battery / 5 kW output).
+*   **0.5C:** The battery takes 2 hours to discharge fully. (e.g., 10 kWh battery / 5 kW output).
+
+Most home LFP batteries operate around **0.5C**. This is good for longevity. Discharging a battery too fast (high C-rating) generates heat and degrades the cells faster. This is why a massive 15 kWh battery might still only offer 5 kW or 7 kW of power output—it’s designed for endurance, not drag racing.
+
+---
+
+## FAQ
+
+<DocsFAQ>
+    <DocsFAQItem question="How do I find out my home's kW demand?">
+    The most accurate way is to look at your "Smart Meter" or utility app, which often shows real-time usage graphs. Look for the highest "peak" on the graph—that’s your maximum kW demand. Alternatively, sum up the wattage labels on the appliances you want to run at the same time.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="Is a higher kWh always better?">
+    Generally, yes, because it gives you longer backup. However, there is a point of diminishing returns. If you have a small 4kW solar array, there is no point buying a 30kWh battery bank because your panels will never generate enough surplus to fill it. Sizing the battery *to the solar array* is just as important as sizing it to the home.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="Can I stack batteries to get more kW?">
+    Usually, yes. Adding a second unit often doubles both your capacity (kWh) AND your output (kW).
+    *   1x Tesla Powerwall 2: 13.5 kWh / 5 kW.
+    *   2x Tesla Powerwall 2: 27 kWh / 10 kW.
+    *   *Note: Check the specific manufacturer specs, as some stack capacity but limit output.*
+    </DocsFAQItem>
+</DocsFAQ>
+
+---
+
+## Summary
+
+*   **kW** = Peak Power. Do you have enough "oomph" to start the AC?
+*   **kWh** = Total Capacity. Do you have enough fuel to run all night?
+
+Don't guess. Sizing a battery requires balancing these two numbers against your specific lifestyle.
+
+We created a tool that does the math for you. It sums up your appliance loads (kW) and calculates required duration (kWh) automatically.
+
+[**Calculate Your Needs in 2 Minutes →**](/calculator)
+
+Or read our guide on how much storage fits your home:
+[**How Much Battery Storage Do I Need?**](/sizing/how-much-battery-storage-do-i-need)
