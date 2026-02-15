@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-export const runtime = 'edge';
+
 import { createConfirmToken } from '@/lib/db/blueprint-tokens';
 import { sendConfirmEmail } from '@/lib/email/resend';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit/limiter';

@@ -1,4 +1,4 @@
-import { getRequestContext } from '@cloudflare/next-on-pages';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 export interface BlueprintToken {
     id: string;
@@ -38,17 +38,30 @@ async function hashEmail(email: string): Promise<string> {
 }
 
 // KV Helper to get the correct namespace/binding
-function getKV() {
+async function getKV() {
     try {
-        const env = getRequestContext().env as unknown as CloudflareEnv;
+        let env;
+        try {
+            // Unsafe cast because getCloudflareContext might be missing in some environments
+            const context = await getCloudflareContext();
+            env = context?.env as unknown as CloudflareEnv;
+        } catch (e) {
+            // Fallback or ignore if context not found
+        }
+
         if (!env || !env.BATTERYBLUEPRINT_KV) {
             // Fallback for local dev if bindings aren't set up or we are not in Pages runtime yet
-            // Warning: This implies local dev needs `wrangler pages dev` or a mock.
-            // For safety, we can throw or return a mock interface if needed.
             if (process.env.NODE_ENV === 'development') {
                 console.warn('BATTERYBLUEPRINT_KV not found. Returning shim (data will not persist).');
                 return createInMemoryShim();
             }
+            // In Node runtime (OpenNext), sometimes bindings are on process.env if not using Workers runtime?
+            // But OpenNext Cloudflare uses Workers.
+            // If we are building, we might not have context.
+            if (process.env.NEXT_PHASE === 'phase-production-build') {
+                return createInMemoryShim(); // Mock for build time static generation if needed
+            }
+
             throw new Error('BATTERYBLUEPRINT_KV binding not found');
         }
         return env.BATTERYBLUEPRINT_KV;
@@ -78,14 +91,14 @@ function createInMemoryShim() {
 
 // Low-level operations
 export async function putToken(type: 'confirm' | 'download', tokenData: BlueprintToken): Promise<void> {
-    const kv = getKV();
+    const kv = await getKV();
     const key = `${type}:${tokenData.token}`;
     // Store for 24 hours (86400 seconds)
     await kv.put(key, JSON.stringify(tokenData), { expirationTtl: 86400 });
 }
 
 export async function getToken(type: 'confirm' | 'download', token: string): Promise<BlueprintToken | null> {
-    const kv = getKV();
+    const kv = await getKV();
     const key = `${type}:${token}`;
     const data = await kv.get(key);
 
@@ -189,7 +202,7 @@ export async function markDownloadTokenAsUsed(token: string): Promise<void> {
 }
 
 export async function updateEmailStatus(email: string, updates: Partial<EmailStatus>): Promise<void> {
-    const kv = getKV();
+    const kv = await getKV();
     const emailHash = await hashEmail(email);
     const key = `email:${emailHash}`;
 

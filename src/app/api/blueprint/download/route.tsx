@@ -4,7 +4,7 @@ import { generateBlueprintPdf } from '@/lib/pdf/generate-blueprint-pdf';
 import { logger } from '@/lib/logger';
 import { storeEvent } from '@/lib/kv/redis';
 
-export const runtime = 'edge';
+
 
 export async function GET(request: NextRequest) {
     try {

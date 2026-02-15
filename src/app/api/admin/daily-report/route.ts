@@ -1,3 +1,4 @@
+
 import { NextRequest, NextResponse } from 'next/server';
 import { getDailySummary } from '@/lib/analytics/metrics';
 import { sendDailyReport } from '@/lib/email/sendReport';

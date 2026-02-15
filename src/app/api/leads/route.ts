@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { storeLead, getLeads } from '@/lib/kv/redis';
 
-export const runtime = 'edge';
+
 
 export interface Lead {
   id: string;
