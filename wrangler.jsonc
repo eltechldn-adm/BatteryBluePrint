@@ -3,11 +3,15 @@
 	"main": ".open-next/worker.js",
 	"name": "battery-blueprint",
 	"compatibility_date": "2026-02-14",
-	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
 	"assets": {
 		"directory": ".open-next/assets",
-		"binding": "ASSETS"
+		"binding": "NEXT_ASSETS"
 	},
+	"pages_build_output_dir": ".open-next/assets",
 	"services": [
 		{
 			// Self-reference service binding, the service name must match the worker name
