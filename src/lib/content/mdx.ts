@@ -1,6 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import { ContextualInArticleCTA } from '@/components/content/ConversionCTAs';
@@ -8,6 +6,7 @@ import { DocsCallout } from '@/components/docs/DocsCallout';
 import { DocsFAQ, DocsFAQItem } from '@/components/docs/DocsFAQ';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { CONTENT_MANIFEST, ManifestRecord } from './content-manifest.generated';
 
 const components = {
     ContextualInArticleCTA,
@@ -43,55 +42,38 @@ export interface Article extends ArticleMetadata {
     content: string;
 }
 
-const CONTENT_DIR = path.join(process.cwd(), 'src/content');
-
-/**
- * Get all MDX files for a specific category
- */
-function getMDXFilesInCategory(category: ContentCategory): string[] {
-    const categoryPath = path.join(CONTENT_DIR, category);
-
-    if (!fs.existsSync(categoryPath)) {
-        return [];
-    }
-
-    return fs.readdirSync(categoryPath).filter((file) => file.endsWith('.mdx'));
-}
-
 /**
  * Get article metadata without compiling MDX content
+ * Uses the build-time generated manifest instead of runtime fs
  */
 export function getArticlesByCategory(category: ContentCategory): ArticleMetadata[] {
-    const files = getMDXFilesInCategory(category);
-
-    return files.map((filename) => {
-        const filePath = path.join(CONTENT_DIR, category, filename);
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const { data } = matter(fileContent);
-
-        return {
-            title: data.title,
-            description: data.description,
-            updated: data.updated,
-            category: data.category || category,
-            slug: data.slug || filename.replace('.mdx', ''),
-            readingMinutes: data.readingMinutes,
-        };
-    });
+    return CONTENT_MANIFEST
+        .filter(article => article.category === category)
+        .map(mapManifestToMetadata);
 }
 
 /**
  * Get all articles across all categories (for sitemap generation)
  */
 export function getAllArticles(): ArticleMetadata[] {
-    const allArticles: ArticleMetadata[] = [];
+    // Filter out potential invalid categories that might have slipped into the manifest
+    return CONTENT_MANIFEST
+        .filter(article => isSupportedCategory(article.category))
+        .map(mapManifestToMetadata);
+}
 
-    for (const category of CONTENT_CATEGORIES) {
-        const articles = getArticlesByCategory(category);
-        allArticles.push(...articles);
-    }
-
-    return allArticles;
+/**
+ * Helper to map raw manifest record to clean metadata
+ */
+function mapManifestToMetadata(record: ManifestRecord): ArticleMetadata {
+    return {
+        title: record.title,
+        description: record.description,
+        updated: record.updated,
+        category: record.category as ContentCategory,
+        slug: record.slug,
+        readingMinutes: record.readingMinutes,
+    };
 }
 
 /**
@@ -101,13 +83,15 @@ export async function getArticle(
     category: ContentCategory,
     slug: string
 ): Promise<{ metadata: ArticleMetadata; content: React.ReactElement; faqs: { question: string; answer: string }[] } | null> {
-    const filePath = path.join(CONTENT_DIR, category, `${slug}.mdx`);
+    const record = CONTENT_MANIFEST.find(
+        p => p.category === category && p.slug === slug
+    );
 
-    if (!fs.existsSync(filePath)) {
+    if (!record) {
         return null;
     }
 
-    let fileContent = fs.readFileSync(filePath, 'utf-8');
+    let fileContent = record.source;
 
     // INJECTION: Insert Contextual CTA after the 2nd H2 (## )
     const h2Regex = /^##\s+(.+)$/gm;
@@ -194,5 +178,6 @@ export async function getArticle(
  * Validate if a category is supported
  */
 export function isSupportedCategory(category: string): category is ContentCategory {
-    return CONTENT_CATEGORIES.includes(category as ContentCategory);
+    // Check if the string exists in our readonly array
+    return CONTENT_CATEGORIES.some(c => c === category);
 }

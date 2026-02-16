@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build --webpack",
-    "build:cf": "next build --webpack && opennextjs-cloudflare build --config wrangler.worker.jsonc.disabled && node scripts/cf-pages-postbuild.mjs",
+    "content:gen": "node scripts/generate-content-manifest.mjs",
+    "dev": "npm run content:gen && next dev",
+    "build": "npm run content:gen && next build --webpack",
+    "build:cf": "npm run content:gen && next build --webpack && opennextjs-cloudflare build --config wrangler.worker.jsonc.disabled && node scripts/cf-pages-postbuild.mjs",
     "preview:cf": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
     "start": "next start",
     "lint": "eslint",
