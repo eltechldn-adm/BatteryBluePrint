@@ -15,7 +15,8 @@ const destDir = path.join(projectRoot, '.open-next', 'assets');
 const destWorker = path.join(destDir, '_worker.js');
 const destRoutes = path.join(destDir, '_routes.json');
 
-console.log('🔄 Running Cloudflare Pages Advanced Mode post-build script...');
+console.log('🔄 Running Cloudflare Pages Advanced Mode post-build script (Strict Mode)...');
+console.log(`📂 Output Directory: ${destDir}`);
 
 // 1. Validate Source
 if (!fs.existsSync(sourceWorker)) {
@@ -33,14 +34,15 @@ if (!fs.existsSync(destDir)) {
 // 3. Copy Worker to _worker.js (Advanced Mode)
 try {
     fs.copyFileSync(sourceWorker, destWorker);
-    console.log(`✅ Success: Copied worker to ${destWorker}`);
+    const workerStats = fs.statSync(destWorker);
+    console.log(`✅ Success: Copied worker to ${destWorker} (${workerStats.size} bytes)`);
 } catch (error) {
     console.error(`❌ Error copying worker file: ${error.message}`);
     process.exit(1);
 }
 
-// 4. Generate _routes.json
-// Exclude static assets to bypass the worker, include everything else
+// 4. Generate _routes.json (Strict Schema)
+// Cloudflare Pages Advanced Mode REQUIRES "version": 1
 const routesConfig = {
     version: 1,
     include: ["/*"],
@@ -49,28 +51,47 @@ const routesConfig = {
         "/favicon.ico",
         "/robots.txt",
         "/sitemap.xml",
-        "/images/*",
         "/assets/*",
-        "/ads.txt",
-        "/file.svg",
-        "/globe.svg",
-        "/hero-solar-system.jpg",
-        "/next.svg",
-        "/vercel.svg",
-        "/window.svg",
-        "/_headers"
+        "/images/*",
+        "/*.png",
+        "/*.jpg",
+        "/*.jpeg",
+        "/*.webp",
+        "/*.svg",
+        "/*.ico",
+        "/*.css",
+        "/*.js",
+        "/*.map",
+        "/*.txt"
     ]
 };
 
 try {
+    // Write file
     fs.writeFileSync(destRoutes, JSON.stringify(routesConfig, null, 2));
-    console.log(`✅ Success: Generated _routes.json at ${destRoutes}`);
+
+    // VERIFY file content (Crucial step)
+    const writtenContent = fs.readFileSync(destRoutes, 'utf8');
+    const parsedContent = JSON.parse(writtenContent);
+
+    if (parsedContent.version !== 1) {
+        throw new Error(`Validation failed: _routes.json version is ${parsedContent.version}, expected 1`);
+    }
+
+    if (!parsedContent.include || !parsedContent.include.includes("/*")) {
+        throw new Error('Validation failed: _routes.json missing include: ["/*"]');
+    }
+
+    const routesStats = fs.statSync(destRoutes);
+    console.log(`✅ Success: Generated and verified _routes.json at ${destRoutes} (${routesStats.size} bytes)`);
+    console.log('📄 _routes.json preview:', writtenContent.substring(0, 200).replace(/\n/g, ' '));
+
 } catch (error) {
-    console.error(`❌ Error generating _routes.json: ${error.message}`);
+    console.error(`❌ Error generating/verifying _routes.json: ${error.message}`);
     process.exit(1);
 }
 
-// 5. Cleanup /functions if it exists (Optional, to avoid confusion)
+// 5. Cleanup /functions if it exists
 const functionsDir = path.join(projectRoot, 'functions');
 if (fs.existsSync(functionsDir)) {
     console.log('🧹 Cleaning up legacy /functions directory...');
@@ -78,5 +99,3 @@ if (fs.existsSync(functionsDir)) {
 }
 
 console.log('🚀 Ready for Cloudflare Pages deployment (Advanced Mode)!');
-console.log(`👉 Build Command: npm run build:cf`);
-console.log(`👉 Output Directory: .open-next/assets`);
