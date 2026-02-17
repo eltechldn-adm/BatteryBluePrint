@@ -10,6 +10,7 @@ import { DocsArticleHeader } from '@/components/docs/DocsArticleHeader';
 import { InlineTOC } from '@/components/docs/InlineTOC';
 import { DocsCallout } from '@/components/docs/DocsCallout';
 import { GlobalUsersNotice } from '@/components/content/GlobalUsersNotice';
+import { ContextualInArticleCTA } from '@/components/content/ConversionCTAs';
 
 interface ArticlePageProps {
     params: Promise<{
@@ -69,11 +70,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         notFound();
     }
 
-    const { metadata, content, faqs } = article;
+    const { metadata, html, faqs } = article;
     const categoryTitle = metadata.category.charAt(0).toUpperCase() + metadata.category.slice(1);
     const articleUrl = `https://batteryblueprint.com/${metadata.category}/${metadata.slug}`;
     const categoryUrl = `https://batteryblueprint.com/${metadata.category}`;
     const socialImage = `https://batteryblueprint.com/og/${metadata.category}.png`;
+
+    // CTA Injection Logic
+    // We split the HTML string by the placeholder <!--CTA:category-->
+    const ctaPlaceholder = `<!--CTA:${metadata.category}-->`;
+    const parts = html.split(ctaPlaceholder);
 
     // Schema Logic
     const articleSchema = {
@@ -175,6 +181,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <DocsArticleHeader metadata={metadata} />
 
                 {/* Inline TOC - "On this page" */}
+                {/* 
+                   Note: InlineTOC relies on client-side querySelector for headings. 
+                   Since we render HTML server-side, this should still work as selectors 
+                   will find the h2/h3 elements in the DOM.
+                */}
                 <InlineTOC />
 
                 {/* 
@@ -182,7 +193,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                    The layout around it has changed (Constraints managed by DocsLayout grid).
                 */}
                 <div className="article-prose prose prose-slate dark:prose-invert max-w-none">
-                    {content}
+                    {parts.length > 1 ? (
+                        <>
+                            <div dangerouslySetInnerHTML={{ __html: parts[0] }} />
+                            <div className="my-8 not-prose">
+                                <ContextualInArticleCTA category={metadata.category as ContentCategory} />
+                            </div>
+                            <div dangerouslySetInnerHTML={{ __html: parts[1] }} />
+                        </>
+                    ) : (
+                        <div dangerouslySetInnerHTML={{ __html: html }} />
+                    )}
                 </div>
 
                 <div className="mt-12 space-y-6 border-t pt-8">
