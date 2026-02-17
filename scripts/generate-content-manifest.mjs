@@ -30,7 +30,9 @@ const CATEGORIES = [
     'markets',
 ];
 
-console.log('🔄 Generating content manifest (HTML Compiled)...');
+console.log('\n📦 [Content Manifest] Starting generation...');
+console.log(`   📂 Source: ${CONTENT_DIR}`);
+console.log(`   📄 Output: ${OUTPUT_FILE}`);
 
 const manifest = [];
 
@@ -210,7 +212,11 @@ export const CONTENT_MANIFEST: Record<string, Record<string, ManifestArticle>> =
 
     try {
         fs.writeFileSync(OUTPUT_FILE, fileContent);
-        console.log(`🚀 Manifest generated at ${OUTPUT_FILE} (${manifest.length} total articles)`);
+        const totalSize = (fs.statSync(OUTPUT_FILE).size / 1024).toFixed(2);
+        console.log(`\n✅ [Content Manifest] Generated successfully!`);
+        console.log(`   📝 Total Articles: ${manifest.length}`);
+        console.log(`   💾 File Size: ${totalSize} KB`);
+        console.log(`   🚀 Ready for build.\n`);
     } catch (error) {
         console.error(`❌ Error writing manifest: ${error.message}`);
         process.exit(1);

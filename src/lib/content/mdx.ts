@@ -4,6 +4,20 @@ import { DocsCallout } from '@/components/docs/DocsCallout';
 import { DocsFAQ, DocsFAQItem } from '@/components/docs/DocsFAQ';
 import { CONTENT_MANIFEST, ManifestArticle } from './content-manifest.generated';
 
+// BUILD-TIME VALIDATION
+// This ensures that we never deploy a broken build with empty content.
+// If the manifest is empty, it means the generator failed or didn't run.
+if (!CONTENT_MANIFEST || Object.keys(CONTENT_MANIFEST).length === 0) {
+    if (process.env.NODE_ENV === 'production') {
+        console.error('\n❌ [CRITICAL BUILD ERROR] Content Manifest is empty!');
+        console.error('   Run "npm run content:gen" to fix this.');
+        console.error('   The build cannot proceed without content.\n');
+        throw new Error('BUILD FAILED: Content Manifest is missing or empty.');
+    } else {
+        console.warn('\n⚠️ [DEV WARNING] Content Manifest is empty. Run "npm run content:gen".\n');
+    }
+}
+
 // Components are no longer passed to MDX compiler at runtime, 
 // as we are using pre-compiled HTML. 
 // However, we still need them if we were to hydrate, but we are doing server-side HTML injection.
