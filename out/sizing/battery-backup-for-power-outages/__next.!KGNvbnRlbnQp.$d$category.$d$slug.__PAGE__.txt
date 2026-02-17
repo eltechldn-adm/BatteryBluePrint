@@ -1,0 +1,112 @@
+1:"$Sreact.fragment"
+3:I[42443,["/_next/static/chunks/eaa81c8402ca477b.js","/_next/static/chunks/b805145185efab59.js","/_next/static/chunks/ba7009bd23958f85.js","/_next/static/chunks/c77e4895038b6575.js"],""]
+d:I[72295,["/_next/static/chunks/eaa81c8402ca477b.js","/_next/static/chunks/b805145185efab59.js","/_next/static/chunks/ba7009bd23958f85.js","/_next/static/chunks/c77e4895038b6575.js"],"InlineTOC"]
+12:I[53353,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"OutletBoundary"]
+13:"$Sreact.suspense"
+2:T464,{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will my lights flicker when the grid fails?","acceptedAnswer":{"@type":"Answer","text":"It depends on the system.\n    *   **UPS Grade (Uninterruptible):** Some systems (Victron, some Enphase) switch in &lt;20 milliseconds. Computers will not crash.\n    *   **Standard Backup:** Most systems (Tesla, FranklinWH) switch in 2-5 seconds. The lights will blink, clocks will reset, and wifi will reboot."}},{"@type":"Question","name":"Can I charge my EV during a blackout?","acceptedAnswer":{"@type":"Answer","text":"Technically yes, but don't.\n    Putting 10 kWh into your car gives you only ~35 miles of range, but it robs your house of **24 hours of survival** time. In an emergency, your house is the priority."}},{"@type":"Question","name":"Does a battery protect me from voltage sags?","acceptedAnswer":{"@type":"Answer","text":"Yes. \"Brownouts\" or voltage sags can damage sensitive electronics. A good hybrid inverter acts as a power conditioner, ensuring your home gets clean 120V/240V power regardless of grid quality."}}]}0:{"buildId":"5fvt6abnlDJq6crjxqpoU","rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Battery Backup for Power Outages: The Definitive Sizing Guide\",\"description\":\"How to plan your solar battery for 1, 3, or infinite days of backup power. Learn the difference between 'Whole Home' and 'Essential Loads' backup strategies.\",\"dateModified\":\"2026-02-13\",\"datePublished\":\"2026-02-13\",\"image\":\"https://batteryblueprint.com/og/sizing.png\",\"author\":{\"@type\":\"Organization\",\"name\":\"BatteryBlueprint\",\"url\":\"https://batteryblueprint.com\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"BatteryBlueprint\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://batteryblueprint.com/logo.png\"}},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://batteryblueprint.com/sizing/battery-backup-for-power-outages\"}}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://batteryblueprint.com\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Energy Hub\",\"item\":\"https://batteryblueprint.com/guide\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Sizing\",\"item\":\"https://batteryblueprint.com/sizing\"},{\"@type\":\"ListItem\",\"position\":4,\"name\":\"Battery Backup for Power Outages: The Definitive Sizing Guide\",\"item\":\"https://batteryblueprint.com/sizing/battery-backup-for-power-outages\"}]}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","article",null,{"children":[false,["$","div",null,{"className":"space-y-4 pb-6 mb-8","children":[["$","div",null,{"className":"flex items-center gap-1 text-xs text-muted-foreground","children":[["$","$L3",null,{"href":"/","className":"hover:text-primary transition-colors","children":"Home"}],["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-chevron-right h-3 w-3","aria-hidden":"true","children":[["$","path","mthhwq",{"d":"m9 18 6-6-6-6"}],"$undefined"]}],["$","$L3",null,{"href":"/sizing","className":"hover:text-primary transition-colors","children":"Sizing"}],["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-chevron-right h-3 w-3","aria-hidden":"true","children":["$L4","$undefined"]}],"$L5"]}],"$L6","$L7"]}],"$L8","$L9","$La"]}]],["$Lb"],"$Lc"]}],"loading":null,"isPartial":false}
+4:["$","path","mthhwq",{"d":"m9 18 6-6-6-6"}]
+5:["$","span",null,{"className":"font-medium text-foreground truncate max-w-[200px]","children":"Battery Backup for Power Outages: The Definitive Sizing Guide"}]
+6:["$","div",null,{"className":"space-y-3","children":[["$","h1",null,{"className":"scroll-m-20 text-3xl font-bold tracking-tight text-foreground lg:text-4xl","children":"Battery Backup for Power Outages: The Definitive Sizing Guide"}],["$","p",null,{"className":"text-base text-muted-foreground leading-relaxed","children":"How to plan your solar battery for 1, 3, or infinite days of backup power. Learn the difference between 'Whole Home' and 'Essential Loads' backup strategies."}]]}]
+7:["$","div",null,{"className":"flex items-center gap-4 text-xs text-muted-foreground pt-2","children":[["$","div",null,{"className":"flex items-center gap-1.5","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calendar w-3.5 h-3.5","aria-hidden":"true","children":[["$","path","1cmpym",{"d":"M8 2v4"}],["$","path","4m81vk",{"d":"M16 2v4"}],["$","rect","1hopcy",{"width":"18","height":"18","x":"3","y":"4","rx":"2"}],["$","path","8toen8",{"d":"M3 10h18"}],"$undefined"]}],["$","time",null,{"dateTime":"2026-02-13","children":"February 13, 2026"}]]}],["$","div",null,{"className":"flex items-center gap-1.5","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-clock w-3.5 h-3.5","aria-hidden":"true","children":[["$","path","mmk7yg",{"d":"M12 6v6l4 2"}],["$","circle","1mglay",{"cx":"12","cy":"12","r":"10"}],"$undefined"]}],["$","span",null,{"children":[14," min read"]}]]}]]}]
+8:["$","$Ld",null,{}]
+e:T9db,<p>Most people buy solar to save money. But in 2026, with grid instability rising in both the US and UK, more homeowners are buying batteries for one reason: <strong>Security.</strong></p>
+<p>When the grid goes down, a standard grid-tied solar system shuts off for safety. Without a battery and a "Gateway" device to island your home, your panels are useless during a blackout.</p>
+<p>But "keeping the lights on" is a vague goal. Do you mean literally just the lights? Or do you mean the AC, the well pump, and the induction cooktop?</p>
+<p>This guide breaks down exactly how to size a battery for resilience, from short flickers to multi-day grid failures.</p>
+<hr>
+<h2 id="strategy-1-the-life-support-backup-essential-loads"><a href="#strategy-1-the-life-support-backup-essential-loads">Strategy 1: The "Life Support" Backup (Essential Loads)</a></h2>
+<p>This is the most cost-effective strategy. You don't back up the whole house. instead, you install a <strong>Critical Loads Panel</strong> (or use a smart span panel) to power <em>only</em> the specific circuits you need to survive.</p>
+<h3 id="what-you-back-up"><a href="#what-you-back-up">What You Back Up:</a></h3>
+<ul>
+<li><strong>Fridge/Freezer:</strong> Keep food safe (1.5 kWh/day).</li>
+<li><strong>Wifi Router:</strong> Communication is safety (0.2 kWh/day).</li>
+<li><strong>LED Lights:</strong> Kitchen and Living Room only (0.5 kWh/day).</li>
+<li><strong>Gas Furnace Fan:</strong> If you have gas heat, the fan uses very little power (2 kWh/day).</li>
+<li><strong>Phone Chargers:</strong> Negligible power.</li>
+</ul>
+<h3 id="what-you-drop"><a href="#what-you-drop">What You Drop:</a></h3>
+<ul>
+<li>Air Conditioning / Heat Pump (HVAC).</li>
+<li>Electric Stove / Oven.</li>
+<li>Electric Dryer.</li>
+<li>EV Charger.</li>
+</ul>
+<h3 id="sizing-math"><a href="#sizing-math">Sizing Math</a></h3>
+<ul>
+<li><strong>Daily Load:</strong> 5 to 7 kWh.</li>
+<li><strong>Battery Size:</strong> A standard 10 to 13.5 kWh battery (like a Powerwall 3 or GivEnergy All-In-One).</li>
+<li><strong>Result:</strong> You can survive comfortably for <strong>24 hours</strong> without sun. With solar recharge, you can likely last <strong>indefinitely</strong> provided you don't turn on the oven.</li>
+</ul>
+<p><strong>Verdict:</strong> Best for 90% of homeowners. Significant protection for minimal cost.</p>
+<hr>
+<h2 id="strategy-2-whole-home-backup-the-heavy-lift"><a href="#strategy-2-whole-home-backup-the-heavy-lift">Strategy 2: Whole Home Backup (The Heavy Lift)</a></h2>
+9:["$","div",null,{"className":"article-prose prose prose-slate dark:prose-invert max-w-none","children":[["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$e"}}],["$","div",null,{"className":"my-8 not-prose","children":["$","div",null,{"className":"my-10 p-6 bg-secondary/10 border-l-4 border-secondary rounded-r-lg","children":[["$","h4",null,{"className":"font-bold text-lg mb-2 text-foreground","children":"Stop guessing."}],["$","p",null,{"className":"text-muted-foreground mb-4","children":"Run the calculator with your real numbers"}],["$","$L3",null,{"href":"/calculator","children":["$","button",null,{"className":"bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2 rounded-md font-medium text-sm transition-colors flex items-center gap-2","children":["Use Calculator ",["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-right w-4 h-4","aria-hidden":"true","children":["$Lf","$L10","$undefined"]}]]}]}]]}]}],"$L11"]}]
+a:["$","div",null,{"className":"mt-12 space-y-6 border-t pt-8","children":[["$","h3",null,{"className":"text-lg font-semibold","children":"Next Steps"}],["$","div",null,{"className":"grid sm:grid-cols-2 gap-4","children":[["$","div",null,{"className":"my-8 rounded-lg border bg-card text-card-foreground shadow-sm","children":[["$","div",null,{"className":"flex flex-col space-y-1.5 p-6","children":[["$","div",null,{"className":"flex items-center gap-2","children":[["$","div",null,{"className":"p-2 bg-primary/10 rounded-md","children":["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calculator h-5 w-5 text-primary","aria-hidden":"true","children":[["$","rect","1nb95v",{"width":"16","height":"20","x":"4","y":"2","rx":"2"}],["$","line","x4nwl0",{"x1":"8","x2":"16","y1":"6","y2":"6"}],["$","line","wjye3r",{"x1":"16","x2":"16","y1":"14","y2":"18"}],["$","path","1m94wz",{"d":"M16 10h.01"}],["$","path","1nrarc",{"d":"M12 10h.01"}],["$","path","19clt8",{"d":"M8 10h.01"}],["$","path","1etili",{"d":"M12 14h.01"}],["$","path","6423bh",{"d":"M8 14h.01"}],["$","path","mhygvu",{"d":"M12 18h.01"}],["$","path","lrp35t",{"d":"M8 18h.01"}],"$undefined"]}]}],["$","h3",null,{"className":"font-semibold leading-none tracking-tight","children":"Calculate your banking needs"}]]}],["$","p",null,{"className":"text-sm text-muted-foreground pt-2","children":"Use our engineering-grade tool to size your system."}]]}],["$","div",null,{"className":"p-6 pt-0","children":["$","$L3",null,{"href":"/calculator","children":["$","button",null,{"data-slot":"button","data-variant":"default","data-size":"sm","className":"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90 h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 w-full sm:w-auto","children":["Start Sizing",["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-right ml-2 h-4 w-4","aria-hidden":"true","children":[["$","path","1ays0h",{"d":"M5 12h14"}],["$","path","xquz4c",{"d":"m12 5 7 7-7 7"}],"$undefined"]}]]}]}]}]]}],["$","div",null,{"className":"my-8 rounded-lg border bg-card text-card-foreground shadow-sm","children":[["$","div",null,{"className":"flex flex-col space-y-1.5 p-6","children":[["$","div",null,{"className":"flex items-center gap-2","children":[["$","div",null,{"className":"p-2 bg-primary/10 rounded-md","children":["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-file-text h-5 w-5 text-primary","aria-hidden":"true","children":[["$","path","1oefj6",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["$","path","wfsgrz",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["$","path","b1mrlr",{"d":"M10 9H8"}],["$","path","t4e002",{"d":"M16 13H8"}],["$","path","z1uh3a",{"d":"M16 17H8"}],"$undefined"]}]}],["$","h3",null,{"className":"font-semibold leading-none tracking-tight","children":"Get the Blueprint"}]]}],["$","p",null,{"className":"text-sm text-muted-foreground pt-2","children":"Download a PDF report for your installer."}]]}],["$","div",null,{"className":"p-6 pt-0","children":["$","$L3",null,{"href":"/calculator","children":["$","button",null,{"data-slot":"button","data-variant":"outline","data-size":"sm","className":"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 w-full sm:w-auto","children":["Download PDF",false]}]}]}]]}]]}]]}]
+b:["$","script","script-0",{"src":"/_next/static/chunks/c77e4895038b6575.js","async":true}]
+c:["$","$L12",null,{"children":["$","$13",null,{"name":"Next.MetadataOutlet","children":"$@14"}]}]
+f:["$","path","1ays0h",{"d":"M5 12h14"}]
+10:["$","path","xquz4c",{"d":"m12 5 7 7-7 7"}]
+15:T11b1,
+<p>This is the dream: The grid goes down, and you don't even notice. You can run the AC, bake a cake, and watch TV.</p>
+<p>However, this requires massively more power (kW) and energy (kWh).</p>
+<h3 id="the-surge-problem-kw"><a href="#the-surge-problem-kw">The "Surge" Problem (kW)</a></h3>
+<p>The hardest part isn't keeping the fridge running—it's <strong>starting</strong> the Air Conditioner.
+A central AC unit might need 4,000 Watts (4 kW) to run, but <strong>20,000 Watts (20 kW)</strong> for a split second to start the compressor. This is called "Locked Rotor Amps" (LRA).</p>
+<ul>
+<li><strong>Single Battery Limit:</strong> Most batteries output only 5 kW continuous / 7 kW surge.</li>
+<li><strong>Result:</strong> If your AC tries to start, it trips the battery breaker immediately. Blackout.</li>
+</ul>
+<p>To run a whole home, you typically need <strong>two to three stacked batteries</strong> just to handle the startup surges of large motors.</p>
+<h3 id="sizing-math-1"><a href="#sizing-math-1">Sizing Math</a></h3>
+<ul>
+<li><strong>Daily Load:</strong> 30 to 50 kWh (Normal life usage).</li>
+<li><strong>Battery Size:</strong> You need 25 to 40 kWh of storage (two or three units).</li>
+<li><strong>Solar Array:</strong> You need a massive solar array (10 kW+) to refill this beast in winter.</li>
+</ul>
+<p><strong>Verdict:</strong> Expensive. Only necessary if you have medical needs for HVAC or simply have the budget for total independence.</p>
+<hr>
+<h2 id="the-solar-recharge-factor"><a href="#the-solar-recharge-factor">The "Solar Recharge" Factor</a></h2>
+<p>A battery is just a bucket. In a multi-day outage, the size of the bucket matters less than the size of the hose filling it (Solar).</p>
+<h3 id="the-winter-trap"><a href="#the-winter-trap">The Winter Trap</a></h3>
+<p>Imagine a 3-day blizzard in February.</p>
+<ul>
+<li><strong>Day 1:</strong> Grid fails. You drain the battery overnight.</li>
+<li><strong>Day 2:</strong> Heavy clouds. Your 8 kW solar array—which typically makes 40 kWh in summer—only produces <strong>4 kWh</strong> today.</li>
+<li><strong>Crisis:</strong> You used 15 kWh last night. you generated 4 kWh today. You are now in a deficit. The battery hits 0% at 8 PM, and you go dark.</li>
+</ul>
+<p><strong>Engineering Rule:</strong> For multi-day resilience, you must assume your solar production will drop by <strong>80-90%</strong> during the storm that caused the outage.</p>
+<blockquote>
+<p><strong>Tip:</strong> If you need guaranteed winter backup, do not rely solely on solar + battery. Integrating a <strong>small gas generator</strong> to recharge the batteries during "Solar Droughts" is often cheaper than buying 5 extra batteries.</p>
+</blockquote>
+<hr>
+<h2 id="faq-outage-specifics"><a href="#faq-outage-specifics">FAQ: Outage specifics</a></h2>
+<pre><code>It depends on the system.
+*   **UPS Grade (Uninterruptible):** Some systems (Victron, some Enphase) switch in &#x26;lt;20 milliseconds. Computers will not crash.
+*   **Standard Backup:** Most systems (Tesla, FranklinWH) switch in 2-5 seconds. The lights will blink, clocks will reset, and wifi will reboot.
+
+
+
+Technically yes, but don't.
+Putting 10 kWh into your car gives you only ~35 miles of range, but it robs your house of **24 hours of survival** time. In an emergency, your house is the priority.
+
+
+
+Yes. "Brownouts" or voltage sags can damage sensitive electronics. A good hybrid inverter acts as a power conditioner, ensuring your home gets clean 120V/240V power regardless of grid quality.
+</code></pre>
+<hr>
+<h2 id="how-to-calculate-your-backup-needs"><a href="#how-to-calculate-your-backup-needs">How to Calculate Your Backup Needs</a></h2>
+<p>Don't guess. You need to sum the wattage of every device you plan to keep running.</p>
+<ul>
+<li><strong>Step 1:</strong> List Essentials: Fridge (150W), Wifi (20W), Lights (100W total).</li>
+<li><strong>Step 2:</strong> Add Heating/Cooling: Furnace Fan (400W)? Portable Heater (1500W)?</li>
+<li><strong>Step 3:</strong> Calculate Hourly Load: Sum the watts / 1000 = kW usage.</li>
+<li><strong>Step 4:</strong> Multiply by Hours: kW × 24 = Daily kWh needed.</li>
+</ul>
+<p>Use our calculator to do this automatically based on your appliance choices.</p>
+<p><a href="/calculator"><strong>Calculate Your Backup Duration →</strong></a></p>
+<p>Related Guides:</p>
+<ul>
+<li><a href="/basics/kwh-explained"><strong>kW vs kWh Explained</strong></a></li>
+<li><a href="/sizing/how-much-battery-storage-do-i-need"><strong>Common Scenarios</strong></a></li>
+</ul>11:["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$15"}}]
+14:null

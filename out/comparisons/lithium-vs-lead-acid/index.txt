@@ -1,0 +1,485 @@
+1:"$Sreact.fragment"
+2:I[91965,["/_next/static/chunks/eaa81c8402ca477b.js"],""]
+3:I[50737,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"default"]
+4:I[2189,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"default"]
+5:I[6138,["/_next/static/chunks/eaa81c8402ca477b.js","/_next/static/chunks/b805145185efab59.js","/_next/static/chunks/ba7009bd23958f85.js"],"Header"]
+d:I[60942,[],"default"]
+:HL["/_next/static/chunks/9a660ebbf70a8d45.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"b":"5fvt6abnlDJq6crjxqpoU","c":["","comparisons","lithium-vs-lead-acid",""],"q":"","i":false,"f":[[["",{"children":["(content)",{"children":[["category","comparisons","d"],{"children":[["slug","lithium-vs-lead-acid","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/9a660ebbf70a8d45.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/eaa81c8402ca477b.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable antialiased","suppressHydrationWarning":true,"children":[["$","div",null,{"className":"grain-overlay","aria-hidden":"true"}],["$","$L2",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7088331504377019","crossOrigin":"anonymous","strategy":"afterInteractive"}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/b805145185efab59.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/ba7009bd23958f85.js","async":true,"nonce":"$undefined"}]],["$","div",null,{"className":"flex min-h-screen flex-col","children":[["$","$L5",null,{}],["$","main",null,{"className":"flex-1 pt-24 pb-16","children":["$","div",null,{"className":"container mx-auto px-4 sm:px-6 lg:px-8","children":["$","div",null,{"className":"mx-auto max-w-4xl","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:2:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:f:0:1:0:props:children:1:props:children:props:children:2:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:2:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:2:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}],["$","footer",null,{"className":"py-12 px-6 border-t border-border/50 bg-muted/20","children":["$","div",null,{"className":"max-w-6xl mx-auto","children":["$","div",null,{"className":"grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12","children":[["$","div",null,{"className":"flex flex-col gap-4","children":["$","div",null,{"className":"flex flex-col gap-2","children":[["$","div",null,{"className":"text-xl font-bold text-primary","children":"BatteryBlueprint"}],["$","p",null,{"className":"text-sm text-muted-foreground max-w-xs","children":"Engineering-grade solar battery calculations without the sales fluff."}]]}]}],["$","div",null,{"className":"flex flex-col gap-3","children":[["$","h4",null,{"className":"font-semibold text-foreground","children":"Tools"}],"$L6"]}],"$L7","$L8"]}]}]}]]}]]}],{"children":["$L9",{"children":["$La",{"children":["$Lb",{},null,false,false]},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$Lc",false]],"m":"$undefined","G":["$d",[]],"S":true}
+e:I[42443,["/_next/static/chunks/eaa81c8402ca477b.js","/_next/static/chunks/b805145185efab59.js","/_next/static/chunks/ba7009bd23958f85.js","/_next/static/chunks/c77e4895038b6575.js"],""]
+10:I[53353,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"OutletBoundary"]
+11:"$Sreact.suspense"
+13:I[53353,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"ViewportBoundary"]
+15:I[53353,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"MetadataBoundary"]
+6:["$","nav",null,{"className":"flex flex-col gap-2 text-sm text-muted-foreground","children":[["$","$Le",null,{"href":"/calculator","className":"hover:text-primary transition-colors","children":"Calculator"}],["$","$Le",null,{"href":"/guide","className":"hover:text-primary transition-colors flex items-center gap-2","children":["Energy Hub ",["$","span",null,{"className":"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full","children":"New"}]]}]]}]
+7:["$","div",null,{"className":"flex flex-col gap-3","children":[["$","h4",null,{"className":"font-semibold text-foreground","children":"Company"}],["$","nav",null,{"className":"flex flex-col gap-2 text-sm text-muted-foreground","children":[["$","$Le",null,{"href":"/about","className":"hover:text-primary transition-colors","children":"About"}],["$","$Le",null,{"href":"/contact","className":"hover:text-primary transition-colors","children":"Contact"}],["$","$Le",null,{"href":"/privacy","className":"hover:text-primary transition-colors","children":"Privacy Policy"}],["$","$Le",null,{"href":"/terms","className":"hover:text-primary transition-colors","children":"Terms of Service"}]]}]]}]
+8:["$","div",null,{"className":"flex flex-col gap-3","children":[["$","h4",null,{"className":"font-semibold text-foreground","children":"Connect"}],["$","div",null,{"className":"flex flex-col gap-2 text-sm text-muted-foreground","children":[["$","a",null,{"href":"mailto:support@batteryblueprint.com","className":"hover:text-primary transition-colors","children":"support@batteryblueprint.com"}],["$","div",null,{"className":"pt-4 text-xs text-muted-foreground/60","children":["© ",2026," BatteryBlueprint.",["$","br",null,{}],"Built for engineers, by engineers."]}]]}]]}]
+9:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+a:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+b:["$","$1","c",{"children":["$Lf",[["$","script","script-0",{"src":"/_next/static/chunks/c77e4895038b6575.js","async":true,"nonce":"$undefined"}]],["$","$L10",null,{"children":["$","$11",null,{"name":"Next.MetadataOutlet","children":"$@12"}]}]]}]
+c:["$","$1","h",{"children":[null,["$","$L13",null,{"children":"$L14"}],["$","div",null,{"hidden":true,"children":["$","$L15",null,{"children":["$","$11",null,{"name":"Next.Metadata","children":"$L16"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+f:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Lithium-Ion vs Lead-Acid Solar Batteries: Which is Best?\",\"description\":\"The old guard vs the new standard. We compare LFP, NMC, and Lead-Acid chemistries on cost, lifespan, safety, and performance.\",\"dateModified\":\"2026-02-13\",\"datePublished\":\"2026-02-13\",\"image\":\"https://batteryblueprint.com/og/comparisons.png\",\"author\":{\"@type\":\"Organization\",\"name\":\"BatteryBlueprint\",\"url\":\"https://batteryblueprint.com\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"BatteryBlueprint\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://batteryblueprint.com/logo.png\"}},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://batteryblueprint.com/comparisons/lithium-vs-lead-acid\"}}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://batteryblueprint.com\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Energy Hub\",\"item\":\"https://batteryblueprint.com/guide\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Comparisons\",\"item\":\"https://batteryblueprint.com/comparisons\"},{\"@type\":\"ListItem\",\"position\":4,\"name\":\"Lithium-Ion vs Lead-Acid Solar Batteries: Which is Best?\",\"item\":\"https://batteryblueprint.com/comparisons/lithium-vs-lead-acid\"}]}"}}],null,["$","article",null,{"children":[["$","div",null,{"className":"mb-6","children":["$","div",null,{"data-slot":"card","className":"text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm bg-muted/30 border-dashed border-border mb-8 overflow-hidden relative","children":["$","div",null,{"data-slot":"card-content","className":"p-6","children":["$","div",null,{"className":"flex flex-col sm:flex-row gap-6","children":[["$","div",null,{"className":"flex-shrink-0","children":["$","div",null,{"className":"w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center text-muted-foreground","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-globe w-6 h-6","aria-hidden":"true","children":[["$","circle","1mglay",{"cx":"12","cy":"12","r":"10"}],["$","path","13o1zl",{"d":"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"}],["$","path","9i4pu4",{"d":"M2 12h20"}],"$undefined"]}]}]}],["$","div",null,{"className":"space-y-4 flex-1","children":[["$","div",null,{"children":[["$","h4",null,{"className":"font-semibold text-foreground text-lg mb-1","children":"Not in the UK or US?"}],["$","p",null,{"className":"text-muted-foreground text-sm leading-relaxed","children":"Most of our cost and incentive data is tailored for these regions, but the physics of batteries works the same everywhere! Here's how to adapt this guide:"}]]}],["$","ul",null,{"className":"space-y-2 text-sm text-muted-foreground","children":[["$","li",null,{"className":"flex items-start gap-2","children":[["$","span",null,{"className":"w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"}],["$","span",null,{"children":"Look up your local electricity rate per kWh (and peak/off-peak logic)."}]]}],["$","li",null,{"className":"flex items-start gap-2","children":[["$","span",null,{"className":"w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"}],["$","span",null,{"children":"Check your local government website for solar/battery incentives."}]]}],["$","li",null,{"className":"flex items-start gap-2","children":[["$","span",null,{"className":"w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"}],["$","span",null,{"children":"Use our calculator with your daily kWh usage—the sizing math is universal."}]]}]]}],"$L17"]}]]}]}]}]}],"$L18","$L19","$L1a","$L1b"]}]]
+1c:I[72295,["/_next/static/chunks/eaa81c8402ca477b.js","/_next/static/chunks/b805145185efab59.js","/_next/static/chunks/ba7009bd23958f85.js","/_next/static/chunks/c77e4895038b6575.js"],"InlineTOC"]
+17:["$","div",null,{"className":"pt-2","children":["$","$Le",null,{"href":"/calculator","children":["$","button",null,{"data-slot":"button","data-variant":"outline","data-size":"sm","className":"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calculator w-4 h-4","aria-hidden":"true","children":[["$","rect","1nb95v",{"width":"16","height":"20","x":"4","y":"2","rx":"2"}],["$","line","x4nwl0",{"x1":"8","x2":"16","y1":"6","y2":"6"}],["$","line","wjye3r",{"x1":"16","x2":"16","y1":"14","y2":"18"}],["$","path","1m94wz",{"d":"M16 10h.01"}],["$","path","1nrarc",{"d":"M12 10h.01"}],["$","path","19clt8",{"d":"M8 10h.01"}],["$","path","1etili",{"d":"M12 14h.01"}],["$","path","6423bh",{"d":"M8 14h.01"}],["$","path","mhygvu",{"d":"M12 18h.01"}],["$","path","lrp35t",{"d":"M8 18h.01"}],"$undefined"]}],"Use Universal Calculator",["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-right w-3 h-3","aria-hidden":"true","children":[["$","path","1ays0h",{"d":"M5 12h14"}],["$","path","xquz4c",{"d":"m12 5 7 7-7 7"}],"$undefined"]}]]}]}]}]
+18:["$","div",null,{"className":"space-y-4 pb-6 mb-8","children":[["$","div",null,{"className":"flex items-center gap-1 text-xs text-muted-foreground","children":[["$","$Le",null,{"href":"/","className":"hover:text-primary transition-colors","children":"Home"}],["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-chevron-right h-3 w-3","aria-hidden":"true","children":[["$","path","mthhwq",{"d":"m9 18 6-6-6-6"}],"$undefined"]}],["$","$Le",null,{"href":"/comparisons","className":"hover:text-primary transition-colors","children":"Comparisons"}],["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-chevron-right h-3 w-3","aria-hidden":"true","children":[["$","path","mthhwq",{"d":"m9 18 6-6-6-6"}],"$undefined"]}],["$","span",null,{"className":"font-medium text-foreground truncate max-w-[200px]","children":"Lithium-Ion vs Lead-Acid Solar Batteries: Which is Best?"}]]}],["$","div",null,{"className":"space-y-3","children":[["$","h1",null,{"className":"scroll-m-20 text-3xl font-bold tracking-tight text-foreground lg:text-4xl","children":"Lithium-Ion vs Lead-Acid Solar Batteries: Which is Best?"}],["$","p",null,{"className":"text-base text-muted-foreground leading-relaxed","children":"The old guard vs the new standard. We compare LFP, NMC, and Lead-Acid chemistries on cost, lifespan, safety, and performance."}]]}],["$","div",null,{"className":"flex items-center gap-4 text-xs text-muted-foreground pt-2","children":[["$","div",null,{"className":"flex items-center gap-1.5","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calendar w-3.5 h-3.5","aria-hidden":"true","children":[["$","path","1cmpym",{"d":"M8 2v4"}],["$","path","4m81vk",{"d":"M16 2v4"}],["$","rect","1hopcy",{"width":"18","height":"18","x":"3","y":"4","rx":"2"}],["$","path","8toen8",{"d":"M3 10h18"}],"$undefined"]}],["$","time",null,{"dateTime":"2026-02-13","children":"February 13, 2026"}]]}],["$","div",null,{"className":"flex items-center gap-1.5","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-clock w-3.5 h-3.5","aria-hidden":"true","children":[["$","path","mmk7yg",{"d":"M12 6v6l4 2"}],["$","circle","1mglay",{"cx":"12","cy":"12","r":"10"}],"$undefined"]}],["$","span",null,{"children":[12," min read"]}]]}]]}]]}]
+19:["$","$L1c",null,{}]
+1d:T593,<p>Ten years ago, if you wanted solar storage, you bought heavy lead-acid batteries (like those in cars) and kept them in a shed.
+Today, sleek Lithium-Ion boxes hang on garage walls.</p>
+<p>Is there any reason to still use Lead-Acid in 2026? Or has Lithium killed it completely?</p>
+<p>This guide compares the three main contenders:</p>
+<ol>
+<li><strong>Flooded Lead-Acid (FLA) / AGM:</strong> The traditional choice.</li>
+<li><strong>Lithium NMC:</strong> Tesla Powerwall, LG Chem.</li>
+<li><strong>Lithium LFP:</strong> Enphase, FranklinWH, Server Rack Batteries.</li>
+</ol>
+<hr>
+<h2 id="quick-verdict"><a href="#quick-verdict">Quick Verdict</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Category</th><th>Winner</th><th>Reason</th></tr></thead><tbody><tr><td><strong>Best Overall</strong></td><td>Lithium LFP</td><td>15-20 year lifespan, 100% DoD, zero maintenance</td></tr><tr><td><strong>Best for Financial ROI</strong></td><td>Lithium LFP</td><td>Lifetime cost 40% lower than lead-acid despite higher upfront</td></tr><tr><td><strong>Best for Resilience</strong></td><td>Lithium LFP</td><td>6,000-10,000 cycles vs 500-1,000 for lead-acid</td></tr><tr><td><strong>Best for Expansion</strong></td><td>Lithium LFP</td><td>Modular, lightweight, no ventilation requirements</td></tr></tbody></table>
+<hr>
+<h2 id="1-depth-of-discharge-dod"><a href="#1-depth-of-discharge-dod">1. Depth of Discharge (DoD)</a></h2>
+1e:T55d2,
+<p>This is the single biggest operational difference.</p>
+<ul>
+<li><strong>Lead-Acid:</strong> You can only use <strong>50%</strong> of the capacity. If you drain it below 50%, you permanently damage the battery.
+<ul>
+<li><em>To get 10 kWh of usable energy, you must buy a huge 20 kWh bank.</em></li>
+</ul>
+</li>
+<li><strong>Lithium (LFP/NMC):</strong> You can use <strong>90-100%</strong> of the capacity.
+<ul>
+<li><em>To get 10 kWh of usable energy, you buy a 10-11 kWh bank.</em></li>
+</ul>
+</li>
+</ul>
+<p><strong>Winner:</strong> <strong>Lithium</strong> (massive efficiency gain).</p>
+<blockquote>
+<p><strong>Winner for Usable Capacity:</strong> Lithium delivers 90-100% usable capacity vs 50% for lead-acid. Buy half the battery for the same storage.</p>
+</blockquote>
+<hr>
+<h2 id="2-cycle-life-longevity"><a href="#2-cycle-life-longevity">2. Cycle Life (Longevity)</a></h2>
+<p>How many times can you charge and drain it before it dies?</p>
+<ul>
+<li><strong>Lead-Acid:</strong> 500 – 1,000 cycles (at 50% DoD).
+<ul>
+<li><em>Real life:</em> 3–5 years lifespan if cycled daily.</li>
+</ul>
+</li>
+<li><strong>Lithium NMC:</strong> 3,000 – 4,000 cycles.
+<ul>
+<li><em>Real life:</em> 10–12 years.</li>
+</ul>
+</li>
+<li><strong>Lithium LFP:</strong> 6,000 – 10,000 cycles.
+<ul>
+<li><em>Real life:</em> 15–20 years.</li>
+</ul>
+</li>
+</ul>
+<p><strong>The Math:</strong> You will replace a Lead-Acid bank <strong>3 to 4 times</strong> during the single lifespan of one LFP battery.</p>
+<p><strong>Winner:</strong> <strong>Lithium LFP</strong> (Undisputed King of Longevity).</p>
+<blockquote>
+<p><strong>Winner for Lifespan:</strong> LFP batteries last 15-20 years vs 3-5 years for lead-acid. Replace lead-acid 3-4 times during one LFP lifespan.</p>
+</blockquote>
+<hr>
+<h2 id="3-cost-upfront-vs-lifetime"><a href="#3-cost-upfront-vs-lifetime">3. Cost (Upfront vs Lifetime)</a></h2>
+<p>This is where Lead-Acid <em>seems</em> to win, but it's a trap.</p>
+<ul>
+<li><strong>Upfront Cost:</strong> Lead-Acid is cheap per kWh of total capacity ($100-$150/kWh).</li>
+<li><strong>True Cost:</strong> Once you factor in the 50% DoD limit, the cost per <em>usable</em> kWh doubles ($200-$300/kWh).</li>
+<li><strong>Lifetime Cost:</strong> Because you replace them every 4-5 years, the 20-year cost of Lead-Acid is <strong>significantly higher</strong> than Lithium.</li>
+</ul>
+<p><strong>Verdict:</strong> Lead-Acid is only cheaper if you are building a cabin used one weekend a month. For a daily-cycle home, Lithium is cheaper over 10 years.</p>
+<blockquote>
+<p><strong>Winner for Lifetime Cost:</strong> Lithium LFP costs 40% less over 20 years despite 3x higher upfront cost.</p>
+</blockquote>
+<hr>
+<h2 id="4-maintenance--safety"><a href="#4-maintenance--safety">4. Maintenance &#x26; Safety</a></h2>
+<ul>
+<li><strong>Flooded Lead-Acid:</strong> Requires "watering" (adding distilled water) every month. Releases explosive hydrogen gas while charging (requires ventilation). Heavy and toxic.</li>
+<li><strong>Sealed Lead-Acid (AGM):</strong> Maintenance-free, but still heavy and short-lived.</li>
+<li><strong>Lithium:</strong> Zero maintenance. BMS (Battery Management System) handles cell balancing automatically.
+<ul>
+<li><strong>Safety Note:</strong> LFP is chemically safer than NMC. It is much harder to ignite. If safety is your #1 priority, choose LFP.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="side-by-side-specification-comparison"><a href="#side-by-side-specification-comparison">Side-by-Side Specification Comparison</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Specification</th><th>Lead-Acid (AGM)</th><th>Lithium (NMC)</th><th>Lithium (LFP)</th></tr></thead><tbody><tr><td><strong>Usable Capacity</strong></td><td>50%</td><td>90%</td><td>100%</td></tr><tr><td><strong>Chemistry</strong></td><td>Lead-Acid</td><td>Nickel Manganese Cobalt</td><td>Lithium Iron Phosphate</td></tr><tr><td><strong>Cycle Life</strong></td><td>500-1,000</td><td>3,000-4,000</td><td>6,000-10,000</td></tr><tr><td><strong>Warranty Length</strong></td><td>1-3 years</td><td>10 years</td><td>10-15 years</td></tr><tr><td><strong>Round-Trip Efficiency</strong></td><td>80-85%</td><td>90-95%</td><td>95-98%</td></tr><tr><td><strong>Inverter Integration</strong></td><td>Any</td><td>Any</td><td>Any</td></tr><tr><td><strong>Scalability</strong></td><td>Modular (heavy)</td><td>Fixed units</td><td>Modular (light)</td></tr><tr><td><strong>Approx Hardware Cost</strong></td><td>$200-300/kWh usable</td><td>$600-800/kWh</td><td>$500-700/kWh</td></tr><tr><td><strong>Lifespan</strong></td><td>3-5 Years</td><td>10-12 Years</td><td>15-20 Years</td></tr><tr><td><strong>Weight</strong></td><td>Very Heavy</td><td>Light</td><td>Medium</td></tr><tr><td><strong>Maintenance</strong></td><td>None (AGM)</td><td>None</td><td>None</td></tr><tr><td><strong>Safety</strong></td><td>Good (No fire risk)</td><td>Medium (Thermal Runaway risk)</td><td>Excellent</td></tr><tr><td><strong>Best Use Case</strong></td><td>Weekend Cabins</td><td>EVs / Powerwalls</td><td>Daily Home Storage</td></tr></tbody></table>
+<hr>
+<h2 id="5-10-year-total-cost-of-ownership-tco"><a href="#5-10-year-total-cost-of-ownership-tco">5. 10-Year Total Cost of Ownership (TCO)</a></h2>
+<p>The upfront price tells you nothing. Here is the real math over a 10-year period for a 10 kWh usable system.</p>
+<h3 id="lead-acid-agm"><a href="#lead-acid-agm">Lead-Acid AGM</a></h3>
+<ul>
+<li><strong>Initial Purchase:</strong> 20 kWh bank (50% DoD) = $4,000 (at $200/kWh).</li>
+<li><strong>Replacement Cycle:</strong> Replace every 4 years.
+<ul>
+<li>Year 0: $4,000</li>
+<li>Year 4: $4,000</li>
+<li>Year 8: $4,000</li>
+</ul>
+</li>
+<li><strong>Total 10-Year Cost:</strong> $12,000.</li>
+<li><strong>Cost per Usable kWh over Lifetime:</strong> $1,200/kWh.</li>
+</ul>
+<h3 id="lithium-lfp"><a href="#lithium-lfp">Lithium LFP</a></h3>
+<ul>
+<li><strong>Initial Purchase:</strong> 10 kWh bank (100% DoD) = $5,500 (at $550/kWh).</li>
+<li><strong>Replacement Cycle:</strong> None (15-20 year lifespan).</li>
+<li><strong>Total 10-Year Cost:</strong> $5,500.</li>
+<li><strong>Cost per Usable kWh over Lifetime:</strong> $550/kWh.</li>
+</ul>
+<p><strong>Verdict:</strong> Lithium LFP is <strong>54% cheaper</strong> over 10 years despite being more expensive upfront.</p>
+<h3 id="degradation-modeling"><a href="#degradation-modeling">Degradation Modeling</a></h3>
+<p>This assumes:</p>
+<ul>
+<li>Lead-Acid degrades to 80% capacity by Year 3, triggering replacement.</li>
+<li>Lithium LFP degrades to 90% capacity by Year 10 (still functional).</li>
+</ul>
+<p>If you cycle daily (365 cycles/year), Lead-Acid hits its 1,000-cycle limit in under 3 years. Lithium LFP won't hit 6,000 cycles until Year 16.</p>
+<hr>
+<h2 id="6-degradation--depth-of-discharge-analysis"><a href="#6-degradation--depth-of-discharge-analysis">6. Degradation &#x26; Depth of Discharge Analysis</a></h2>
+<h3 id="why-lead-acid-is-limited-to-50-dod"><a href="#why-lead-acid-is-limited-to-50-dod">Why Lead-Acid is Limited to 50% DoD</a></h3>
+<p>Lead-acid batteries suffer from <strong>sulfation</strong>. When you discharge below 50%, lead sulfate crystals form on the plates and harden. This is permanent damage.</p>
+<ul>
+<li><strong>Discharge to 30%:</strong> You lose 20% of total capacity permanently.</li>
+<li><strong>Discharge to 10%:</strong> The battery may never recover.</li>
+</ul>
+<p>This is why off-grid systems with lead-acid require <strong>massive oversizing</strong>. You need a 40 kWh bank to safely use 10 kWh.</p>
+<h3 id="why-lithium-can-use-80-100-dod"><a href="#why-lithium-can-use-80-100-dod">Why Lithium Can Use 80-100% DoD</a></h3>
+<p>Lithium batteries use <strong>intercalation</strong> chemistry. Lithium ions move between the anode and cathode without forming permanent crystals.</p>
+<ul>
+<li><strong>LFP:</strong> Can be discharged to 0% without damage. Most manufacturers limit to 95% DoD for warranty reasons.</li>
+<li><strong>NMC:</strong> Can be discharged to 10% safely. Tesla limits Powerwall 2 to 90% DoD.</li>
+</ul>
+<h3 id="cycle-math-example"><a href="#cycle-math-example">Cycle Math Example</a></h3>
+<p><strong>Scenario:</strong> You need 8 kWh of usable storage per day.</p>
+<ul>
+<li><strong>Lead-Acid (50% DoD):</strong> Buy a 16 kWh bank. Discharge 8 kWh daily.
+<ul>
+<li><strong>Cycles to Failure:</strong> 1,000 cycles ÷ 365 days/year = <strong>2.7 years</strong>.</li>
+</ul>
+</li>
+<li><strong>Lithium LFP (100% DoD):</strong> Buy an 8 kWh bank. Discharge 8 kWh daily.
+<ul>
+<li><strong>Cycles to Failure:</strong> 6,000 cycles ÷ 365 days/year = <strong>16.4 years</strong>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Winner:</strong> Lithium LFP lasts <strong>6x longer</strong> for the same daily usage.</p>
+<hr>
+<h2 id="7-temperature-sensitivity-comparison"><a href="#7-temperature-sensitivity-comparison">7. Temperature Sensitivity Comparison</a></h2>
+<p>Battery performance degrades in extreme temperatures. Here is how each chemistry responds.</p>
+<h3 id="cold-weather-impact-below-32f--0c"><a href="#cold-weather-impact-below-32f--0c">Cold Weather Impact (Below 32°F / 0°C)</a></h3>
+<ul>
+<li><strong>Lead-Acid:</strong> Capacity drops by <strong>50%</strong> at 0°F (-18°C). The electrolyte becomes sluggish. You lose half your usable energy in winter.</li>
+<li><strong>Lithium NMC:</strong> Capacity drops by <strong>20%</strong> at 0°F. Charging is disabled below 32°F to prevent lithium plating.</li>
+<li><strong>Lithium LFP:</strong> Capacity drops by <strong>10%</strong> at 0°F. Some systems include <strong>internal heaters</strong> to warm the cells before charging.</li>
+</ul>
+<p><strong>Cold Climate Winner:</strong> Lithium LFP (with heating).</p>
+<h3 id="heat-degradation-impact-above-95f--35c"><a href="#heat-degradation-impact-above-95f--35c">Heat Degradation Impact (Above 95°F / 35°C)</a></h3>
+<ul>
+<li><strong>Lead-Acid:</strong> High heat accelerates sulfation. Lifespan is cut in half if stored above 95°F.</li>
+<li><strong>Lithium NMC:</strong> High heat increases thermal runaway risk. Tesla Powerwall 2 uses active liquid cooling.</li>
+<li><strong>Lithium LFP:</strong> Extremely heat-tolerant. LFP chemistry is stable up to 140°F (60°C) without degradation.</li>
+</ul>
+<p><strong>Hot Climate Winner:</strong> Lithium LFP.</p>
+<h3 id="indoor-vs-garage-installation"><a href="#indoor-vs-garage-installation">Indoor vs Garage Installation</a></h3>
+<ul>
+<li><strong>Lead-Acid:</strong> Must be installed in a <strong>ventilated space</strong> (garage, shed). Cannot be installed indoors due to hydrogen gas risk.</li>
+<li><strong>Lithium:</strong> Can be installed indoors (basement, utility room) or in garage. LFP is safe for indoor installation without ventilation.</li>
+</ul>
+<hr>
+<h2 id="8-failure-modes--safety"><a href="#8-failure-modes--safety">8. Failure Modes &#x26; Safety</a></h2>
+<h3 id="thermal-runaway-lithium-nmc"><a href="#thermal-runaway-lithium-nmc">Thermal Runaway (Lithium NMC)</a></h3>
+<p>NMC batteries contain <strong>cobalt</strong>, which is chemically unstable at high temperatures. If a cell overheats:</p>
+<ol>
+<li>The electrolyte vaporizes.</li>
+<li>Pressure builds inside the cell.</li>
+<li>The cell vents hot gas.</li>
+<li>Adjacent cells overheat (chain reaction).</li>
+<li><strong>Result:</strong> Fire.</li>
+</ol>
+<p><strong>Mitigation:</strong> Tesla Powerwall 2 uses liquid cooling and individual cell fuses. However, NMC fires are difficult to extinguish.</p>
+<h3 id="thermal-stability-lithium-lfp"><a href="#thermal-stability-lithium-lfp">Thermal Stability (Lithium LFP)</a></h3>
+<p>LFP batteries use <strong>iron phosphate</strong>, which is chemically stable. Even if a cell is punctured or overheated, it does not release oxygen (no combustion).</p>
+<ul>
+<li><strong>Nail Penetration Test:</strong> LFP cells smoke but do not ignite. NMC cells explode.</li>
+<li><strong>Overcharge Test:</strong> LFP cells swell but do not catch fire. NMC cells ignite.</li>
+</ul>
+<p><strong>Safety Winner:</strong> Lithium LFP (no thermal runaway risk).</p>
+<h3 id="sulfation-lead-acid"><a href="#sulfation-lead-acid">Sulfation (Lead-Acid)</a></h3>
+<p>Sulfation is the #1 failure mode for lead-acid batteries. It occurs when:</p>
+<ul>
+<li>The battery sits discharged for more than 48 hours.</li>
+<li>The battery is repeatedly discharged below 50%.</li>
+<li>The battery is stored in hot conditions.</li>
+</ul>
+<p><strong>Result:</strong> Permanent capacity loss. The battery "dies" even though it is only 3 years old.</p>
+<h3 id="off-gassing-risks-lead-acid"><a href="#off-gassing-risks-lead-acid">Off-Gassing Risks (Lead-Acid)</a></h3>
+<p>Flooded lead-acid batteries release <strong>hydrogen gas</strong> during charging. Hydrogen is explosive at concentrations above 4%.</p>
+<ul>
+<li><strong>Ventilation Required:</strong> You must install lead-acid banks in a space with airflow to the outside.</li>
+<li><strong>Spark Risk:</strong> A single spark near a charging lead-acid bank can cause an explosion.</li>
+</ul>
+<p><strong>AGM (Sealed Lead-Acid)</strong> does not off-gas under normal conditions, but can vent hydrogen if overcharged.</p>
+<h3 id="fire-safety-differences"><a href="#fire-safety-differences">Fire Safety Differences</a></h3>
+<ul>
+<li><strong>Lead-Acid:</strong> No fire risk. However, explosion risk from hydrogen gas.</li>
+<li><strong>Lithium NMC:</strong> Fire risk from thermal runaway. Requires Class D fire extinguisher.</li>
+<li><strong>Lithium LFP:</strong> Minimal fire risk. Standard ABC fire extinguisher is sufficient.</li>
+</ul>
+<hr>
+<h2 id="9-weight-space--installation-constraints"><a href="#9-weight-space--installation-constraints">9. Weight, Space &#x26; Installation Constraints</a></h2>
+<h3 id="weight-comparison-per-10-kwh-usable"><a href="#weight-comparison-per-10-kwh-usable">Weight Comparison (Per 10 kWh Usable)</a></h3>
+<ul>
+<li><strong>Lead-Acid AGM:</strong> 20 kWh bank (50% DoD) = <strong>1,200 lbs</strong> (545 kg).
+<ul>
+<li>Requires reinforced floor or concrete pad.</li>
+<li>Cannot be wall-mounted.</li>
+</ul>
+</li>
+<li><strong>Lithium NMC:</strong> 11 kWh bank (90% DoD) = <strong>275 lbs</strong> (125 kg).
+<ul>
+<li>Can be wall-mounted on standard studs.</li>
+</ul>
+</li>
+<li><strong>Lithium LFP:</strong> 10 kWh bank (100% DoD) = <strong>220 lbs</strong> (100 kg).
+<ul>
+<li>Lightest option. Easy to wall-mount.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Weight Winner:</strong> Lithium LFP (5x lighter than lead-acid).</p>
+<h3 id="space-requirements"><a href="#space-requirements">Space Requirements</a></h3>
+<ul>
+<li><strong>Lead-Acid:</strong> 20 kWh bank requires <strong>8-12 individual batteries</strong> wired in series/parallel. Takes up 20-30 sq ft of floor space.</li>
+<li><strong>Lithium:</strong> Single wall-mounted unit. Takes up <strong>3-5 sq ft</strong> of wall space.</li>
+</ul>
+<p><strong>Space Winner:</strong> Lithium (90% space savings).</p>
+<h3 id="ventilation-requirements"><a href="#ventilation-requirements">Ventilation Requirements</a></h3>
+<ul>
+<li><strong>Lead-Acid (Flooded):</strong> Requires dedicated ventilation to the outside. Cannot be installed in living spaces.</li>
+<li><strong>Lead-Acid (AGM):</strong> No ventilation required under normal use. However, must be in a temperature-controlled space (not outdoor shed).</li>
+<li><strong>Lithium:</strong> No ventilation required. Can be installed in basement, garage, or utility room.</li>
+</ul>
+<h3 id="mounting-differences"><a href="#mounting-differences">Mounting Differences</a></h3>
+<ul>
+<li><strong>Lead-Acid:</strong> Floor-mounted only. Requires battery rack or shelving.</li>
+<li><strong>Lithium:</strong> Wall-mounted or floor-mounted. Most residential systems are wall-mounted to save space.</li>
+</ul>
+<hr>
+<h2 id="10-recycling--end-of-life-considerations"><a href="#10-recycling--end-of-life-considerations">10. Recycling &#x26; End-of-Life Considerations</a></h2>
+<h3 id="lead-acid-recycling"><a href="#lead-acid-recycling">Lead-Acid Recycling</a></h3>
+<p>Lead-acid batteries are <strong>98% recyclable</strong>. The lead, plastic, and sulfuric acid are all recovered and reused.</p>
+<ul>
+<li><strong>Process:</strong> Batteries are crushed. Lead is smelted. Acid is neutralized. Plastic is recycled.</li>
+<li><strong>Infrastructure:</strong> Mature recycling network in the US and Europe. Most auto parts stores accept old batteries.</li>
+<li><strong>Environmental Impact:</strong> Lead is toxic. However, the closed-loop recycling system prevents environmental contamination.</li>
+</ul>
+<p><strong>Verdict:</strong> Lead-acid has the best recycling infrastructure.</p>
+<h3 id="lithium-recycling"><a href="#lithium-recycling">Lithium Recycling</a></h3>
+<p>Lithium batteries are <strong>50-70% recyclable</strong> (as of 2026). The challenge is separating the different metals (lithium, cobalt, nickel, iron).</p>
+<ul>
+<li><strong>Process:</strong> Batteries are shredded. Metals are separated using hydrometallurgy or pyrometallurgy.</li>
+<li><strong>Infrastructure:</strong> Growing but immature. Redwood Materials, Li-Cycle, and others are building recycling plants.</li>
+<li><strong>Environmental Impact:</strong> Lithium mining is water-intensive. Recycling reduces the need for new mining.</li>
+</ul>
+<p><strong>Verdict:</strong> Lithium recycling is improving but not yet as mature as lead-acid.</p>
+<h3 id="disposal-regulations"><a href="#disposal-regulations">Disposal Regulations</a></h3>
+<ul>
+<li><strong>Lead-Acid:</strong> Illegal to throw in trash in all 50 states. Must be returned to a recycling center.</li>
+<li><strong>Lithium:</strong> Classified as hazardous waste in most states. Must be returned to manufacturer or recycling center.</li>
+</ul>
+<p><strong>Both chemistries require proper disposal. Never throw batteries in the trash.</strong></p>
+<hr>
+<h2 id="11-final-engineering-verdict"><a href="#11-final-engineering-verdict">11. Final Engineering Verdict</a></h2>
+<p>After analyzing cost, lifespan, safety, weight, temperature tolerance, and recycling, the verdict is clear:</p>
+<h3 id="for-daily-cycle-residential-storage-lithium-lfp-wins"><a href="#for-daily-cycle-residential-storage-lithium-lfp-wins">For Daily-Cycle Residential Storage: Lithium LFP Wins</a></h3>
+<ul>
+<li><strong>54% lower</strong> 10-year total cost of ownership.</li>
+<li><strong>6x longer</strong> lifespan (16 years vs 2.7 years).</li>
+<li><strong>5x lighter</strong> (220 lbs vs 1,200 lbs).</li>
+<li><strong>90% space savings</strong> (wall-mounted vs floor racks).</li>
+<li><strong>No thermal runaway risk</strong> (safest chemistry).</li>
+<li><strong>No ventilation required</strong> (indoor installation).</li>
+<li><strong>Minimal temperature sensitivity</strong> (works in cold and hot climates).</li>
+</ul>
+<h3 id="the-only-case-for-lead-acid-seasonalinfrequent-use"><a href="#the-only-case-for-lead-acid-seasonalinfrequent-use">The Only Case for Lead-Acid: Seasonal/Infrequent Use</a></h3>
+<p>If you have a cabin used 10 weekends per year (&#x3C;50 cycles/year), lead-acid AGM makes sense:</p>
+<ul>
+<li>Low upfront cost ($4,000 vs $5,500).</li>
+<li>Will last 10+ years at low cycle count.</li>
+<li>Easier to find local replacement batteries.</li>
+</ul>
+<h3 id="the-nmc-middle-ground"><a href="#the-nmc-middle-ground">The NMC Middle Ground</a></h3>
+<p>Lithium NMC (Tesla Powerwall 2, LG Chem) offers:</p>
+<ul>
+<li>Higher energy density than LFP (smaller/lighter units).</li>
+<li>10-12 year lifespan (better than lead-acid, worse than LFP).</li>
+<li><strong>Trade-off:</strong> Higher thermal runaway risk. Requires active cooling.</li>
+</ul>
+<p><strong>Our Recommendation:</strong> For new residential installations in 2026, <strong>Lithium LFP</strong> is the clear winner. Brands like FranklinWH, Enphase IQ, and EG4 offer proven LFP systems with 15-year warranties.</p>
+<hr>
+<h2 id="best-for-use-case-matching"><a href="#best-for-use-case-matching">Best For: Use Case Matching</a></h2>
+<h3 id="daily-cycle-home-storage"><a href="#daily-cycle-home-storage">Daily-Cycle Home Storage</a></h3>
+<p><strong>Winner:</strong> Lithium LFP</p>
+<ul>
+<li>6,000-10,000 cycles support daily charging for 15-20 years</li>
+<li>100% DoD maximizes usable capacity</li>
+<li>Zero maintenance and excellent safety profile</li>
+</ul>
+<h3 id="off-grid--rural-properties"><a href="#off-grid--rural-properties">Off-Grid &#x26; Rural Properties</a></h3>
+<p><strong>Winner:</strong> Lithium LFP</p>
+<ul>
+<li>Lightweight and modular for remote installations</li>
+<li>No ventilation requirements (safe indoors)</li>
+<li>Long lifespan critical when replacement is difficult</li>
+</ul>
+<h3 id="weekend-cabins--seasonal-use"><a href="#weekend-cabins--seasonal-use">Weekend Cabins &#x26; Seasonal Use</a></h3>
+<p><strong>Winner:</strong> Lead-Acid AGM (Budget Option)</p>
+<ul>
+<li>Low upfront cost for infrequent use</li>
+<li>Acceptable for &#x3C;100 cycles per year</li>
+<li>Only scenario where lead-acid makes financial sense</li>
+</ul>
+<h3 id="maximum-safety-indoor-installation"><a href="#maximum-safety-indoor-installation">Maximum Safety (Indoor Installation)</a></h3>
+<p><strong>Winner:</strong> Lithium LFP</p>
+<ul>
+<li>No thermal runaway risk (unlike NMC)</li>
+<li>No hydrogen gas emission (unlike lead-acid)</li>
+<li>Safe for garage or basement installation</li>
+</ul>
+<hr>
+<h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
+<p>In 2026, <strong>Lead-Acid is effectively dead</strong> for residential grid-tied storage. The economics simply don't work when modern LFP batteries offer 15-year lifespans for comparable lifetime costs.</p>
+<p><strong>Our Recommendation:</strong>
+Look for <strong>LiFePO4 (LFP)</strong> technology. It offers the best balance of safety, longevity, and price. Brands like FranklinWH, Enphase, and EG4 use this chemistry.</p>
+<p>Ready to size your modern Lithium system?</p>
+<p><a href="/calculator"><strong>Run Your Numbers Now →</strong></a></p>1a:["$","div",null,{"className":"article-prose prose prose-slate dark:prose-invert max-w-none","children":[["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$1d"}}],["$","div",null,{"className":"my-8 not-prose","children":["$","div",null,{"className":"my-10 p-6 bg-secondary/10 border-l-4 border-secondary rounded-r-lg","children":[["$","h4",null,{"className":"font-bold text-lg mb-2 text-foreground","children":"Stop guessing."}],["$","p",null,{"className":"text-muted-foreground mb-4","children":"Compare options with your actual load"}],["$","$Le",null,{"href":"/calculator","children":["$","button",null,{"className":"bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2 rounded-md font-medium text-sm transition-colors flex items-center gap-2","children":["Use Calculator ",["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-right w-4 h-4","aria-hidden":"true","children":[["$","path","1ays0h",{"d":"M5 12h14"}],["$","path","xquz4c",{"d":"m12 5 7 7-7 7"}],"$undefined"]}]]}]}]]}]}],["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$1e"}}]]}]
+1b:["$","div",null,{"className":"mt-12 space-y-6 border-t pt-8","children":[["$","h3",null,{"className":"text-lg font-semibold","children":"Next Steps"}],["$","div",null,{"className":"grid sm:grid-cols-2 gap-4","children":[["$","div",null,{"className":"my-8 rounded-lg border bg-card text-card-foreground shadow-sm","children":[["$","div",null,{"className":"flex flex-col space-y-1.5 p-6","children":[["$","div",null,{"className":"flex items-center gap-2","children":[["$","div",null,{"className":"p-2 bg-primary/10 rounded-md","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calculator h-5 w-5 text-primary","aria-hidden":"true","children":[["$","rect","1nb95v",{"width":"16","height":"20","x":"4","y":"2","rx":"2"}],["$","line","x4nwl0",{"x1":"8","x2":"16","y1":"6","y2":"6"}],["$","line","wjye3r",{"x1":"16","x2":"16","y1":"14","y2":"18"}],["$","path","1m94wz",{"d":"M16 10h.01"}],["$","path","1nrarc",{"d":"M12 10h.01"}],["$","path","19clt8",{"d":"M8 10h.01"}],["$","path","1etili",{"d":"M12 14h.01"}],["$","path","6423bh",{"d":"M8 14h.01"}],["$","path","mhygvu",{"d":"M12 18h.01"}],["$","path","lrp35t",{"d":"M8 18h.01"}],"$undefined"]}]}],["$","h3",null,{"className":"font-semibold leading-none tracking-tight","children":"Calculate your banking needs"}]]}],["$","p",null,{"className":"text-sm text-muted-foreground pt-2","children":"Use our engineering-grade tool to size your system."}]]}],["$","div",null,{"className":"p-6 pt-0","children":["$","$Le",null,{"href":"/calculator","children":["$","button",null,{"data-slot":"button","data-variant":"default","data-size":"sm","className":"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90 h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 w-full sm:w-auto","children":["Start Sizing",["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-right ml-2 h-4 w-4","aria-hidden":"true","children":[["$","path","1ays0h",{"d":"M5 12h14"}],["$","path","xquz4c",{"d":"m12 5 7 7-7 7"}],"$undefined"]}]]}]}]}]]}],["$","div",null,{"className":"my-8 rounded-lg border bg-card text-card-foreground shadow-sm","children":[["$","div",null,{"className":"flex flex-col space-y-1.5 p-6","children":[["$","div",null,{"className":"flex items-center gap-2","children":[["$","div",null,{"className":"p-2 bg-primary/10 rounded-md","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-file-text h-5 w-5 text-primary","aria-hidden":"true","children":[["$","path","1oefj6",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["$","path","wfsgrz",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["$","path","b1mrlr",{"d":"M10 9H8"}],["$","path","t4e002",{"d":"M16 13H8"}],["$","path","z1uh3a",{"d":"M16 17H8"}],"$undefined"]}]}],["$","h3",null,{"className":"font-semibold leading-none tracking-tight","children":"Get the Blueprint"}]]}],["$","p",null,{"className":"text-sm text-muted-foreground pt-2","children":"Download a PDF report for your installer."}]]}],["$","div",null,{"className":"p-6 pt-0","children":["$","$Le",null,{"href":"/calculator","children":["$","button",null,{"data-slot":"button","data-variant":"outline","data-size":"sm","className":"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 w-full sm:w-auto","children":["Download PDF",false]}]}]}]]}]]}]]}]
+14:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1f:I[53547,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"IconMark"]
+12:null
+16:[["$","title","0",{"children":"Lithium-Ion vs Lead-Acid Solar Batteries: Which is Best? | BatteryBlueprint | BatteryBlueprint"}],["$","meta","1",{"name":"description","content":"The old guard vs the new standard. We compare LFP, NMC, and Lead-Acid chemistries on cost, lifespan, safety, and performance."}],["$","meta","2",{"name":"author","content":"BatteryBlueprint"}],["$","link","3",{"rel":"manifest","href":"https://batteryblueprint.com/site.webmanifest","crossOrigin":"$undefined"}],["$","meta","4",{"name":"keywords","content":"solar battery,battery sizing,off-grid,solar calculator,energy storage,battery backup"}],["$","meta","5",{"name":"creator","content":"BatteryBlueprint"}],["$","meta","6",{"name":"publisher","content":"BatteryBlueprint"}],["$","meta","7",{"name":"robots","content":"index, follow"}],["$","meta","8",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","link","9",{"rel":"canonical","href":"https://batteryblueprint.com/comparisons/lithium-vs-lead-acid/"}],["$","meta","10",{"property":"og:title","content":"Lithium-Ion vs Lead-Acid Solar Batteries: Which is Best?"}],["$","meta","11",{"property":"og:description","content":"The old guard vs the new standard. We compare LFP, NMC, and Lead-Acid chemistries on cost, lifespan, safety, and performance."}],["$","meta","12",{"property":"og:url","content":"https://batteryblueprint.com/comparisons/lithium-vs-lead-acid/"}],["$","meta","13",{"property":"og:type","content":"article"}],["$","meta","14",{"property":"article:published_time","content":"2026-02-13"}],["$","meta","15",{"property":"article:author","content":"BatteryBlueprint"}],["$","meta","16",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","17",{"name":"twitter:creator","content":"@batteryblueprint"}],["$","meta","18",{"name":"twitter:title","content":"BatteryBlueprint | Engineering-Grade Solar Battery Sizing"}],["$","meta","19",{"name":"twitter:description","content":"Calculate your solar battery needs without the sales fluff. Accurate sizing for specialized off-grid and hybrid systems."}],["$","meta","20",{"name":"twitter:image","content":"https://batteryblueprint.com/og-image.png"}],["$","link","21",{"rel":"shortcut icon","href":"/favicon-16x16.png"}],["$","link","22",{"rel":"icon","href":"/favicon.ico?favicon.0b3bf435.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","23",{"rel":"icon","href":"/favicon.ico"}],["$","link","24",{"rel":"apple-touch-icon","href":"/apple-touch-icon.png"}],["$","$L1f","25",{}]]

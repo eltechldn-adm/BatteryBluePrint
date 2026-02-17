@@ -1,0 +1,201 @@
+1:"$Sreact.fragment"
+2:I[91965,["/_next/static/chunks/eaa81c8402ca477b.js"],""]
+3:I[50737,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"default"]
+4:I[2189,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"default"]
+5:I[6138,["/_next/static/chunks/eaa81c8402ca477b.js","/_next/static/chunks/b805145185efab59.js","/_next/static/chunks/ba7009bd23958f85.js"],"Header"]
+d:I[60942,[],"default"]
+:HL["/_next/static/chunks/9a660ebbf70a8d45.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"b":"5fvt6abnlDJq6crjxqpoU","c":["","cost","uk-solar-battery-incentives",""],"q":"","i":false,"f":[[["",{"children":["(content)",{"children":[["category","cost","d"],{"children":[["slug","uk-solar-battery-incentives","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/9a660ebbf70a8d45.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/eaa81c8402ca477b.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable antialiased","suppressHydrationWarning":true,"children":[["$","div",null,{"className":"grain-overlay","aria-hidden":"true"}],["$","$L2",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7088331504377019","crossOrigin":"anonymous","strategy":"afterInteractive"}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/b805145185efab59.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/ba7009bd23958f85.js","async":true,"nonce":"$undefined"}]],["$","div",null,{"className":"flex min-h-screen flex-col","children":[["$","$L5",null,{}],["$","main",null,{"className":"flex-1 pt-24 pb-16","children":["$","div",null,{"className":"container mx-auto px-4 sm:px-6 lg:px-8","children":["$","div",null,{"className":"mx-auto max-w-4xl","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:2:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:f:0:1:0:props:children:1:props:children:props:children:2:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:2:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:2:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}],["$","footer",null,{"className":"py-12 px-6 border-t border-border/50 bg-muted/20","children":["$","div",null,{"className":"max-w-6xl mx-auto","children":["$","div",null,{"className":"grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12","children":[["$","div",null,{"className":"flex flex-col gap-4","children":["$","div",null,{"className":"flex flex-col gap-2","children":[["$","div",null,{"className":"text-xl font-bold text-primary","children":"BatteryBlueprint"}],["$","p",null,{"className":"text-sm text-muted-foreground max-w-xs","children":"Engineering-grade solar battery calculations without the sales fluff."}]]}]}],["$","div",null,{"className":"flex flex-col gap-3","children":[["$","h4",null,{"className":"font-semibold text-foreground","children":"Tools"}],"$L6"]}],"$L7","$L8"]}]}]}]]}]]}],{"children":["$L9",{"children":["$La",{"children":["$Lb",{},null,false,false]},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$Lc",false]],"m":"$undefined","G":["$d",[]],"S":true}
+e:I[42443,["/_next/static/chunks/eaa81c8402ca477b.js","/_next/static/chunks/b805145185efab59.js","/_next/static/chunks/ba7009bd23958f85.js","/_next/static/chunks/c77e4895038b6575.js"],""]
+10:I[53353,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"OutletBoundary"]
+11:"$Sreact.suspense"
+13:I[53353,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"ViewportBoundary"]
+15:I[53353,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"MetadataBoundary"]
+6:["$","nav",null,{"className":"flex flex-col gap-2 text-sm text-muted-foreground","children":[["$","$Le",null,{"href":"/calculator","className":"hover:text-primary transition-colors","children":"Calculator"}],["$","$Le",null,{"href":"/guide","className":"hover:text-primary transition-colors flex items-center gap-2","children":["Energy Hub ",["$","span",null,{"className":"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full","children":"New"}]]}]]}]
+7:["$","div",null,{"className":"flex flex-col gap-3","children":[["$","h4",null,{"className":"font-semibold text-foreground","children":"Company"}],["$","nav",null,{"className":"flex flex-col gap-2 text-sm text-muted-foreground","children":[["$","$Le",null,{"href":"/about","className":"hover:text-primary transition-colors","children":"About"}],["$","$Le",null,{"href":"/contact","className":"hover:text-primary transition-colors","children":"Contact"}],["$","$Le",null,{"href":"/privacy","className":"hover:text-primary transition-colors","children":"Privacy Policy"}],["$","$Le",null,{"href":"/terms","className":"hover:text-primary transition-colors","children":"Terms of Service"}]]}]]}]
+8:["$","div",null,{"className":"flex flex-col gap-3","children":[["$","h4",null,{"className":"font-semibold text-foreground","children":"Connect"}],["$","div",null,{"className":"flex flex-col gap-2 text-sm text-muted-foreground","children":[["$","a",null,{"href":"mailto:support@batteryblueprint.com","className":"hover:text-primary transition-colors","children":"support@batteryblueprint.com"}],["$","div",null,{"className":"pt-4 text-xs text-muted-foreground/60","children":["© ",2026," BatteryBlueprint.",["$","br",null,{}],"Built for engineers, by engineers."]}]]}]]}]
+9:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+a:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+b:["$","$1","c",{"children":["$Lf",[["$","script","script-0",{"src":"/_next/static/chunks/c77e4895038b6575.js","async":true,"nonce":"$undefined"}]],["$","$L10",null,{"children":["$","$11",null,{"name":"Next.MetadataOutlet","children":"$@12"}]}]]}]
+c:["$","$1","h",{"children":[null,["$","$L13",null,{"children":"$L14"}],["$","div",null,{"hidden":true,"children":["$","$L15",null,{"children":["$","$11",null,{"name":"Next.Metadata","children":"$L16"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+17:T59e,{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does the 0% VAT apply to replacement batteries?","acceptedAnswer":{"@type":"Answer","text":"Yes. If your old battery dies and you pay an installer to supply and fit a new one, it should be 0% VAT. This was a recent clarification by HMRC. It applies even if you are just adding capacity to an existing system."}},{"@type":"Question","name":"Do I need an MCS Certificate for SEG?","acceptedAnswer":{"@type":"Answer","text":"Generally, yes. Most big suppliers (Octopus, EDF) require your installation to be MCS certified to pay you for export. Some smaller disruptive suppliers might accept a simple DNO notification (G98/G99), but MCS is the gold standard for resale value and insurance."}},{"@type":"Question","name":"Will the VAT exemption end?","acceptedAnswer":{"@type":"Answer","text":"Currently, it is legislated to run until **March 31, 2027**. After that, it may revert to 20% or a reduced rate (5%). Getting installed before 2027 is the safe bet to lock in this £1,000+ saving."}},{"@type":"Question","name":"Can I claim incentives for DIY installs?","acceptedAnswer":{"@type":"Answer","text":"Very rarely. To get the 0% VAT, the supplier must also install the goods. If you buy the battery on eBay, you pay 20% VAT. To get SEG payments, you need an MCS certificate, which you cannot self-issue unless you are a certified installer."}}]}f:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"UK Solar Battery Incentives 2026: VAT, SEG and Grants\",\"description\":\"A complete guide to UK government support for battery storage. Detailed breakdown of 0% VAT rules, Smart Export Guarantee (SEG), and ECO4 grants.\",\"dateModified\":\"2026-02-13\",\"datePublished\":\"2026-02-13\",\"image\":\"https://batteryblueprint.com/og/cost.png\",\"author\":{\"@type\":\"Organization\",\"name\":\"BatteryBlueprint\",\"url\":\"https://batteryblueprint.com\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"BatteryBlueprint\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://batteryblueprint.com/logo.png\"}},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://batteryblueprint.com/cost/uk-solar-battery-incentives\"}}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://batteryblueprint.com\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Energy Hub\",\"item\":\"https://batteryblueprint.com/guide\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Cost\",\"item\":\"https://batteryblueprint.com/cost\"},{\"@type\":\"ListItem\",\"position\":4,\"name\":\"UK Solar Battery Incentives 2026: VAT, SEG and Grants\",\"item\":\"https://batteryblueprint.com/cost/uk-solar-battery-incentives\"}]}"}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"$17"}}],["$","article",null,{"children":[["$","div",null,{"className":"mb-6","children":["$","div",null,{"data-slot":"card","className":"text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm bg-muted/30 border-dashed border-border mb-8 overflow-hidden relative","children":["$","div",null,{"data-slot":"card-content","className":"p-6","children":["$","div",null,{"className":"flex flex-col sm:flex-row gap-6","children":["$L18","$L19"]}]}]}]}],"$L1a","$L1b","$L1c","$L1d"]}]]
+1e:I[72295,["/_next/static/chunks/eaa81c8402ca477b.js","/_next/static/chunks/b805145185efab59.js","/_next/static/chunks/ba7009bd23958f85.js","/_next/static/chunks/c77e4895038b6575.js"],"InlineTOC"]
+18:["$","div",null,{"className":"flex-shrink-0","children":["$","div",null,{"className":"w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center text-muted-foreground","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-globe w-6 h-6","aria-hidden":"true","children":[["$","circle","1mglay",{"cx":"12","cy":"12","r":"10"}],["$","path","13o1zl",{"d":"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"}],["$","path","9i4pu4",{"d":"M2 12h20"}],"$undefined"]}]}]}]
+19:["$","div",null,{"className":"space-y-4 flex-1","children":[["$","div",null,{"children":[["$","h4",null,{"className":"font-semibold text-foreground text-lg mb-1","children":"Not in the UK or US?"}],["$","p",null,{"className":"text-muted-foreground text-sm leading-relaxed","children":"Most of our cost and incentive data is tailored for these regions, but the physics of batteries works the same everywhere! Here's how to adapt this guide:"}]]}],["$","ul",null,{"className":"space-y-2 text-sm text-muted-foreground","children":[["$","li",null,{"className":"flex items-start gap-2","children":[["$","span",null,{"className":"w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"}],["$","span",null,{"children":"Look up your local electricity rate per kWh (and peak/off-peak logic)."}]]}],["$","li",null,{"className":"flex items-start gap-2","children":[["$","span",null,{"className":"w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"}],["$","span",null,{"children":"Check your local government website for solar/battery incentives."}]]}],["$","li",null,{"className":"flex items-start gap-2","children":[["$","span",null,{"className":"w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"}],["$","span",null,{"children":"Use our calculator with your daily kWh usage—the sizing math is universal."}]]}]]}],["$","div",null,{"className":"pt-2","children":["$","$Le",null,{"href":"/calculator","children":["$","button",null,{"data-slot":"button","data-variant":"outline","data-size":"sm","className":"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calculator w-4 h-4","aria-hidden":"true","children":[["$","rect","1nb95v",{"width":"16","height":"20","x":"4","y":"2","rx":"2"}],["$","line","x4nwl0",{"x1":"8","x2":"16","y1":"6","y2":"6"}],["$","line","wjye3r",{"x1":"16","x2":"16","y1":"14","y2":"18"}],["$","path","1m94wz",{"d":"M16 10h.01"}],["$","path","1nrarc",{"d":"M12 10h.01"}],["$","path","19clt8",{"d":"M8 10h.01"}],["$","path","1etili",{"d":"M12 14h.01"}],["$","path","6423bh",{"d":"M8 14h.01"}],["$","path","mhygvu",{"d":"M12 18h.01"}],["$","path","lrp35t",{"d":"M8 18h.01"}],"$undefined"]}],"Use Universal Calculator",["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-right w-3 h-3","aria-hidden":"true","children":[["$","path","1ays0h",{"d":"M5 12h14"}],["$","path","xquz4c",{"d":"m12 5 7 7-7 7"}],"$undefined"]}]]}]}]}]]}]
+1a:["$","div",null,{"className":"space-y-4 pb-6 mb-8","children":[["$","div",null,{"className":"flex items-center gap-1 text-xs text-muted-foreground","children":[["$","$Le",null,{"href":"/","className":"hover:text-primary transition-colors","children":"Home"}],["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-chevron-right h-3 w-3","aria-hidden":"true","children":[["$","path","mthhwq",{"d":"m9 18 6-6-6-6"}],"$undefined"]}],["$","$Le",null,{"href":"/cost","className":"hover:text-primary transition-colors","children":"Cost"}],["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-chevron-right h-3 w-3","aria-hidden":"true","children":[["$","path","mthhwq",{"d":"m9 18 6-6-6-6"}],"$undefined"]}],["$","span",null,{"className":"font-medium text-foreground truncate max-w-[200px]","children":"UK Solar Battery Incentives 2026: VAT, SEG and Grants"}]]}],["$","div",null,{"className":"space-y-3","children":[["$","h1",null,{"className":"scroll-m-20 text-3xl font-bold tracking-tight text-foreground lg:text-4xl","children":"UK Solar Battery Incentives 2026: VAT, SEG and Grants"}],["$","p",null,{"className":"text-base text-muted-foreground leading-relaxed","children":"A complete guide to UK government support for battery storage. Detailed breakdown of 0% VAT rules, Smart Export Guarantee (SEG), and ECO4 grants."}]]}],["$","div",null,{"className":"flex items-center gap-4 text-xs text-muted-foreground pt-2","children":[["$","div",null,{"className":"flex items-center gap-1.5","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calendar w-3.5 h-3.5","aria-hidden":"true","children":[["$","path","1cmpym",{"d":"M8 2v4"}],["$","path","4m81vk",{"d":"M16 2v4"}],["$","rect","1hopcy",{"width":"18","height":"18","x":"3","y":"4","rx":"2"}],["$","path","8toen8",{"d":"M3 10h18"}],"$undefined"]}],["$","time",null,{"dateTime":"2026-02-13","children":"February 13, 2026"}]]}],["$","div",null,{"className":"flex items-center gap-1.5","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-clock w-3.5 h-3.5","aria-hidden":"true","children":[["$","path","mmk7yg",{"d":"M12 6v6l4 2"}],["$","circle","1mglay",{"cx":"12","cy":"12","r":"10"}],"$undefined"]}],["$","span",null,{"children":[12," min read"]}]]}]]}]]}]
+1b:["$","$L1e",null,{}]
+1f:T6ae,<p>In the UK, the government has moved away from direct cash handouts (like the old Feed-in Tariff) and toward "Tax Relief" and "Market Mechanisms."</p>
+<p>The headline for 2026 is simple: <strong>Batteries are effectively 20% cheaper</strong> than they were a few years ago, not because prices dropped (though they did), but because the tax was abolished.</p>
+<p>This guide clarifies exactly what you are entitled to as a UK homeowner.</p>
+<hr>
+<h2 id="1-the-big-one-0-vat-value-added-tax"><a href="#1-the-big-one-0-vat-value-added-tax">1. The Big One: 0% VAT (Value Added Tax)</a></h2>
+<ul>
+<li><strong>Status:</strong> Active until March 2027 (check latest budget).</li>
+<li><strong>Value:</strong> <strong>20% Discount</strong>.</li>
+</ul>
+<p>Prior to 2024, if you added a battery to an existing solar system ("Retrofit"), you paid 20% VAT.
+<strong>Now, 0% VAT applies to ALL battery installations</strong>, whether:</p>
+<ol>
+<li>Installed with new solar panels.</li>
+<li>Installed as a retrofit to existing panels.</li>
+<li>Installed as a standalone system (grid charging only).</li>
+</ol>
+<p><strong>The Math:</strong></p>
+<ul>
+<li><strong>Hardware + Labor Cost:</strong> £6,000</li>
+<li><strong>Old Price (w/ VAT):</strong> £7,200</li>
+<li><strong>New Price (0% VAT):</strong> £6,000</li>
+<li><strong>Instant Saving:</strong> £1,200.</li>
+</ul>
+<blockquote>
+<p><strong>One Catch:</strong> This generally only applies if you use a professional installer who supplies the goods. If you buy the battery yourself from a shop (DIY), you pay 20% VAT at checkout.</p>
+</blockquote>
+<hr>
+<h2 id="2-smart-export-guarantee-seg"><a href="#2-smart-export-guarantee-seg">2. Smart Export Guarantee (SEG)</a></h2>
+20:T2087,
+<p>The SEG is not a grant—it is a legal obligation for energy suppliers to pay you for electricity you export to the grid.</p>
+<ul>
+<li><strong>Status:</strong> Permanent.</li>
+<li><strong>Value:</strong> Varies by Supplier (Average 4p - 24p per kWh).</li>
+</ul>
+<p>This is where your battery pays for itself.
+In the past, you gave excess energy away for free. Now, you get paid.</p>
+<h3 id="the-smart-tariff-game-changer"><a href="#the-smart-tariff-game-changer">The "Smart Tariff" Game Changer</a></h3>
+<p>Suppliers like Octopus Energy, OVO, and British Gas offer "Smart Tariffs" (e.g., Octopus Flux).</p>
+<ul>
+<li><strong>Flux Rate:</strong> They might pay you <strong>20p - 29p</strong> per kWh to export during peak times.</li>
+<li><strong>Battery Strategy:</strong> You fill your battery with cheap solar (or cheap 2am grid power), and DUMP it back to the grid at 5pm.</li>
+<li><strong>Result:</strong> Some users earn £500+ per year just from trading energy.</li>
+</ul>
+<hr>
+<h2 id="3-eco4-grant-scheme"><a href="#3-eco4-grant-scheme">3. ECO4 Grant Scheme</a></h2>
+<p>The Energy Company Obligation (ECO4) is a government scheme to tackle fuel poverty.</p>
+<ul>
+<li><strong>Status:</strong> Active.</li>
+<li><strong>Value:</strong> <strong>100% Free</strong> (Full cost covered).</li>
+<li><strong>Eligibility:</strong> Extremely Strict.
+<ol>
+<li>You must receive qualifying benefits (Universal Credit, Pension Credit, etc.).</li>
+<li>Your home must have an EPC rating of D, E, F, or G.</li>
+<li>Usually requires installing Solar PV <em>and</em> Heat Pumps alongside insulation.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Benefit:</strong> If you qualify, you can get solar panels and occasionally a battery installed for £0.
+<strong>Drawback:</strong> The approval process acts slowly, and specific installers must be used. Also, batteries are not <em>guaranteed</em>—Insulation is the priority.</p>
+<hr>
+<h2 id="4-home-energy-scotland-hes---grant--loan"><a href="#4-home-energy-scotland-hes---grant--loan">4. Home Energy Scotland (HES) - Grant &#x26; Loan</a></h2>
+<p>If you live in Scotland, you have access to better incentives than England/Wales.</p>
+<ul>
+<li><strong>Status:</strong> Active (Funding dependent).</li>
+<li><strong>Loan:</strong> Interest-free loan up to £2,500 towards a battery.</li>
+<li><strong>Grant:</strong> Sometimes grant funding (cash back) is available, though this changes rapidly.</li>
+</ul>
+<p>Check the <strong>Home Energy Scotland</strong> website for the current "funding pot" status, as it opens and closes based on demand.</p>
+<hr>
+<h2 id="5-the-free-solar-myth-vs-reality"><a href="#5-the-free-solar-myth-vs-reality">5. The "Free Solar" Myth vs Reality</a></h2>
+<p>You will see Facebook ads promising "Free Government Solar." Beware.</p>
+<p><strong>The Reality:</strong>
+Most of these ads are lead generation for "Rent-a-Roof" schemes.</p>
+<ul>
+<li><strong>The Deal:</strong> A company installs panels on your roof for free.</li>
+<li><strong>The Catch:</strong> They own the panels. They keep the SEG payments. You get cheaper electricity, but you do not get the full benefit, and selling your house becomes a nightmare because of the roof lease.</li>
+<li><strong>Our Advice:</strong> Always buy the system outright if you can afford it (or finance it). The 0% VAT makes ownership far superior to renting your roof.</li>
+</ul>
+<hr>
+<h2 id="6-business-incentives-capital-allowances"><a href="#6-business-incentives-capital-allowances">6. Business Incentives: Capital Allowances</a></h2>
+<p>If you run a business from home or have a commercial premise, the rules are even better.</p>
+<ul>
+<li><strong>Full Expensing:</strong> Companies can claim 100% first-year tax relief on qualifying plant and machinery assets (including solar and batteries).</li>
+<li><strong>Result:</strong> You can deduct the entire cost of the battery from your corporation tax bill in year one.</li>
+<li><strong>Note:</strong> Consult your accountant. This does not apply to standard residential installs.</li>
+</ul>
+<hr>
+<h2 id="7-future-policy-what-to-expect-in-late-2026"><a href="#7-future-policy-what-to-expect-in-late-2026">7. Future Policy: What to Expect in late 2026</a></h2>
+<p>The UK energy market is moving towards "Locational Pricing" and "Flexibility Markets."</p>
+<ul>
+<li><strong>Demand Side Response (DSR):</strong> The National Grid is trialing programs where they pay you to discharge your battery during grid stress events.</li>
+<li><strong>Vehicle to Grid (V2G):</strong> While currently niche, regulations are shifting to allow EVs to act as home batteries.</li>
+<li><strong>Outlook:</strong> Government policy is shifting from "Subsidies for Installation" to "Payments for Performance." The money is in <em>using</em> the battery smartly, not just buying it.</li>
+</ul>
+<hr>
+<h2 id="summary-of-entitlements"><a href="#summary-of-entitlements">Summary of Entitlements</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">Incentive</th><th align="left">Value</th><th align="left">Who Qualifies?</th></tr></thead><tbody><tr><td align="left"><strong>0% VAT</strong></td><td align="left">20% Off Invoice</td><td align="left">Everyone (Professional Installs).</td></tr><tr><td align="left"><strong>SEG Payments</strong></td><td align="left">4p - 29p / kWh</td><td align="left">Everyone with an MCS Certificate.</td></tr><tr><td align="left"><strong>ECO4</strong></td><td align="left">100% Free</td><td align="left">Low Income / Benefits Recipient.</td></tr><tr><td align="left"><strong>HES Loan</strong></td><td align="left">Interest-Free</td><td align="left">Scottish Residents Only.</td></tr><tr><td align="left"><strong>Capital Allowances</strong></td><td align="left">Tax Relief (100%)</td><td align="left">Limited Companies / Businesses.</td></tr></tbody></table>
+<hr>
+<h2 id="faq"><a href="#faq">FAQ</a></h2>
+<pre><code>Yes. If your old battery dies and you pay an installer to supply and fit a new one, it should be 0% VAT. This was a recent clarification by HMRC. It applies even if you are just adding capacity to an existing system.
+
+
+
+Generally, yes. Most big suppliers (Octopus, EDF) require your installation to be MCS certified to pay you for export. Some smaller disruptive suppliers might accept a simple DNO notification (G98/G99), but MCS is the gold standard for resale value and insurance.
+
+
+
+Currently, it is legislated to run until **March 31, 2027**. After that, it may revert to 20% or a reduced rate (5%). Getting installed before 2027 is the safe bet to lock in this £1,000+ saving.
+
+
+
+Very rarely. To get the 0% VAT, the supplier must also install the goods. If you buy the battery on eBay, you pay 20% VAT. To get SEG payments, you need an MCS certificate, which you cannot self-issue unless you are a certified installer.
+</code></pre>
+<hr>
+<h2 id="8-the-final-verdict-is-it-free-money"><a href="#8-the-final-verdict-is-it-free-money">8. The Final Verdict: Is it "Free Money"?</a></h2>
+<p>Let's be realistic. The government isn't giving you money because they are nice. They are giving you money because the grid is broken.</p>
+<ul>
+<li><strong>The Stick:</strong> Energy prices will stay high.</li>
+<li><strong>The Carrot:</strong> 0% VAT and Smart Export Guarantees.</li>
+</ul>
+<p>By installing a battery in 2026, you are essentially privatizing your energy security. The financial ROI is excellent (often 15%+ IRR), beating the stock market. But the <em>real</em> value is knowing that when the grid fails or prices spike, your home is insulated from the chaos.</p>
+<hr>
+<h2 id="next-steps"><a href="#next-steps">Next Steps</a></h2>
+<p>The combination of 0% VAT and Smart Export Tariffs makes the UK one of the best places in the world for battery ROI (5-7 years).</p>
+<p>Use our calculator to see how much you could save annually on a smart tariff.</p>
+<p><a href="/calculator"><strong>Calculate UK Review →</strong></a>
+<a href="/blueprint"><strong>Download Design Blueprint →</strong></a></p>
+<p>Related Guides:</p>
+<ul>
+<li><a href="/cost/solar-battery-cost-uk-2026"><strong>UK Solar Battery Costs 2026</strong></a></li>
+<li><a href="/cost/solar-battery-payback-period"><strong>Payback Period Calculator</strong></a></li>
+<li><a href="/comparisons/best-solar-batteries-2026"><strong>Best Batteries 2026</strong></a></li>
+</ul>1c:["$","div",null,{"className":"article-prose prose prose-slate dark:prose-invert max-w-none","children":[["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$1f"}}],["$","div",null,{"className":"my-8 not-prose","children":["$","div",null,{"className":"my-10 p-6 bg-secondary/10 border-l-4 border-secondary rounded-r-lg","children":[["$","h4",null,{"className":"font-bold text-lg mb-2 text-foreground","children":"Stop guessing."}],["$","p",null,{"className":"text-muted-foreground mb-4","children":"Estimate your savings properly"}],["$","$Le",null,{"href":"/calculator","children":["$","button",null,{"className":"bg-secondary text-secondary-foreground hover:bg-secondary/90 px-4 py-2 rounded-md font-medium text-sm transition-colors flex items-center gap-2","children":["Use Calculator ",["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-right w-4 h-4","aria-hidden":"true","children":[["$","path","1ays0h",{"d":"M5 12h14"}],["$","path","xquz4c",{"d":"m12 5 7 7-7 7"}],"$undefined"]}]]}]}]]}]}],["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$20"}}]]}]
+1d:["$","div",null,{"className":"mt-12 space-y-6 border-t pt-8","children":[["$","h3",null,{"className":"text-lg font-semibold","children":"Next Steps"}],["$","div",null,{"className":"grid sm:grid-cols-2 gap-4","children":[["$","div",null,{"className":"my-8 rounded-lg border bg-card text-card-foreground shadow-sm","children":[["$","div",null,{"className":"flex flex-col space-y-1.5 p-6","children":[["$","div",null,{"className":"flex items-center gap-2","children":[["$","div",null,{"className":"p-2 bg-primary/10 rounded-md","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-calculator h-5 w-5 text-primary","aria-hidden":"true","children":[["$","rect","1nb95v",{"width":"16","height":"20","x":"4","y":"2","rx":"2"}],["$","line","x4nwl0",{"x1":"8","x2":"16","y1":"6","y2":"6"}],["$","line","wjye3r",{"x1":"16","x2":"16","y1":"14","y2":"18"}],["$","path","1m94wz",{"d":"M16 10h.01"}],["$","path","1nrarc",{"d":"M12 10h.01"}],["$","path","19clt8",{"d":"M8 10h.01"}],["$","path","1etili",{"d":"M12 14h.01"}],["$","path","6423bh",{"d":"M8 14h.01"}],["$","path","mhygvu",{"d":"M12 18h.01"}],["$","path","lrp35t",{"d":"M8 18h.01"}],"$undefined"]}]}],["$","h3",null,{"className":"font-semibold leading-none tracking-tight","children":"Calculate your banking needs"}]]}],["$","p",null,{"className":"text-sm text-muted-foreground pt-2","children":"Use our engineering-grade tool to size your system."}]]}],["$","div",null,{"className":"p-6 pt-0","children":["$","$Le",null,{"href":"/calculator","children":["$","button",null,{"data-slot":"button","data-variant":"default","data-size":"sm","className":"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90 h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 w-full sm:w-auto","children":["Start Sizing",["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-arrow-right ml-2 h-4 w-4","aria-hidden":"true","children":[["$","path","1ays0h",{"d":"M5 12h14"}],["$","path","xquz4c",{"d":"m12 5 7 7-7 7"}],"$undefined"]}]]}]}]}]]}],["$","div",null,{"className":"my-8 rounded-lg border bg-card text-card-foreground shadow-sm","children":[["$","div",null,{"className":"flex flex-col space-y-1.5 p-6","children":[["$","div",null,{"className":"flex items-center gap-2","children":[["$","div",null,{"className":"p-2 bg-primary/10 rounded-md","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-file-text h-5 w-5 text-primary","aria-hidden":"true","children":[["$","path","1oefj6",{"d":"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"}],["$","path","wfsgrz",{"d":"M14 2v5a1 1 0 0 0 1 1h5"}],["$","path","b1mrlr",{"d":"M10 9H8"}],["$","path","t4e002",{"d":"M16 13H8"}],["$","path","z1uh3a",{"d":"M16 17H8"}],"$undefined"]}]}],["$","h3",null,{"className":"font-semibold leading-none tracking-tight","children":"Get the Blueprint"}]]}],["$","p",null,{"className":"text-sm text-muted-foreground pt-2","children":"Download a PDF report for your installer."}]]}],["$","div",null,{"className":"p-6 pt-0","children":["$","$Le",null,{"href":"/calculator","children":["$","button",null,{"data-slot":"button","data-variant":"outline","data-size":"sm","className":"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 w-full sm:w-auto","children":["Download PDF",false]}]}]}]]}]]}]]}]
+14:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+21:I[53547,["/_next/static/chunks/97bd40996f3d0dd3.js","/_next/static/chunks/a87720b451e6cf2d.js"],"IconMark"]
+12:null
+16:[["$","title","0",{"children":"UK Solar Battery Incentives 2026: VAT, SEG and Grants | BatteryBlueprint | BatteryBlueprint"}],["$","meta","1",{"name":"description","content":"A complete guide to UK government support for battery storage. Detailed breakdown of 0% VAT rules, Smart Export Guarantee (SEG), and ECO4 grants."}],["$","meta","2",{"name":"author","content":"BatteryBlueprint"}],["$","link","3",{"rel":"manifest","href":"https://batteryblueprint.com/site.webmanifest","crossOrigin":"$undefined"}],["$","meta","4",{"name":"keywords","content":"solar battery,battery sizing,off-grid,solar calculator,energy storage,battery backup"}],["$","meta","5",{"name":"creator","content":"BatteryBlueprint"}],["$","meta","6",{"name":"publisher","content":"BatteryBlueprint"}],["$","meta","7",{"name":"robots","content":"index, follow"}],["$","meta","8",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","link","9",{"rel":"canonical","href":"https://batteryblueprint.com/cost/uk-solar-battery-incentives/"}],["$","meta","10",{"property":"og:title","content":"UK Solar Battery Incentives 2026: VAT, SEG and Grants"}],["$","meta","11",{"property":"og:description","content":"A complete guide to UK government support for battery storage. Detailed breakdown of 0% VAT rules, Smart Export Guarantee (SEG), and ECO4 grants."}],["$","meta","12",{"property":"og:url","content":"https://batteryblueprint.com/cost/uk-solar-battery-incentives/"}],["$","meta","13",{"property":"og:type","content":"article"}],["$","meta","14",{"property":"article:published_time","content":"2026-02-13"}],["$","meta","15",{"property":"article:author","content":"BatteryBlueprint"}],["$","meta","16",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","17",{"name":"twitter:creator","content":"@batteryblueprint"}],["$","meta","18",{"name":"twitter:title","content":"BatteryBlueprint | Engineering-Grade Solar Battery Sizing"}],["$","meta","19",{"name":"twitter:description","content":"Calculate your solar battery needs without the sales fluff. Accurate sizing for specialized off-grid and hybrid systems."}],["$","meta","20",{"name":"twitter:image","content":"https://batteryblueprint.com/og-image.png"}],["$","link","21",{"rel":"shortcut icon","href":"/favicon-16x16.png"}],["$","link","22",{"rel":"icon","href":"/favicon.ico?favicon.0b3bf435.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","23",{"rel":"icon","href":"/favicon.ico"}],["$","link","24",{"rel":"apple-touch-icon","href":"/apple-touch-icon.png"}],["$","$L21","25",{}]]

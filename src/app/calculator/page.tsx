@@ -14,7 +14,6 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { calculateStorageNeeded, SizingResult } from "@/lib/calc/battery-sizing";
 import { recommendBatteries, RecommendationResult, RecommendedBattery } from "@/lib/calc/recommend-batteries";
 import { BatteryCatalogItem } from "@/lib/batteries/catalog";
-import { BlueprintModal } from "@/components/pdf/BlueprintModal";
 import { analytics } from "@/lib/analytics/track";
 import { FileText, CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown } from "lucide-react";
 import { LOCATION_PROFILES, getLocationProfile, detectLocationFromBrowser } from "@/data/locations";
@@ -1299,17 +1298,7 @@ export default function CalculatorPage() {
                 )
                 }
 
-                {/* PDF Modal */}
-                {
-                    result && recommendations && (
-                        <BlueprintModal
-                            open={modalOpen}
-                            onOpenChange={setModalOpen}
-                            results={result}
-                            recommendations={recommendations}
-                        />
-                    )
-                }
+                {/* PDF functionality removed - static site only */}
 
 
             </main>
