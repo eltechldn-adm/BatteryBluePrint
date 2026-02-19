@@ -150,3 +150,56 @@ If you have those four numbers, you are ready to shop.
 **Next Step:** Skip the manual math. Use our algorithm to run this simulation for your specific zip code and roof angle.
 
 [**Launch System Calculator →**](/calculator)
+
+---
+
+## Advanced Sizing: Accounting for Degradation
+
+Batteries lose capacity over time. A 10kWh battery in Year 1 may only deliver 8kWh in Year 10. If you're sizing for a 10-year horizon, factor in this degradation.
+
+Most LFP batteries are warranted to retain 70% capacity after 10 years (or 6,000 cycles). For long-term planning:
+
+- **Year 1 capacity:** 10kWh
+- **Year 10 capacity:** ~7kWh (70% retention)
+- **Sizing recommendation:** If you need 10kWh usable in Year 10, buy a 14.3kWh battery today (10 / 0.7)
+
+This is especially important for off-grid systems where the battery must meet your full load requirements throughout its lifespan.
+
+## Sizing for Time-of-Use Tariffs
+
+If your primary goal is financial optimization rather than backup, the sizing logic changes. You want to store enough energy to cover your entire **peak tariff window**.
+
+For example, on Octopus Agile (UK) or PG&E TOU-D (US), peak rates typically run from 4 PM to 9 PM (5 hours). If your home uses 2kW during this period:
+
+- **Peak period consumption:** 2kW × 5 hours = 10kWh
+- **Minimum battery size:** 10kWh (to avoid any peak grid imports)
+- **With 20% buffer:** 12.5kWh
+
+For TOU optimization, the battery doesn't need to cover overnight consumption—just the expensive peak window. This often results in a smaller optimal battery size than backup-focused sizing.
+
+## UK vs US Sizing Differences
+
+The optimal battery size differs between UK and US homes due to different consumption patterns and grid structures.
+
+**UK homes** typically use 8-10 kWh/day total, with lower overnight consumption (3-5 kWh). The UK's variable smart tariffs (Octopus Agile, Flux) reward batteries that can respond to real-time pricing. Most UK homes are well-served by a 5-10kWh battery.
+
+**US homes** use significantly more energy (25-30 kWh/day average), with higher overnight consumption (8-15 kWh). US homes also tend to have more high-power appliances (central AC, electric dryers, pool pumps). Most US homes need 10-20kWh for meaningful self-sufficiency.
+
+For detailed cost information by region, see our [Solar Battery Cost Guide](/cost/solar-battery-cost-uk-2026).
+
+## Common Questions (FAQ)
+
+### What happens if I undersize my battery?
+You will simply pull from the grid earlier in the morning. It's not catastrophic. From a financial ROI perspective, slightly undersizing is actually *better* because every electron in the battery gets used every single night. You get 100% utilization.
+
+### What happens if I oversize my battery?
+You paid for capacity you aren't using. If you have a 20 kWh battery but only use 5 kWh at night, that extra 15 kWh sits there doing nothing. It lowers your Return on Investment (ROI) significantly.
+
+### Does the calculator account for winter?
+Yes. Our [Battery Blueprint Calculator](/calculator) looks at critical "Lowest Sun Month" data (usually December or January). If you size for December, you are safe for June.
+
+### How does battery sizing change if I add an EV?
+Adding an EV dramatically increases your sizing requirements. A typical EV needs 10-15 kWh per 40 miles of daily driving. The most efficient approach is to charge the EV directly from solar during the day, bypassing the home battery entirely. This avoids double conversion losses and preserves your backup reserve.
+
+### Should I size for today's usage or future usage?
+Size for your expected usage in 2-3 years, not just today. If you're planning to add an EV, heat pump, or electric cooking in the near future, factor those loads in now. It's much cheaper to buy the right-sized inverter upfront than to replace it later.

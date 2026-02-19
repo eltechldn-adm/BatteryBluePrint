@@ -1,0 +1,150 @@
+---
+title: "How to Read Your Electricity Bill to Size a Solar Battery"
+description: "Learn to decode your electricity bill in 10 minutes. Find the kWh number that drives every battery sizing calculation and avoid the most common mistake."
+updated: "2026-02-18"
+category: "how-to"
+slug: "how-to-read-your-electricity-bill-for-battery-sizing"
+readingMinutes: 9
+---
+
+Most people have never actually read their electricity bill. They glance at the total, wince, and pay it. But if you want to size a solar battery correctly, your electricity bill contains the single most important number in the entire calculation: your **daily energy consumption in kilowatt-hours (kWh)**.
+
+Get this number wrong and every other calculation falls apart. Overestimate and you'll spend thousands on capacity you'll never use. Underestimate and you'll run out of power at 9pm on a cold Tuesday.
+
+This guide walks you through finding that number on any bill format — US, UK, or Australian — in under 10 minutes.
+
+<!--CTA:how-to-->
+
+## What You're Looking For: The kWh Number
+
+Your electricity bill charges you for energy in **kilowatt-hours (kWh)**. One kWh is the amount of energy used by a 1,000-watt appliance running for one hour. A typical electric kettle uses about 0.1 kWh per boil. A tumble dryer uses about 2.5 kWh per cycle.
+
+Your bill will show your **total kWh consumed** over the billing period. This is the number you need.
+
+**Do not use the dollar/pound/dollar amount.** Electricity prices vary wildly by location, time of day, and tariff type. The currency figure tells you what you paid, not how much energy you used. Battery sizing is about energy, not cost.
+
+### Where to Find It
+
+On most bills, look for a section called:
+- "Energy Usage Summary"
+- "Electricity Consumption"
+- "Usage Details"
+- "Meter Reading Summary"
+
+It will show something like: **"Usage: 847 kWh"** or **"Units used: 847"**
+
+That's your billing period total. Now you need to convert it to a daily average.
+
+## Step 1: Find Your Billing Period Length
+
+Bills are issued monthly, quarterly, or for a custom number of days. The billing period length is almost always printed near the meter reading dates.
+
+Look for:
+- "Service period: 15 Jan 2026 – 14 Feb 2026" → 30 days
+- "Billing period: 90 days" → quarterly bill
+- "Meter read dates: 01/12/2025 to 31/01/2026" → 61 days
+
+Count the days between the start and end dates. Write this number down.
+
+**Why it matters:** A 90-day bill showing 2,400 kWh looks alarming, but it works out to just 26.7 kWh/day — a fairly average UK home. A 30-day bill showing 800 kWh is 26.7 kWh/day too. Same house, same consumption, very different-looking numbers.
+
+## Step 2: Calculate Your Daily Average
+
+Divide your total kWh by the number of days in the billing period.
+
+**Formula:** Daily kWh = Total kWh ÷ Number of days
+
+**Examples:**
+- 847 kWh over 30 days = **28.2 kWh/day**
+- 2,400 kWh over 90 days = **26.7 kWh/day**
+- 1,100 kWh over 45 days = **24.4 kWh/day**
+
+This daily average is the primary input for the [BatteryBlueprint calculator](/calculator). Enter it in the "Daily Energy Load" field.
+
+## Step 3: Adjust for Seasonal Variation
+
+Here's the catch: one bill gives you one season. Summer consumption and winter consumption can differ by 30–50% in homes with electric heating or air conditioning.
+
+**Best practice:** Pull 12 months of bills if you can. Most utility providers let you download usage history from their online portal. Calculate the daily average for each month, then:
+
+- **For backup sizing:** Use your **highest month** (worst case). You want the battery to cover your peak demand.
+- **For financial ROI sizing:** Use your **average across all months**. You're optimising for typical usage, not worst case.
+
+If you only have one bill, note the season. A summer bill in Arizona will dramatically underestimate winter heating loads. A winter bill in Scotland will overestimate summer usage.
+
+### The Seasonal Adjustment Rule of Thumb
+
+If you only have one bill and you're in a temperate climate:
+- **Summer bill:** Add 15–25% for winter heating loads
+- **Winter bill:** Subtract 10–20% for summer average
+
+These are rough guides only. The [battery sizing guide](/sizing/how-much-battery-storage-do-i-need) explains how to apply seasonal buffers properly using our calculator's winter mode toggle.
+
+## Step 4: Account for Future Changes
+
+Your current bill reflects your current lifestyle. But battery systems last 10–15 years. Think about what might change:
+
+**Increases to plan for:**
+- Electric vehicle (EV) charging: adds 10–30 kWh/day depending on mileage
+- Heat pump installation: can add 5–20 kWh/day in winter
+- Home office equipment: adds 1–3 kWh/day
+- New family members or tenants
+
+**Decreases to plan for:**
+- LED lighting upgrades: saves 0.5–2 kWh/day
+- New energy-efficient appliances
+- Children leaving home
+
+A common approach is to add 20% to your current daily average as a future-proofing buffer. This is more art than science, but it's better than sizing for today and running short in three years.
+
+## Common Mistakes to Avoid
+
+**Mistake 1: Using the wrong unit.** Some older bills (particularly in the UK) show consumption in "units" where 1 unit = 1 kWh. This is fine — they're the same thing. But some gas bills show consumption in cubic metres or therms, which are completely different. Make sure you're reading the electricity section, not the gas section.
+
+**Mistake 2: Using a single unusual month.** If you had guests staying for Christmas, or ran a portable air conditioner through a heatwave, that month's bill will be unrepresentative. Try to use at least 3 months of data, or flag the anomaly when calculating your average.
+
+**Mistake 3: Confusing kW and kWh.** Kilowatts (kW) measure power — how fast energy is being used right now. Kilowatt-hours (kWh) measure energy — how much was used over time. Your bill shows kWh. Your battery is rated in kWh. Your solar panels are rated in kW. They're related but different. The [basics guide on kWh explained](/basics/kwh-explained) covers this distinction in detail.
+
+**Mistake 4: Ignoring time-of-use tariffs.** If you're on a time-of-use (TOU) tariff where electricity costs more at peak hours, your bill may show separate kWh totals for peak and off-peak periods. For battery sizing, add them together to get your total daily consumption. The time-of-day split matters for financial optimisation, but not for capacity sizing.
+
+## What to Do With Your Number
+
+Once you have your daily kWh average, you're ready to size your battery. The [BatteryBlueprint calculator](/calculator) takes this number and applies engineering factors — depth of discharge, inverter efficiency, reserve buffer, and autonomy days — to calculate the actual battery capacity you need.
+
+A quick reference for context:
+- **Under 10 kWh/day:** Small home or apartment. A 5–10 kWh battery covers most backup needs.
+- **10–20 kWh/day:** Average home. A 10–15 kWh battery for backup; 15–20 kWh for full daily coverage.
+- **20–30 kWh/day:** Large home or EV charging. 15–25 kWh battery for backup; 25–40 kWh for full coverage.
+- **Over 30 kWh/day:** High-consumption home. Consider a multi-battery system or commercial-grade storage.
+
+These are rough guides. The calculator will give you a precise figure based on your specific inputs.
+
+## FAQ
+
+**Q: My bill shows "peak" and "off-peak" kWh separately. Which do I use?**
+
+Add them together. For battery sizing purposes, you need your total daily consumption regardless of when it occurred. The peak/off-peak split is relevant for financial modelling (which hours to charge and discharge) but not for capacity sizing.
+
+**Q: I'm on a smart meter — can I get hourly data?**
+
+Yes, and it's much more useful than monthly totals. Most smart meter providers offer a web portal or app where you can download hourly or half-hourly consumption data. This lets you see exactly when you use the most energy, which helps you size for backup windows rather than just daily totals.
+
+**Q: My bill is in therms or cubic metres. Is that my electricity?**
+
+No — therms and cubic metres are gas units. Make sure you're reading the electricity section of your bill. If you have a combined gas and electricity bill, the electricity section will show kWh.
+
+**Q: I don't have a bill yet — I just moved in. What should I use?**
+
+Use the UK average (8–10 kWh/day for a 3-bedroom home) or US average (28–32 kWh/day) as a starting point, then adjust once you have 1–2 months of actual data. The [how much battery storage do I need](/sizing/how-much-battery-storage-do-i-need) guide has scenario-based estimates for different home sizes.
+
+**Q: Should I use my highest bill or my average?**
+
+It depends on your goal. For backup power (keeping the lights on during outages), use your highest month — you want to be covered in the worst case. For financial optimisation (maximising ROI from solar arbitrage), use your annual average — you're optimising for typical conditions, not extremes.
+
+**Q: My bill shows a "demand charge" — what is that and does it affect battery sizing?**
+
+Demand charges are common on commercial electricity tariffs but rare on residential ones. They charge you based on your peak power draw (measured in kW) during a billing period, not just your total energy consumption (kWh). If you have a demand charge on your residential bill, it means your utility is billing you for the highest 15- or 30-minute average power draw during the month. A battery can help reduce demand charges by smoothing out peak loads, but the sizing calculation is different from standard energy backup sizing. If you see a demand charge on your bill, mention it specifically when using the [BatteryBlueprint calculator](/calculator) — the approach to sizing changes.
+
+**Q: How do I find historical usage data if I've lost old bills?**
+
+Most utility providers store at least 12–24 months of usage history in your online account. Log in to your utility's customer portal and look for a section called "Usage History," "My Energy," or "Bill History." You can usually download a CSV or PDF of your monthly usage. In the UK, your smart meter data is accessible via your supplier's app or the national smart meter data portal. In Australia, your retailer's app typically shows 12 months of usage. If you can't access historical data online, call your utility's customer service line — they can usually provide historical usage data on request.

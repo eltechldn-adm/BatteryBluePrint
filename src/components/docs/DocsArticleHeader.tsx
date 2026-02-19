@@ -36,11 +36,15 @@ export function DocsArticleHeader({ metadata }: DocsArticleHeaderProps) {
             </div>
 
             {/* Metadata */}
-            <div className="flex items-center gap-4 text-xs text-muted-foreground pt-2">
+            <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground pt-2 border-t border-border/30 mt-4">
+                <div className="flex items-center gap-1.5">
+                    <span className="font-medium text-foreground/70">By</span>
+                    <span>BatteryBlueprint Editorial</span>
+                </div>
                 <div className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
                     <time dateTime={metadata.updated}>
-                        {new Date(metadata.updated).toLocaleDateString('en-US', {
+                        Updated {new Date(metadata.updated).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric',

@@ -30,21 +30,97 @@ const CATEGORIES = [
     'markets',
 ];
 
+// ─── Validation constants ───────────────────────────────────────────────────
+const MIN_WORD_COUNT = 1500;
+const MIN_H2_COUNT = 4;
+const MIN_DESCRIPTION_LENGTH = 150;
+const MAX_DESCRIPTION_LENGTH = 160;
+
 console.log('\n📦 [Content Manifest] Starting generation...');
 console.log(`   📂 Source: ${CONTENT_DIR}`);
 console.log(`   📄 Output: ${OUTPUT_FILE}`);
 
 const manifest = [];
+const validationErrors = [];
+
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+/** Count words in a markdown string (strips markdown syntax) */
+function countWords(markdown) {
+    return markdown
+        .replace(/```[\s\S]*?```/g, '') // strip code blocks
+        .replace(/`[^`]+`/g, '')         // strip inline code
+        .replace(/!\[.*?\]\(.*?\)/g, '') // strip images
+        .replace(/\[.*?\]\(.*?\)/g, '$1') // strip links, keep text
+        .replace(/[#*_~>|]/g, '')         // strip markdown symbols
+        .replace(/\s+/g, ' ')
+        .trim()
+        .split(' ')
+        .filter(Boolean).length;
+}
+
+/** Count occurrences of H2 headings (## ...) */
+function countH2(markdown) {
+    return (markdown.match(/^##\s+.+/gm) || []).length;
+}
+
+/** Check if article has an H1 */
+function hasH1(markdown) {
+    return /^#\s+.+/m.test(markdown);
+}
+
+/** Check if article has a FAQ section */
+function hasFAQ(markdown) {
+    return /## (Common Questions|FAQ|Frequently Asked Questions)/i.test(markdown) ||
+        /<DocsFAQItem/i.test(markdown);
+}
+
+/** Count internal links (href="/...") */
+function countInternalLinks(markdown) {
+    return (markdown.match(/\]\(\/[^)]+\)/g) || []).length;
+}
+
+/** Validate a single article and return array of error strings */
+function validateArticle(filePath, frontmatter, content) {
+    const errors = [];
+    const relPath = path.relative(projectRoot, filePath);
+
+    const wordCount = countWords(content);
+    const h2Count = countH2(content);
+    const internalLinks = countInternalLinks(content);
+    const descLen = (frontmatter.description || '').length;
+
+    if (wordCount < MIN_WORD_COUNT) {
+        errors.push(`[${relPath}] Word count too low: ${wordCount} (min ${MIN_WORD_COUNT})`);
+    }
+    if (!hasH1(content) && !frontmatter.title) {
+        errors.push(`[${relPath}] Missing H1 heading`);
+    }
+    if (h2Count < MIN_H2_COUNT) {
+        errors.push(`[${relPath}] Only ${h2Count} H2 sections (min ${MIN_H2_COUNT})`);
+    }
+    if (!hasFAQ(content)) {
+        errors.push(`[${relPath}] Missing FAQ section`);
+    }
+    if (internalLinks < 2) {
+        errors.push(`[${relPath}] Only ${internalLinks} internal links (min 2)`);
+    }
+    if (!frontmatter.description) {
+        errors.push(`[${relPath}] Missing meta description`);
+    } else if (descLen < MIN_DESCRIPTION_LENGTH || descLen > MAX_DESCRIPTION_LENGTH) {
+        errors.push(`[${relPath}] Meta description length ${descLen} chars (must be ${MIN_DESCRIPTION_LENGTH}–${MAX_DESCRIPTION_LENGTH})`);
+    }
+    if (!frontmatter.updated) {
+        errors.push(`[${relPath}] Missing 'updated' date in frontmatter`);
+    }
+
+    return errors;
+}
 
 // Helper to strip/replace specific React components for static HTML
 function processCustomComponents(content) {
     let processed = content;
 
-    // Replace <DocsCallout ...> with roughly equivalent HTML or strip
-    // Since we can't easily render React components in this pipeline without JSX runtime,
-    // we will strip them or simplify them.
-    // The user requirement says: "Replace <DocsCallout> with <aside class="callout">"
-    // This regex is a simple approximation.
     processed = processed.replace(
         /<DocsCallout\s+title=["'](.*?)["']\s+description=["'](.*?)["'](?:.*?)CTA=(?:.*?)>/g,
         (match, title, desc) => `
@@ -54,11 +130,9 @@ function processCustomComponents(content) {
 </aside>`
     );
 
-    // Simplistic handling for generic DocsCallout if attributes vary
     processed = processed.replace(
         /<DocsCallout\s+([^>]*?)\/?>/g,
         (match, attrs) => {
-            // Simple parsing of title/desc
             const title = attrs.match(/title=["'](.*?)["']/)?.[1] || 'Note';
             const desc = attrs.match(/description=["'](.*?)["']/)?.[1] || '';
             return `
@@ -69,13 +143,7 @@ function processCustomComponents(content) {
         }
     );
 
-    // Remove <DocsFAQ> wrappers but keep content
     processed = processed.replace(/<DocsFAQ>/g, '').replace(/<\/DocsFAQ>/g, '');
-
-    // DocsFAQItem is handled during FAQ extraction, so we should STRIP it from the body
-    // to avoid duplicating it in the HTML if we render FAQs separately.
-    // OR we can leave it as HTML if we want it inline.
-    // The user requirement says "Remove <DocsFAQItem ...> wrapper tags but keep inner text for the article body"
     processed = processed.replace(/<DocsFAQItem\s+.*?question=["'].*?["'].*?>([\s\S]*?)<\/DocsFAQItem>/g, '$1');
 
     return processed;
@@ -86,7 +154,7 @@ async function compileMarkdown(markdown) {
         .use(remarkParse)
         .use(remarkGfm)
         .use(remarkRehype, { allowDangerousHtml: true })
-        .use(rehypeRaw) // Needed to pass through HTML tags/placeholders
+        .use(rehypeRaw)
         .use(rehypeSlug)
         .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
         .use(rehypeStringify, { allowDangerousHtml: true })
@@ -95,7 +163,7 @@ async function compileMarkdown(markdown) {
     return String(file);
 }
 
-// Main processing loop
+// ─── Main processing loop ────────────────────────────────────────────────────
 (async () => {
     for (const category of CATEGORIES) {
         const categoryPath = path.join(CONTENT_DIR, category);
@@ -108,8 +176,13 @@ async function compileMarkdown(markdown) {
                 const fileContent = fs.readFileSync(filePath, 'utf-8');
                 const { data, content } = matter(fileContent);
 
+                // ── Validate article structure ──────────────────────────────
+                const errors = validateArticle(filePath, data, content);
+                if (errors.length > 0) {
+                    validationErrors.push(...errors);
+                }
+
                 // 1. CTA Injection Placeholder
-                // Insert placeholder after 2nd H2
                 const h2Regex = /^##\s+(.+)$/gm;
                 let match;
                 let count = 0;
@@ -133,18 +206,16 @@ async function compileMarkdown(markdown) {
 
                 // 2. Extract FAQs
                 const faqs = [];
-                // Strategy 1: <DocsFAQItem>
                 const faqItemRegex = /<DocsFAQItem\s+question=["'](.*?)["']\s*>([\s\S]*?)<\/DocsFAQItem>/g;
                 let newMatch;
                 while ((newMatch = faqItemRegex.exec(content)) !== null) {
                     faqs.push({
                         question: newMatch[1].trim(),
-                        answer: newMatch[2].trim(), // Inner markdown/text
+                        answer: newMatch[2].trim(),
                     });
                 }
-                // Strategy 2: ## FAQ markdown section
                 if (faqs.length === 0) {
-                    const oldFaqRegex = /## FAQ([\s\S]*?)(?=---|$)/;
+                    const oldFaqRegex = /## (?:Common Questions|FAQ|Frequently Asked Questions)([\s\S]*?)(?=---|$)/i;
                     const oldFaqMatch = content.match(oldFaqRegex);
                     if (oldFaqMatch) {
                         const faqSection = oldFaqMatch[1];
@@ -159,11 +230,14 @@ async function compileMarkdown(markdown) {
                     }
                 }
 
-                // 3. Process Custom Components (strip/replace)
+                // 3. Process Custom Components
                 processedContent = processCustomComponents(processedContent);
 
                 // 4. Compile to HTML
                 const html = await compileMarkdown(processedContent);
+
+                // 5. Word count for manifest metadata
+                const wordCount = countWords(content);
 
                 manifest.push({
                     title: data.title || '',
@@ -171,7 +245,8 @@ async function compileMarkdown(markdown) {
                     updated: data.updated || '',
                     category: data.category || category,
                     slug: data.slug || file.replace('.mdx', ''),
-                    readingMinutes: data.readingMinutes || 0,
+                    readingMinutes: data.readingMinutes || Math.ceil(wordCount / 200),
+                    wordCount,
                     html: html,
                     faqs: faqs
                 });
@@ -180,6 +255,20 @@ async function compileMarkdown(markdown) {
         } else {
             console.log(`   ⚠️ Category not found: ${category}`);
         }
+    }
+
+    // ── Build-time validation gate ───────────────────────────────────────────
+    if (manifest.length === 0) {
+        console.error('\n❌ [CRITICAL BUILD ERROR] Content Manifest is empty!');
+        console.error('   No articles were found. Check src/content directories.\n');
+        process.exit(1);
+    }
+
+    if (validationErrors.length > 0) {
+        console.error('\n❌ [BUILD ERROR] Article validation failed:');
+        validationErrors.forEach(err => console.error(`   • ${err}`));
+        console.error('\n   Fix the above issues and re-run the build.\n');
+        process.exit(1);
     }
 
     const fileContent = `/**
@@ -194,6 +283,7 @@ export interface ManifestArticle {
     category: string;
     slug: string;
     readingMinutes: number;
+    wordCount: number;
     html: string;
     faqs: { question: string; answer: string }[];
 }

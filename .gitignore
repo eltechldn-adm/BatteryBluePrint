@@ -1,9 +1,12 @@
 node_modules
 .next
 .open-next
+.wrangler
+out
 .data
 .env.local
 .env
 .DS_Store
 .vercel
+src.zip
 

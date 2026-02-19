@@ -1,11 +1,9 @@
-/// <reference types="@cloudflare/workers-types" />
+// env.d.ts — environment variable type declarations for Next.js
+// This site is deployed as a pure static export on Cloudflare Pages.
 
-interface CloudflareEnv {
-    BATTERYBLUEPRINT_KV: KVNamespace;
-    RESEND_API_KEY?: string;
-    EMAIL_FROM?: string;
-    NEXT_PUBLIC_SITE_URL?: string;
-    ADMIN_PASSWORD?: string;
-    UPSTASH_REDIS_REST_URL?: string;
-    UPSTASH_REDIS_REST_TOKEN?: string;
+declare namespace NodeJS {
+    interface ProcessEnv {
+        NEXT_PUBLIC_SITE_URL?: string;
+        NODE_ENV: 'development' | 'production' | 'test';
+    }
 }

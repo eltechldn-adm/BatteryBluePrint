@@ -7,26 +7,7 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
             {/* Header */}
-            <header className="px-6 py-5 flex items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-                <Link href="/calculator" className="text-xl font-bold text-primary hover:text-primary/80 transition-colors">
-                    BatteryBlueprint
-                </Link>
-                <nav className="hidden md:flex items-center gap-6">
-                    <Link href="/calculator" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        Calculator
-                    </Link>
-
-                    <Link href="/guide" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        Guide
-                    </Link>
-                    <Link href="/about" className="text-sm font-medium text-foreground">
-                        About
-                    </Link>
-                    <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        Contact
-                    </Link>
-                </nav>
-            </header>
+            {/* Header - Global in RootLayout */}
 
             {/* Main Content */}
             <main className="flex-1 px-4 sm:px-6 py-12">
@@ -95,9 +76,23 @@ export default function AboutPage() {
                                 <strong>Not electrical engineering advice.</strong> We provide calculations, not professional engineering services. Always work with licensed professionals for installation.
                             </p>
                             <p className="text-sm text-amber-900 dark:text-amber-100">
-                                <strong>Not affiliated with manufacturers.</strong> We don't sell batteries or receive commissions. Battery recommendations are based purely on technical specifications.
+                                <strong>Not a sales platform.</strong> Battery recommendations are based purely on technical specifications. We do not receive manufacturer payments to promote specific products.
                             </p>
                         </div>
+                    </section>
+
+                    {/* Advertising & Affiliate Disclosure */}
+                    <section className="space-y-4">
+                        <h2 className="text-2xl font-bold">Advertising & Affiliate Disclosure</h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            BatteryBlueprint is supported by advertising (Google AdSense) and may include affiliate links to products or services. If you purchase through an affiliate link, we may earn a small commission at no extra cost to you. This helps us keep the calculator and guides free for everyone.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                            All editorial content — including battery recommendations, sizing guides, and comparison articles — is written independently of our advertising relationships. We do not accept payment to promote specific products or manufacturers. Our battery catalog is based on publicly available technical specifications and manufacturer datasheets.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                            All content on BatteryBlueprint is for <strong>educational purposes only</strong>. It is not professional engineering advice. Always consult a licensed electrician or solar installer before making purchasing or installation decisions.
+                        </p>
                     </section>
 
                     {/* How It Works */}
@@ -138,54 +133,7 @@ export default function AboutPage() {
             </main>
 
             {/* Footer */}
-            <footer className="mt-auto border-t border-border/50 bg-muted/30 px-6 py-8">
-                <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-6">
-                        <div>
-                            <h4 className="font-semibold mb-3">Tools</h4>
-                            <div className="space-y-2">
-                                <Link href="/calculator" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Calculator
-                                </Link>
-                                <Link href="/guide" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Guide
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Company</h4>
-                            <div className="space-y-2">
-                                <Link href="/about" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    About
-                                </Link>
-                                <Link href="/contact" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Contact
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Legal</h4>
-                            <div className="space-y-2">
-                                <Link href="/privacy" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Privacy
-                                </Link>
-                                <Link href="/terms" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Terms
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Contact</h4>
-                            <a href="mailto:support@batteryblueprint.com" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                support@batteryblueprint.com
-                            </a>
-                        </div>
-                    </div>
-                    <div className="pt-6 border-t border-border/50 text-center text-sm text-muted-foreground">
-                        <p>© 2026 BatteryBlueprint. For planning purposes only. Not professional engineering advice.</p>
-                    </div>
-                </div>
-            </footer>
+            {/* Footer - Global in RootLayout */}
         </div>
     );
 }

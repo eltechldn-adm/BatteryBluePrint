@@ -1,291 +1,54 @@
-# Cloudflare Pages Deployment Guide
+# Deploying BatteryBlueprint to Cloudflare Pages
 
-## Quick Start
+This project is configured as a **pure static export** (Next.js `output: "export"`). It does NOT use Cloudflare Workers, Functions, or OpenNext. It serves pre-built HTML/CSS/JS files.
 
-**Build Command**: `npm run build:cf`  
-**Output Directory**: `.open-next`  
-**Build System**: OpenNext Cloudflare Adapter
+## 1. Cloudflare Pages Configuration
 
----
+Go to [Cloudflare Dashboard](https://dash.cloudflare.com) > Pages > Connect Git > Select Repo.
 
-## Prerequisites
+### Build Settings
+| Setting | Value | Notes |
+|---------|-------|-------|
+| **Framework Preset** | `None` | **CRITICAL**: Do NOT select "Next.js". That preset attempts to use `@cloudflare/next-on-pages` which we are not using. |
+| **Build Command** | `npm run build` | Runs content generation + Next.js build |
+| **Build Output Directory** | `out` | Next.js exports static files here |
+| **Root Directory** | *(leave blank)* | Root of the repo |
 
-1. **Node.js Version**: Set in Cloudflare Pages environment
-   ```
-   NODE_VERSION=22
-   ```
+### Environment Variables
+| Variable | Value | Purpose |
+|----------|-------|---------|
+| `NODE_VERSION` | `20` | Ensures compatible Node.js runtime |
+| `NEXT_PUBLIC_SITE_URL` | `https://batteryblueprint.com` | Used for SEO, Sitemap, Canonical URLs |
 
-2. **Required Environment Variables**:
-   - `NEXT_PUBLIC_SITE_URL` - Your production URL (e.g., `https://batteryblueprint.com`)
-   - `RESEND_API_KEY` - Resend.com API key for email delivery
-   - `EMAIL_FROM` - Sender email address (must be verified in Resend)
-   - `UPSTASH_REDIS_REST_URL` - Upstash Redis REST endpoint
-   - `UPSTASH_REDIS_REST_TOKEN` - Upstash Redis authentication token
-   - `ADMIN_PASSWORD` - Password for `/admin/leads` access
+## 2. Local Verification
 
----
-
-## Cloudflare Pages Settings
-
-### Build Configuration
-
-```
-Build command: npm run build:cf
-Build output directory: .open-next
-Root directory: /
-```
-
-### Framework Preset
-
-- **Framework**: Next.js
-- **Build system**: Custom (OpenNext)
-
-### Compatibility Flags
-
-Add these in **Settings → Functions → Compatibility Flags**:
-```
-nodejs_compat
-transformstream_enable_standard_constructor
-```
-
-### Compatibility Date
-
-Set in **Settings → Functions → Compatibility Date**:
-```
-2024-11-28
-```
-
----
-
-## Environment Variables Setup
-
-In **Settings → Environment Variables**, add:
-
-### Production & Preview
-
-| Variable | Example Value | Required |
-|----------|---------------|----------|
-| `NODE_VERSION` | `22` | Yes |
-| `NEXT_PUBLIC_SITE_URL` | `https://batteryblueprint.com` | Yes |
-| `RESEND_API_KEY` | `re_xxxxxxxxxxxx` | Yes |
-| `EMAIL_FROM` | `BatteryBlueprint <hello@batteryblueprint.com>` | Yes |
-| `UPSTASH_REDIS_REST_URL` | `https://xxx.upstash.io` | Yes |
-| `UPSTASH_REDIS_REST_TOKEN` | `AYxxxx` | Yes |
-| `ADMIN_PASSWORD` | `your-secure-password` | Yes |
-
----
-
-## Build Process
-
-The `build:cf` script performs:
-
-1. **Next.js Build with Webpack**  
-   `next build --webpack`  
-   - Avoids Turbopack issues
-   - Generates `.next` directory
-   - Compiles all routes and API endpoints
-
-2. **OpenNext Cloudflare Adapter**  
-   `opennextjs-cloudflare build`  
-   - Adapts Next.js build for Cloudflare Workers
-   - Creates `.open-next/worker.js` entry point
-   - Bundles static assets to `.open-next/assets`
-   - Configures incremental cache for R2
-
-**Output Structure**:
-```
-.open-next/
-├── worker.js          # Cloudflare Worker entry
-├── assets/            # Static assets
-├── server-functions/  # API route handlers
-└── cache/            # Build cache
-```
-
----
-
-## R2 Bucket Setup (Required)
-
-Cloudflare Pages needs an R2 bucket for Next.js incremental cache.
-
-### Create R2 Bucket
-
-1. Go to **R2 → Create Bucket**
-2. Name: `batteryblueprint-cache`
-3. Location: Auto (or near your users)
-
-### Link to Pages
-
-In **Settings → Functions → R2 Bucket Bindings**:
-
-| Binding Name | R2 Bucket |
-|--------------|-----------|
-| `NEXT_INC_CACHE_R2_BUCKET` | `batteryblueprint-cache` |
-
----
-
-## Local Testing
-
-### Test Production Build
+To verify the build locally before pushing:
 
 ```bash
-npm run build:cf
+npm run build
 ```
 
-Verify:
-- ✅ Build completes without errors
-- ✅ `.open-next/worker.js` exists
-- ✅ `.open-next/assets/` contains static files
-- ✅ All 20 routes compiled
+**Success Criteria:**
+1.  Build completes without error.
+2.  `src/lib/content/content-manifest.generated.ts` is created.
+3.  `out/` directory is created.
+4.  `out/index.html` exists.
+5.  `node scripts/verify-static-export.mjs` prints "✅ STATIC EXPORT OK".
 
-### Preview Locally
+## 3. Project Structure Constraints
 
-```bash
-npm run preview
-```
+*   **No API Routes**: `src/app/api/` has been removed. Dynamic logic must be client-side or build-time.
+*   **No Server Components (Runtime)**: Components can be "Server Components" (RSC) but they only run *at build time* to generate HTML. They cannot handle runtime requests.
+*   **Image Optimization**: Next.js Image Optimization is disabled (`unoptimized: true` in `next.config.ts`). Images are served as-is.
+*   **Forms/Leads**: Must use external services (e.g., Formspree, Airtable, ConvertKit) or client-side APIs.
 
-This requires R2 bucket to be configured in `wrangler.jsonc`.
+## 4. Troubleshooting
 
----
+**Issue: "Error: No Output Directory found"**
+*   **Fix**: Ensure **Build Output Directory** is set to `out` in Cloudflare settings.
 
-## Deployment
+**Issue: 404 on subpages**
+*   **Fix**: Cloudflare Pages automatically handles `index.html` resolution. Ensure `trailingSlash: true` is set in `next.config.ts` (it is) associated with standard behavior.
 
-### First Deployment
-
-1. **Connect Git Repository**  
-   Link your GitHub/GitLab repo in Cloudflare Pages
-
-2. **Configure Build**  
-   - Build command: `npm run build:cf`
-   - Build output: `.open-next`
-
-3. **Set Environment Variables**  
-   Add all required variables listed above
-
-4. **Set Compatibility Flags**  
-   Add `nodejs_compat` and `transformstream_enable_standard_constructor`
-
-5. **Create R2 Bucket**  
-   Create and link `batteryblueprint-cache`
-
-6. **Deploy**  
-   Trigger first deployment
-
-### Subsequent Deployments
-
-Automatic on every git push to `main` (or configured branch)
-
----
-
-## Troubleshooting
-
-### Build Fails: "Invalid distDirRoot"
-
-**Solution**: Ensure `build:cf` uses `--webpack` flag
-```json
-"build:cf": "next build --webpack && opennextjs-cloudflare build"
-```
-
-### Build Fails: "TurbopackInternalError"
-
-**Solution**: The `--webpack` flag disables Turbopack. Verify it's in the build script.
-
-### Runtime Error: "R2 binding not found"
-
-**Solution**: 
-1. Create R2 bucket `batteryblueprint-cache`
-2. Add binding in Pages Functions settings
-3. Redeploy
-
-### Email Not Sending
-
-**Solution**:
-1. Verify `RESEND_API_KEY` is set
-2. Verify `EMAIL_FROM` domain is verified in Resend
-3. Check Resend dashboard for error logs
-
-### Redis Errors
-
-**Solution**:
-1. Verify `UPSTASH_REDIS_REST_URL` is set correctly
-2. Verify `UPSTASH_REDIS_REST_TOKEN` is set
-3. Test connection in Upstash dashboard
-
----
-
-## Routes & Features
-
-All routes preserved:
-
-**Pages** (13):
-- `/` - Homepage
-- `/calculator` - Battery calculator
-- `/guide` - User guide
-- `/about` - About page
-- `/contact` - Contact page
-- `/privacy` - Privacy policy
-- `/terms` - Terms of service
-- `/blueprint/confirmed` - Email confirmation success
-- `/blueprint/expired` - Expired token page
-- `/admin/leads` - Admin dashboard
-- `/robots.txt` - SEO
-- `/sitemap.xml` - SEO
-
-**API Routes** (5):
-- `/api/blueprint/request` - PDF request (double opt-in)
-- `/api/blueprint/confirm` - Email confirmation
-- `/api/blueprint/download` - PDF download
-- `/api/events` - Analytics
-- `/api/leads` - Lead storage
-
----
-
-## Performance
-
-**Expected Metrics**:
-- Cold start: <50ms (Cloudflare Workers)
-- Static page load: <100ms (edge-cached)
-- API response: <200ms (with Redis)
-- PDF generation: 1-2s (server-side React PDF)
-
----
-
-## Monitoring
-
-### Cloudflare Dashboard
-
-- **Analytics → Web Analytics**: Page views, visitors
-- **Workers & Pages → Logs**: Real-time logs
-- **R2 → Metrics**: Cache hit rate
-
-### Recommended Setup
-
-1. Enable **Web Analytics** for visitor tracking
-2. Set up **Email Alerts** for:
-   - Build failures
-   - High error rates
-   - R2 quota warnings
-
----
-
-## Security
-
-- ✅ All secrets encrypted (environment variables)
-- ✅ Double opt-in email flow (prevent spam)
-- ✅ Rate limiting (5 req/hour per IP)
-- ✅ Token expiration (24h)
-- ✅ Admin password protection
-- ✅ HTTPS only (automatic on Cloudflare)
-
----
-
-## Support
-
-**Documentation**:
-- [OpenNext Cloudflare Docs](https://opennext.js.org/cloudflare)
-- [Cloudflare Pages Docs](https://developers.cloudflare.com/pages/)
-- [Wrangler CLI Docs](https://developers.cloudflare.com/workers/wrangler/)
-
-**Issues**:
-- Check Cloudflare Pages build logs
-- Review Wrangler CLI output locally
-- Verify all environment variables set
+**Issue: "Check your build settings" / Build Fail**
+*   **Fix**: Check if `NODE_VERSION` is set to `20`. Check build logs. Ensure duplicate lockfiles are not causing conflicts.

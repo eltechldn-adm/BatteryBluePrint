@@ -1,18 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  reactCompiler: true,
-
-  // Static export configuration
+  // Pure static export — outputs to /out
   output: "export",
 
-  // Disable image optimization (requires server)
+  // Disable image optimization (not available in static export)
   images: {
     unoptimized: true,
   },
 
-  // Add trailing slashes for cleaner static routing
+  // Trailing slashes for clean static routing on Cloudflare Pages
   trailingSlash: true,
 };
 

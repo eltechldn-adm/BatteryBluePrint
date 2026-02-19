@@ -16,16 +16,22 @@ import { recommendBatteries, RecommendationResult, RecommendedBattery } from "@/
 import { BatteryCatalogItem } from "@/lib/batteries/catalog";
 import { analytics } from "@/lib/analytics/track";
 import { FileText, CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown } from "lucide-react";
-import { LOCATION_PROFILES, getLocationProfile, detectLocationFromBrowser } from "@/data/locations";
+import { LOCATION_PROFILES, getLocationProfile } from "@/data/locations";
 import { ASSUMPTION_TOOLTIPS, LOCATION_PRESET_EXPLANATION } from "@/lib/ui/assumptionTooltips";
-import { Header } from "@/components/layout/Header";
+import { useCountry } from "@/lib/geo/useCountry";
+import { getProfileForCountry } from "@/lib/geo/countryProfiles";
+import { track } from "@/lib/analytics/journey";
+import { CalculatorNextSteps } from "@/components/conversion/CalculatorNextSteps";
 
 export default function CalculatorPage() {
+    const { country, setCountry } = useCountry();
+
     const [dailyLoad, setDailyLoad] = useState<string>("10");
     const [autonomy, setAutonomy] = useState<number[]>([1]);
     const [winterMode, setWinterMode] = useState<boolean>(false);
+
+    // Initialize location from global country state
     const [location, setLocation] = useState<string>('auto');
-    const [detectedLocation, setDetectedLocation] = useState<string>('US'); // Client-side detected location
     const [userOverrides, setUserOverrides] = useState<Set<string>>(new Set());
     const [mounted, setMounted] = useState<boolean>(false);
 
@@ -62,42 +68,86 @@ export default function CalculatorPage() {
     const resultsRef = useRef<HTMLDivElement>(null);
     const firstInputRef = useRef<HTMLInputElement>(null);
 
-    // Determine effective location (resolve auto to detected)
-    const effectiveLocation = location === 'auto' ? detectedLocation : location;
+    // Determine effective location and profile
+    const effectiveLocation = location === 'auto' ? getProfileForCountry(country.code).regionId : location;
     const locationProfile = getLocationProfile(effectiveLocation);
+    const countryProfile = getProfileForCountry(country.code);
 
-    // Currency and typical rates by location
-    const currencyMap: Record<string, string> = {
-        us: '$',
-        uk: '£',
-        ca: '$',
-        au: '$',
-        de: '€',
-        za: 'R',
-        in: '₹',
-        global: 'Local'
-    };
-    const typicalRatesMap: Record<string, number> = {
-        us: 0.16,
-        uk: 0.28,
-        ca: 0.14,
-        au: 0.30,
-        de: 0.35,
-        za: 2.50,
-        in: 8.00,
-        global: 0.20
-    };
-    const currency = currencyMap[effectiveLocation] || 'Local';
-    const typicalRate = typicalRatesMap[effectiveLocation] || 0.20;
+    // Dynamic Currency & Rates from Country Profile 
+    // If the calculator location matches the global country, use the country's specific currency/rates.
+    // Otherwise fallback to the location profile's defaults (less specific).
+    const isGlobalSync = effectiveLocation === countryProfile.regionId;
 
-    // Set mounted flag and detect location after hydration
+    const currency = isGlobalSync ? countryProfile.currencyCode : '$'; // Default to $ if region mismatch (e.g. manual override) - or just use locationProfile default
+    // Actually, simple is better: Use Country Profile for formatting if possible, else fallback.
+    // For simplicity in Phase 14B.2: 
+    // Use the currency from the current Country (from Header) if it matches the active region.
+    // If user selected "United Kingdom" in calculator but Header is "US", what happens?
+    // We decided Header controls Calculator.
+    // So let's rely on countryProfile for currency symbol if we can.
+
+    const currencySymbol = (code: string) => {
+        try {
+            return (0).toLocaleString(countryProfile.locale, { style: 'currency', currency: code, minimumFractionDigits: 0, maximumFractionDigits: 0 }).replace(/\d/g, '').trim();
+        } catch {
+            return '$';
+        }
+    };
+
+    // Current display currency
+    const displayCurrency = countryProfile.currencyCode;
+    const displayCurrencySymbol = currencySymbol(displayCurrency);
+
+    const typicalRate = isGlobalSync ? countryProfile.defaults.electricityRate : 0.20;
+
+    // Handle Calculator-specific location change (Two-way sync attempt)
+    const handleLocationChange = (newLocation: string) => {
+        setLocation(newLocation);
+
+        // Attempt to sync back to global country if possible
+        // Simple map for the standard supported ones
+        const regionToCountry: Record<string, string> = {
+            'uk': 'GB',
+            'us': 'US',
+            'au': 'AU',
+            'ca': 'CA',
+            'de': 'DE',
+            'za': 'ZA',
+            // 'global' maps to nothing specific, keep current
+        };
+
+        if (regionToCountry[newLocation]) {
+            setCountry(regionToCountry[newLocation]);
+        }
+    };
+
+    // Set mounted flag
     useEffect(() => {
         setMounted(true);
-
-        // Use the existing detectLocationFromBrowser function
-        const detected = detectLocationFromBrowser();
-        setDetectedLocation(detected);
     }, []);
+
+    // Sync global country to local calculator location
+    useEffect(() => {
+        if (!mounted) return;
+
+        const profile = getProfileForCountry(country.code);
+        // Only update if the user hasn't explicitly selected a different calculator region
+        // (For now, we assume global country drives calculator region until manually changed in calculator)
+        // Actually, requirement is: "Header country selector must control the Calculator mode automatically."
+        // So we ALWAYS update location when country changes.
+        // So we ALWAYS update location when country changes.
+        if (profile) {
+            // Track sync event if location actually changes
+            if (location !== profile.regionId) {
+                track('calculator_country_sync', {
+                    from: location,
+                    to: profile.regionId,
+                    source: 'auto_sync_header'
+                });
+                setLocation(profile.regionId);
+            }
+        }
+    }, [country.code, mounted]);
 
     // Load location from localStorage or default to auto on mount
     useEffect(() => {
@@ -106,8 +156,9 @@ export default function CalculatorPage() {
         if (savedLocation && savedLocation !== 'null' && savedLocation !== 'undefined') {
             setLocation(savedLocation);
         } else {
-            // Explicitly ensure 'auto' is the default
-            setLocation('auto');
+            // If no saved location, use the one derived from global country
+            const profile = getProfileForCountry(country.code);
+            setLocation(profile.regionId);
         }
 
         // Load saved assumption overrides
@@ -157,10 +208,14 @@ export default function CalculatorPage() {
 
     // Initialize electricity rate when location changes
     useEffect(() => {
-        if (!electricityRate) {
+        // If user hasn't overridden the rate, apply the default for the new location/profile
+        if (!userOverrides.has('electricityRate')) {
             setElectricityRate(typicalRate.toFixed(2));
         }
-    }, [effectiveLocation]);
+    }, [typicalRate, userOverrides]); // Update when typicalRate changes (which changes with location)
+
+    // Helper for bill estimator currency label
+    const currencyLabel = displayCurrencySymbol;
 
     // Recalculate recommendations when filters change
     useEffect(() => {
@@ -280,12 +335,12 @@ export default function CalculatorPage() {
         setWinterMode(profile.defaults.winterBuffer > 0);
     };
 
-    const handleLocationChange = (newLocation: string) => {
-        setLocation(newLocation);
-        // Don't reset user overrides - let them keep their custom values
-    };
+
 
     const handleResetToLocationDefaults = () => {
+        // Track reset
+        track('calculator_reset_defaults', { location: effectiveLocation });
+
         // Clear all user overrides
         setUserOverrides(new Set());
 
@@ -306,6 +361,14 @@ export default function CalculatorPage() {
     const handleCalculate = () => {
         const load = parseFloat(dailyLoad);
         if (isNaN(load) || load <= 0) return;
+
+        // Track calculation
+        track('calculator_calculate', {
+            location: effectiveLocation,
+            hasOverrides: userOverrides.size > 0,
+            winterMode: winterMode,
+            autonomy: autonomy[0]
+        });
 
         const res = calculateStorageNeeded({
             dailyLoad_kWh: load,
@@ -350,6 +413,8 @@ export default function CalculatorPage() {
 
     const handleUnlockPDF = (tier?: string) => {
         analytics.track('PDF_MODAL_OPENED', { tier });
+        track('cta_click', { id: 'unlock_pdf', tier: tier || 'none' });
+
         if (tier) {
             analytics.track('AFFINITY_TIER_CLICKED', { tier });
         }
@@ -363,8 +428,6 @@ export default function CalculatorPage() {
                 <div className="animated-blob blob-1 -top-48 -right-48 opacity-10" />
                 <div className="animated-blob blob-2 bottom-1/4 -left-32 opacity-10" />
             </div>
-
-            <Header />
 
             <main className="flex-1 container mx-auto w-full px-4 sm:px-6 pt-32 pb-10 max-w-6xl relative z-10">
                 <div className="mb-8">
@@ -528,7 +591,7 @@ export default function CalculatorPage() {
 
                                             <div className="grid grid-cols-2 gap-3">
                                                 <div className="space-y-2">
-                                                    <Label htmlFor="billAmount" className="text-sm font-medium">Bill Amount ({currency})</Label>
+                                                    <Label htmlFor="billAmount" className="text-sm font-medium">Bill Amount ({currencyLabel})</Label>
                                                     <Input
                                                         id="billAmount"
                                                         type="number"
@@ -571,13 +634,16 @@ export default function CalculatorPage() {
 
                                             <div className="space-y-2">
                                                 <Label htmlFor="electricityRate" className="text-sm font-medium">
-                                                    Electricity Rate ({currency}/kWh) <span className="text-muted-foreground font-normal">— Typical: {typicalRate.toFixed(2)} (edit)</span>
+                                                    Electricity Rate ({currencyLabel}/kWh) <span className="text-muted-foreground font-normal">— Typical: {typicalRate.toFixed(2)} (edit)</span>
                                                 </Label>
                                                 <Input
                                                     id="electricityRate"
                                                     type="number"
                                                     value={electricityRate}
-                                                    onChange={(e) => setElectricityRate(e.target.value)}
+                                                    onChange={(e) => {
+                                                        setElectricityRate(e.target.value);
+                                                        setUserOverrides(prev => new Set(prev).add('electricityRate'));
+                                                    }}
                                                     placeholder={typicalRate.toFixed(2)}
                                                     className="h-10 rounded-lg"
                                                     step="0.01"
@@ -1303,55 +1369,7 @@ export default function CalculatorPage() {
 
             </main>
 
-            {/* Footer */}
-            <footer className="mt-auto border-t border-border/50 bg-muted/30 px-6 py-8">
-                <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-6">
-                        <div>
-                            <h4 className="font-semibold mb-3">Tools</h4>
-                            <div className="space-y-2">
-                                <Link href="/calculator" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Calculator
-                                </Link>
-                                <Link href="/guide" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Guide
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Company</h4>
-                            <div className="space-y-2">
-                                <Link href="/about" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    About
-                                </Link>
-                                <Link href="/contact" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Contact
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Legal</h4>
-                            <div className="space-y-2">
-                                <Link href="/privacy" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Privacy
-                                </Link>
-                                <Link href="/terms" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Terms
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Contact</h4>
-                            <a href="mailto:support@batteryblueprint.com" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                support@batteryblueprint.com
-                            </a>
-                        </div>
-                    </div>
-                    <div className="pt-6 border-t border-border/50 text-center text-sm text-muted-foreground">
-                        <p>© 2026 BatteryBlueprint. For planning purposes only. Not professional engineering advice.</p>
-                    </div>
-                </div>
-            </footer>
+            {/* Footer - Global in RootLayout */}
         </div>
     );
 }

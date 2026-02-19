@@ -7,11 +7,11 @@ import type { Metadata } from "next";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://batteryblueprint.com";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
-  description: "Terms of service for BatteryBlueprint. Review our terms and conditions for using the solar battery sizing calculator.",
-  alternates: {
-    canonical: `${siteUrl}/terms`,
-  },
+    title: "Terms of Service",
+    description: "Terms of service for BatteryBlueprint. Review our terms and conditions for using the solar battery sizing calculator.",
+    alternates: {
+        canonical: `${siteUrl}/terms`,
+    },
 };
 
 export default function TermsPage() {
@@ -22,16 +22,7 @@ export default function TermsPage() {
                 <div className="animated-blob blob-3 -top-32 -left-48 opacity-10" />
             </div>
 
-            <header className="px-6 py-5 flex items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-                <div className="text-xl font-bold text-primary">
-                    <Link href="/" className="hover:opacity-80 transition-opacity">BatteryBlueprint</Link>
-                </div>
-                <div className="flex gap-4">
-                    <Link href="/calculator">
-                        <Button className="btn-premium">Calculator</Button>
-                    </Link>
-                </div>
-            </header>
+            {/* Header - Global in RootLayout */}
 
             <main className="container mx-auto px-4 py-12 max-w-3xl relative z-10 flex-1">
                 <div className="mb-8">
@@ -40,7 +31,7 @@ export default function TermsPage() {
                         Legal
                     </div>
                     <h1 className="text-4xl font-bold mb-4 tracking-tight">Terms of Service</h1>
-                    <p className="text-muted-foreground">Last updated: January 2026</p>
+                    <p className="text-muted-foreground">Last updated: February 2026</p>
                 </div>
 
                 <Card className="card-premium rounded-2xl border-0">
@@ -48,19 +39,31 @@ export default function TermsPage() {
                         <div>
                             <h2 className="text-xl font-bold mb-3">Estimates Only</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                This tool provides estimates only. Consult with a certified electrician or solar installer before purchasing any hardware. BatteryBlueprint is not responsible for installation decisions.
+                                All results provided by BatteryBlueprint are estimates for planning purposes only. They are not a substitute for professional engineering assessment. Consult a certified electrician or licensed solar installer before purchasing or installing any hardware. BatteryBlueprint is not responsible for installation decisions made based on our calculations.
                             </p>
                         </div>
                         <div>
                             <h2 className="text-xl font-bold mb-3">Use of Service</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                You may use BatteryBlueprint for personal, non-commercial battery sizing calculations. The recommendations provided are based on general engineering principles and may not account for all site-specific factors.
+                                You may use BatteryBlueprint for personal, non-commercial battery sizing calculations. The recommendations provided are based on general engineering principles and may not account for all site-specific factors including local electrical codes, inverter compatibility, or grid interconnection requirements.
+                            </p>
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-bold mb-3">Advertising & Affiliate Links</h2>
+                            <p className="text-muted-foreground leading-relaxed">
+                                BatteryBlueprint displays advertisements via Google AdSense and may include affiliate links to products or services. Clicking an affiliate link and making a purchase may result in a commission paid to BatteryBlueprint at no additional cost to you. Advertising relationships do not influence our editorial content or battery recommendations.
+                            </p>
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-bold mb-3">Editorial Policy</h2>
+                            <p className="text-muted-foreground leading-relaxed">
+                                All content on BatteryBlueprint is for educational purposes only. Our guides and articles are written by the BatteryBlueprint Editorial team using publicly available engineering data, manufacturer datasheets, and industry standards. We strive for accuracy but make no warranty that information is current or error-free.
                             </p>
                         </div>
                         <div>
                             <h2 className="text-xl font-bold mb-3">Limitation of Liability</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                BatteryBlueprint provides this service &quot;as is&quot; without warranties of any kind. We are not liable for any damages arising from the use of our calculator or recommendations.
+                                BatteryBlueprint provides this service &quot;as is&quot; without warranties of any kind. We are not liable for any damages arising from the use of our calculator, recommendations, or content.
                             </p>
                         </div>
                     </CardContent>
@@ -68,18 +71,7 @@ export default function TermsPage() {
             </main>
 
             {/* Footer */}
-            <footer className="py-12 px-6 border-t border-border/50 bg-muted/20">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div className="text-xl font-bold text-primary">BatteryBlueprint</div>
-                        <nav className="flex gap-8 text-sm text-muted-foreground">
-                            <Link href="/calculator" className="hover:text-primary transition-colors">Calculator</Link>
-                            <Link href="/guide" className="hover:text-primary transition-colors">Guide</Link>
-                            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
-                        </nav>
-                    </div>
-                </div>
-            </footer>
+            {/* Footer - Global in RootLayout */}
         </div>
     );
 }

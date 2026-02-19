@@ -20,26 +20,7 @@ export default function ContactPage() {
     return (
         <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
             {/* Header */}
-            <header className="px-6 py-5 flex items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-                <Link href="/calculator" className="text-xl font-bold text-primary hover:text-primary/80 transition-colors">
-                    BatteryBlueprint
-                </Link>
-                <nav className="hidden md:flex items-center gap-6">
-                    <Link href="/calculator" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        Calculator
-                    </Link>
-
-                    <Link href="/guide" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        Guide
-                    </Link>
-                    <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        About
-                    </Link>
-                    <Link href="/contact" className="text-sm font-medium text-foreground">
-                        Contact
-                    </Link>
-                </nav>
-            </header>
+            {/* Header - Global in RootLayout */}
 
             {/* Main Content */}
             <main className="flex-1 px-4 sm:px-6 py-12">
@@ -177,54 +158,7 @@ export default function ContactPage() {
             </main>
 
             {/* Footer */}
-            <footer className="mt-auto border-t border-border/50 bg-muted/30 px-6 py-8">
-                <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-6">
-                        <div>
-                            <h4 className="font-semibold mb-3">Tools</h4>
-                            <div className="space-y-2">
-                                <Link href="/calculator" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Calculator
-                                </Link>
-                                <Link href="/guide" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Guide
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Company</h4>
-                            <div className="space-y-2">
-                                <Link href="/about" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    About
-                                </Link>
-                                <Link href="/contact" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Contact
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Legal</h4>
-                            <div className="space-y-2">
-                                <Link href="/privacy" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Privacy
-                                </Link>
-                                <Link href="/terms" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                    Terms
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 className="font-semibold mb-3">Contact</h4>
-                            <a href="mailto:support@batteryblueprint.com" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                support@batteryblueprint.com
-                            </a>
-                        </div>
-                    </div>
-                    <div className="pt-6 border-t border-border/50 text-center text-sm text-muted-foreground">
-                        <p>© 2026 BatteryBlueprint. For planning purposes only. Not professional engineering advice.</p>
-                    </div>
-                </div>
-            </footer>
+            {/* Footer - Global in RootLayout */}
         </div>
     );
 }

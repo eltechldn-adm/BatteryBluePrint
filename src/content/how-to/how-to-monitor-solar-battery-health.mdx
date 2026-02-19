@@ -1,0 +1,221 @@
+---
+title: "How to Monitor Solar Battery Health: SoH, Degradation & Warranty Claims"
+description: "Is your solar battery dying? Learn how to check State of Health (SoH), interpret degradation curves, and perform a DIY capacity test to verify your warranty."
+slug: "how-to-monitor-solar-battery-health"
+category: "how-to"
+updated: "2026-02-18"
+---
+
+You wouldn't drive a car specifically without an odometer. You wouldn't buy a used iPhone without checking the "Battery Health" percentage.
+Yet, thousands of homeowners install $15,000 solar batteries and have no idea how much "life" is left in them.
+
+Batteries are consumable assets. Like the tires on your car, they wear out physically every time you use them. This is called **Cell Degradation**.
+Most monitoring apps (Tesla, Enphase, SolarEdge) show you the "State of Charge" (Fuel Gauge), but they intentionally hide the "State of Health" (Engine Condition).
+
+Why? Because manufacturers don't want you to panic when you see 98% capacity after one month. They assume you don't understand the chemistry.
+
+This guide pulls back the curtain. We will explain exactly how to find your battery's true health metrics, how to perform a manual capacity test that stands up in court, and how to know if you are eligible for a free warranty replacement.
+
+---
+
+## Part 1: The Two Metrics You Must Know
+
+To monitor health, you must stop looking at the percentage on your home screen. That is just the fuel gauge.
+
+### 1. State of Charge (SoC)
+*   **Definition**: How full the tank is right now.
+*   **Range**: 0% to 100%.
+*   **What it tells you**: "Can I run my microwave tonight?"
+*   **Analogy**: The gas needle in your car.
+*   **Deceptive Factor**: A battery with 50% health can still be charged to "100% SoC." It just holds half as much energy.
+
+### 2. State of Health (SoH)
+*   **Definition**: The size of the tank compared to when it was new.
+*   **Range**: 100% (New) -> 70% (Warranty Replacement) -> 0% (Dead).
+*   **What it tells you**: "Did I get what I paid for?"
+*   **Analogy**: The odometer or total engine wear.
+
+**The Scary Math**:
+A 10 kWh battery with 80% SoH acts like an 8 kWh battery. It still charges to "100%," but that "100%" represents significantly less electrons.
+
+---
+
+## Part 2: Expected Degradation (The "Normal" Curve)
+
+Before you panic, you need to know what is normal. All lithium batteries degrade. It is a chemical reality of ions getting trapped in the anode (SEI Layer growth).
+
+### The "Bathtub" Curve
+Battery degradation is not a straight line. It follows a predictable curve.
+1.  **The Drop (Year 1)**: You might lose 2–3% capacity in the first 6 months as the "Solid Electrolyte Interphase" (SEI) layer forms. This is healthy and expected.
+2.  **The Plateau (Years 2–10)**: Degradation slows to a crawl (maybe 1% per year). This is the "sweet spot" of the battery's life.
+3.  **The Knee (End of Life)**: Eventually, internal resistance spikes, and capacity plummets. This usually happens after 15+ years.
+
+### Degradation by Chemistry (2026 Data)
+
+| Battery Brand | Chemistry | Est. Year 1 Drop | Est. Annual Drop | 10-Year Target |
+| :--- | :--- | :--- | :--- | :--- |
+| **Tesla Powerwall 2** | NMC (Nickel) | ~3.0% | ~1.5% | **83%** |
+| **Tesla Powerwall 3** | LFP (Iron) | ~1.5% | ~1.0% | **88%** |
+| **Enphase IQ 5P** | LFP (Iron) | ~1.5% | ~0.8% | **90%** |
+| **LG Chem RESU** | NMC (Nickel) | ~4.0% | ~2.5% | **75%** |
+| **FranklinWH** | LFP (Iron) | ~1.5% | ~1.0% | **88%** |
+
+*Note: These are engineering estimates based on cycle life data. Your mileage may vary based on heat and usage.*
+
+---
+
+## Part 3: How to Find Your SoH (Brand by Brand)
+
+Manufacturers hide this data deep in the menus. Here is how to find it.
+
+### Tesla Powerwall
+Tesla does not show SoH in the basic consumer settings.
+*   **Method A (The App)**: Go to **Settings** > **My Home Info**. Sometimes it lists "Energy Capacity." If it says 13.5 kWh, it's just the spec sheet. If it says 12.8 kWh, that's live data.
+*   **Method B (The Gateway)**: If you connect to the Gateway's local WiFi (TEG-xxx) and log in as "Customer" (email on back of unit), you can see the raw diagnostic strings. Look for `nominal_full_pack_energy`.
+*   **Method C (Export Data)**: Download your CSV data. Sum up the "Discharge Energy" column for a full year. If it is dropping faster than 2%, you have a problem.
+
+### Enphase (Enlighten)
+Enphase provides excellent granularity if you know where to look.
+*   **Method**: Open Enlighten App > **Menu** > **System** > **Devices** > **Battery**.
+*   **Detail**: It lists the "Charge Cycles" count.
+*   **Secret**: Enphase batteries are modular. If your capacity drops by exactly 33%, it means one of the three microinverters inside the unit has failed, not the chemistry.
+
+### SolarEdge (SetApp)
+SolarEdge is transparent.
+*   **Method**: Log into the Monitoring Platform (web desktop version). Go to **Layout** > Right-click the battery icon > **Information**. It usually lists "SOH: 94%" explicitly.
+
+---
+
+## Part 4: The DIY Capacity Test (The Only Truth)
+
+Do not trust the software. Software lies (or estimates). To know the truth, you must physically measure the energy leaving the box.
+
+**Warning**: This takes 24 hours and requires you to manipulate your breakers.
+
+### Step 1: Force Charge to 100%
+*   Set your "Backup Reserve" to 100%.
+*   Allow the battery to charge fully from solar or grid until it stops taking power.
+*   Wait 2 hours for the cells to "balance" (top off).
+
+### Step 2: The Discharge
+*   Wait for the sun to go down (so solar doesn't interfere).
+*   Go to your breaker panel. Turn **OFF** the solar PV breaker.
+*   Set your "Backup Reserve" to 0% (Self-Powered Mode).
+*   Turn on high loads (AC, Dryer, Oven) to create a steady draw (e.g., 3-5 kW).
+*   Watch the app until the battery hits 0% and stops discharging.
+
+### Step 3: The Math
+*   Open the app's "Energy impact" graph.
+*   Look at the "Discharged" total for that specific time period.
+*   **Formula**: (Discharged kWh) / (Nameplate kWh) = **SoH**.
+*   **Example**: You discharged **11.2 kWh** from a **13.5 kWh** Powerwall.
+    *   `11.2 / 13.5 = 0.829` (83% SoH).
+
+---
+
+## Part 5: When to File a Warranty Claim
+
+Most warranties have a "70% retention guarantee" for 10 years.
+If your DIY test shows **68%**, you theoretically have a claim.
+
+**However, read the fine print.**
+1.  **Throughput Clause**: Some warranties expire after a certain amount of energy (e.g., "37 MWh of throughput") regardless of years. If you participate in VPPs every day, you might hit the throughput limit in Year 8.
+2.  **Temperature Clause**: If the logs show the battery was exposed to >122°F (ambient temperature), they can deny the claim. This is common for batteries installed on south-facing walls in Arizona.
+3.  **Connection Clause**: If the battery was offline (no internet) for >6 months, the warranty is often voided because they couldn't push firmware updates to protect the cells.
+
+### The Script: How to Talk to Support
+When you call Tesla or Enphase, do not say "It feels weak." Say this:
+*"I performed a controlled capacity test on [Date]. From 100% to 0% SoC, the unit only discharged 8.4 kWh. This represents 62% of rated capacity, which is below the 70% threshold in my Warranty Agreement. Please open a Tier 2 ticket for a log review."*
+
+---
+
+## Glossary of Terms
+
+*   **Cycles**: One full discharge from 100% to 0% (or equivalent, e.g., two 50% discharges).
+*   **BMS (Battery Management System)**: The computer inside the battery that balances voltage.
+*   **Internal Resistance (IR)**: The friction inside the battery to electron flow. High IR = Heat = Degradation.
+*   **Depth of Discharge (DoD)**: How much of the battery you use. Using only the middle 50% makes it last longer.
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+<div className="space-y-4">
+  <details className="group border rounded-lg bg-card p-4 [&_summary]:cursor-pointer">
+    <summary className="flex items-center justify-between font-medium text-foreground list-none">
+      Does fast charging hurt the battery?
+      <span className="transition group-open:rotate-180">
+        <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </span>
+    </summary>
+    <div className="text-muted-foreground mt-4 leading-relaxed">
+      Generally, no. Home batteries have a C-rate (discharge speed) of roughly 0.5C (5kW output for a 13.5kWh battery). This is very gentle. In comparison, charging an EV at a Supercharger hits the battery at 3C or 4C. You cannot "fast charge" a home battery hard enough to damage it under normal wiring.
+    </div>
+  </details>
+
+  <details className="group border rounded-lg bg-card p-4 [&_summary]:cursor-pointer">
+    <summary className="flex items-center justify-between font-medium text-foreground list-none">
+      Why does my capacity fluctuate in winter?
+      <span className="transition group-open:rotate-180">
+        <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </span>
+    </summary>
+    <div className="text-muted-foreground mt-4 leading-relaxed">
+      Lithium ions move slower in the cold. A cold battery has higher internal resistance, which looks like lower capacity to the BMS. If your battery shows 90% in July and 85% in January, that is likely just **temp-derating**, not permanent degradation. Wait for spring before panicking.
+    </div>
+  </details>
+
+  <details className="group border rounded-lg bg-card p-4 [&_summary]:cursor-pointer">
+    <summary className="flex items-center justify-between font-medium text-foreground list-none">
+      What happens if a cell fails?
+      <span className="transition group-open:rotate-180">
+        <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </span>
+    </summary>
+    <div className="text-muted-foreground mt-4 leading-relaxed">
+      Modern packs are made of modules. If one cell group fails, the BMS will isolate it. You might see a sudden drop in capacity (e.g., 100% -> 80%), but the unit keeps working. This is a clear warranty case—manufacturers can often replace just the bad module rather than the whole unit.
+    </div>
+  </details>
+
+  <details className="group border rounded-lg bg-card p-4 [&_summary]:cursor-pointer">
+    <summary className="flex items-center justify-between font-medium text-foreground list-none">
+      Can I reset the "Health" counter?
+      <span className="transition group-open:rotate-180">
+        <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </span>
+    </summary>
+    <div className="text-muted-foreground mt-4 leading-relaxed">
+      No. The SOH reading is calculated based on voltage physics, not a simple counter. It is a measurement of the chemical capability of the cell. You cannot "reset" chemistry. If the number is low, the battery is physically degraded.
+    </div>
+  </details>
+</div>
+
+## Reference: Voltage vs SoC Table (48V System)
+
+If you are using a voltmeter, use this table to estimate your battery's charge. Note the difference between NMC (Tesla Powerwall 2) and LFP (Powerwall 3 / Enphase).
+
+| State of Charge | NMC Voltage (48V Nominal) | LFP Voltage (51.2V Nominal) |
+| :--- | :--- | :--- |
+| **100% (Full)** | 57.6V | 58.4V |
+| **90%** | 56.5V | 53.6V (Surface Charge) |
+| **70%** | 54.0V | 53.2V |
+| **50%** | 51.5V | 52.9V (Flat Curve) |
+| **30%** | 49.0V | 52.5V |
+| **10% (Empty)** | 46.5V | 51.0V |
+| **0% (Cutoff)** | 42.0V | 48.0V (Steep Drop) |
+
+*   **Warning**: LFP batteries have a very flat voltage curve. It is almost impossible to guess SoC between 30% and 70% using voltage alone. You must rely on the BMS "Coulomb Counting."
+
+## Related Articles
+*   **[Tesla Powerwall 3 vs Enphase 5P](/comparisons/tesla-powerwall-3-vs-enphase-5p)**
+*   **[Lithium Iron Phosphate vs NMC](/comparisons/lfp-vs-nmc-battery)**
+*   **[How to Maintain Your Battery](/how-to/how-to-maintain-solar-battery-system)**
+
+## Summary: Trust But Verify
+
+Your solar battery is an expensive asset. Don't ignore it for 10 years.
+*   **Check logs monthly.**
+*   **Do a capacity test annually.**
+*   **Keep it cool.**
+
+[**View Top Rated Batteries for Reliability →**](/comparisons/best-solar-batteries-2026)

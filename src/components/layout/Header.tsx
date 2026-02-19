@@ -14,9 +14,11 @@ import {
     Wrench,
     Gift,
     Sparkles,
-    Zap
+    Zap,
+    Globe
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { CountrySelector } from "@/components/geo/CountrySelector";
 
 const NAV_ITEMS = [
     { label: "Calculator", href: "/calculator" },
@@ -32,6 +34,7 @@ const HUB_ITEMS = [
     { label: "How-To", href: "/how-to", icon: Wrench, desc: "Guides" },
     { label: "Incentives", href: "/incentives", icon: Gift, desc: "Tax credits" },
     { label: "Future", href: "/future", icon: Sparkles, desc: "Trends" },
+    { label: "Markets", href: "/markets", icon: Globe, desc: "Global Analysis" },
 ];
 
 export function Header() {
@@ -51,10 +54,10 @@ export function Header() {
     return (
         <header
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+                "sticky top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b",
                 isScrolled
                     ? "bg-background/80 backdrop-blur-md border-border/50 py-3"
-                    : "bg-transparent border-transparent py-5"
+                    : "bg-background/80 backdrop-blur-md border-transparent py-5"
             )}
         >
             <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
@@ -152,8 +155,9 @@ export function Header() {
                     </Link>
                 </nav>
 
-                {/* CTA */}
+                {/* CTA & Country */}
                 <div className="hidden md:flex items-center gap-4">
+                    <CountrySelector />
                     <Link href="/calculator">
                         <Button size="sm" className="btn-premium shadow-sm">
                             Start Sizing

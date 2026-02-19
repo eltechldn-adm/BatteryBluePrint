@@ -11,6 +11,8 @@ import { InlineTOC } from '@/components/docs/InlineTOC';
 import { DocsCallout } from '@/components/docs/DocsCallout';
 import { GlobalUsersNotice } from '@/components/content/GlobalUsersNotice';
 import { ContextualInArticleCTA } from '@/components/content/ConversionCTAs';
+import { AuthorCard } from '@/components/content/AuthorCard';
+import { ArticleNextAction } from '@/components/conversion/ArticleNextAction';
 
 interface ArticlePageProps {
     params: Promise<{
@@ -180,6 +182,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
                 <DocsArticleHeader metadata={metadata} />
 
+                <AuthorCard />
+
                 {/* Inline TOC - "On this page" */}
                 {/* 
                    Note: InlineTOC relies on client-side querySelector for headings. 
@@ -204,6 +208,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     ) : (
                         <div dangerouslySetInnerHTML={{ __html: html }} />
                     )}
+                </div>
+
+                <div className="mt-12 not-prose">
+                    <ArticleNextAction category={metadata.category} slug={metadata.slug} />
                 </div>
 
                 <div className="mt-12 space-y-6 border-t pt-8">

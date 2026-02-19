@@ -7,11 +7,11 @@ import type { Metadata } from "next";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://batteryblueprint.com";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Privacy policy for BatteryBlueprint. Learn how we handle your data and protect your information.",
-  alternates: {
-    canonical: `${siteUrl}/privacy`,
-  },
+    title: "Privacy Policy",
+    description: "Privacy policy for BatteryBlueprint. Learn how we handle your data and protect your information.",
+    alternates: {
+        canonical: `${siteUrl}/privacy`,
+    },
 };
 
 export default function PrivacyPage() {
@@ -22,16 +22,7 @@ export default function PrivacyPage() {
                 <div className="animated-blob blob-2 -top-32 -right-48 opacity-10" />
             </div>
 
-            <header className="px-6 py-5 flex items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-                <div className="text-xl font-bold text-primary">
-                    <Link href="/" className="hover:opacity-80 transition-opacity">BatteryBlueprint</Link>
-                </div>
-                <div className="flex gap-4">
-                    <Link href="/calculator">
-                        <Button className="btn-premium">Calculator</Button>
-                    </Link>
-                </div>
-            </header>
+            {/* Header - Global in RootLayout */}
 
             <main className="container mx-auto px-4 py-12 max-w-3xl relative z-10 flex-1">
                 <div className="mb-8">
@@ -40,7 +31,7 @@ export default function PrivacyPage() {
                         Legal
                     </div>
                     <h1 className="text-4xl font-bold mb-4 tracking-tight">Privacy Policy</h1>
-                    <p className="text-muted-foreground">Last updated: January 2026</p>
+                    <p className="text-muted-foreground">Last updated: February 2026</p>
                 </div>
 
                 <Card className="card-premium rounded-2xl border-0">
@@ -48,19 +39,40 @@ export default function PrivacyPage() {
                         <div>
                             <h2 className="text-xl font-bold mb-3">Our Commitment</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                We respect your privacy. No data is sold. Calculations are done locally in your browser where possible.
+                                We respect your privacy. No personal data is sold. All battery sizing calculations are performed locally in your browser — we do not store your inputs on our servers.
                             </p>
                         </div>
                         <div>
                             <h2 className="text-xl font-bold mb-3">Data Collection</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                We only collect the email address you provide when downloading your PDF Blueprint. This is used solely to deliver your document and occasional product updates.
+                                If you choose to submit your email address to receive a PDF Blueprint, that email is stored locally in your browser only. We do not transmit it to any server. No account is created and no password is required.
+                            </p>
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-bold mb-3">Cookies & Analytics</h2>
+                            <p className="text-muted-foreground leading-relaxed">
+                                We use Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to this or other websites. You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Google&apos;s Ads Settings</a>.
+                            </p>
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-bold mb-3">Advertising Disclosure</h2>
+                            <p className="text-muted-foreground leading-relaxed">
+                                BatteryBlueprint displays advertisements served by Google AdSense. We may also include affiliate links to products or services. If you purchase through an affiliate link, we may earn a commission at no extra cost to you. All editorial content is independent of advertising relationships.
                             </p>
                         </div>
                         <div>
                             <h2 className="text-xl font-bold mb-3">Third Parties</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                We do not share, sell, or rent your personal information to third parties for marketing purposes.
+                                We do not share, sell, or rent your personal information to third parties for marketing purposes. Third-party advertising partners (Google AdSense) operate under their own privacy policies.
+                            </p>
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-bold mb-3">Contact</h2>
+                            <p className="text-muted-foreground leading-relaxed">
+                                For privacy-related questions, email us at{" "}
+                                <a href="mailto:support@batteryblueprint.com" className="text-primary hover:underline">
+                                    support@batteryblueprint.com
+                                </a>. We respond within 2 business days.
                             </p>
                         </div>
                     </CardContent>
@@ -68,18 +80,7 @@ export default function PrivacyPage() {
             </main>
 
             {/* Footer */}
-            <footer className="py-12 px-6 border-t border-border/50 bg-muted/20">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div className="text-xl font-bold text-primary">BatteryBlueprint</div>
-                        <nav className="flex gap-8 text-sm text-muted-foreground">
-                            <Link href="/calculator" className="hover:text-primary transition-colors">Calculator</Link>
-                            <Link href="/guide" className="hover:text-primary transition-colors">Guide</Link>
-                            <Link href="/terms" className="hover:text-primary transition-colors">Terms</Link>
-                        </nav>
-                    </div>
-                </div>
-            </footer>
+            {/* Footer - Global in RootLayout */}
         </div>
     );
 }

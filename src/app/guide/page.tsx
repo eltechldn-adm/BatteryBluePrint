@@ -18,7 +18,6 @@ import {
 import type { Metadata } from "next";
 import { getArticlesByCategory, CONTENT_CATEGORIES, type ContentCategory } from "@/lib/content/mdx";
 import { GuideReinforcementCTA } from '@/components/content/ConversionCTAs';
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://batteryblueprint.com";
@@ -107,9 +106,7 @@ export default function EnergyHub() {
                 <div className="animated-blob blob-3 bottom-1/3 -left-32 opacity-10" />
             </div>
 
-            {/* Header */}
-            {/* Header */}
-            <Header />
+            {/* Header - Global in RootLayout */}
 
             <main className="flex-1 relative z-10">
                 {/* Hero Section */}
@@ -305,9 +302,7 @@ export default function EnergyHub() {
                 </section>
             </main>
 
-            {/* Footer */}
-            {/* Footer */}
-            <Footer />
+            {/* Footer - Global in RootLayout */}
         </div>
     );
 }

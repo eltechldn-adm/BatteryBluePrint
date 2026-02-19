@@ -6,7 +6,7 @@
     "content:gen": "node scripts/generate-content-manifest.mjs",
     "dev": "npm run content:gen && next dev",
     "build": "npm run content:gen && next build",
-    "start": "next start",
+    "postbuild": "node scripts/verify-static-export.mjs",
     "lint": "eslint"
   },
   "dependencies": {

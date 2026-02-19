@@ -1,7 +1,7 @@
 ---
 title: "Solar Batteries for EV Charging: The Math You Need to Know"
-description: "Thinking of charging your car from your home battery? Here is the brutal math on why that usually doesn't work—and the smart way to do it instead."
-updated: "2026-02-13"
+description: "Thinking of charging your car from your home battery? Here is the brutal math on why that usually doesn't work and the smart way to do it instead in 2026."
+updated: "2026-02-18"
 category: "sizing"
 slug: "solar-battery-for-ev-charging"
 readingMinutes: 12
@@ -124,3 +124,80 @@ Want to simulate adding an EV to your load? Our calculator has an "EV Mode" that
 Related Reading:
 *   [**How to Size a Solar Battery**](/sizing/how-to-size-solar-battery-uk-us)
 *   [**Comparison: Battery Chemistries**](/comparisons/lithium-vs-lead-acid)
+
+---
+
+## The Smart Approach: Solar-Direct EV Charging
+
+The correct way to charge an EV from solar is to bypass the home battery entirely and charge the car **directly from excess solar generation** during the day.
+
+This is called **solar-direct** or **solar-matched** charging, and it works like this:
+
+1. Your solar panels generate power during the day.
+2. Your home uses what it needs.
+3. **Excess solar** flows to a smart EV charger instead of the battery or grid.
+4. The EV charger dynamically adjusts its charging rate to match available solar surplus.
+5. The home battery charges from any remaining surplus after the EV is satisfied.
+
+This approach avoids the round-trip efficiency loss of storing energy in the home battery and then transferring it to the EV. It also doesn't deplete your backup reserve.
+
+### Smart EV Chargers That Support Solar-Direct Charging
+
+- **Zappi (UK)**: The most popular solar-aware charger in the UK. Modes include Eco (supplements solar with grid) and Eco+ (solar-only, minimum 1.4kW).
+- **Wallbox Pulsar Plus**: Supports solar integration via API with compatible inverters.
+- **Tesla Wall Connector**: Integrates natively with Tesla Powerwall and solar systems.
+- **Ohme Home Pro (UK)**: Smart tariff-aware charging that can also respond to solar generation.
+
+## Sizing a System for EV Charging
+
+If you're committed to charging your EV from stored solar energy (perhaps for overnight charging), here's how to size the system correctly.
+
+### Step 1: Calculate Your Daily EV Energy Requirement
+
+Most EVs use approximately 3-4 miles per kWh. For a typical commuter driving 40 miles/day:
+
+- **Energy needed:** 40 miles ÷ 3.5 miles/kWh = **11.4 kWh/day**
+
+This is in addition to your home's overnight consumption (typically 5-12 kWh for a UK/US home).
+
+### Step 2: Total Daily Storage Requirement
+
+- **Home overnight use:** 8 kWh
+- **EV charging:** 11.4 kWh
+- **Total:** 19.4 kWh
+- **With 20% buffer:** **24.3 kWh**
+
+This is why EV + battery systems typically require 25-30 kWh of storage—nearly double what a non-EV home needs.
+
+### Step 3: Solar Array Sizing
+
+To fill a 25kWh battery from solar alone, you need a substantial array. In a location with 4 peak sun hours/day:
+
+- **Required solar:** 25 kWh ÷ 4 hours = **6.25 kW minimum**
+- **Recommended:** 8-10 kW to account for losses and winter generation
+
+## Vehicle-to-Home (V2H) and Vehicle-to-Grid (V2G)
+
+An emerging technology flips the equation entirely: instead of charging your EV from a home battery, your **EV charges your home**.
+
+**Vehicle-to-Home (V2H)** allows bidirectional charging—your EV battery (typically 60-100kWh) can power your home during an outage or peak hours. This is 4-7x more storage than a typical home battery at no additional cost.
+
+**Vehicle-to-Grid (V2G)** extends this to selling power back to the grid during peak demand, earning revenue from your EV battery.
+
+Currently supported vehicles include the Nissan Leaf (with CHAdeMO), Ford F-150 Lightning, and several Hyundai/Kia models. Tesla does not currently support V2H/V2G, though this may change.
+
+For homes with V2H-capable EVs, the case for a separate home battery becomes much weaker—your car IS the battery.
+
+## Common Questions (FAQ)
+
+### Can I charge my Tesla from a Powerwall?
+Yes, but it's inefficient. The Powerwall stores 13.5kWh. A Tesla Model 3 needs about 15kWh for 60 miles of range. You'd drain the entire Powerwall and still not fully charge the car. The math only works if you have multiple Powerwalls or a very short daily commute.
+
+### What is the minimum solar array size for EV + home battery?
+For a typical home with an EV driving 40 miles/day, you need at least 8-10kW of solar and 20-25kWh of battery storage. Anything smaller will result in significant grid imports, especially in winter.
+
+### Does fast charging hurt my solar battery?
+Yes and no. A home battery has a max output (e.g., 5 kW). If your EV charger tries to pull 11 kW (48 Amps), the battery will max out at 5 kW, and the grid will supply the other 6 kW. You cannot "hurt" the battery, but you will drain it in minutes.
+
+### Is V2H worth waiting for?
+If you're buying a new EV in the next 1-2 years, check for V2H compatibility. A V2H-capable EV effectively gives you 60-100kWh of home backup storage at no additional cost beyond the bidirectional charger (~£1,500-£3,000). For many homeowners, this eliminates the need for a separate home battery entirely.

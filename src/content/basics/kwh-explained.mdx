@@ -1,10 +1,10 @@
 ---
 title: "kW vs kWh: The Most Important Constants in Solar Storage"
-description: "Confusing Power (kW) with Energy (kWh) is the #1 mistake homeowners make when buying batteries. Here is the definitive engineering explanation."
-updated: "2026-02-13"
+description: "Confusing Power (kW) with Energy (kWh) is the #1 mistake homeowners make when buying batteries. Here is the definitive engineering explanation with examples."
+updated: "2026-02-18"
 category: "basics"
 slug: "kwh-explained"
-readingMinutes: 6
+readingMinutes: 8
 ---
 
 If you only learn one technical concept before buying a solar battery, make it the difference between **kW** and **kWh**.
@@ -138,3 +138,64 @@ We created a tool that does the math for you. It sums up your appliance loads (k
 
 Or read our guide on how much storage fits your home:
 [**How Much Battery Storage Do I Need?**](/sizing/how-much-battery-storage-do-i-need)
+
+---
+
+## Real-World kW vs kWh Examples
+
+The best way to understand these concepts is through real-world examples.
+
+### Example 1: The Morning Rush
+
+You wake up at 7 AM and simultaneously:
+- Boil the kettle: 2.5 kW
+- Run the microwave: 1.2 kW
+- Use the toaster: 0.9 kW
+- Run the fridge (always on): 0.1 kW
+
+**Total peak demand:** 4.7 kW
+
+If your battery can only output 3.5 kW, it will be overwhelmed during this morning rush. The grid (or generator) must supply the extra 1.2 kW. This is why **peak power (kW)** matters as much as capacity (kWh).
+
+### Example 2: The Overnight Calculation
+
+Your home uses these appliances overnight (10 PM to 7 AM = 9 hours):
+- Fridge: 0.1 kW × 9 hours = 0.9 kWh
+- Router/modem: 0.01 kW × 9 hours = 0.09 kWh
+- Standby electronics: 0.05 kW × 9 hours = 0.45 kWh
+- CPAP machine: 0.05 kW × 9 hours = 0.45 kWh
+
+**Total overnight consumption:** ~1.9 kWh
+
+For this home, even a small 5 kWh battery would last 2+ nights. The battery is sized correctly for their needs.
+
+### Example 3: The Air Conditioning Problem
+
+A central air conditioning unit uses 3-5 kW while running. If it runs for 6 hours overnight:
+
+- **Energy consumed:** 4 kW × 6 hours = 24 kWh
+
+A 13.5 kWh Powerwall would be completely drained before midnight. This is why homes with central AC in hot climates often need 20-30 kWh of storage to maintain comfort overnight.
+
+## Why Battery Manufacturers List Both Numbers
+
+Every quality battery datasheet lists both kW and kWh because both matter:
+
+| Battery | Capacity (kWh) | Continuous Power (kW) | Peak Power (kW) |
+|:---|:---|:---|:---|
+| Tesla Powerwall 3 | 13.5 kWh | 11.5 kW | 11.5 kW |
+| Enphase IQ Battery 5P | 5.0 kWh | 3.84 kW | 7.68 kW |
+| FranklinWH aPower | 13.6 kWh | 10 kW | 10 kW |
+| GivEnergy 9.5 (UK) | 9.5 kWh | 3.6 kW | 5 kW |
+
+Notice how the Enphase has a relatively low continuous power (3.84 kW) but can burst to 7.68 kW for short periods. This is fine for most appliances but may struggle with large central AC units.
+
+## The Efficiency Factor
+
+One more concept: **round-trip efficiency**. When you store 1 kWh in a battery and then retrieve it, you don't get exactly 1 kWh back. Some energy is lost as heat during the charge and discharge process.
+
+Modern LFP batteries achieve 95-97% round-trip efficiency. This means:
+- Store 10 kWh → Get back 9.5-9.7 kWh
+- Loss: 0.3-0.5 kWh per cycle
+
+Over a year of daily cycling, this efficiency loss is worth factoring into your sizing calculations. Our [battery sizing calculator](/calculator) accounts for round-trip efficiency automatically.

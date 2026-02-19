@@ -5,11 +5,20 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Zap, Shield, Cpu, ChevronRight, Battery, Sun } from "lucide-react";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { track } from "@/lib/analytics/journey";
+import { useCountry } from "@/lib/geo/useCountry";
 
 export default function Home() {
     const featuresRef = useRef<HTMLDivElement>(null);
+    const { country } = useCountry();
+
+    const handleTrackCta = (cta: string) => {
+        track('cta_click', {
+            location: 'home_hero',
+            cta,
+            country: country.code
+        });
+    };
 
     // Intersection Observer for feature cards
     useEffect(() => {
@@ -42,9 +51,7 @@ export default function Home() {
                 <div className="animated-blob blob-3 -bottom-32 left-1/4" />
             </div>
 
-            {/* Header */}
-            {/* Header */}
-            <Header />
+            {/* Header - Global in RootLayout */}
 
             {/* Hero */}
             <main className="flex-1 flex flex-col relative z-10">
@@ -89,7 +96,7 @@ export default function Home() {
                         </div>
 
                         <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4 pt-2 justify-center lg:justify-start">
-                            <Link href="/calculator">
+                            <Link href="/calculator" onClick={() => handleTrackCta('calculator')}>
                                 <Button size="lg" className="btn-premium w-full sm:w-auto text-lg px-8 h-14 rounded-2xl shadow-lg">
                                     Start Sizing
                                     <ChevronRight className="ml-2 w-5 h-5" />
@@ -251,7 +258,7 @@ export default function Home() {
                         <p className="text-lg text-muted-foreground">
                             Get your personalized battery blueprint in under 60 seconds.
                         </p>
-                        <Link href="/calculator">
+                        <Link href="/calculator" onClick={() => handleTrackCta('calculator_bottom')}>
                             <Button size="lg" className="btn-premium text-lg px-10 h-14 rounded-2xl shadow-lg">
                                 Start Sizing
                                 <ChevronRight className="ml-2 w-5 h-5" />
@@ -261,9 +268,7 @@ export default function Home() {
                 </section>
             </main>
 
-            {/* Footer */}
-            {/* Footer */}
-            <Footer />
+            {/* Footer - Global in RootLayout */}
         </div>
     );
 }

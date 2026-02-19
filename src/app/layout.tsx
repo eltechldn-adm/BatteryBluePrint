@@ -68,6 +68,14 @@ export const metadata: Metadata = {
   manifest: `${siteUrl}/site.webmanifest`,
 };
 
+import { CountryProviderClient } from "@/components/geo/CountryProviderClient";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+
+// ... imports
+
+// ... metadata
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -82,12 +90,41 @@ export default function RootLayout({
         {/* Subtle grain texture overlay */}
         <div className="grain-overlay" aria-hidden="true" />
         <Script
+          id="adsense-init"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7088331504377019"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        {children}
+        <Script
+          id="org-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "BatteryBlueprint",
+              "url": siteUrl,
+              "logo": {
+                "@type": "ImageObject",
+                "url": `${siteUrl}/logo.png`,
+                "width": 512,
+                "height": 512
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "support@batteryblueprint.com",
+                "contactType": "customer support"
+              },
+              "sameAs": []
+            })
+          }}
+        />
+        <CountryProviderClient>
+          <Header />
+          {children}
+          <Footer />
+        </CountryProviderClient>
       </body>
     </html>
   );

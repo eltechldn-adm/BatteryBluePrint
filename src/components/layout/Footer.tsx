@@ -33,6 +33,9 @@ export function Footer() {
                         <h4 className="font-semibold text-foreground">Company</h4>
                         <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
                             <Link href="/about" className="hover:text-primary transition-colors">About</Link>
+                            <Link href="/editorial-team" className="hover:text-primary transition-colors">Editorial Team</Link>
+                            <Link href="/editorial-policy" className="hover:text-primary transition-colors">Editorial Policy</Link>
+                            <Link href="/methodology" className="hover:text-primary transition-colors">Methodology</Link>
                             <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
                             <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
                             <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
@@ -47,11 +50,18 @@ export function Footer() {
                                 support@batteryblueprint.com
                             </a>
                             <div className="pt-4 text-xs text-muted-foreground/60">
-                                &copy; {currentYear} BatteryBlueprint.<br />
                                 Built for engineers, by engineers.
                             </div>
                         </div>
                     </div>
+                </div>
+
+                {/* Global Disclaimer */}
+                <div className="mt-12 pt-8 border-t border-border/50 text-center">
+                    <p className="text-xs text-muted-foreground/60 leading-relaxed max-w-4xl mx-auto">
+                        &copy; {currentYear} BatteryBlueprint. For planning purposes only. Not professional engineering advice.<br />
+                        All results are estimates only. Consult a licensed electrician or solar installer before purchasing or installing any equipment. BatteryBlueprint may display ads and affiliate links — see our <Link href="/privacy" className="underline hover:text-primary">Privacy Policy</Link> and <Link href="/terms" className="underline hover:text-primary">Terms</Link>.
+                    </p>
                 </div>
             </div>
         </footer>

@@ -1,7 +1,7 @@
 ---
 title: "AC Coupled vs DC Coupled Batteries: Which is Better?"
-description: "The technical battle for efficiency. We explain the difference between AC and DC coupling and help you decide which architecture fits your home."
-updated: "2026-02-13"
+description: "The technical battle for efficiency. We explain the difference between AC and DC coupling and help you decide which solar battery architecture fits your home."
+updated: "2026-02-18"
 category: "comparisons"
 slug: "ac-coupled-vs-dc-coupled"
 readingMinutes: 11
@@ -220,8 +220,57 @@ If you already have solar, you face a tough choice.
 Not sure what you need? Our calculator analyzes your situation (New vs Retrofit) and suggests the right architecture.
 
 [**Run Your Numbers Now →**](/calculator)
-[**Download Design Blueprint →**](/blueprint)
+[**Download Design Blueprint →**](/calculator)
 
 Related Guides:
 *   [**Best Batteries 2026**](/comparisons/best-solar-batteries-2026)
 *   [**How Solar Batteries Work**](/basics/how-solar-batteries-work)
+
+---
+
+## Efficiency Deep Dive: Why DC Coupling Wins on Paper
+
+The efficiency advantage of DC coupling comes from avoiding unnecessary energy conversions.
+
+**AC Coupling conversion chain:**
+1. Solar DC → Microinverter/String Inverter (AC) [~97% efficient]
+2. AC → Battery Inverter (DC for storage) [~95% efficient]
+3. DC → Battery Inverter (AC for use) [~95% efficient]
+
+**Total round-trip efficiency:** ~87%
+
+**DC Coupling conversion chain:**
+1. Solar DC → Hybrid Inverter (DC for storage) [~98% efficient]
+2. DC → Hybrid Inverter (AC for use) [~97% efficient]
+
+**Total round-trip efficiency:** ~95%
+
+The 8% efficiency difference means that for every 10 kWh of solar energy generated, DC coupling delivers 0.8 kWh more to your home. Over a year of daily cycling, this adds up to meaningful savings.
+
+## Real-World Considerations
+
+### String Inverter Clipping
+
+DC-coupled systems can capture "clipped" solar energy that string inverters would otherwise waste. When solar generation exceeds the inverter's rated capacity (e.g., a 5kW inverter with a 6kW array on a bright day), the excess is clipped. A DC-coupled battery can absorb this clipped energy directly.
+
+This is particularly valuable in the UK where solar arrays are often oversized relative to inverter capacity to maximize winter generation.
+
+### Retrofit Complexity
+
+Adding a battery to an existing solar system is almost always AC-coupled because:
+- The existing solar inverter stays in place (no replacement cost)
+- The battery inverter is added separately
+- No re-wiring of the solar array is required
+
+The only exception is if the existing inverter is at end-of-life and needs replacement anyway—in that case, replacing it with a hybrid inverter (DC coupling) makes financial sense.
+
+## Common Questions (FAQ)
+
+### Can I change from AC to DC coupling later?
+Yes, but it requires replacing your solar inverter with a hybrid inverter. This typically costs $2,000-$4,000 in addition to the battery cost. If you're planning to add a battery within 2-3 years, it may be worth installing a hybrid inverter now to avoid this future cost.
+
+### Does coupling type affect backup performance?
+Both AC and DC coupled systems can provide backup power during outages. However, DC-coupled systems with a hybrid inverter often have faster switchover times (milliseconds vs. seconds) because the inverter is already managing both solar and battery in a unified system.
+
+### Which coupling is better for off-grid systems?
+DC coupling is strongly preferred for off-grid systems because efficiency is critical when you have no grid backup. Every percentage point of efficiency loss means either more solar panels or more battery capacity needed. Off-grid systems almost universally use DC-coupled hybrid inverters.
