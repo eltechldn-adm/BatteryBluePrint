@@ -12,7 +12,7 @@ export function Footer() {
                         <div className="flex flex-col gap-2">
                             <div className="text-xl font-bold text-primary">BatteryBlueprint</div>
                             <p className="text-sm text-muted-foreground max-w-xs">
-                                Engineering-grade solar battery calculations without the sales fluff.
+                                Engineering-grade solar battery calculations without marketing bias.
                             </p>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ export function Footer() {
                                 support@batteryblueprint.com
                             </a>
                             <div className="pt-4 text-xs text-muted-foreground/60">
-                                Built for engineers, by engineers.
+                                Designed for engineering accuracy and transparency.
                             </div>
                         </div>
                     </div>

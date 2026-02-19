@@ -16,7 +16,7 @@ export default function AboutPage() {
                     <div className="space-y-4 text-center">
                         <h1 className="text-4xl md:text-5xl font-bold">About BatteryBlueprint</h1>
                         <p className="text-xl text-muted-foreground">
-                            No-BS solar battery sizing for engineers and homeowners
+                            Transparent solar battery sizing for engineers and homeowners
                         </p>
                     </div>
 
@@ -24,10 +24,10 @@ export default function AboutPage() {
                     <section className="space-y-4">
                         <h2 className="text-2xl font-bold">Our Mission</h2>
                         <p className="text-muted-foreground leading-relaxed">
-                            BatteryBlueprint exists to provide transparent, engineering-grade battery sizing calculations for solar energy systems. We believe planning your battery storage shouldn't require expensive consultations or guesswork.
+                            BatteryBlueprint exists to provide transparent, engineering-grade battery sizing calculations for solar energy systems. We believe proper energy storage planning requires precise data, not rough estimates.
                         </p>
                         <p className="text-muted-foreground leading-relaxed">
-                            Our calculator uses industry-standard formulas to help you understand your energy storage needs before talking to installers. No marketing fluff. No hidden assumptions. Just math.
+                            Our calculator uses industry-standard formulas to help you understand your energy storage needs before talking to installers. No marketing bias. No hidden assumptions. Just physics-based math.
                         </p>
                     </section>
 

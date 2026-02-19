@@ -60,12 +60,12 @@ export default function Home() {
                     <div className="flex-1 space-y-8 text-center lg:text-left max-w-2xl">
                         <div className="space-y-6">
                             <h1 className="hero-animate text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
-                                Stop Guessing.<br />
-                                <span className="text-primary">Start Sizing.</span>
+                                Engineering-Grade<br />
+                                <span className="text-primary">Battery Sizing.</span>
                             </h1>
                             <p className="hero-animate hero-animate-delay-1 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                                Engineering-grade solar battery calculations without the sales fluff.
-                                Get accurate kWh requirements, inverter sizing checks, and real hardware matching.
+                                Accurate solar battery calculations without marketing bias.
+                                Determine precise kWh requirements, verify inverter compatibility, and match real hardware.
                             </p>
                         </div>
                         {/* 3-Step Micro Flow */}
@@ -111,11 +111,11 @@ export default function Home() {
                         <div className="hero-animate hero-animate-delay-4 flex items-center gap-6 text-sm text-muted-foreground justify-center lg:justify-start pt-2">
                             <div className="flex items-center gap-2">
                                 <Shield className="w-4 h-4 text-primary" />
-                                <span>No signup required</span>
+                                <span>No account required</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Zap className="w-4 h-4 text-primary" />
-                                <span>Instant results</span>
+                                <span>Immediate results</span>
                             </div>
                         </div>
                     </div>
@@ -206,7 +206,7 @@ export default function Home() {
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why BatteryBlueprint?</h2>
                             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                                Real engineering math, not salesperson estimates.
+                                Calculations based on physics and NREL data, not salesperson estimates.
                             </p>
                         </div>
                         <div className="grid md:grid-cols-3 gap-8">
@@ -215,9 +215,9 @@ export default function Home() {
                                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
                                         <Zap className="w-7 h-7 text-primary" />
                                     </div>
-                                    <h3 className="text-xl font-bold">Precise Math</h3>
+                                    <h3 className="text-xl font-bold">Physics-Based Logic</h3>
                                     <p className="text-muted-foreground leading-relaxed">
-                                        We separate Power (kW) from Energy (kWh). Don&apos;t get sold a battery that dies in 2 hours.
+                                        We separate Power (kW) from Energy (kWh) to prevent under-sizing. Ensure capacity meets actual load duration requirements.
                                     </p>
                                 </CardContent>
                             </Card>
@@ -226,9 +226,9 @@ export default function Home() {
                                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary/10 to-secondary/20 flex items-center justify-center">
                                         <Shield className="w-7 h-7 text-secondary" />
                                     </div>
-                                    <h3 className="text-xl font-bold">Safety Buffers</h3>
+                                    <h3 className="text-xl font-bold">Resilience Buffers</h3>
                                     <p className="text-muted-foreground leading-relaxed">
-                                        Winter derating, aging buffers, and Depth-of-Discharge (DoD) handling built-in.
+                                        Winter temperature coefficients, aging degradation, and Depth-of-Discharge (DoD) limits are built into every calculation.
                                     </p>
                                 </CardContent>
                             </Card>
@@ -237,9 +237,9 @@ export default function Home() {
                                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/20 flex items-center justify-center">
                                         <Cpu className="w-7 h-7 text-accent" />
                                     </div>
-                                    <h3 className="text-xl font-bold">Real Hardware</h3>
+                                    <h3 className="text-xl font-bold">Hardware Matching</h3>
                                     <p className="text-muted-foreground leading-relaxed">
-                                        Match your load to real battery models like Powerwall 3, Enphase 5P, or EG4 server racks.
+                                        Match calculated loads against empirically verified specifications for component systems (e.g., Powerwall 3, Enphase 5P, SLIC).
                                     </p>
                                 </CardContent>
                             </Card>
@@ -252,7 +252,7 @@ export default function Home() {
                     <div className="max-w-3xl mx-auto text-center space-y-8">
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
                             <Sun className="w-4 h-4" />
-                            Free • No Signup • Instant Results
+                            Free • No Account Required • Immediate Results
                         </div>
                         <h2 className="text-3xl md:text-4xl font-bold">Ready to size your system?</h2>
                         <p className="text-lg text-muted-foreground">

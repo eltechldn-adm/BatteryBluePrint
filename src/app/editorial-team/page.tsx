@@ -58,8 +58,8 @@ export default function EditorialTeamPage() {
                 <div className="article-prose prose prose-slate dark:prose-invert max-w-none">
                     <h2>Who We Are</h2>
                     <p>
-                        The solar industry is flooded with marketing fluff. "Zero Down!" "Free Government Money!"
-                        It is noisy, confusing, and often misleading.
+                        The solar industry is filled with sales-driven narratives. "Zero Down!" "Free Government Money!"
+                        It can be confusing and often misleading.
                     </p>
                     <p>
                         <strong>BatteryBlueprint was founded to cut through that noise.</strong>

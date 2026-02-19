@@ -62,7 +62,7 @@ export default function EditorialPolicyPage() {
                 <ul>
                     <li><strong>Datasheet Specifications</strong>: Verified chemistry, C-rates, and cycle life.</li>
                     <li><strong>Field Performance</strong>: Real-world round-trip efficiency data.</li>
-                    <li><strong>Warranty Terms</strong>: Legal throughput guarantees, not marketing fluff.</li>
+                    <li><strong>Warranty Terms</strong>: Contractual throughput guarantees, not marketing claims.</li>
                 </ul>
                 <p>
                     If a product has poor thermal management or strictly limits discharge rates, we will say so—regardless of how popular the brand is.
