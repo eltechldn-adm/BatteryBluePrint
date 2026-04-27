@@ -96,6 +96,21 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        {/* Google Analytics 4 — G-SGGPTYRHXL */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-SGGPTYRHXL"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-SGGPTYRHXL', {
+              anonymize_ip: true
+            });
+          `}
+        </Script>
         <Script
           id="org-schema"
           type="application/ld+json"
