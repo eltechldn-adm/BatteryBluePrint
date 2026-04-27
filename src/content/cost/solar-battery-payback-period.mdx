@@ -232,3 +232,77 @@ This is why our [calculator](/calculator) runs sensitivity analysis automaticall
 The payback period is just one metric. A complete financial analysis also considers the 10-year and 20-year net present value, the internal rate of return, and the non-financial value of backup power. Our calculator handles all of this automatically, using your actual utility rate data and local solar irradiance figures to produce a personalized, accurate financial model for your specific home and location.
 
 [**Calculate My Personalized Payback Period →**](/calculator)
+
+---
+
+## Engineering Reality
+
+Payback period calculations appear precise but conceal significant modelling uncertainty. Understanding where the numbers are most likely to diverge from reality prevents expensive misaligned expectations.
+
+**The "annual savings" figure is not flat.** Every payback calculation presented as "£900/year" implicitly assumes that savings figure is constant across all years. In reality, Year 1 savings from a battery in a home where occupants are learning optimal operating habits are typically 75–85% of Year 2 onwards. Conversely, Year 8–10 savings are constrained by battery capacity degradation — a 13.5 kWh battery delivering only 9.5 kWh by Year 10 generates proportionally less arbitrage value. A payback calculation that neither accounts for this learning ramp-up nor the degradation tail overstates precision.
+
+**Inflation assumptions compound dramatically.** The article correctly notes that electricity price inflation accelerates savings over time. However, historical 3–5% annual increases are not guaranteed, and electricity prices can also decrease — particularly as renewables displace gas generation at scale. A payback model with 4% electricity inflation produces an 8-year payback from an input that calculates to 11 years at flat rates. If electricity prices actually increase by only 1% per year (plausible in wind-dominated UK regions with falling wholesale costs), the real payback extends accordingly. Payback projections should be presented with low, mid, and high electricity inflation scenarios, not a single point estimate.
+
+**The 30% ITC calculation in the US requires tax liability to match.** The Federal Investment Tax Credit is a non-refundable credit. A homeowner with $4,500 of Federal tax credit can only use it up to their actual Federal tax liability. A retired homeowner with $2,200 in annual Federal tax liability will use the credit over 2+ years, reducing the time-value benefit. Installers often present the full 30% credit as Year 1, which is only accurate if the homeowner has sufficient tax liability — a detail frequently omitted from sales presentations.
+
+**Smart tariff spread risk is real.** The UK smart tariff arbitrage calculation assumes a stable differential between cheap and expensive periods. Octopus Agile prices are set daily based on wholesale market conditions. During periods of high renewable generation, overnight prices occasionally go negative (Agile exports rewards, but batteries auto-charge, eliminating the ability to charge cheaply). During peak energy crisis periods, peak rates spike to 70p+ while off-peak can be 15p — making the spread extremely profitable. The 10-year payback projection cannot confidently assume either condition persists. Long-term payback models should reflect the average spread over the past 3 years, not the current spread.
+
+---
+
+## When This Approach Breaks Down
+
+The payback period framework is universally useful for financial comparison, but produces misleading outputs in specific circumstances.
+
+**Systems that serve multiple simultaneous objectives.** A battery sized for whole-home backup (15–20 kWh) generates different savings per kWh than one sized for TOU arbitrage (9–13 kWh). If the "Annual Savings" figure is calculated using the arbitrage model on a backup-sized system, the savings per kWh are correct, but the system cost is higher than needed for arbitrage alone. The payback period is artificially lengthened not by poor financial performance, but by including capability (backup reserve) that has non-financial value excluded from the savings figure. A correct analysis would separate the cost of backup capacity from the cost of arbitrage capacity and evaluate each against its relevant benefit.
+
+**Homes on fixed contracts or locked tariffs.** Some homeowners are on multi-year fixed energy contracts. During this period, they cannot switch to a smart tariff to access TOU benefits without incurring exit fees. A battery installed during a fixed-rate contract period will primarily accumulate only self-consumption savings (avoiding grid imports when solar is generating) — not the full arbitrage value modelled in the payback calculation. Payback significantly lengthens if TOU arbitrage cannot begin until contract expiry.
+
+**Properties with very high daily consumption masking cycle limitations.** A household consuming 40 kWh/day has an enormous total energy cost — but a 13.5 kWh battery can only offset a fraction of this. The annual savings figure from a 13.5 kWh battery is capped by the battery's maximum daily cycling capacity (not by the household's consumption). Payback calculations for high-consumption households must use battery capacity as the throughput limit, not household consumption — otherwise the model overestimates savings for homes that consume far more than the battery can provide.
+
+**Battery loans and monthly financing.** A homeowner who finances a £10,000 battery over 10 years at 12% APR pays approximately £8,400 in interest. Their total cost of ownership is £18,400, not £10,000. A payback calculation based on the hardware price without modelling financing costs understates the true breakeven point by 50–80% for financed systems. Always model total repayment cost, not hardware cost, for financed installations.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Los Angeles purchases a 13.5 kWh Tesla Powerwall 3 in Q4 2025. Net installed cost after 30% ITC: $11,200. Their modelled payback: 6.4 years at $1,750 annual savings (based on avoiding peak imports at $0.48/kWh from 4 PM–9 PM on SCE TOU-D-PRIME tariff).
+
+**Year 1 actual savings breakdown:**
+- Peak imports avoided: 1,460 kWh × $0.48/kWh = $700.80
+- Solar self-consumption increase (storing export that would have been worth $0.04/kWh): 1,095 kWh × ($0.35 - $0.04) = $339.45
+- Off-peak grid charging cost: 365 nights × 1.5 kWh supplement × $0.12/kWh = $65.70
+
+**Year 1 net savings: $974.55** — significantly below the $1,750 projection.
+
+**Why the gap?** The installer's $1,750 projection assumed the homeowners would be home during peak hours (4–9 PM) and running peak loads every day. In reality, they travelled internationally for 6 weeks of the year, eliminating peak consumption during that period. Additionally, their 6 kW solar array only produced sufficient surplus to fully charge the battery during summer — autumn and spring cycles averaged 8.5 kWh, not the modelled 13.5 kWh.
+
+**Revised payback: 11.5 years** — materially different from the quoted 6.4 years.
+
+**Lesson:** Payback projections require inputs based on your actual occupancy pattern, seasonal solar data, and confirmed tariff structure — not installer-supplied assumptions. Use the [battery sizing and ROI calculator](/calculator) with your own smart meter data as input, and compare cost benchmarks in the [solar battery cost guide](/cost/solar-battery-cost-uk-2026) before accepting any savings projection.
+
+---
+
+## Engineering Recommendation
+
+The payback period framework is the correct evaluation method for battery investment, but it must be applied with appropriate input quality — not relied on as a sales tool projection.
+
+**Use the simple payback formula as a filter, not a verdict:**
+- A calculated payback of under 8 years using conservative (not optimistic) inputs deserves further analysis
+- A calculated payback of over 12 years using conservative inputs should trigger a question: what non-financial value makes this worth proceeding?
+- A range of 8–12 years requires sensitivity analysis across electricity price scenarios
+
+**Key inputs to challenge when reviewing an installer's payback projection:**
+- What electricity price inflation rate is assumed? (Ask to see the calculation with 0% and 3% scenarios)
+- Is the system sized for maximum cycling or maximum backup? (These produce different savings per £/$ of investment)
+- Has the modelled daily cycling depth been confirmed against your property's actual winter solar surplus?
+- Does the ITC/incentive calculation account for your specific tax liability position?
+
+**The key decision trigger** is whether the payback calculation, when re-run with your personal inputs rather than installer assumptions, still falls within a range you would accept for any other capital investment. If a more conservative model pushes payback beyond 12 years, focus on backup value and environmental benefit — not financial ROI — as the primary justification. Run your personalised calculation through the [battery payback calculator](/calculator) before committing. See the [solar battery cost guide](/cost/solar-battery-cost-uk-2026) for 2026 market pricing benchmarks.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Real-world payback benchmarks by market
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Payback calculation errors to avoid
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When payback period exceeds any reasonable threshold

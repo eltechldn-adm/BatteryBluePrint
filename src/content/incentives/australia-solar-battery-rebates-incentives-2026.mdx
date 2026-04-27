@@ -173,3 +173,82 @@ VPP participation is within the normal operating parameters of the battery and d
 **Q: What is the payback period for a battery in Australia in 2026?**
 
 Payback periods vary significantly by state, electricity tariff, and system size. In states with high electricity prices (SA, NSW, QLD) and available rebates, payback periods of 5–8 years are achievable for a well-optimised system. In states with lower electricity prices or fewer incentives, payback periods of 8–12 years are more typical. Use the [BatteryBlueprint calculator](/calculator) to estimate your specific payback period based on your energy usage and local electricity prices.
+
+---
+
+## Engineering Reality
+
+Australian battery rebate programmes operate across a fragmented state-based framework, and the interaction between federal and state incentives creates specific complexity that standard guides routinely underanalyse.
+
+**Small-scale Technology Certificates (STCs) cover solar panels, not batteries — a common consumer misconception.** The federal STC scheme provides an upfront point-of-sale reduction on eligible solar panel systems based on projected 15-year generation. STCs are calculated per unit of power generation capacity and are awarded to the solar panels, not the battery. A standalone battery system installed without solar panels does not generate STCs. A battery retrofitted to an existing solar system also does not generate additional STCs for the solar component (the STCs were already claimed at original installation). The financial models that quote "federal rebate" for battery installations are typically conflating STC entitlements on the solar component of a combined solar+battery system with battery-specific rebates that only exist at state level.
+
+**VPP programme income is structurally different from rebate income and should be modelled separately.** The South Australian Virtual Power Plant (SA VPP) tariff structure provided by SA Power Networks and AGL offers bill credits in exchange for battery dispatch participation. This is not a rebate — it is an ongoing revenue stream with variable income determined by dispatch frequency, which in turn depends on grid conditions in a given year. Modelling VPP income at a fixed annual figure (as most summary guides do) overstates income predictability. The SA VPP programme's average annual income has ranged from $280 to $680 per household per year across participating years, depending on summer peak severity. Any payback calculation based on VPP income should use a conservative range, not a single point estimate.
+
+**Grid export limitations affect rebate economics in high-penetration areas.** In South Australia and parts of Queensland, DNSP export limits on residential solar+battery systems have been progressively tightened as grid penetration increases. Properties in constrained distribution circuits may have export limited to 1.5–5 kW regardless of installed capacity. Feed-in tariff and VPP income calculations that assume unconstrained export overstate available income in these areas. Before purchasing a system, check with your DNSP (SA Power Networks, Energex, Endeavour Energy) whether export limits apply in your street — this information is available on request and materially affects the return model.
+
+---
+
+## When This Approach Breaks Down
+
+The standard Australian battery incentive framework works well for homeowners in metropolitan areas with access to the full range of state rebates. Several circumstances require modified analysis.
+
+**Territories without state rebate programmes.** The ACT, NT, and Tasmania have either ended, paused, or never launched residential battery rebate programmes equivalent to VIC, NSW, QLD, or SA. The financial case for battery storage in these territories relies entirely on electricity tariff arbitrage and solar self-consumption economics without rebate uplift — producing payback periods that are typically 2–4 years longer than equivalent calculations for rebate-eligible states.
+
+**Properties subject to Body Corporate approval.** Apartment and townhouse properties subject to strata or Body Corporate administration may require owner corporation approval before installing battery storage, particularly for installations that involve exterior wall mounting, cable penetrations, or modifications to common property electrical infrastructure. This approval process can take 3–12 months, and Body Corporate rules in some states explicitly prohibit certain battery types (NMC chemistry) due to fire risk provisions that are more conservative than the relevant Australian Standards. Confirm Body Corporate approval requirements before completing a financial assessment based on a specific installation timeline.
+
+**Regional properties with three-phase supplies.** For larger rural properties with three-phase metered supplies, single-phase battery storage provides only phase-specific offsetting — load on the other two phases continues to attract full grid import costs. State rebate programmes that calculate rebates based on total household kWh consumption overstate the effective savings in three-phase properties relative to the actual single-phase offset.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Modbury, South Australia installs a 5 kW solar array + SolarEdge 9.7 kWh battery in March 2026.
+
+**Incentives stack applied:**
+- SA Home Battery Scheme subsidy: $2,000 (income-tested, paid to installer, reducing quoted system price)
+- Federal STC entitlement on solar panels: STC × $38 = reduced solar component cost by approximately $2,800
+- No state rebate on the battery itself (SA Home Battery Scheme is income-tested; this household's income places them in the standard rather than low-income tier, receiving $2,000 rather than $3,200)
+- SA VPP programme: Enrolled at installation. Projected Year 1 income: $320–$520 AUD
+
+**Total system cost net of incentives:**
+- Gross system quote: $14,200 AUD
+- Less STC entitlement: -$2,800
+- Less SA Battery Scheme subsidy: -$2,000
+- Net cost: $9,400 AUD (approximately £4,960 GBP)
+
+**Annual saving/income:**
+- Solar self-consumption offset: $820/year
+- Agile (Octopus Australia equivalent) arbitrage: $440/year
+- VPP dispatch income (conservative estimate): $380/year
+- Total: $1,640/year
+
+**Payback period:** $9,400 ÷ $1,640 = **5.7 years**
+
+**Lesson:** The complexity of stacking STC entitlements, state rebate, and VPP income correctly requires confirming each element independently — STC with the installer, state rebate eligibility with the state authority, and VPP income with the aggregator. A quote that combines all three without itemising them makes it impossible to verify the calculation. Use the [BatteryBlueprint calculator](/calculator) to model the post-incentive payback for your specific state and income bracket.
+
+---
+
+## Engineering Recommendation
+
+Australia's battery incentive landscape is genuinely favourable for residential homeowners in rebate-eligible states in 2026, but capturing the full incentive stack requires active verification of eligibility, not passive acceptance of quote estimates.
+
+**Before signing any installation contract, verify independently:**
+1. State rebate: Confirm eligibility, current rebate quantum, and income-testing threshold via the relevant state authority website — not via the installer's summary
+2. STC entitlement: Confirm the STC calculation (installation postcode × panel kW × STC creation price) via the Clean Energy Council's STC calculator — not via the installer's stated amount
+3. DNSP export limit: Confirm with your DNSP whether export limits apply in your street and at what kW threshold — this affects feed-in tariff and VPP income
+4. VPP eligibility: Confirm with the VPP programme operator (AGL, Origin, Amber) what the current enrolment terms, dispatch commitment, and annual income range have been across the last 3 years — not just the headline "up to $X" figure
+
+**State-specific priority actions:**
+- **VIC:** Confirm Solar Homes programme rebate balance (funding is finite and allocated by application period)
+- **SA:** Confirm SA Home Battery Scheme income tier and subsidy quantum before selecting battery size
+- **NSW:** Check the Empowering Homes programme eligibility for interest-free loan combination with federal ITC equivalent
+
+**The key decision trigger** for Australian homeowners is the net-of-incentives cost and the payback period at conservative savings assumptions. If payback is below 8 years at conservative tariff and VPP income estimates, the investment is justified at 2026 prices. Use the [battery sizing calculator](/calculator) and factor in the DNSP export limit check before completing the analysis.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How Australian incentives change the payback
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Australian rebate claim errors
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When rebates can't fix poor Australian economics

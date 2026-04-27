@@ -176,3 +176,82 @@ Typically 4–8 hours, similar to a standard EV charger installation. If electri
 **Q: Should I wait for V2H before buying a home battery?**
 
 If you're planning to buy a V2H-capable EV in the next 1–2 years, it may be worth waiting to see how V2H works in practice before committing to a home battery. If you're not planning to buy a compatible EV, or if you need backup power now, a home battery is the right choice. Our [is solar battery storage worth it](/cost/is-solar-battery-storage-worth-it) guide can help you evaluate the financial case.
+
+---
+
+## Engineering Reality
+
+Vehicle-to-home technology is technically viable and commercially available in limited markets. The engineering constraints on widespread residential adoption are specific and not well-communicated in general V2H coverage.
+
+**V2H power transfer is limited by the onboard charger, not the vehicle battery capacity.** A Nissan Leaf with a 40 kWh battery sounds like a substantial home backup resource. However, the V2H power transfer rate is constrained by the onboard bidirectional charger — currently 6 kW maximum for CHAdeMO-equipped vehicles. UK household peak demand is typically 5–8 kW during morning and evening peaks. At 6 kW continuous discharge, the vehicle can fully drain its 40 kWh battery in approximately 6.7 hours. This is adequate for overnight backup but not for extended multi-day outages without managed load shedding. The 40 kWh capacity is a theoretical maximum; at the power rates available, most households would reach an SoC management ceiling (manufacturers recommend not discharging below 20%) well before the full 40 kWh is available.
+
+**V2H degradation impact on EV battery is measured but manageable with correct configuration.** V2H operation places additional charge-discharge cycles on the vehicle battery beyond those from normal driving. A vehicle used for 12,000 miles/year in the UK (approximately 60 full charge-discharge cycles from driving alone) plus daily V2H cycling at 30% depth would experience approximately 230 equivalent full cycles per year — substantially higher than the 60 cycles from driving alone. Most modern EV warranties (Nissan Leaf, Hyundai Ioniq 5) use capacity retention guarantees rather than cycle count limits for the main battery warranty, so V2H cycling may not directly violate warranty terms. However, the accelerated cycling will increase calendar aging relative to a vehicle used only for driving.
+
+**UK V2H regulatory and tariff infrastructure is still developing.** CHAdeMO V2H has been technically available in Japan since 2012 and in limited UK installations since 2022. However, UK energy tariff structures that adequately compensate for V2H discharge — billing the V2H output as generation rather than as grid import reversal — are not standardised. Octopus Energy's Intelligent Octopus Go and Electroverse products support some bidirectional tariff structures, but the regulatory framework for residential V2G/V2H is still being developed under Ofgem's V2G Smart Planning process. A homeowner who installs V2H hardware in 2026 may find that the optimal tariff product to monetise it does not yet exist.
+
+---
+
+## When This Approach Breaks Down
+
+V2H works well for households where vehicle and home battery requirements align. Several common scenarios create structural conflicts.
+
+**Multi-car households where the V2H vehicle is not reliably available.** V2H requires the vehicle to be physically connected to the home charging unit to provide power. A household with two vehicles where the V2H-capable vehicle is used for a long commute 5 days per week has it unavailable during the peak-demand morning window that V2H would most usefully cover. For these households, a dedicated home battery provides more reliable backup coverage than a vehicle that may or may not be parked and connected.
+
+**Households with high driving mileage.** UK average annual mileage is 7,400 miles. For households driving 20,000+ miles per year, the vehicle battery is more frequently in a depleted state from driving and less available for V2H discharge. A homeowner who commutes 50 miles daily may return home with only 30–40 miles of range remaining (10–15% SoC), providing very limited backup capacity before the V2H management system's minimum SoC floor is reached.
+
+**Properties without adequate EV charger infrastructure.** V2H requires a bidirectional EVSE charger rated for both import and export — different from a standard one-way EV charger. The installation cost of a bidirectional EVSE (typically £2,000–£4,500 installed in the UK) is additional to the EV purchase cost and approaches the cost of a separate home battery module. For households who have not yet installed EV charging infrastructure, the combined V2H hardware investment is comparable to a standalone home battery.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Norwich, Norfolk purchases a Nissan Leaf 40 kWh (CHAdeMO) in late 2025 and installs a CHAdeMO V2H unit (Wallbox Quasar 2) in February 2026.
+
+**Installation specifications:**
+- Vehicle: Nissan Leaf 40 kWh, odometer 12,000 miles at purchase
+- V2H unit: Wallbox Quasar 2 (CHAdeMO)
+- Installation cost: £3,200 (0% VAT claimed — confirmed applicable to bidirectional charger under HMRC guidance)
+- Solar: Existing 3.5 kW array (installed 2022)
+
+**First 6 months of V2H operation:**
+- Average daily V2H discharge: 6.8 kWh (covering evening peak draw, dawn-to-dusk gap)
+- Average daily recharge from solar + overnight cheap tariff: 8.2 kWh
+- Net effect on annual driving range: Minimal (managed at 20–80% SoC maintained)
+- Estimated annual saving from V2H operation (vs grid import at peak rate): £620
+
+**Comparison to standalone battery option (9.5 kWh GivEnergy AIO, £6,800 installed):**
+- Standalone battery annual saving: £760/year (larger effective storage, no minimum SoC floor)
+- V2H installation: £3,200 upfront, £620/year saving → payback 5.2 years
+- Standalone battery: £6,800 upfront, £760/year → payback 8.9 years
+
+**Lesson:** For households already committed to EV ownership, V2H can provide a faster payback route to home energy storage than a standalone battery, at lower upfront cost — if the vehicle is reliably available for discharge. The constraint is availability: V2H only works when the car is plugged in. Use the [battery sizing calculator](/calculator) to compare standalone and V2H scenarios for your specific load profile, and the [is it worth it guide](/cost/is-solar-battery-storage-worth-it) for the financial framework.
+
+---
+
+## Engineering Recommendation
+
+V2H is a genuine and increasingly accessible technology with a compelling financial case for EV owners who can ensure regular vehicle availability for home discharge. It is not a universal substitute for dedicated home battery storage, and the two technologies serve different household profiles.
+
+**V2H is the right choice when:**
+- You already own or are buying a V2H-compatible EV (Nissan Leaf CHAdeMO, Hyundai Ioniq 5, BYD Atto 3 in CCS V2H markets)
+- The vehicle is parked and connected for 8+ hours per day at a predictable time
+- Your household's peak demand is below 6 kW (the current V2H export power ceiling)
+- Upfront cost minimisation is a priority over maximum storage capacity
+
+**A dedicated home battery remains preferable when:**
+- Reliable daily vehicle availability cannot be guaranteed
+- Peak household demand exceeds 6 kW (V2H power limit)
+- You require backup power that operates independently of vehicle SoC management
+- Your household drives high mileage and the vehicle frequently returns home depleted
+
+**Both systems can coexist.** A V2H unit plus a 9.5 kWh home battery provides complementary storage: the home battery handles daily arbitrage cycling, and the EV battery provides extended outage backup when needed. This architecture separates EV usage from home energy management, eliminating the availability dependency issue.
+
+**The key decision trigger** is reliable vehicle availability. If your vehicle is parked and plugged in for 8+ hours on at least 5 days per week, V2H delivers meaningful value. If vehicle availability is variable, a dedicated home battery provides more predictable outcomes. Use the [battery sizing calculator](/calculator) to model both scenarios, and the [best batteries guide](/comparisons/best-solar-batteries-2026) for current standalone battery options.
+
+---
+
+## Related Reading
+
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When V2H makes a dedicated battery unnecessary
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — V2H vs dedicated battery payback comparison
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — V2H planning errors to avoid

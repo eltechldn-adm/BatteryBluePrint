@@ -21,17 +21,22 @@ export function CountryProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         setMounted(true);
 
-        // 1. Check LocalStorage
+        // Version key — bump this whenever the default or detection logic changes
+        // so stale localStorage values (e.g. old 'US' hardcoded default) are discarded.
+        const CACHE_VERSION = '3';
+        const storedVersion = localStorage.getItem('bb_country_v');
         const storedCountry = localStorage.getItem('bb_country');
-        const storedOverride = localStorage.getItem('bb_country_override'); // 'true' if manually set
+        const storedOverride = localStorage.getItem('bb_country_override');
 
-        if (storedCountry && SUPPORTED_COUNTRIES[storedCountry]) {
+        const isStale = storedVersion !== CACHE_VERSION;
+        const wasManuallySet = storedOverride === 'true';
+
+        if (!isStale && storedCountry && SUPPORTED_COUNTRIES[storedCountry] && wasManuallySet) {
+            // Only trust stored value if user explicitly chose it AND cache is fresh
             setCountryCode(storedCountry);
-            if (storedOverride === 'true') {
-                setHasUserOverride(true);
-            }
+            setHasUserOverride(true);
         } else {
-            // 2. Auto-detect
+            // Auto-detect via browser timezone + language (most accurate client-side method)
             const detected = mapNavigatorToCountry(
                 navigator.language,
                 Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -39,8 +44,10 @@ export function CountryProvider({ children }: { children: React.ReactNode }) {
             setDetectedCountryCode(detected);
             setCountryCode(detected);
 
-            // Persist auto-detected value (but don't mark as override)
+            // Persist auto-detected value with fresh version stamp
             localStorage.setItem('bb_country', detected);
+            localStorage.setItem('bb_country_v', CACHE_VERSION);
+            localStorage.removeItem('bb_country_override'); // not a manual choice
         }
     }, []);
 

@@ -12,8 +12,11 @@ import {
     Gift,
     Sparkles,
     ArrowRight,
-    FileText,
-    Globe
+    ShieldCheck,
+    Globe,
+    AlertTriangle,
+    HelpCircle,
+    CheckCircle
 } from "lucide-react";
 import type { Metadata } from "next";
 import { getArticlesByCategory, CONTENT_CATEGORIES, type ContentCategory } from "@/lib/content/mdx";
@@ -132,10 +135,10 @@ export default function EnergyHub() {
                                     Use the Calculator
                                 </Button>
                             </Link>
-                            <Link href="/calculator">
+                            <Link href="/worth-it">
                                 <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 px-8 text-lg font-bold rounded-xl gap-2">
-                                    <FileText className="w-5 h-5" />
-                                    Get Blueprint PDF
+                                    <ShieldCheck className="w-5 h-5" />
+                                    Decision Guides
                                 </Button>
                             </Link>
                         </div>
@@ -190,7 +193,7 @@ export default function EnergyHub() {
                             })}
                         </div>
                     </div>
-                    <div className="max-w-6xl mx-auto space-y-12">
+                    <div className="max-w-6xl mx-auto space-y-12 mt-16 pt-12 border-t border-border/40">
                         {articlesByCategory.map((categoryData, index) => {
                             if (categoryData.articles.length === 0) return null; // Don't render empty categories
                             return (
@@ -281,6 +284,80 @@ export default function EnergyHub() {
                         </div>
                     </section>
                 )}
+
+                {/* Decision Guides Section */}
+                <section className="px-4 sm:px-6 py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="mb-8 text-center">
+                            <h2 className="text-3xl font-bold mb-2">Decision Guides</h2>
+                            <p className="text-muted-foreground max-w-2xl mx-auto">
+                                Independent engineering guidance to help you decide whether, when, and what to buy — before you talk to a salesperson.
+                            </p>
+                        </div>
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                            {[
+                                {
+                                    href: '/worth-it',
+                                    icon: CheckCircle,
+                                    title: 'Is Solar Battery Storage Worth It in 2026?',
+                                    desc: 'Financial verdict with market-by-market analysis and a 5-condition decision rule.',
+                                },
+                                {
+                                    href: '/when-not-to-buy',
+                                    icon: HelpCircle,
+                                    title: 'When NOT to Buy a Solar Battery',
+                                    desc: 'Five specific conditions where a battery purchase is the wrong financial decision.',
+                                },
+                                {
+                                    href: '/hidden-costs',
+                                    icon: DollarSign,
+                                    title: 'Hidden Costs of Solar Battery Storage',
+                                    desc: 'Installation extras, maintenance, insurance, and replacement — what quotes miss.',
+                                },
+                                {
+                                    href: '/common-mistakes',
+                                    icon: AlertTriangle,
+                                    title: 'Biggest Mistakes Homeowners Make',
+                                    desc: 'The eight most expensive errors in solar battery planning and how to avoid them.',
+                                },
+                                {
+                                    href: '/payback-reality',
+                                    icon: TrendingUp,
+                                    title: 'Solar Battery Payback Reality',
+                                    desc: 'Real-world payback periods for the UK, US, Australia, and global markets.',
+                                },
+                                {
+                                    href: '/choose-battery',
+                                    icon: ShieldCheck,
+                                    title: 'How to Choose the Right Solar Battery',
+                                    desc: 'A structured 5-step decision framework covering chemistry, capacity, and installer questions.',
+                                },
+                            ].map(({ href, icon: Icon, title, desc }) => (
+                                <Link key={href} href={href} className="group block">
+                                    <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+                                        <CardHeader>
+                                            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+                                                <Icon className="w-5 h-5 text-primary" />
+                                            </div>
+                                            <CardTitle className="text-base group-hover:text-primary transition-colors leading-snug">
+                                                {title}
+                                            </CardTitle>
+                                            <CardDescription className="text-sm leading-relaxed mt-1">
+                                                {desc}
+                                            </CardDescription>
+                                        </CardHeader>
+                                        <CardContent className="pt-0">
+                                            <div className="flex items-center text-sm text-primary font-medium">
+                                                Read guide
+                                                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
                 {/* Conversion Section */}
                 <section className="px-4 sm:px-6 py-16 md:py-20 bg-gradient-to-br from-primary/5 to-secondary/5">

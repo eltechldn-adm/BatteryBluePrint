@@ -219,3 +219,80 @@ Your solar battery is an expensive asset. Don't ignore it for 10 years.
 *   **Keep it cool.**
 
 [**View Top Rated Batteries for Reliability →**](/comparisons/best-solar-batteries-2026)
+
+---
+
+## Engineering Reality
+
+Battery health monitoring is more nuanced than the monitoring app's simple "System OK" status light suggests. Understanding what the metrics mean — and what they don't capture — is essential for proactive health management.
+
+**State of Health (SoH) as reported by the BMS is an estimate, not a measurement.** The SoH percentage shown in a monitoring app is calculated by the BMS using cell voltage interpolation and coulombic counting algorithms — not by directly measuring actual capacity. These algorithms assume cells age uniformly, which is not always the case. Cell imbalance within a battery module (where one cell group degrades faster than others) can cause the BMS to report optimistic SoH while actual usable capacity is lower. The only way to confirm actual usable capacity is a controlled discharge test: charge to 95%, discharge to 10% at a known, consistent power level, and measure total kWh delivered. This provides ground-truth data that the monitoring app's SoH calculation cannot.
+
+**Cycle count reporting across manufacturers uses different definitions.** Tesla Powerwall cycle count is defined using the "equivalent full cycle" (EFC) methodology — charging and discharging 13.5 kWh counts as one cycle regardless of whether it occurred in one event or across multiple partial cycles. GivEnergy reports total charge throughput in kWh. BYD reports a cycle count based on the BMS's internal tally of charge/discharge events. These different methodologies make direct cycle count comparisons between brands meaningless and complicate warranty claim assessment. When monitoring cycle count for warranty purposes, confirm the methodology used by your specific manufacturer.
+
+**Monitoring app outages do not mean battery faults.** Most battery monitoring apps use cloud-based data aggregation — the battery streams data to a cloud server, which then serves it to the app. A monitoring app that shows no data or an "offline" status may reflect a cloud server issue, a router connection drop, or a broadband outage rather than a battery fault. Before escalating "no data" alerts to an installer, confirm: (1) the monitoring device (Zigbee gateway, ethernet connection) is powered; (2) the broadband router is operational; (3) the app has not been logged out by a software update. True battery faults are indicated by physical fault lights on the inverter or BMS, not by app disconnections.
+
+**Round-trip efficiency decline is a leading indicator of accelerated degradation.** The round-trip efficiency of a healthy LFP battery system (including inverter losses) should be 90–95% in Year 1. As cells age, internal resistance increases, causing higher heat generation during charge/discharge and a measurable efficiency decline. A system that charged with 10 kWh and discharged 8.3 kWh (83% RTE) is significantly more degraded than one that achieved 9.2 kWh (92% RTE). Most monitoring platforms do not show RTE directly, but it can be calculated monthly from the charge energy in and discharge energy out totals visible in the export data. A sustained decline below 88% RTE should trigger a maintenance investigation before the annual review.
+
+---
+
+## When This Approach Breaks Down
+
+Standard health monitoring protocols are calibrated for residential systems in straightforward use cases. They require modification for specific deployment scenarios.
+
+**Systems installed in unmonitored environments.** A battery installed in a holiday home, rental property, or secondary residence with intermittent owner attendance often receives no routine monitoring. Faults that would be caught within days in a primary residence may go undetected for weeks or months. For these installations, manufacturer email alert subscriptions (available for most Tier 1 brands) should be enabled — these provide fault notification without requiring active log review, and represent the minimum monitoring standard for unattended systems.
+
+**Systems with multiple battery units.** Homes with 2–3 battery units stacked in series or parallel may have BMS systems from the same brand that report aggregated metrics rather than per-unit data. A fault in one unit may not be individually flagged if the aggregate system SoH remains within expected range. For multi-unit systems, request per-unit health data from the installer during annual reviews rather than relying solely on aggregate app data.
+
+**Systems in Very Long Winter Dormancy.** A poorly understood health monitoring scenario exists for some off-grid and rural properties that experience extended periods where the battery is at very low SoC in cold temperatures. LFP batteries stored at low SoC in cold conditions can experience lithium plating during the next charging cycle — a form of electrolyte interaction that accelerates capacity fade and, in extreme cases, reduces safety margins. Systems in cold climates that regularly discharge to below 20% in winter should be monitored for unusual cell temperature behaviour during the first charge cycle after a cold dormancy period.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Cambridge, UK monitors a Tesla Powerwall 3 (13.5 kWh) installed in March 2024. Monthly monitoring review in January 2026 (approximately 22 months of operation):
+
+**App data reviewed:**
+- Reported SoH: 96.7%
+- Reported lifetime cycles: 734 EFC
+- Recent daily savings: £2.10/day (on Octopus Flux, consistent with prior months)
+
+**Manual RTE calculation (from January 2026 monthly data export):**
+- Total January charge energy in: 248 kWh
+- Total January discharge energy out: 227 kWh
+- Calculated RTE: 91.5%
+
+**Comparison to Year 1 baseline (January 2025 export data):**
+- Total charge energy in: 231 kWh
+- Total discharge energy out: 216 kWh
+- Year 1 RTE: 93.5%
+
+**RTE decline: 2 percentage points over 12 months.** This is within the expected degradation range for LFP systems (typically 0.5–2% per year of RTE decline in Years 1–3). No action required, but the baseline is now established for comparison in January 2027.
+
+**Lesson:** The app's "96.7% SoH" metric alone provided limited actionable insight. The manually calculated RTE from raw export data provided a quantitative baseline that can be tracked year-over-year to identify any acceleration in degradation. Monthly data exports typically take 5 minutes to review. See the [battery maintenance guide](/how-to/how-to-maintain-solar-battery-system) for the full annual review protocol.
+
+---
+
+## Engineering Recommendation
+
+Battery health monitoring should be treated as a predictive discipline, not a reactive one. The value of monitoring is not in detecting faults after they occur — that's the inverter's fault light — but in identifying trends that allow corrective action before irreversible degradation accumulates.
+
+**The minimum effective monitoring programme:**
+- Monthly: Review the prior month's charge/discharge energy data and calculate actual round-trip efficiency. Flag any month where RTE falls below 88%.
+- Annually: Conduct a controlled capacity test and compare against prior years. Record results in a simple spreadsheet that tracks degradation rate year-over-year.
+- Annually: Review cell temperature peak logs for the prior summer and confirm no readings exceeded 35°C (LFP). Investigate any that did.
+
+**Tools available:**
+- Most battery monitoring apps provide raw data export (CSV or JSON) — enable this data export in your app settings for monthly review
+- For Home Assistant users, the LFP Battery Monitor integration provides automated RTE calculation and trend tracking
+- Annual capacity test methodology: Charge to 95% at a defined power rate (e.g., 2 kW), hold for 1 hour, then discharge to 10% at the same rate. Measure the kWh recorded by the monitoring app during discharge. Compare against rated usable capacity.
+
+**The key decision trigger** is a measured usable capacity below 80% of original rated capacity within the warranty period. Document the controlled capacity test result, retain the monitoring export data showing the test, and submit a warranty claim with both the test result and the supporting data. Most Tier 1 manufacturers process warranty capacity claims within 4–8 weeks when supporting data is complete. Review the [top-rated batteries guide](/comparisons/best-solar-batteries-2026) to understand what warranty terms are standard before making a claim.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Ignoring health signals is a costly mistake
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When battery health signals indicate a poor investment
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How degradation affects your payback figures

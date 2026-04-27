@@ -299,3 +299,82 @@ FranklinWH offers a 12-year warranty (vs. 10 years for most competitors) with a 
 
 ### Can I mix different battery brands?
 Generally no. Different battery brands use different communication protocols, voltage levels, and BMS systems. Mixing brands can cause compatibility issues, void warranties, and create safety hazards. Stick to a single brand ecosystem for your installation.
+
+---
+
+## Engineering Reality
+
+Battery brand comparisons on specification sheets represent controlled-condition best-case performance. Several factors cause real-world systems to diverge from the datasheet.
+
+**Round-trip efficiency figures are measured under specific test conditions.** The GivEnergy AIO is rated at 88% round-trip efficiency — lower than the Enphase 5P's 96%. However, the GivEnergy's lower figure is measured at full 6 kW discharge rate. At typical household discharge rates (1–2 kW), the measured efficiency often improves to 91–93%. Enphase's 96% is similarly measured under optimal conditions. Both figures narrow in practice, but the GivEnergy's gap is smaller than the headline numbers suggest.
+
+**11.5 kW continuous output from the Powerwall 3 is conditional.** Tesla specifies 11.5 kW continuous subject to thermal conditions. In sustained high-load operation (e.g., running a 3-ton heat pump and EV charger simultaneously over several hours), the Powerwall 3's thermal management system will throttle output to protect cell integrity. This is correct engineering behaviour, but users who purchase the Powerwall 3 specifically for its high-output spec should understand that peak output is not infinite-duration output.
+
+**Software ecosystems lock you into one manufacturer's cloud.** Tesla's energy management software is best-in-class for US TOU markets. However, the Powerwall ecosystem does not provide an open API. Third-party home energy management platforms (Home Assistant, solar.web, SolarManager) cannot directly query Powerwall data or dispatch commands. If you intend to participate in a Virtual Power Plant programme or use a third-party aggregator, confirm that your battery's API is accessible before purchasing.
+
+**Warranty depth matters as much as warranty length.** FranklinWH's 12-year warranty and Enphase's 15-year warranty both sound compelling. However, warranty coverage terms differ significantly. Some warranties cover only manufacturing defects, not capacity degradation below threshold. Others cover 70% capacity retention explicitly. Read the warranty document — not the marketing summary — before making a final comparison.
+
+---
+
+## When This Approach Breaks Down
+
+The four-brand comparison is representative of the mainstream market. Several important purchasing scenarios fall outside this model.
+
+**Off-brand server-rack LFP systems for cost-sensitive buyers.** Brands like EG4, Jakiper, and Huawei Atlas are not reviewed here because local installer support in the UK and US is limited. However, their hardware quality is often on par with Tier 1 systems at 30–50% lower cost per kWh. For technically competent buyers willing to self-manage commissioning and deal with manufacturer support directly, these represent genuine value. For buyers who want local warranty support through a registered installer, Tier 1 brands are the correct choice.
+
+**Properties in VPP programmes with mandatory battery models.** Some Virtual Power Plant operators (Octopus Power Loop in the UK, AutoGrid in the US) require specific inverter-battery combinations for programme participation. If you are enrolled in or planning to enrol in a VPP, confirm hardware compatibility with the programme operator before purchasing — your payment-per-kWh income may depend on the specific model you choose.
+
+**Rapid-expansion scenarios beyond system limits.** The Enphase 5P can theoretically be stacked to any capacity, but practical expansion is constrained by the Enphase IQ System Controller's maximum supported unit count (currently 10 units in most configurations). FranklinWH allows up to 3 units per gateway. Tesla Powerwall 3 supports up to 4 units per system. If you anticipate needing more than 40 kWh in future, these per-system limits require either a secondary inverter system or a different approach entirely.
+
+**New builds with planned EV charging.** Properties being spec'd from scratch with EV charging in mind should model total peak load and future battery requirement holistically, not just current consumption. A 4-bedroom new build with two EVs, a heat pump, and induction hob may require 25–40 kWh of storage and 15+ kW of inverter output to avoid grid import during evening peak. None of the four systems reviewed above — in a single unit — meet this specification.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in San Jose, California purchases a Tesla Powerwall 3 in February 2026, motivated by California NEM 3.0 economics — where solar export rates have dropped to approximately $0.05/kWh, and import rates at peak reach $0.55/kWh. Their goal is to arbitrage the $0.50/kWh spread through daily cycling.
+
+**First 6 months of operation:**
+- Daily cycles: 365 per year at 13.5 kWh (full cycles)
+- Peak-rate imports displaced: 1,820 kWh (saving $1,001 at $0.55/kWh)
+- Off-peak grid charging cost (where solar insufficient): $183
+- PG&E demand charge triggered: 3 times (Powerwall's 11.5 kW output caused brief demand peaks on a commercial-adjacent tariff — unexpected and worth $47 in penalties)
+- **Net year-1 financial benefit: $771**
+
+At $14,000 net installed cost (after 30% ITC), the payback period is 18.1 years — longer than many initial estimates because off-peak top-up costs and demand charges were not modelled at point of sale.
+
+**Lesson:** California NEM 3.0 arbitrage economics are real but sensitive to accurate modelling. Use the [battery sizing calculator](/calculator) to model your specific tariff, and consult our [solar battery cost guide](/cost/solar-battery-cost-usa-2026) before accepting an installer's savings projection at face value.
+
+---
+
+## Engineering Recommendation
+
+All four systems reviewed are reliable, well-supported products that will perform as specified for the majority of residential use cases. The selection criteria should be driven by use-case fit, not brand loyalty.
+
+**Choose Tesla Powerwall 3 if:**
+- Your primary need is running central AC or motor-heavy appliances during grid outages (11.5 kW continuous is unmatched in this tier)
+- You are in a US market with meaningful TOU spread ($0.15/kWh+) where Tesla's software arbitrage capability delivers real value
+- You are installing solar and battery simultaneously and want a single-vendor integrated system
+
+**Choose FranklinWH aPower if:**
+- You are in a hurricane, wildfire-PSPS, or ice-storm–prone area where multi-day outages are a realistic scenario requiring generator integration
+- Your primary sizing goal is whole-home backup, not daily cycling ROI
+
+**Choose Enphase IQ Battery 5P if:**
+- You have an existing Enphase microinverter system and want seamless ecosystem integration
+- Long-term expandability is a priority and you want the longest warranty in the market (15 years)
+- Redundancy and fault tolerance matter — with Enphase, one unit failure does not take down the entire system
+
+**Choose GivEnergy All-In-One if:**
+- You are a UK homeowner on Octopus Agile, Octopus Flux, or a similar dynamic tariff
+- Your primary driver is financial ROI over a 5–8 year horizon
+
+**The key decision trigger** is modelling your specific tariff spread through the [battery calculator](/calculator) before comparing hardware. A system that delivers a 6-year payback on one tariff may deliver a 14-year payback on another — with the same hardware, in the same home.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Errors to avoid when shortlisting hardware
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Real payback by product category
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When no product currently on the market fits your needs

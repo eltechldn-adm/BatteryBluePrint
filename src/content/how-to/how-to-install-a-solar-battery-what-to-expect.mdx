@@ -169,3 +169,81 @@ A faint hum from the inverter is normal. Any unusual sounds (clicking, buzzing, 
 **Q: How do I know if my installation was done to code?**
 
 A properly certified installation will come with an Electrical Installation Certificate (UK), a permit sign-off (US), or an installation compliance certificate (Australia). If your installer didn't provide these documents, ask for them. In the UK, you can also check that the installation has been registered with your local building control authority — MCS-certified installers are required to do this automatically.
+
+---
+
+## Engineering Reality
+
+Battery installation is a well-defined process, but the gap between average and exceptional installation quality has significant long-term consequences for system performance and warranty protection.
+
+**Commissioning is not the same as installation.** Many homeowners assume that once the battery is mounted and the inverter is wired, the system is "done." The commissioning process — firmware verification, grid profile programming, protection relay testing, and initial charge-discharge cycle validation — is distinct from the physical installation and can take 2–4 hours. A sub-standard commissioning process that programs incorrect grid parameters can cause the inverter to trip unnecessarily during grid voltage fluctuations, reducing effective capacity utilisation by 10–30% in areas with variable grid voltage. Always confirm the commissioning report is provided at handover.
+
+**Installation location affects long-term battery longevity more than any other single factor after chemistry.** LFP batteries are rated for operating temperatures of -10°C to 50°C, but their optimal range for maximum cycle life is 15°C to 35°C. A battery installed in a north-facing external garage in northern Scotland, where January temperatures regularly fall to -5°C, will operate within spec but may experience reduced charge acceptance at low temperatures. Some manufacturers (GivEnergy, Tesla) include a heating element in the BMS that activates at low temperatures — but only if the battery has sufficient SoC to power it. A battery discharged below 20% SoC in a -5°C garage may wake cold and fail to charge efficiently until the morning temperature rises. UK garage temperatures are acceptable for the majority of LFP products, but installation in fully heated internal spaces extends effective cycle life by a measurable margin.
+
+**DNO notification delays can prevent grid export post-installation.** In the UK, battery systems connected to the grid must be notified to the Distribution Network Operator under G98 (systems ≤16A/phase, simplified notification) or G99 (larger systems, full application). G98 notifications are processed within 28 days. Until DNO notification is confirmed, the system should not export to the grid — operating in self-consumption-only mode. Some installers energise the system immediately post-installation and allow export before DNO confirmation, creating a regulatory non-compliance risk. Confirm with your installer that the system is configured for no-export mode until DNO notification is confirmed.
+
+**Test the backup function explicitly — do not assume it works.** An installed system that is correctly commissioned for normal grid-tied operation may still have an incorrectly wired transfer switch that fails to operate correctly during a grid outage. The only way to confirm backup function is an intentional offline test — switching off the grid supply at the main isolator and confirming the battery takes over within the expected switchover time. This test should be conducted at handover, witnessed by the homeowner, and documented in the commissioning report. Installers who decline to perform this test at handover have not fully commissioned the backup function.
+
+---
+
+## When This Approach Breaks Down
+
+The standard installation process is well-adapted to common residential properties. Several circumstances require non-standard approaches.
+
+**Older consumer units with no space for additional circuits.** UK homes built before 2000 frequently have consumer units with all slots occupied. Battery installation requires at least one or two dedicated circuit positions — for the battery inverter and the critical loads subpanel. If the existing consumer unit has no available MCB slots, the installer must either add an extension consumer unit or replace the entire unit. This decision is made at site survey, but some installers only identify the conflict on the day of installation — causing delays and adder costs.
+
+**Three-phase properties.** Most residential battery inverters are single-phase devices. A three-phase home with single-phase battery storage creates an inherent imbalance: the battery only offsets load on one of three phases. Energy drawn on the other two phases continues to attract grid import charges. For properties with three-phase meters where usage is distributed across all three phases, single-phase battery storage provides meaningfully less bill reduction than the raw kWh figures suggest. Three-phase battery systems exist (Tesla Powerwall 3, SMA Sunny Boy Storage) but carry a significant price premium.
+
+**Part-time or holiday properties.** A battery installed in a property that is unoccupied for 3–4 months per year faces a specific calendar aging challenge. During extended vacancy periods, the battery should be stored at 50–60% SoC (not full and not empty) to minimise calendar aging — a requirement that most monitoring apps support via a "storage mode" setting but which requires active configuration by the homeowner. Homeowners who leave a holiday property without setting storage mode, with the battery fully charged, may experience 3–5% additional capacity loss per year compared to an actively managed system.
+
+---
+
+## Real-World Example
+
+**Scenario:** A couple in Harpenden, Hertfordshire arranges a GivEnergy AIO 9.5 kWh installation in October 2025 via a regional MCS-certified installer. Installation day overview:
+
+- 8:45 AM: Two-person installation team arrives with equipment
+- 9:30 AM: Battery mounting bracket assessed — original quote assumed garage south wall, but utility meter is on south wall. Battery relocated to east wall. No additional charge.
+- 11:15 AM: Cabling run complete. Grid isolation switch installed beside battery.
+- 12:30 PM: Inverter wired and sealed. Lunch break.
+- 12:50 PM: Commissioning starts. Firmware updated from V3.7 to V3.9 (Grid Compliance update required by DNO)
+- 14:00 PM: Grid profile programmed to 50 Hz with G98 protection relay settings. Initial charge cycle initiated.
+- 14:45 PM: Backup function tested by isolating grid supply. Inverter switched to island mode in 18ms. Homeowners confirmed lights remained on.
+- 15:00 PM: Commissioning report completed and handed over. DNO G98 notification submitted.
+- 15:15 PM: Monitoring app set up on homeowner's phone. All data visible and confirmed correct.
+
+**Total installation time:** 6h15m (typical for first-time installation with firmware update)
+
+**Post-installation note:** DNO G98 confirmation received 18 days after installation. System operated in self-consumption-only mode during this period. SEG export registration completed within 7 days of DNO confirmation.
+
+**Lesson:** A correctly commissioned installation includes backup function testing, monitoring setup, and DNO notification — all conducted on installation day. If your installer leaves without testing the backup function and setting up monitoring, the installation is not complete. Review the [verify installer certifications guide](/how-to/how-to-verify-installer-certifications) to identify the key credentials to check before booking.
+
+---
+
+## Engineering Recommendation
+
+The installation experience directly predicts the long-term performance of your battery system. A high-quality installation by a qualified team results in a correctly commissioned, monitored, and protected asset. A poor installation creates problems that may only surface during an actual grid outage when backup protection is needed.
+
+**Before installation day:**
+- Confirm the installer has been to the property for a physical site survey — not simply an aerial photo or postcode lookup — before ordering equipment
+- Confirm the commissioning scope in writing: firmware update, grid profile programming, backup function test, monitoring setup, and DNO notification submission
+- Identify your preferred battery location in advance, and confirm with the installer whether that location has any conflicts with gas meters, fuse boxes, or ventilation requirements
+
+**On installation day:**
+- Be present for the handover — do not arrange installation while absent from the property
+- Ask explicitly for a backup function test before the installation team leaves
+- Confirm the monitoring app is working and showing live data before signing off
+
+**After installation:**
+- Register for SEG within 30 days of DNO notification confirmation — each month of delay is permanently lost export income
+- Set a reminder for a 12-month system health check — use our [battery monitoring guide](/how-to/how-to-monitor-solar-battery-health) to understand what to look for
+
+**The key decision trigger** is whether or not a backup function test was performed at handover. If it wasn't, the backup capability of the system is unverified and should be tested immediately. Use a safe method: isolate only the main incoming feed (not individual circuits) and confirm the battery holds voltage and continues powering the home. This test takes 5 minutes and is the single most important post-installation verification.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Installation errors homeowners miss
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How installation quality affects long-term returns
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When installation complexity signals the wrong decision

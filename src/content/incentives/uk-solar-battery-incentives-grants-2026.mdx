@@ -164,3 +164,80 @@ No. The Smart Export Guarantee requires a smart meter to measure your exports ac
 **Q: What is the best SEG tariff in 2026?**
 
 SEG rates change frequently as suppliers adjust their offerings. In early 2026, Octopus Energy's Intelligent Flux tariff offers among the highest export rates (around 15p/kWh during peak hours). However, the best tariff for you depends on your usage pattern, battery size, and solar generation profile. Compare current SEG rates at Ofgem's comparison tool or use a switching service that includes SEG tariffs.
+
+---
+
+## Engineering Reality
+
+UK battery incentive analysis is frequently simplified in ways that create realistic-looking but technically incorrect financial projections. Understanding the engineering reality behind each incentive mechanism produces more accurate investment decisions.
+
+**The 0% VAT treatment has a specific technical scope that excludes some installation work.** From February 2024, battery storage systems installed as standalone units (without solar panels) qualify for 0% VAT, provided the battery meets the definition of an "energy storage device" under HMRC's interpretation of the VAT Energy Saving Materials Order. The 0% rate applies to the battery unit, the hybrid inverter, and the directly associated electrical installation work. It does not automatically apply to electrical infrastructure upgrades that are not directly part of the battery installation — main consumer unit replacements, electrical earthing upgrades, or network service head clearances. These associated works are charged at the standard 20% VAT rate. Installers who quote "0% VAT throughout" without itemising the scope may be misrepresenting the VAT treatment of associated electrical works.
+
+**SEG income is an export payment, not a generation payment.** The Smart Export Guarantee pays for electricity units exported from the property to the grid. It does not pay for electricity generated but self-consumed. For a homeowner with a 4 kW solar array who self-consumes 80% of generation and exports 20%, the SEG income applies only to the 20% exported — not the 80% self-consumed (which reduces grid import costs). Marketing materials that describe SEG payments as "income from your solar panels" conflate two separate mechanisms. The financially more significant of the two benefits is the grid import avoidance from self-consumption, which is typically 3–5× larger than SEG income for a well-sized battery system.
+
+**ECO4 battery eligibility requires specific household characteristics that are routinely misunderstood.** The Energy Company Obligation (ECO4) scheme funds energy improvements in fuel-poor households. Battery storage can be a ECO4-eligible measure when it forms part of a wider retrofit package for a qualifying household. ECO4 eligibility requires the household to meet income-based criteria (Universal Credit, Pension Credit, or other qualifying benefits) AND for the property to score below a specified EPC band. A homeowner who has had cavity wall insulation quoted as part of an ECO4 referral because a neighbour received ECO4-funded work is not automatically eligible — the household must independently meet both the income and property EPC criteria. Premature assumptions about ECO4 eligibility create incorrect financial projections.
+
+---
+
+## When This Approach Breaks Down
+
+The UK incentive framework is well-suited to owner-occupied residential properties with grid-connected solar. Several circumstances require modified analysis.
+
+**Scotland-specific programmes with different eligibility and funding periods.** The Home Energy Scotland (HES) loan scheme provides low-interest financing for home energy improvements including battery storage, with different eligibility criteria and interest rates than the GB-wide Green Deal (now defunct) or private finance alternatives. HES loans are available to Scottish households specifically — not English or Welsh homeowners. Scottish homeowners should consult HES directly rather than applying GB-wide guidance, as the Scottish Government periodically launches grant components alongside the loan scheme that are not reflected in UK-wide incentive summaries.
+
+**Recent movers with no established SEG relationship.** The SEG is not automatic — homeowners must apply to an electricity supplier of their choice for a SEG contract. A homeowner who moves into a property with an existing solar installation must apply for a new SEG contract in their own name. The new application typically requires an MCS certificate (already on record from the original installation), a smart meter, and in some cases a new electricity supply contract with the SEG provider. There is typically a 4–12 week period between installation of the new smart meter and SEG payment commencement during which export is uncompensated. This transition period is a known gap in the SEG support framework.
+
+**Properties with DNO export limits below 3.68 kW.** Some urban properties in distribution circuits approaching capacity saturation may be limited to export below the standard G98 single-phase limit (3.68 kW). Where export is limited to, for example, 1.5 kW, SEG income calculations based on unconstrained export overstate achievable income. Before completing a financial analysis, confirm with the relevant DNO (National Grid, Scottish and Southern, UK Power Networks, etc.) whether any export restriction applies to the property's distribution circuit.
+
+---
+
+## Real-World Example
+
+**Scenario:** A couple in Bristol, South West England installs a 3.9 kW solar array + SunSynk 9.5 kWh battery in March 2026. Their property qualifies for the 0% VAT treatment.
+
+**Incentives applied at installation:**
+
+| Component | Pre-VAT | VAT rate | VAT amount | Total |
+|-----------|---------|----------|----------|-------|
+| Battery (SunSynk 9.5 kWh) | £2,900 | 0% | £0 | £2,900 |
+| Hybrid inverter | £1,200 | 0% | £0 | £1,200 |
+| Solar panels (3.9 kW) | £2,600 | 0% | £0 | £2,600 |
+| Electrical installation | £1,400 | 0% | £0 | £1,400 |
+| Consumer unit upgrade | £450 | 20% | £90 | £540 |
+| **Total** | **£8,550** | | **£90** | **£8,640** |
+
+**Post-installation income stack (Year 1, Octopus Flux tariff):**
+- Agile import arbitrage saving: £720
+- Solar self-consumption saving (avoided import at 24p/kWh): £480
+- SEG export payment (at 15p/kWh peak, average 9p/kWh): £112
+- **Total Year 1 benefit: £1,312**
+
+**Net payback period:** £8,640 ÷ £1,312 = **6.6 years**
+
+**Lesson:** The consumer unit upgrade attracted 20% VAT at £90 — a small but correctly applied distinction. The SEG income (£112) represents only 8.5% of the total annual benefit — significantly less than the self-consumption saving (£480) and the arbitrage saving (£720). Accurate financial modelling requires correctly distinguishing between SEG income, self-consumption savings, and arbitrage — not aggregating them under "battery income." Use our [UK battery cost calculator](/calculator) and [UK incentives guide](/cost/uk-solar-battery-incentives) to model your specific situation.
+
+---
+
+## Engineering Recommendation
+
+UK battery storage incentives are genuine, meaningful, and well-structured for the typical owner-occupied residential installation. Maximising the incentive capture requires treating each mechanism separately rather than relying on a single headline number.
+
+**The complete UK residential incentive checklist for 2026:**
+1. **0% VAT:** Confirm scope with your installer — applies to battery, inverter, and directly associated electrical installation. Associated electrical infrastructure (consumer unit upgrades, earthing upgrades) attract standard 20% VAT.
+2. **SEG registration:** Apply within 30 days of DNO notification confirmation. Each month of delay is uncompensated export. Confirm your supplier offers a SEG tariff before switching electricity supplier post-installation.
+3. **ECO4 eligibility:** If you receive qualifying benefits and your property is below EPC D, request an ECO4 referral from your energy supplier before commissioning a private installation — you may be eligible for a heavily subsidised system.
+4. **Local authority grant:** Check your local council and combined authority websites for any active battery or clean energy grant schemes — these vary significantly by area and change frequently.
+
+**SEG tariff selection guidance:**
+- Octopus Intelligent Flux, Octopus Agile, and EDF's GoElectric tariff offer the highest published SEG rates in 2026 — but confirm current rates as these change quarterly
+- Time-variant SEG rates (higher peak, lower off-peak) are most valuable for batteries that can be configured to maximise export during high-rate windows
+
+**The key decision trigger** for UK homeowners is the payback period at conservative savings assumptions (exclude optimistic SEG income; use achievable arbitrage saving on a realistic tariff). If payback is below 10 years under conservative assumptions, the investment is justified. Review the [UK solar battery cost guide](/cost/solar-battery-cost-uk-2026) for the current price baseline and use the [battery ROI calculator](/calculator) for the full payback model.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — UK payback after grants and VAT savings
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — UK grant application errors
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When UK grants can't fix the underlying economics

@@ -1,15 +1,15 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AlertCircle } from "lucide-react";
+
+export const metadata: Metadata = {
+    title: "Page Not Found | BatteryBlueprint",
+    description: "This page could not be found. Return to the calculator to run your battery sizing.",
+};
 
 export default function ExpiredPage() {
     return (
         <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/20">
-            {/* Header */}
-            {/* Header - Global in RootLayout */}
-
-            {/* Main Content */}
             <main className="flex-1 flex items-center justify-center px-4 sm:px-6 py-12">
                 <div className="max-w-md w-full space-y-8 text-center">
                     <div className="flex justify-center">
@@ -19,25 +19,26 @@ export default function ExpiredPage() {
                     </div>
 
                     <div className="space-y-4">
-                        <h1 className="text-3xl font-bold">Download Link Expired</h1>
+                        <h1 className="text-3xl font-bold">Page Not Available</h1>
                         <p className="text-lg text-muted-foreground">
-                            This PDF download link has expired or is invalid.
+                            This page is no longer active.
                         </p>
                         <p className="text-muted-foreground">
-                            Download links are valid for 24 hours after requesting your blueprint.
+                            Return to the calculator to run your battery sizing calculations.
                         </p>
                     </div>
 
                     <div className="p-6 rounded-lg bg-card border border-border space-y-4">
-                        <h2 className="font-semibold text-lg">Get a Fresh Blueprint</h2>
+                        <h2 className="font-semibold text-lg">Use the Calculator</h2>
                         <p className="text-sm text-muted-foreground">
-                            Return to the calculator and request a new PDF with your email address. We'll send you a fresh download link right away.
+                            The BatteryBlueprint calculator is available directly in your browser — no download required.
+                            Enter your daily load and get engineering-grade battery recommendations instantly.
                         </p>
                         <Link
                             href="/calculator"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
                         >
-                            Back to Calculator
+                            Go to Calculator
                         </Link>
                     </div>
 
@@ -51,9 +52,6 @@ export default function ExpiredPage() {
                     </div>
                 </div>
             </main>
-
-            {/* Footer */}
-            {/* Footer - Global in RootLayout */}
         </div>
     );
 }

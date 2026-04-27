@@ -41,13 +41,15 @@ export default function MethodologyPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
-            <div className="article-prose prose prose-slate dark:prose-invert max-w-none">
-                <h1>Engineering Methodology</h1>
-                <p className="lead">
-                    Unlike generic solar blogs that give "rules of thumb," BatteryBlueprint uses <strong>deterministic engineering formulas</strong> to size systems.
-                    We believe you should know exactly how your numbers are generated. This page documents our core algorithms, data sources, and modeling assumptions.
+            <div className="mb-12 text-center">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Engineering Methodology</h1>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Transparency is our product. Unlike generic solar blogs that give &quot;rules of thumb,&quot; BatteryBlueprint uses <strong>deterministic engineering formulas</strong> to size systems.
+                    Every number we produce is fully documented here.
                 </p>
+            </div>
 
+            <div className="article-prose prose prose-slate dark:prose-invert max-w-none">
                 <hr />
 
                 <h2>1. Battery Sizing Algorithm</h2>

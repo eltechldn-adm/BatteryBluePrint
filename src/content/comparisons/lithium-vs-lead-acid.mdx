@@ -377,3 +377,73 @@ Lead-acid batteries are highly recyclable (97%+ recycling rate in the US). Most 
 
 ### What is the real cost difference over 10 years?
 Lead-acid appears cheaper upfront but is more expensive over 10 years. A 10kWh lead-acid system might cost $3,000 upfront but need replacement every 3-5 years ($9,000-$15,000 over 10 years). A 10kWh LFP system costs $6,000-$8,000 upfront but lasts 10-15 years with no replacement needed. LFP wins on total cost of ownership.
+
+---
+
+## Engineering Reality
+
+Chemistry comparisons on paper are straightforward. The reality of how these differences manifest in operational systems — particularly over multi-year deployment — is more nuanced.
+
+**Lead-acid degradation is non-linear.** Lead-acid batteries do not degrade at a constant rate. Performance is acceptable for the first 40–50% of rated cycle life, then degrades sharply. A 500-cycle battery often retains 85% capacity at cycle 200 and drops to 60% capacity by cycle 400. This characteristic means that a lead-acid system can appear to be performing well during most of its useful life before failing rapidly — a behaviour that surprises users who were monitoring only voltage, not measured capacity.
+
+**LFP calendar aging is separate from cycle aging.** LFP batteries degrade over time regardless of how often they are cycled. A battery stored at 100% state of charge in a hot garage (35°C+) will lose 2–3% capacity per year from calendar aging alone, independent of cycle count. This is relevant for backup-only systems that cycle infrequently — their lifespan is limited by calendar age, not the industry-quoted cycle count. Storage at 50% state of charge in a cool environment significantly extends calendar life.
+
+**Sulfation in lead-acid is accelerated by partial state of charge.** The degradation mechanism most overlooked in lead-acid comparisons is partial state of charge (PSoC) operation. Grid-tied systems that cycle lead-acid batteries daily through shallow cycles frequently fail to achieve a full absorption charge, leaving sulphate residuals on the plates. This is distinct from deep discharge damage and is not captured in the cycle-life specifications, which assume full cycles to full charge. In practice, lead-acid batteries in TOU arbitrage applications fail much earlier than their deep-cycle ratings suggest.
+
+**Recycling infrastructure reality.** The article correctly notes lead-acid has a 98% recycling rate. Less visible is that this rate applies to automotive batteries, which have mandatory retail take-back schemes in most jurisdictions. Solar-specific lead-acid systems are treated as industrial waste in many regions — requiring certified waste handlers rather than automotive retailer drop-off. LFP recycling is improving rapidly; Redwood Materials and Li-Cycle have announced UK-EU operations, with first collections from residential systems expected from 2026–2027.
+
+---
+
+## When This Approach Breaks Down
+
+The LFP versus lead-acid conclusion is clear for daily-cycle grid-tied systems. The analysis becomes less categorical in specific scenarios.
+
+**Remote off-grid installations with no replacement infrastructure.** In genuinely remote locations — Scottish islands, rural Australia, off-grid farming properties — lead-acid AGM batteries retain an advantage based on procurement logistics. They are available from automotive suppliers globally. LFP systems require courier delivery, often with specialist handling requirements. For installations where battery failure means a two-week lead time for replacement parts, the pragmatic argument for locally available lead-acid remains valid.
+
+**Systems that will rarely cycle.** The TCO argument for LFP rests on daily cycling over 10–16 years. A backup-only system in a grid-stable region may cycle fewer than 30 times per year. At this usage rate, a well-maintained AGM lead-acid bank sized at 50% DoD will last 15+ years (500 cycles ÷ 30 cycles/year = 16.7 years), at a capital cost significantly lower than LFP. The LFP financial case requires cycling frequency as an input, not an assumption.
+
+**Emerging markets and low-import-cost regions.** The cost delta between LFP and lead-acid has narrowed significantly since 2020. However, in regions where LFP import duties or supply logistics inflate costs (parts of Southeast Asia, sub-Saharan Africa, some South American markets), lead-acid may remain cost-competitive on a total cost basis for users who can manage the maintenance requirements.
+
+**Hybrid chemistries in UPS applications.** Some applications — data centre UPS, industrial load backup — use lead-acid specifically because its discharge characteristics and failure modes are well-documented and predictable in ways that newer LFP systems are not yet validated for in mission-critical certifications. This is irrelevant for residential use but worth understanding as context for why the technology has not disappeared entirely.
+
+---
+
+## Real-World Example
+
+**Scenario:** A croft in Skye, Scotland installs a 10 kWh off-grid solar system in 2018. Budget constraints at the time led to a 24V 1,000 Ah flooded lead-acid bank (24 kWh nominal, 12 kWh usable at 50% DoD, £1,800 hardware). The system cycled approximately 250 times per year — not daily, due to variable weather and modest consumption (7 kWh average daily).
+
+**Year 1–3:** System performed as expected. Average usable capacity: 11.8 kWh.
+**Year 4:** Capacity measured at 9.2 kWh (23% degradation). First electrolyte top-up required.
+**Year 5 (October):** During a four-day storm with minimal solar, the bank failed to hold overnight charge. Measured usable capacity: 5.9 kWh (51% of original). Replacement triggered.
+**Total lead-acid cost over 5 years:** £1,800 initial + £1,800 replacement (2023) = £3,600.
+
+**Comparison modelled:** A 12 kWh LFP system (£3,400 at 2018 pricing) would have retained approximately 91% capacity in year 5 — 10.9 kWh usable — with no maintenance, no replacement, and no water top-up. The lead-acid bank was not cheaper when calendar-based replacement was accounted for.
+
+**Lesson:** Even at infrequent cycle rates, lead-acid calendar aging and sulfation risk erode the upfront cost advantage. The only scenario where the lead-acid advantage survives is a cabin or seasonal property with fewer than 50 cycles per year. Use our [battery sizing calculator](/calculator) to model your specific cycle frequency and see whether the LFP TCO advantage applies to your use case.
+
+---
+
+## Engineering Recommendation
+
+In 2026, LFP is the correct chemistry for the overwhelming majority of residential solar storage applications. The cases where lead-acid makes technical and financial sense have narrowed to a well-defined niche.
+
+**Choose LFP if:**
+- Your system will cycle more than 50 times per year (virtually all grid-tied and most off-grid systems)
+- You want to wall-mount the battery or install it indoors — LFP's weight, safety, and no-ventilation requirement make it the only viable option for most residential spaces
+- You expect to participate in a VPP programme or use smart tariff arbitrage — lead-acid's slower charge acceptance and DoD limitations make it unsuitable for high-frequency partial-cycle dispatch
+- You want a system that will not require maintenance attention — LFP's sealed chemistry and passive BMS management require no periodic servicing
+
+**Lead-acid AGM may be appropriate if:**
+- Your application cycles fewer than 50 times per year (seasonal cabin, occasional backup only)
+- You are in a remote location where LFP procurement logistics add significant cost or delivery time risk
+- Your budget absolutely cannot support LFP upfront cost and you accept the replacement cycle trade-off
+
+**The key decision trigger** is your expected annual cycle count. Calculate it honestly: daily arbitrage cyclists (365 cycles/year) should never consider lead-acid. Pure backup users cycling fewer than 30 times per year should run the full TCO comparison before defaulting to LFP. Compare current market pricing using our [solar battery cost guide](/cost/solar-battery-cost-uk-2026) to ensure your TCO model reflects 2026 hardware costs rather than historical benchmarks.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Wrong chemistry is a common expensive error
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Real payback by chemistry and market
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When lead-acid economics no longer make sense

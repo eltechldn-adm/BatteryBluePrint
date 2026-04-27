@@ -222,3 +222,76 @@ We built a free, engineering-grade tool to solve this. It uses local sun data an
 Or, learn more about sizing methodology in our guide:
 [**How to Size a Solar Battery Correctly**](/sizing/how-to-size-solar-battery-uk-us)
 
+---
+
+## Engineering Reality
+
+Solar battery datasheets are produced under controlled laboratory conditions at 25°C with a new, fully conditioned cell. Real residential installations deviate from these benchmarks in several measurable ways.
+
+**Thermal derating is significant and often ignored.** A 10 kWh battery installed in an unheated UK garage during January may deliver only 8.0–8.5 kWh due to reduced ionic mobility at low temperatures. The BMS throttles charge current below 5°C and may refuse to charge at all below 0°C unless an internal heater is included. Many entry-level systems do not include heaters.
+
+**Round-trip efficiency compounds over time.** Manufacturers quote 95–97% round-trip efficiency for LFP systems. In practice, factoring in inverter standby load (20–50W continuous), parasitic BMS draw, and conversion losses across the full charge-discharge cycle, real-world round-trip efficiency lands closer to 88–93%. Over a year of daily cycling at 10 kWh per day, this gap represents 250–400 kWh of invisible losses — roughly £70–£120 at UK electricity rates.
+
+**Usable capacity erodes with age.** Most warranties guarantee 70% capacity retention after 10 years or 6,000 cycles. This means a 13.5 kWh battery may deliver only 9.5 kWh by Year 10. Financial models that assume static capacity for the full warranty period consistently overestimate ROI.
+
+**Inverter oversizing causes clipping losses.** In DC-coupled systems, if the solar array output exceeds the hybrid inverter's maximum charge rate, excess generation is curtailed. A 10 kW array paired with a 5 kW inverter input will clip up to 30% of potential output on peak summer days — energy that never reaches the battery.
+
+---
+
+## When This Approach Breaks Down
+
+The standard grid-tied battery model works well for the majority of residential users in temperate climates with predictable usage patterns. It breaks down under specific conditions that are worth understanding before committing capital.
+
+**Whole-home electrification without load management.** A home running a heat pump, EV charger, and induction hob simultaneously can produce instantaneous demand spikes of 15–25 kW. Most residential batteries are rated for 5–11 kW continuous output. Without a smart load controller or dedicated sub-panel, these systems will either trip the battery inverter or silently draw the shortfall from the grid — undermining the intended backup or savings strategy.
+
+**AC-coupled retrofits on older string inverters.** Adding a battery inverter to an existing central string inverter introduces an additional DC-AC-DC-AC conversion chain. In high-generation periods (midday summer), both inverters may compete for priority, causing efficiency degradation or false fault conditions. This is a known limitation documented in commissioning guides for systems like the SolarEdge StorEdge and Powerwall AC retrofit configurations.
+
+**Extreme off-grid aspirations with undersized arrays.** Users who model battery autonomy on summer irradiance data and then experience a UK or Northern European winter are frequently disappointed. Average peak sun hours drop from 4.5 in summer to 1.0–1.5 in December. A system designed around summer generation cannot sustain winter autonomy without either a generator or a battery bank three to four times larger than the summer calculation suggests.
+
+**Properties with complex grid tariffs.** Dynamic pricing tariffs (e.g., Octopus Agile) require the battery firmware to execute real-time dispatch decisions. Not all inverter-battery combinations support third-party API control. Locked ecosystems — where the battery only communicates with its own manufacturer's cloud — cannot be optimally scheduled by external tariff aggregation platforms.
+
+---
+
+## Real-World Example
+
+**Scenario:** A 3-bedroom semi-detached home in Cardiff, Wales. South-facing roof, 4 kW solar array installed in 2022. The homeowners added a 9.5 kWh GivEnergy All-In-One (LFP, 3.6 kW continuous output) in November 2025. Their goal: avoid evening peak-rate imports and maintain backup during winter storms.
+
+**Winter outcome (January 2026):**
+- Average daily solar generation: 3.2 kWh (1.1 peak sun hours, 70% cloud coverage)
+- Daily household consumption: 9.8 kWh
+- Battery contribution: 4.5 kWh/day (battery charged partially from solar, topped up from grid during Octopus off-peak 00:30–04:30 at 7.5p/kWh)
+- Grid imports during peak hours: reduced from 5.5 kWh to 1.2 kWh per evening
+
+**Unexpected finding:** The garage temperature dropped to 2°C during a cold snap. The GivEnergy BMS throttled charge current to 20% of rated capacity. The battery failed to reach full charge on three consecutive nights, leaving the homeowners with only 6.1 kWh available at 5 PM — 35% less than expected. Adding a £40 thermostatically controlled garage heater resolved the issue immediately.
+
+**Lesson:** Geographic climate is not just about solar generation — it directly affects battery hardware performance. UK installations in unheated outbuildings should always specify a battery with an integrated thermal management system or plan for supplemental heating.
+
+Use the [battery sizing calculator](/calculator) to model winter performance for your specific location before finalising system size.
+
+---
+
+## Engineering Recommendation
+
+Solar batteries are a mature, well-understood technology in 2026. The core engineering is sound. The risk is not in the technology — it is in the specification process.
+
+**Proceed with confidence if:**
+- Your system is designed for a DC-coupled hybrid inverter (not an AC-coupled retrofit onto an ageing string inverter)
+- Your battery includes active thermal management or will be installed in a climate-controlled space
+- Your sizing calculation uses winter irradiance data, not annual averages
+- You are on a Time-of-Use or dynamic tariff, or expect grid outages where backup value is clear
+
+**Reconsider the scope if:**
+- You are attempting full whole-home backup including HVAC on a single standard battery — validate peak kW demand against the inverter's rated continuous and surge output before purchasing
+- Your financial model depends on payback periods shorter than 7 years in a 1:1 net metering jurisdiction — the arbitrage spread simply does not support it
+- You are evaluating AC-coupled retrofits for a system older than 8 years — inverter replacement may be a better starting point
+
+**The key decision trigger** is honest load analysis. Before sizing for kWh capacity, size for peak kW demand. Many systems that underperform were correctly sized for energy but undersized for power. Review the [kW vs kWh guide](/basics/kwh-explained) and run your appliance list through the [calculator](/calculator) before requesting installer quotes.
+
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Technical misunderstandings that cost money
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Real financial returns, market by market
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — Conditions where the technology doesn't pay off

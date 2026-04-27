@@ -191,3 +191,77 @@ The non-financial case (peace of mind, energy independence, environmental impact
 Use our calculator to get a personalized assessment for your home:
 
 [**Calculate My Battery ROI →**](/calculator)
+
+---
+
+## Engineering Reality
+
+The "worth it" question is frequently answered with simplified scenarios. Real installations introduce variables that systematically skew financial outcomes from the headline projections.
+
+**Installer savings projections consistently use optimal-case assumptions.** The £901/year saving in the UK example above assumes 365 full cycles per year at the full 9.5 kWh battery capacity and a precise 26p/kWh spread maintained throughout the year. In practice, UK winter months (November–February) often have insufficient solar surplus to fill the battery from solar, reducing daily cycling depth. On Octopus Agile, the spread between peak and off-peak rates fluctuates daily — occasionally going negative during overnight renewable surplus events when off-peak rates briefly exceed standard peak rates. Year 1 real-world savings at 70–85% of the maximum theoretical figure are typical.
+
+**Battery replacement cost is absent from most payback calculations.** Standard payback period calculations count Year 0 capital cost against annual savings over 10 years. They rarely model the real scenario: the battery warranty ends at Year 10 or 6,000 cycles. If daily cycling reaches 6,000 cycles at Year 16, the warranty expires before the battery, and the investment continues. If the battery requires replacement at Year 10 (due to calendar aging in a hot climate, or physical damage), the payback model breaks. A rigorous financial model should include a replacement cost scenario and a "continuing operation" scenario and present the range — not just the best-case payback.
+
+**Grid instability statistics are misapplied to individual locations.** The article correctly notes that US grid outages have increased 64% over the past decade. However, this is a nationwide average driven by specific high-risk states and utility networks. A homeowner in Minneapolis with a well-maintained underground distribution network may experience one 30-minute outage per year, while a Florida coastal homeowner may experience three multi-day outages annually. The insurance value of a battery is proportional to the actual outage risk at the specific address — not the national average. SAIDI/SAIFI statistics published by utilities provide the location-specific data needed for honest insurance value calculations.
+
+**Home sale timing creates asymmetric battery value.** The claim that batteries add 3–5% to home value is supported by US studies in high-electricity-cost markets (California) and is less validated in UK or low-rate US markets. Additionally, a battery that is 8 years into a 10-year warranty has meaningfully different buyer value than a new system. The residual financial value to a buyer decreases non-linearly as the system ages — a factor absent from blanket "adds home value" claims.
+
+---
+
+## When This Approach Breaks Down
+
+The financial and non-financial framework is a useful entry point. Several common decisions are made on this basis but produce poor outcomes.
+
+**Buying a battery primarily for environmental reasons without financial modelling.** The grid emissions impact of a home battery varies by time of day and grid mix. In the UK, the grid carbon intensity during Octopus off-peak overnight hours (when the battery charges from grid top-up) is often lower than the peak hours it displaces — but this is not guaranteed. During high-gas-generation overnight periods, grid-charging a battery may produce a net carbon-positive outcome compared to simply drawing from the grid at the displaced time. Environmental benefit calculations require hour-by-hour grid carbon data, not annual averages.
+
+**Using backup insurance value to justify financial viability.** The generator comparison is valid. However, the $14,000 battery vs $12,000 generator comparison treats both options as equivalent in backup capability. A whole-home standby generator provides indefinite backup duration (with fuel supply) at far higher continuous power (often 18–22 kW). A standard single-unit battery provides 12–24 hours of essential loads. For properties requiring extended whole-home backup, the generator remains the correct engineering specification regardless of daily cycling savings. Conflating insurance value and financial ROI produces a combined justification that overstates the merit of either argument.
+
+**Short-horizon buyers counting on full payback before sale.** Every year of delay in battery installation that loses arbitrage savings is also a year that increases buyer value at resale (newer system with more warranty remaining). The net present value calculation is not simply "save £900/year × years remaining." The initial years of savings have a time-value premium, and the residual asset value at sale is discounted by age. A proper hold-period analysis — not a simple payback calculation — is required for homeowners with a 5–7 year ownership horizon.
+
+**Renters who are offered battery leasing schemes by landlords.** Battery leasing to tenants through landlord-arranged agreements is an emerging model in the UK. In these arrangements, the financial benefit typically flows disproportionately to the landlord (as a capital asset with tax deductions), while the tenant benefits primarily from the reduced peak-rate bills. Tenants should evaluate the monthly lease charge against their specific electricity savings using the [battery sizing calculator](/calculator) rather than accepting the landlord's projected savings figure.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Norwich, UK (east England, above-average solar irradiance for the UK, stable urban grid) installs a 9.5 kWh GivEnergy system in March 2025 at £6,200 installed. They are on Octopus Flux. Their expectations: £900/year savings, 6.9-year payback.
+
+**Year 1 actual performance:**
+- January–March: Minimal solar surplus, battery top-charged via off-peak grid most nights. Full cycles achieved due to scheduled charging. Savings on track.
+- April–June: Solar surplus fully fills battery by 11 AM most days. Full daily arbitrage cycles. Savings above target (£115/month, £1,380 annualised rate).
+- July–September: High solar. Battery fully charged by 10 AM. SOC at 100% for 3–5 hours mid-day on clear days — lost energy exported at SEG rate (7p/kWh) rather than stored. Battery capacity became the limiting factor, not solar or tariff.
+- October–December: Blend of grid top-up and solar charging. Monthly savings £58–£72.
+
+**Year 1 actual savings: £843**
+**Revised payback: 7.4 years** (vs 6.9 projected)
+
+The shortfall came from summer capacity saturation (battery too small relative to July/August solar production) and below-forecast autumn/winter performance. A 13.5 kWh battery would have captured the excess summer solar and delivered closer to the projected payback.
+
+**Lesson:** Battery size directly affects whether you capture the full seasonal savings opportunity. Undersizing for winter adequacy may cause summer overgeneration losses. Use the [battery ROI calculator](/calculator) to model seasonal performance across all 12 months, not just the representative scenarios used in sales projections.
+
+---
+
+## Engineering Recommendation
+
+The honest answer to "is it worth it" in 2026 is: **it depends on your electricity rate structure, and only your rate structure.** Every other factor — backup value, environmental benefit, home value — is secondary and highly variable.
+
+**A battery is financially worth it in 2026 if:**
+- Your peak/off-peak electricity rate differential is greater than 15p/kWh (UK) or $0.15/kWh (US) — confirmed by checking your actual tariff, not installer estimates
+- You plan to stay in the property for at least 7 years — long enough to complete the payback period with meaningful margin
+- The battery is sized for maximum daily cycling rather than backup-only reserve
+- You are on a smart tariff already or will switch to one as part of the installation — a battery on a flat-rate tariff without TOU scheduling delivers a fraction of the modelled savings
+
+**A battery is not worth it as a pure financial investment if:**
+- You are on 1:1 net metering and your grid is stable — the utility is already providing free virtual storage
+- You are on a flat electricity tariff with no TOU structure and have no intention of switching
+- You are planning to move within 5 years and have calculated home sale value increase using blanket "3–5% uplift" assumptions — verify this against comparable local sales data
+
+**The key decision trigger** is 5 minutes of tariff checking. Find your peak and off-peak rates, calculate the spread, and multiply by your battery's usable kWh and annual cycling frequency. If the annual saving exceeds £600 (UK) or $800 (US), the financial case is strong. If it doesn't, buy the battery for backup value only — and price accordingly. See the [solar battery cost guide](/cost/solar-battery-cost-uk-2026) for current market prices across both the US and UK.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Real payback numbers by market
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Errors that distort the worth-it calculation
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — Five conditions where the answer is no

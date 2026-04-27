@@ -156,3 +156,93 @@ Yes. The ITC is available to any US taxpayer who owes federal income tax, regard
 **Q: Does the ITC apply to battery storage in a rental property I own?**
 
 Generally, no — the residential ITC (Form 5695) applies to your primary or secondary residence, not rental properties. However, rental properties may qualify for the commercial ITC (Investment Tax Credit for businesses), which has different rules and may offer additional benefits. Consult a tax professional if you own rental properties with battery storage.
+
+---
+
+## Engineering Reality
+
+The federal ITC is a well-established credit mechanism, but its interaction with battery storage systems involves specific technical and financial considerations that are frequently mischaracterised in consumer-facing materials.
+
+**The 30% credit applies to "eligible basis" — not necessarily the total installation invoice amount.** The residential ITC (Section 25D) credits 30% of the "qualified clean energy property expenditure," which is defined as amounts paid for equipment that uses energy from a renewable source or from storage of such energy. For a standalone battery that charges exclusively from the grid (with no solar panels), the ITC is only available if the battery is charged solely from a renewable source — specifically, from co-located solar panels for at least 70% of its annual energy input. A battery installed with solar panels at 30% federal ITC basis includes the battery hardware, the inverter portion attributable to battery function, and the associated electrical installation. A battery installed without solar and charged from the grid at night on a cheap rate tariff is generally not eligible for the Section 25D residential ITC — it may qualify for the business ITC (Section 48) under different rules.
+
+**Credit carry-forward mechanics have specific constraints for non-business filers.** The residential ITC is a non-refundable credit — it reduces income tax liability to zero but does not generate a refund if the credit exceeds the tax owed. A homeowner with a $3,800 ITC who pays $2,100 in federal income tax can only claim $2,100 of the credit in the year of installation. The remaining $1,700 can be carried forward to the following tax year. However, if the homeowner's income tax liability is consistently below the ITC credit value, the economic benefit of the ITC is realised over multiple years rather than immediately — a fact that affects payback period calculations for lower-income households.
+
+**The ITC step-down schedule creates a genuine time value of money consideration for large systems.** Under the Inflation Reduction Act, the residential ITC remains at 30% through 2032, then steps down to 26% in 2033, 22% in 2034, and 0% in 2035 unless extended. For large residential systems (>30 kWh battery, commercial-scale solar), the financial benefit of installing before 2033 versus 2034 is substantial. For a $50,000 system, the difference between 30% ($15,000) and 26% ($13,000) is $2,000 — a meaningful sum. For standard residential 10–20 kWh battery systems, the step-down from 30% to 26% represents a $400–$800 difference, which is a real but not necessarily decisive consideration for timing.
+
+---
+
+## When This Approach Breaks Down
+
+The ITC framework is well-adapted for the modal US residential solar+battery installation. It produces incorrect results in several specific circumstances.
+
+**Alternative Minimum Tax (AMT) filers.** The residential ITC (Section 25D) cannot offset Alternative Minimum Tax liability. Taxpayers who are subject to AMT — typically individuals with income between $200,000–$400,000 with significant itemised deductions — may find that the ITC does not reduce their net federal tax liability as expected. AMT interaction with the ITC requires explicit calculation by a tax professional using the taxpayer's specific income and deduction profile. General "30% credit" guidance without AMT assessment may overstate the effective credit for AMT-subject filers.
+
+**Partnerships and trusts owning residential property.** For properties owned by a trust (common for estate planning purposes) or a partnership (common for co-owned investment properties), the tax treatment of the residential ITC is more complex than for individual filers. Residential ITC credits flow through to individual beneficiaries in the tax year of installation, but the specific rules depend on the trust or partnership structure. This is a tax-professional engagement scenario — not a standard filing.
+
+**Properties receiving utility rebates that reduce the ITC basis.** Some utility rebate programmes specify that the rebate reduces the homeowner's installation cost for federal tax purposes — directly reducing the ITC basis. The SGIP rebate in California is required to be subtracted from the cost basis before calculating the ITC. Other utility rebates (e.g., PSEGL's NY-Sun rebate) have been subject to differing basis treatments depending on the programme structure. Failing to apply a rebate reduction to the ITC basis results in an overclaim, which IRS audit procedures for energy credits are specifically designed to detect.
+
+---
+
+## Real-World Example
+
+**Scenario:** A married couple in Phoenix, Arizona files joint federal taxes in 2026 for a battery+solar installation completed in October 2025.
+
+**Installation invoice (itemised):**
+
+| Item | Cost |
+|------|------|
+| Solar panels (6 kW, 16 × 375W panels) | $10,200 |
+| Battery (Enphase IQ Battery 10T, 10.08 kWh) | $7,800 |
+| Micro-inverters (attributable to battery function 40%) | $1,760 |
+| Electrical installation (battery-specific work) | $2,400 |
+| Main panel upgrade (not battery-specific) | $1,600 |
+| Permitting and system design | $800 |
+| **Total invoice** | **$24,560** |
+
+**ITC eligible basis calculation:**
+- Solar panels: $10,200 ✓
+- Battery: $7,800 ✓
+- Micro-inverter (battery portion 40%): $1,760 ✓
+- Battery-specific electrical installation: $2,400 ✓
+- Main panel upgrade: **$1,600 ✗** (not directly attributable to battery/solar equipment)
+- Permitting: $800 — **partially eligible** (electrical permit: $300 ✓; construction permit: $500 ✗)
+
+**ITC eligible basis: $10,200 + $7,800 + $1,760 + $2,400 + $300 = $22,460**
+**30% ITC: $6,738**
+
+**Couple's federal tax liability in 2025: $5,900**
+- 2025 ITC claimed: $5,900 (full tax liability offset)
+- Remaining credit carried forward to 2026: $838
+
+**2026 federal tax liability: $6,200**
+- 2026 carry-forward credit: $838 claimed → residual tax after credit: $5,362
+
+**Full ITC realised across 2 years.** No credit was permanently lost.
+
+**Lesson:** The main panel upgrade and non-electrical permitting were correctly excluded from the ITC basis — a distinction the couple identified by reviewing the IRS guidance rather than simply applying 30% to the total invoice. The carry-forward mechanism ensured the full credit was realised despite the first-year liability being below the credit value. Use the [US incentives guide](/cost/us-solar-battery-incentives) and confirm ITC basis with a tax professional for itemised cost confirmation.
+
+---
+
+## Engineering Recommendation
+
+The federal ITC is the most significant financial mechanism available to US homeowners installing battery storage. Correctly calculating the eligible basis and planning for credit carry-forward mechanics maximises the economic benefit.
+
+**Critical actions before filing Form 5695:**
+1. Obtain an itemised invoice from your installer that separates: (a) solar hardware, (b) battery hardware, (c) inverter cost with attribution to solar vs. battery function, (d) battery-specific electrical installation, and (e) other electrical work not directly attributable to the system
+2. Confirm whether you received any utility rebates that must reduce the ITC basis (this varies by programme — ask the utility directly)
+3. Estimate your federal income tax liability for the year of installation to determine whether a carry-forward will be required
+4. Confirm AMT applicability with a tax professional if your income exceeded $200,000 in the installation year
+
+**Timing considerations for the 2026–2032 window:**
+- The 30% rate is confirmed through 2032 — there is no urgency to install before December 2026 relative to December 2030 from purely an ITC rate perspective
+- The urgency driver is electricity tariff and cost trends (rising), state rebate programme availability (variable and finite), and personal energy cost exposure — not the federal ITC step-down
+
+**The key decision trigger** for ITC optimisation is confirming your expected federal tax liability for the installation year. If it is below the expected ITC credit value (30% × eligible basis), discuss carry-forward planning with your tax professional and confirm the combination of ITC and state rebates produces the correct total incentive stack. See the [US state rebates guide](/incentives/us-state-solar-battery-rebates-guide-2026) for state-level incentives that stack with the federal ITC.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How ITC changes US payback periods
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — ITC claim errors that cost homeowners money
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When even the ITC can't make the numbers work

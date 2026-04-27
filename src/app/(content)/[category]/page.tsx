@@ -10,7 +10,7 @@ import {
     type ContentCategory,
 } from '@/lib/content/mdx';
 import { Button } from '@/components/ui/button';
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { BookOpen, ArrowRight, Lightbulb } from 'lucide-react';
 import { GlobalUsersNotice } from '@/components/content/GlobalUsersNotice';
 
 interface CategoryPageProps {
@@ -84,6 +84,30 @@ const CATEGORY_DISPLAY_NAMES: Record<string, string> = {
     markets: 'Markets',
 };
 
+// Per-category decision page recommendation
+const CATEGORY_DECISION_PAGE: Record<string, { href: string; label: string; desc: string }> = {
+    basics: { href: '/worth-it', label: 'Is Solar Battery Storage Worth It?', desc: 'Before going further, get the honest financial verdict.' },
+    sizing: { href: '/choose-battery', label: 'How to Choose the Right Solar Battery', desc: 'Apply your sizing knowledge to pick the right product.' },
+    cost: { href: '/hidden-costs', label: 'Hidden Costs of Solar Battery Storage', desc: 'Sticker price is only part of the story.' },
+    comparisons: { href: '/choose-battery', label: 'Battery Decision Guide', desc: 'Turn comparison data into a concrete purchase decision.' },
+    'how-to': { href: '/common-mistakes', label: 'Biggest Mistakes Homeowners Make', desc: 'Know the errors before you start planning.' },
+    incentives: { href: '/payback-reality', label: 'Solar Battery Payback Reality', desc: 'Incentives change the payback — see the real numbers.' },
+    future: { href: '/when-not-to-buy', label: 'When NOT to Buy a Solar Battery', desc: 'Emerging tech is promising. Current reality may differ.' },
+    markets: { href: '/payback-reality', label: 'Solar Battery Payback Reality: UK vs US vs Global', desc: 'Market-by-market payback benchmarks.' },
+};
+
+// Per-category "Start Here" article slug
+const CATEGORY_START_ARTICLE: Record<string, string> = {
+    basics: 'what-is-a-solar-battery',
+    sizing: 'how-much-battery-storage-do-i-need',
+    cost: 'is-solar-battery-storage-worth-it',
+    comparisons: 'best-solar-batteries-2026',
+    'how-to': 'how-to-choose-the-right-solar-battery',
+    incentives: 'us-federal-solar-battery-tax-credit-itc',
+    future: 'future-of-home-battery-storage-2026-2030',
+    markets: 'us-solar-battery-cost-2026',
+};
+
 export async function generateMetadata({ params }: CategoryPageProps) {
     const { category } = await params;
 
@@ -117,6 +141,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const meta = CATEGORY_META[category];
     const categoryTitle = CATEGORY_DISPLAY_NAMES[category] || (category.charAt(0).toUpperCase() + category.slice(1).replace(/-/g, ' '));
     const isEmpty = articles.length === 0;
+    const decisionPage = CATEGORY_DECISION_PAGE[category];
+    const startArticleSlug = CATEGORY_START_ARTICLE[category];
 
     return (
         <div className="space-y-8">
@@ -191,8 +217,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             href={`/${article.category}/${article.slug}`}
                             className="block group"
                         >
-                            <Card className="h-full transition-all hover:border-primary/50 hover:shadow-sm">
+                            <Card className={`h-full transition-all hover:border-primary/50 hover:shadow-sm ${article.slug === startArticleSlug ? 'border-primary/30 bg-primary/5' : ''}`}>
                                 <CardHeader>
+                                    {article.slug === startArticleSlug && (
+                                        <div className="flex items-center gap-1.5 text-xs font-semibold text-primary mb-2">
+                                            <Lightbulb className="w-3.5 h-3.5" />
+                                            Start Here
+                                        </div>
+                                    )}
                                     <CardTitle className="text-xl group-hover:text-primary transition-colors">
                                         {article.title}
                                     </CardTitle>
@@ -209,6 +241,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             </Card>
                         </Link>
                     ))}
+
+                    {/* Decision Page Callout */}
+                    {decisionPage && (
+                        <div className="mt-4 p-6 rounded-xl border border-border/60 bg-secondary/5">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                                <div className="flex-1">
+                                    <p className="text-xs font-semibold text-secondary uppercase tracking-wider mb-1">Before You Buy</p>
+                                    <h3 className="font-bold text-lg">{decisionPage.label}</h3>
+                                    <p className="text-sm text-muted-foreground mt-1">{decisionPage.desc}</p>
+                                </div>
+                                <Link href={decisionPage.href} className="shrink-0">
+                                    <Button variant="outline" size="sm" className="rounded-lg">
+                                        Read Guide <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

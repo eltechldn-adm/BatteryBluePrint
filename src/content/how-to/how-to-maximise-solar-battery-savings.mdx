@@ -143,3 +143,79 @@ This depends on your battery brand. Tesla Powerwall owners use the Tesla app. En
 **Q: Can I control my battery remotely?**
 
 Yes — all modern residential batteries include remote monitoring and control via a smartphone app. You can check the state of charge, adjust schedules, and receive alerts from anywhere with an internet connection.
+
+---
+
+## Engineering Reality
+
+Savings maximisation strategies are well-understood in principle. The gap between theoretical maximum and real-world achieved savings is consistent and predictable — and almost entirely attributable to controllable factors.
+
+**Time-of-use scheduling accuracy depends on consumption pattern stability.** The core of battery savings is scheduling: charge during cheap periods, discharge during expensive periods. This works precisely when household consumption is predictable. When an unexpected weekend guest does laundry at 6 PM (peak rate), or when a summer heatwave causes AC to run during off-peak morning hours, the schedule benefits reduce. Smart energy management systems (GivEnergy's "eco+" mode, Tesla's time-based control) adjust in real time to actual consumption, outperforming fixed schedules by 8–15% in households with variable consumption patterns.
+
+**Battery minimum SoC reserve reduces effective arbitrage capacity.** Most batteries are configured with a minimum SoC reserve for backup purposes — typically 20% for households wanting basic backup capability. A 13.5 kWh battery with 20% reserve has only 10.8 kWh available for daily arbitrage. The financial models in most savings guides use 90% DoD (12.15 kWh) rather than the 72% effective DoD created by the backup reserve. Homeowners who want both maximum arbitrage savings and backup capability must choose a larger battery — the two objectives are in direct tension in a single-unit system.
+
+**Demand forecasting integration materially increases savings beyond schedules.** Second-generation battery management systems from GivEnergy (using Agile price feeds), Enphase (Ensemble energy management), and SolarEdge (Predict+) use next-day electricity price forecasts and weather-based solar generation predictions to dynamically adjust charging windows. A homeowner on Octopus Agile whose battery charges automatically during the cheapest 3-hour window each night — which varies daily — captures 12–18% more value than one using a fixed 2:00–5:00 AM schedule. Enabling the forecast integration feature (which requires an API connection to the tariff provider) requires a one-time configuration step but provides ongoing savings that compound annually.
+
+**Export limiting configured by DNOs can strangle savings in high-solar areas.** Properties in solar-saturated distribution circuits may have an export limit imposed by the DNO — often 3.68 kW on a single-phase connection. A 4.5 kW solar array on such a property can only export a maximum of 3.68 kW at any time. The remaining generation (up to 820 W) must either be consumed locally or curtailed. A battery fully charged by 11 AM on a summer day cannot absorb this curtailed generation, and the energy is lost. In constrained export areas, an undersized battery relative to array production is therefore a higher-cost error than in unconstrained areas.
+
+---
+
+## When This Approach Breaks Down
+
+The savings maximisation strategies presented work well for the modal residential prosumer. They underperform or become counterproductive in specific circumstances.
+
+**Flat-rate tariff households.** All TOU arbitrage strategies require a tariff with time-differentiated rates. A household on a flat-rate tariff where the grid import cost is identical 24 hours a day can only save by increasing solar self-consumption — avoiding grid imports when solar is generating. For a 9.5 kWh battery and 4 kW array in the UK, this self-consumption saving is approximately £400–£600/year regardless of how optimally the battery is managed. No optimisation strategy can create arbitrage value where no rate differential exists; the correct action for flat-rate households is to switch to a TOU tariff as a prerequisite for optimization.
+
+**Households with unreliable internet connectivity.** Smart energy management systems that use API connections to tariff providers require consistent internet connectivity to function. A rural property with intermittent broadband that loses connectivity for 2–4 hours per day may find that the forecast integration defaults to its last cached schedule, potentially missing optimal charging windows. In low-connectivity environments, a simple fixed off-peak schedule (without API integration) may produce more consistent results than a smart system that frequently fails to refresh.
+
+**Battery systems approaching warrant cycle limits.** For systems in Year 8–12, the marginal value of maximising cycle depth (discharging to 10% rather than 20%) must be weighed against the reduced warranty claim opportunity if accelerated degradation results. At high cycle depths, cell-level stress accumulates faster. For aging systems approaching the warranty cycle threshold, conservative DoD settings (20%–80%) that reduce annual throughput slightly but extend cycle life significantly may produce better total lifetime value than aggressive maximum-savings scheduling.
+
+---
+
+## Real-World Example
+
+**Scenario:** Two adjacent properties in Reading, Berkshire, both with 4.5 kW solar arrays and 9.5 kWh GivEnergy batteries installed in April 2025. Both switch to Octopus Agile on installation.
+
+**Property A: Fixed night schedule (02:00–05:00 AM top-up to 95%)**
+- Average overnight Agile rate in window: 8.2p/kWh
+- Average peak avoidance rate: 27p/kWh
+- Annual arbitrage saving Year 1: £724
+
+**Property B: Agile API integration enabled (charges during cheapest 3h daily)**
+- Average overnight Agile rate in cheapest 3h: 5.4p/kWh (same nights, optimal window varies daily)
+- Average peak avoidance rate: 27p/kWh
+- Annual arbitrage saving Year 1: £818
+
+**Difference: £94/year** — modest on an absolute basis, but the API configuration is a one-time 30-minute setup.
+
+**Additional finding at Year 1 review:** Property A had the battery set to minimum 20% backup reserve. They had never experienced an outage and decided to reduce backup reserve to 10%, recovering 0.95 kWh for additional arbitrage. This further improved Year 2 savings by £32/year.
+
+**Total optimisation uplift over 10 years: ~£1,140** from two configuration changes that cost no capital.
+
+**Lesson:** The largest savings opportunities in battery optimisation are frequently in software configuration, not hardware. API tariff integration and backup reserve adjustment are free changes that compound over the battery's lifetime. Use the [battery calculator](/calculator) to model the savings impact of different backup reserve settings and tariff structures on your specific system.
+
+---
+
+## Engineering Recommendation
+
+Battery savings maximisation is primarily a software and tariff configuration task, not a hardware problem. The majority of homeowners with installed battery systems are leaving 10–25% of available savings uncaptured due to sub-optimal default settings.
+
+**Immediate configuration actions (implement within 30 days of installation):**
+- Enable tariff provider API integration if available for your battery brand — this single action is the highest-value savings optimisation available
+- Set your backup reserve to match your actual outage risk, not the installer's default — a property in a reliable urban distribution area may need only 10% reserve; rural properties should keep 20–30%
+- Confirm that the battery's self-consumption mode is enabled for solar-first charging during the day — this is usually the default but should be explicitly verified in the monitoring app
+
+**Annual review actions:**
+- Compare your actual annual savings against the projected annual savings from the original financial model — a gap greater than 15% warrants investigation
+- Review Agile or Flux rate history from the previous 12 months and compare against the spread used in your payback projection — tariff changes may require recalculation
+- Check whether any new smart tariff products have launched that offer better peak/off-peak spreads than your current tariff
+
+**The key decision trigger** for switching tariffs is a simple calculation: multiply the new tariff's effective spread by your battery's annual equivalent cycling depth. If the result is more than 10% higher than your current tariff's equivalent saving, the tariff switch will recoup its administrative cost within weeks. Use the [battery ROI calculator](/calculator) and check [current UK battery costs](/cost/solar-battery-cost-uk-2026) to recalibrate your financial model if tariff conditions have changed since installation.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How maximised savings change payback timelines
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Mistakes that reduce battery savings
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When savings optimisation can't rescue a poor investment

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Calendar, Clock, ChevronRight, ArrowRight, Share2 } from 'lucide-react';
 import { type ArticleMetadata } from '@/lib/content/mdx';
-import { BlueprintUpgradeCTA, NextStepsCTA } from '@/components/content/ConversionCTAs';
+import { BlueprintUpgradeCTA, NextStepsCTA, DecisionGuideCTA } from '@/components/content/ConversionCTAs';
 import { GlobalUsersNotice } from '@/components/content/GlobalUsersNotice';
 
 interface ArticleLayoutProps {
@@ -17,6 +17,10 @@ export function ArticleLayout({ metadata, children, relatedArticles, faqs = [] }
     const categoryTitle = metadata.category.charAt(0).toUpperCase() + metadata.category.slice(1);
     const articleUrl = `https://batteryblueprint.com/${metadata.category}/${metadata.slug}`;
     const categoryUrl = `https://batteryblueprint.com/${metadata.category}`;
+
+    // DecisionGuideCTA only shown for high-intent purchase-decision categories
+    const HIGH_INTENT_CATEGORIES = ['cost', 'comparisons', 'incentives', 'markets'];
+    const showDecisionGuides = HIGH_INTENT_CATEGORIES.includes(metadata.category);
 
     const socialImage = `https://batteryblueprint.com/og/${metadata.category}.png`; // Fallback dynamic image
 
@@ -183,8 +187,11 @@ export function ArticleLayout({ metadata, children, relatedArticles, faqs = [] }
                                 {children}
                             </div>
 
+                            {/* Decision Guides Block — high-intent categories only */}
+                            {showDecisionGuides && <DecisionGuideCTA />}
+
                             {/* Engagement/CTA Block */}
-                            <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 border border-border/50 text-center sm:text-left">
+                            <div className="mt-8 p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 border border-border/50 text-center sm:text-left">
                                 <div className="flex flex-col sm:flex-row items-center gap-8">
                                     <div className="space-y-3 flex-1">
                                         <h3 className="text-2xl font-bold">Plan your system with confidence</h3>
@@ -196,11 +203,6 @@ export function ArticleLayout({ metadata, children, relatedArticles, faqs = [] }
                                         <Link href="/calculator">
                                             <Button size="lg" className="w-full sm:w-auto h-12 text-base font-semibold shadow-lg">
                                                 Calculate My Requirements
-                                            </Button>
-                                        </Link>
-                                        <Link href="/calculator">
-                                            <Button variant="outline" size="lg" className="w-full sm:w-auto h-12 text-base">
-                                                Download Blueprint
                                             </Button>
                                         </Link>
                                     </div>
@@ -238,19 +240,24 @@ export function ArticleLayout({ metadata, children, relatedArticles, faqs = [] }
                                     </div>
                                 )}
 
-                                {/* Global CTA */}
+                                {/* Sidebar CTA — Decision Guides */}
                                 <Card className="bg-primary text-primary-foreground border-0 shadow-lg overflow-hidden relative">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none" />
                                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full blur-2xl -ml-12 -mb-12 pointer-events-none" />
 
                                     <CardContent className="p-6 relative z-10 space-y-4">
-                                        <h3 className="font-bold text-lg leading-tight">Need a custom blueprint?</h3>
+                                        <h3 className="font-bold text-lg leading-tight">Before you buy</h3>
                                         <p className="text-primary-foreground/90 text-sm">
-                                            Get a complete PDF sizing report to share with your installer.
+                                            Independent engineering guides to help you decide.
                                         </p>
-                                        <Link href="/calculator" className="block">
+                                        <div className="space-y-2">
+                                            <Link href="/worth-it" className="block text-sm text-primary-foreground/90 hover:text-primary-foreground hover:underline">→ Is It Worth It in 2026?</Link>
+                                            <Link href="/hidden-costs" className="block text-sm text-primary-foreground/90 hover:text-primary-foreground hover:underline">→ Hidden Costs of Batteries</Link>
+                                            <Link href="/choose-battery" className="block text-sm text-primary-foreground/90 hover:text-primary-foreground hover:underline">→ How to Choose a Battery</Link>
+                                        </div>
+                                        <Link href="/calculator" className="block mt-2">
                                             <Button variant="secondary" className="w-full font-semibold">
-                                                Start Sizing
+                                                Size My System
                                                 <ArrowRight className="w-4 h-4 ml-2" />
                                             </Button>
                                         </Link>

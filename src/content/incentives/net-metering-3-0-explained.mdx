@@ -214,3 +214,82 @@ NEM 3.0 didn't kill solar; it just killed *solar-only* installations. The saving
 
 [**Calculate Your NEM 3.0 Payback Period →**](/calculator)
 [**Learn About SGIP Rebates →**](/incentives/sgip-rebate-guide-california)
+
+---
+
+## Engineering Reality
+
+NEM 3.0's financial impact is more nuanced than the headlines suggests — in both directions. Understanding the actual rate architecture separates actionable insight from both over-optimism and excessive pessimism about California solar economics.
+
+**The "avoided cost rate" for excess solar exports is far more complex than a single per-kWh figure.** NEM 3.0's Avoided Cost Calculator (ACC) determines the export rate paid per kWh, and this rate varies by time of day, season, and year across a 30-year forecast. The ACC export rates are not static: they reflect the CPUC's modelled marginal avoided cost of generation on the CAISO grid in each 15-minute interval. In practice, this means export rates vary from below 2¢/kWh at midday in spring (when the duck curve creates oversupply) to 17–25¢/kWh during evening peak hours in summer. A solar system that produces most of its generation during low-value midday hours earns less than one that produces during high-value morning or evening shoulder periods — but residential rooftop solar generation is determined by the sun's position, not the rate schedule.
+
+**Battery sizing for NEM 3.0 optimisation requires integration of the ACC rate schedule with the site's hourly generation and load data.** The correct battery size for a NEM 3.0 household is not determined by daily kWh consumption alone. It is determined by the alignment between the household's generation profile, consumption profile, and the ACC rate schedule for each hour of the year. A 10 kWh battery that can capture 95% of evening peak rates on 250 days per year provides more NEM 3.0 value than a 15 kWh battery that captures 80% on the same days but discharges prematurely. This analysis requires 15-minute interval generation and load data — not the annual totals commonly used in simplified payback models.
+
+**Grandfathering eligibility deadlines under NEM 2.0 created installation bottlenecks that affected pricing.** The April 14, 2023 deadline for NEM 2.0 interconnection applications created a surge in installations that strained California's installer market. Permit processing times extended from 2–4 weeks to 3–6 months; equipment lead times extended similarly. Homeowners who rushed to meet the deadline at elevated prices paid a significant premium compared to those who evaluated the NEM 3.0 economics carefully and installed after the rush. The NEM 3.0 financial case, while different from NEM 2.0, is valid with correct battery sizing — the urgency-driven rush to NEM 2.0 was not uniformly justified.
+
+---
+
+## When This Approach Breaks Down
+
+The NEM 3.0 with battery storage model works well for grid-connected California homeowners with high peak-hour demand. It underperforms in specific circumstances.
+
+**Customers of publicly owned utilities not subject to CPUC jurisdiction.** Approximately 25% of California electricity customers are served by Publicly Owned Utilities (POUs) — Sacramento Municipal Utility District (SMUD), Los Angeles Department of Water and Power (LADWP), Silicon Valley Power, etc. — that are not subject to CPUC ratemaking and operate their own net metering programmes. Some POUs have adopted NEM structures similar to NEM 3.0; others retain NEM 2.0-equivalent structures; others have deprecated net metering entirely in favour of fixed export rates. NEM 3.0 guidance applies specifically to IOU customers (PG&E, SCE, SDG&E) and should not be assumed to apply to POU customers without utility-specific verification.
+
+**Commercial and agricultural customers on different rate schedules.** NEM 3.0 as described applies to residential Schedule E-6 customers. Commercial and agricultural customers are served under different tariff schedules (E-TOU-C, E-ELEC, AG) with different avoided cost structures and demand charge components that are not addressed in residential NEM 3.0 analysis. Commercial customers should engage an energy broker or commercial electricity consultant rather than applying residential NEM 3.0 guidance.
+
+**Properties with shading that eliminates morning-peak generation.** NEM 3.0's value depends on capturing generation during morning peak and evening battery discharge during evening peak. A property with significant eastern shading (hillside, neighbouring building) that prevents solar generation before 10 AM loses the highest-value morning generation hours. This can systematically shift generation to lower-value midday periods, significantly reducing the NEM 3.0 benefit. A site shading assessment that maps generation by hour throughout the year is the correct prerequisite for NEM 3.0 financial modelling.
+
+---
+
+## Real-World Example
+
+**Scenario:** Two adjacent homes in Fresno, California — both PG&E customers — install 7.5 kW solar systems and 13.5 kWh Tesla Powerwall 3 batteries in October 2025 (post-NEM 3.0 implementation).
+
+**House A: 7.5 kW solar, south-facing, no significant shading**
+- Peak generation hours: 9 AM – 3 PM, with peak at 11:30 AM – 1:30 PM
+- Generation profile: High midday (low ACC value), low morning/evening
+- Battery strategy: Charges from solar 10 AM – 2 PM, discharges at peak 5 – 9 PM
+- Excess solar exported to grid: Approximately 1,200 kWh/year at average 4.2¢/kWh
+- Annual NEM 3.0 export income: $50/year
+- Annual self-consumption saving: $1,340/year
+- **Total annual benefit: $1,390/year**
+
+**House B: 7.5 kW solar, optimised east-west split (3.7 kW east, 3.8 kW west)**
+- Peak generation hours: 7 – 10 AM (east panels), 2 – 6 PM (west panels) — bracketing the midday duck curve trough
+- Generation profile: Better alignment with morning and evening ACC rate peaks
+- Battery strategy: Less storage needed; west panels generate into evening peak directly
+- Excess solar exported: Approximately 1,400 kWh/year at average 8.9¢/kWh (higher value export timing)
+- Annual NEM 3.0 export income: $125/year
+- Annual self-consumption saving: $1,420/year
+- **Total annual benefit: $1,545/year**
+
+**Difference: $155/year from panel orientation alone.** Over 25 years: $3,875 additional value from east-west orientation.
+
+**Lesson:** NEM 3.0 makes panel orientation a financial decision, not just an aesthetic one. South-facing maximises total generation but concentrates it in low-ACC-value midday hours. East-west orientation reduces midday overproduction and increases morning and evening generation that aligns better with ACC peak rate windows. Use the [NEM 3.0 payback calculator](/calculator) and [SGIP rebate guide](/incentives/sgip-rebate-guide-california) to model both orientations before committing to panel placement.
+
+---
+
+## Engineering Recommendation
+
+NEM 3.0 has restructured California solar economics, not ended them. The financial optimisation required under NEM 3.0 is more sophisticated than under NEM 2.0 — requiring attention to panel orientation, battery sizing relative to evening peak load, and TOU tariff selection — but produces a viable investment case for most California homeowners with high peak-rate exposure.
+
+**The four engineering inputs that determine NEM 3.0 system value:**
+1. Panel orientation — south-facing maximises generation; east-west maximises alignment with ACC peak hours
+2. Battery capacity — sized to capture evening peak discharge, not simply total daily consumption
+3. TOU tariff — E-TOU-D or DR-P tariff structures that maximise the peak/off-peak spread for battery arbitrage
+4. SGIP eligibility — an SGIP rebate (for eligible customers in high fire risk areas or income-qualifying households) materially changes the payback calculus
+
+**Sizing recommendation specific to NEM 3.0:**
+- Minimum recommended battery: 10 kWh per household to cover typical 5–9 PM peak demand window
+- For whole-home backup and NEM 3.0 optimisation combined: 13.5 kWh (Tesla Powerwall 3) or equivalent
+- For properties with gas appliances (limiting evening electric load to lighting, refrigeration, electronics): 10 kWh may be adequate
+
+**The key decision trigger** for California post-NEM 3.0 is straightforward: if evening peak electricity costs (on a TOU tariff) exceed battery arbitrage costs by more than $0.15/kWh, and the system can be sized to cover evening peak demand for 250+ days per year, the financial case is positive. Use the [NEM 3.0 payback calculator](/calculator) and review [SGIP rebate eligibility](/incentives/sgip-rebate-guide-california) before finalising system configuration.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — NEM 3.0 impact on US payback periods
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — NEM 3.0 transition planning errors
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When NEM 3.0 doesn't make storage financially viable

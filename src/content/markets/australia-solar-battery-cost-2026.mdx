@@ -372,3 +372,86 @@ Research which VPP program offers the best revenue for your situation:
     Yes. This is called AC coupling. You'll need a compatible hybrid inverter or battery inverter. Popular retrofits include Sungrow SBR, Alpha ESS, and Tesla Powerwall. Expect to pay AUD $10,000-$14,000 for a 10-13 kWh battery + inverter + installation.
     </DocsFAQItem>
 </DocsFAQ>
+
+---
+
+## Engineering Reality
+
+The Australian residential battery market is the most mature globally for VPP integration, but several engineering and regulatory constraints are underrepresented in standard market guides.
+
+**Australian grid export limits are increasingly aggressive and directly affect battery economics.** As residential solar penetration has exceeded 30% of homes in some distribution areas, Australian DNSPs (SA Power Networks, Energex, Ausgrid, CitiPower) have implemented dynamic export limits and, in some grid areas, zero export limits for new solar+battery connections. In constrained circuits, a solar+battery system may be required to apply Dynamic Export Control — software-based throttling that reduces export to the grid during periods of high distribution voltage. This can reduce SEG/FiT income projections by 20–40% in affected areas compared to systems without export constraints. Confirming the specific export limit applicable to the property's distribution circuit — available from the DNSP on request using the NMI (National Metering Identifier) — is an essential step before completing an ROI calculation.
+
+**VPP programme dispatch and solar self-consumption can conflict without intelligent BMS coordination.** A battery management system that charges from solar during morning peak generation and then receives a VPP dispatch signal during the afternoon peak (when the battery has charged from solar and has full capacity) delivers VPP dispatch reliably. However, if the battery has been discharged by morning VPP events (during high-demand summer mornings), it may have insufficient capacity remaining for solar charging during the afternoon generation window. Intelligent VPP-aware BMS coordination — where the battery management system reserves charge headroom for solar charging during VPP dispatch periods — is a feature present in Tesla's Autobidder system and Amber's algorithm but absent in some simpler VPP integrations.
+
+**CEC accreditation is a minimum standard, not a quality indicator.** The Clean Energy Council accreditation requirement for solar and battery installers in Australia establishes baseline competency in system design and electrical safety. It does not differentiate between experienced and entry-level installers, and does not guarantee system commissioning quality, correct BMS configuration, or appropriate VPP enrolment setup. For complex installations (three-phase properties, off-grid configurations, high-capacity VPP enrolment), requesting evidence of specific experience with the exact system configuration being installed — not just CEC accreditation — is the appropriate due diligence standard.
+
+---
+
+## When This Approach Breaks Down
+
+The strong financial case for Australian battery storage is well-founded for the average case. Several circumstances require materially different analysis.
+
+**Western Australian properties with Synergy's Distributed Energy Buyback Scheme (DEBS).** Western Australia operates a markedly different energy market from the NEM (National Electricity Market) states. Synergy's DEBS pays 10¢/kWh (peak) and 7¢/kWh (off-peak) for solar exports — rates that are directionally higher than the eastern states' low FiT environment. For WA homeowners with high solar generation and good DEBS export rates, the opportunity cost of battery self-consumption (foregone FiT income) approaches the self-consumption saving more closely than in eastern states, compressing the financial case for battery storage.
+
+**Rental properties under state rebate means-testing frameworks.** Victoria's Solar Homes programme, SA's Home Battery Scheme, and the ACT rebate are all available to renters as well as owners — with specific renter-specific income tests and consent requirements. However, the practical barriers for rental applications — obtaining landlord consent for a permanent battery installation, navigating which party retains the battery at lease end, and clarifying who owns the VPP dispatch income — create friction that results in significantly lower uptake among renters than owners. The financial case that applies to an owner-occupier in Melbourne does not directly apply to a renter without explicit landlord agreement on all three issues.
+
+**Properties served by Horizon Power (WA regional) or Essential Energy (NSW regional).** Rural and remote grid networks have different interconnection and export approval processes from metropolitan DNSPs. Horizon Power in WA and Essential Energy in NSW have historically had longer interconnection approval cycles and more conservative export limits for solar+battery systems than metropolitan networks. A rural property planning a battery installation in a non-metropolitan network should allow 6–12 weeks for network impact assessment approval — not the 2–4 weeks typical for metropolitan connections.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Gawler, South Australia (north of Adelaide) installs a 6.6 kW solar array + Sungrow SBH10 (9.6 kWh) battery in February 2026.
+
+**Pre-installation engineering checks:**
+- DNSP: SA Power Networks
+- Export limit confirmed via DNSP enquiry: 5 kW peak export permitted (property in constrained circuit)
+- Dynamic Export Control: Required (Sungrow system configured with SAPN-compatible DER register)
+- Network connection approval: 4-week process (metro SA)
+
+**Incentive stack:**
+- SA Home Battery Scheme: **AUD $2,000 rebate** (standard income tier)
+- Federal STC entitlement on 6.6 kW solar: ~AUD $2,900
+- VPP enrolment: Amber Electric (wholesale pass-through, projected AUD $380/year income)
+
+**Year 1 financial performance:**
+- Self-consumption saving (avoided import at 42¢/kWh): AUD $1,280/year
+- Lost FiT income (reduced by export limit constraint, 10% less than unconstrained): -AUD $90
+- Amber VPP income (conservative): AUD $340
+- **Total annual benefit: AUD $1,530**
+
+**Net system cost (13.6 kWh system, solar + battery):**
+- Gross: AUD $19,500
+- Less STC: -AUD $2,900
+- Less SA rebate: -AUD $2,000
+- **Net: AUD $14,600**
+
+**Payback: AUD $14,600 ÷ AUD $1,530 = 9.5 years**
+
+**Lesson:** The export limit constraint cost approximately AUD $90/year compared to the unconstrained case. The more significant real-world adjustment was ensuring the Sungrow system was correctly registered on the SA Power Networks DER register before commissioning — without this, the installation would not have received network connection approval. Use the [battery sizing calculator](/calculator) and our [Australian incentives guide](/incentives/australia-solar-battery-rebates-incentives-2026) to model your specific state and circuit situation.
+
+---
+
+## Engineering Recommendation
+
+Australian battery storage represents a genuinely strong investment in most high-consumption, high-rate states — but maximising the ROI requires engineering attention to export limits, VPP selection, and installer quality that is omitted from standard consumer guides.
+
+**Before committing to an Australian battery installation:**
+1. Confirm your DNSP export limit via NMI enquiry — if a dynamic export constraint applies, reduce FiT income projections accordingly
+2. Confirm the VPP programme's dispatch economics: Amber Electric (wholesale pass-through) suits technically engaged homeowners; Tesla and Energy Locals suit set-and-forget operations
+3. Confirm the installer's specific experience with VPP commissioning for the battery brand being installed — VPP enrolment setup (DER register, API authorisation for the aggregator, AEMC small-scale technology requirements) is not automatically completed by all CEC-accredited installers
+
+**State-specific engineering considerations:**
+- **SA:** Confirm SAPN DER register compliance before installation day — SA Power Networks requires pre-registration of battery systems capable of VPP dispatch
+- **VIC:** Confirm Solar Homes portal application has been approved in writing before installation — rebate allocation is finite and application-period dependent
+- **QLD:** Confirm cyclone-rated mounting hardware is specified for properties in TC Risk Zone C or D (coastal areas north of the Sunshine Coast)
+
+**The key decision trigger** for Australian homeowners is the net-of-incentives payback period under conservative savings assumptions. If payback is below 9 years assuming the constrained export limit for your circuit, the investment is financially justified. Use the [battery sizing calculator](/calculator) and supplement with a DNSP export limit enquiry for the definitive net number.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How Australia compares to other markets
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Australia-specific planning errors
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When Australian electricity rates don't justify storage

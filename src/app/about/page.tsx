@@ -102,7 +102,7 @@ export default function AboutPage() {
                             <li>You enter your daily energy consumption and backup requirements</li>
                             <li>We calculate usable battery capacity needed (accounting for DoD, efficiency, reserves)</li>
                             <li>We recommend real batteries from our catalog that meet your needs</li>
-                            <li>You download a PDF blueprint to share with installers</li>
+                            <li>You get exact battery recommendations with a breakdown of how the numbers were calculated</li>
                         </ol>
                         <p className="text-sm text-muted-foreground italic">
                             All formulas are standard industry calculations. No proprietary algorithms. No vendor lock-in.

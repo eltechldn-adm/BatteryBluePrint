@@ -201,3 +201,84 @@ Yes and no. A home battery has a max output (e.g., 5 kW). If your EV charger tri
 
 ### Is V2H worth waiting for?
 If you're buying a new EV in the next 1-2 years, check for V2H compatibility. A V2H-capable EV effectively gives you 60-100kWh of home backup storage at no additional cost beyond the bidirectional charger (~£1,500-£3,000). For many homeowners, this eliminates the need for a separate home battery entirely.
+
+---
+
+## Engineering Reality
+
+The "charge your EV from solar excess" strategy is sound engineering, but the practical performance gap between the marketing narrative and real-world operation is significant.
+
+**Solar excess charging is constrained by minimum charger thresholds.** Most solar-aware EV chargers require a minimum generation surplus before they initiate charging. The Zappi charger's Eco+ mode requires a minimum of 1.4 kW of export before it will begin charging. On a heavily overcast UK day in October, your 4 kW array may only produce 600–900 W — below the minimum threshold. The charger sits idle, the solar is exported at the SEG rate (typically 4–15p/kWh), and the car remains uncharged until the homeowner manually switches to grid-supplemented mode. In practice, solar-only EV charging in the UK is seasonal, not year-round.
+
+**Round-trip efficiency through the home battery adds up.** If you charge the home battery with solar (95% efficiency) and then discharge it to the EV charger (95% inverter efficiency) at an AC outlet (85% EV charging efficiency), the total solar-to-EV energy delivered is approximately 0.95 × 0.95 × 0.85 = 76.7% of the original solar generation. Direct solar-to-EV charging via a solar-aware charger achieves approximately 85–90% efficiency. The home-battery-as-middleman route costs an additional 9–14 percentage points of efficiency, which is meaningful at scale — equivalent to losing 2–3 miles of EV range per 10 kWh of solar generated.
+
+**V2H bidirectional power delivery adds non-trivial inverter constraints.** The inverter handling V2H discharge must manage both DC-to-AC inversion (EV battery to home) and comply with grid connection requirements for islanding and reconnection. Not all V2H-capable vehicles use the same bidirectional charging standard (CHAdeMO versus CCS-based V2H have different hardware requirements). In the UK, V2H systems also require DNO notification and compliance with G98 or G99 grid code, adding permitting complexity comparable to a grid-tied battery installation.
+
+**Off-peak EV charging economics frequently outperform solar charging.** On a standard Octopus Go tariff (UK), off-peak rate from midnight to 5 AM is approximately 8.5p/kWh. Solar generation in summer may displace grid imports at a blended rate of 25–34p/kWh. However, the absolute saving per mile of EV driving via off-peak charging (approximately 2p/mile at 8.5p/kWh and 4 miles/kWh) may differ from solar charging by only 0.5–1.5p/mile. For homeowners choosing between upgrading to a solar-capable EV charger (£500–£900) versus simply using off-peak grid charging, the payback on the solar integration premium can exceed 10 years at typical UK mileage.
+
+---
+
+## When This Approach Breaks Down
+
+The solar-to-EV charging model works well for specific combinations of array size, EV usage pattern, and climate. It fails or underperforms in well-defined circumstances.
+
+**Low solar array capacity relative to EV demand.** A 2–3 kW solar array cannot reliably generate sufficient surplus to meaningfully charge an EV in the UK climate. The solar-aware charger will operate in Eco+ mode sporadically during sunny summer afternoons, adding perhaps 15–25 miles of range per week. At this scale, the system effectively functions as occasional free miles but not as a primary charging strategy. The recommendation to simply rely on overnight off-peak grid charging is financially correct for homes with small arrays.
+
+**Properties without suitable daytime parking.** Solar-direct EV charging requires the vehicle to be parked and connected to the home charger during peak solar generation hours (roughly 9 AM to 3 PM). For households where all vehicles leave for work at 8 AM and return at 6 PM, solar-direct charging is structurally impossible, regardless of system design. In these cases, the battery-as-intermediary approach — charging the battery during the day and the EV from the battery in the evening — is the only available solar charging pathway, despite the efficiency losses.
+
+**High-mileage drivers and long commutes.** The article's math shows that two Powerwalls (27 kWh) would be required to store solar energy for daily EV charging plus home use. At 12 kWh/day for EV needs alone (40 miles at 3.5 miles/kWh), this represents a storage requirement beyond the economic sweet spot. High-mileage drivers (70+ miles per day) require 20+ kWh for EV alone — making dedicated home battery EV charging financially irrational. These users should route solar exclusively to the EV during daylight hours via a solar-aware charger and charge the home battery separately.
+
+**V2H in its current regulatory state.** In the UK, V2H systems operating in island mode during a grid outage require compliance with Engineering Recommendation G99 and a DNO-approved protection relay. This is not a DIY configuration. Many installers are not yet familiar with the commissioning process for V2H systems in island mode, creating quality-of-installation risk. Until the regulatory path is clearer and the installer base more experienced, V2H islanding capabilities should be treated as emerging technology rather than a proven alternative to a dedicated home battery.
+
+---
+
+## Real-World Example
+
+**Scenario:** A household in Surrey, UK has a 6 kW solar array and a Nissan Leaf (40 kWh battery, averaging 35 miles daily commute). They install a Zappi EV charger in April 2025 to solar-charge their EV. First 4 months (April–July 2025):
+
+- Total solar generation: 2,180 kWh
+- Solar consumed by home directly: 720 kWh
+- Solar charged to home battery: 890 kWh
+- Solar excess available for Zappi EV charging: 570 kWh
+- **EV solar-charged miles:** approximately 1,995 miles (570 kWh × 3.5 miles/kWh)
+- **Cost avoided vs off-peak grid charging:** approximately £28.50 at 5p/mile delta
+
+**Winter performance (November–February):**
+- Average daily solar surplus available during EV parking hours: 0.2 kWh (insufficient to trigger Zappi Eco+ mode)
+- EV solar charging in winter: effectively zero
+- Charger operated on scheduled off-peak grid tariff (8.5p/kWh)
+
+**Total annual EV solar charging saving: £28.50** (4 months only)
+
+At a Zappi installation cost of £750, the payback on the solar integration feature alone is approximately 26 years. However, the Zappi's off-peak scheduling saved an additional £180/year compared to unmanaged peak-rate charging — making the full payback approximately 4.2 years. The solar integration feature provided a meaningful benefit in summer, but the primary financial case rested on smart tariff scheduling, not solar excess capture.
+
+**Lesson:** The solar-direct EV charging benefit is real but seasonal and often secondary to the off-peak scheduling capability. Model both separately before committing to the solar-aware charger specification. Use the [battery sizing calculator](/calculator) to determine whether the EV load should be routed through the home battery or handled by a dedicated scheduled charger, and see our [solar battery cost guide](/cost/solar-battery-cost-uk-2026) for current system cost benchmarks.
+
+---
+
+## Engineering Recommendation
+
+Solar-EV integration is a technically sound strategy that requires careful matching of array size, EV usage pattern, and charging infrastructure to deliver genuine financial return.
+
+**Solar-direct EV charging (smart charger approach) is appropriate if:**
+- Your solar array is large enough (5+ kW in the UK, 7+ kW in the southwest US) to generate consistent surplus during EV parking hours
+- Your EV is parked at home during peak generation hours (9 AM–3 PM) for at least 5 days per week
+- Your daily driving requirement is 40 miles or less — keeping EV energy demand within the realistic range that solar surplus can supply across UK summer conditions
+
+**Battery-mediated EV charging is appropriate if:**
+- You cannot park at home during daytime hours and require evening EV charging from stored solar
+- You have already sized your battery for full home self-consumption and have residual capacity — not as an additional reason to buy a larger battery
+
+**Strongly avoid battery-mediated EV charging if:**
+- You are considering purchasing a significantly larger battery primarily to enable home-to-EV charging — the scale mismatch means the capital invested in additional battery capacity is almost never justified by the EV charging use case alone
+- Your daily EV consumption exceeds 15 kWh — at this scale, the home battery becomes a bottleneck rather than an enabler
+
+**The key decision trigger** is whether your EV is physically present during peak solar hours. If yes, invest in a quality solar-aware EV charger. If no, invest in a smart scheduled off-peak charger. Only consider V2H bidirectional hardware if you are purchasing a new EV with native V2H support and your home already has a grid-tied battery installation — the combination creates genuine synergy, whereas standalone V2H without an existing battery system adds commissioning complexity for marginal incremental benefit. Compare current system costs in our [cost guide](/cost/solar-battery-cost-uk-2026).
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — EV undersizing is a top planning error
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — EV charging impact on payback
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When EV charging needs don't justify the cost

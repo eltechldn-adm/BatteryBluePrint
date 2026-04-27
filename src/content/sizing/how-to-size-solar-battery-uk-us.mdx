@@ -203,3 +203,80 @@ Adding an EV dramatically increases your sizing requirements. A typical EV needs
 
 ### Should I size for today's usage or future usage?
 Size for your expected usage in 2-3 years, not just today. If you're planning to add an EV, heat pump, or electric cooking in the near future, factor those loads in now. It's much cheaper to buy the right-sized inverter upfront than to replace it later.
+
+---
+
+## Engineering Reality
+
+The manual sizing method described in this article produces a theoretically correct battery size. Between that theoretical figure and the system that will actually perform to your expectations lie several engineering factors that are rarely discussed in sales consultations.
+
+**Daily consumption is not a fixed number.** The article uses nightly kWh consumption as the primary input. In practice, this number varies by 40–60% across seasons, occupant schedule changes, and behavioural shifts. A household averaging 8 kWh nightly in autumn may consume 14 kWh overnight during a December cold snap when the electric boiler boost cycles repeatedly. Sizing to the average results in undersized performance during the months when backup or self-sufficiency matter most.
+
+**Solar surplus in winter is not proportional to panel rating.** A 6 kW solar array does not produce 30% of 6 kW on overcast winter days — it may produce as little as 5–8% of rated power under heavy cloud in December (approximately 300–480 W). The article correctly identifies winter sizing as critical, but the specific reduction factor depends on location, panel tilt, and sky condition frequency. Using a blanket "50% winter derate" is inaccurate for Scotland (where 80–90% winter reduction is common) and overly conservative for Southern Spain or South-Western Australia.
+
+**Degradation-adjusted sizing changes purchasing decisions.** Manufacturers warrant 70% capacity retention after 10 years or 6,000 cycles, whichever comes first. These are separate limits, and daily cycling reaches 6,000 cycles in 16.4 years. However, elevated temperature or high charge-discharge rate accelerates degradation independently of cycle count. A system installed in a high-ambient-temperature region (e.g., Texas, UAE, Queensland) may reach 70% retention at year 8 rather than year 16 — requiring degradation-adjusted initial sizing of 40–45% above the year-1 requirement, not the 43% the warranty period calculation might suggest.
+
+**Inverter output constraints are invisible in kWh sizing calculations.** Every sizing workflow focuses on energy (kWh). The article includes a reference to the kW guide, but the practical consequence of this is frequently missed: a correctly sized 12 kWh battery installed with a 3.6 kW inverter cannot serve a home whose peak demand regularly reaches 6–7 kW. The inverter becomes the binding constraint, not the battery capacity.
+
+---
+
+## When This Approach Breaks Down
+
+The three-variable sizing framework (consumption, generation, autonomy) is correct for standard UK and US residential configurations. It produces incorrect results in the following circumstances.
+
+**Properties with significant daytime-only load.** The nightly consumption model assumes the battery's primary role is overnight discharge. For properties running a home office, workshop, or data-heavy devices during the day, a significant portion of solar may be consumed directly without passing through the battery. In this case, the relevant sizing variable is not nightly kWh but peak-period demand. The sizing methodology needs adjustment to separate direct solar consumption from battery-mediated consumption.
+
+**Fast-changing household composition.** The sizing calculation is static by design. A household that moves from two working adults to three adults plus remote working in Year 2, then adds an EV in Year 3, will find that the Year 0 sizing becomes inadequate within 18 months. The modular battery strategy mitigates this risk but only if the initial inverter is rated for the eventual maximum capacity — which is a separate specification check that requires future-proofed inverter sizing, not just battery sizing.
+
+**Feed-in tariff versus battery — break-even analysis.** In some markets (notably UK pre-2023, and some Australian markets), the SEG or net metering export rate was sufficiently high that exporting all excess solar and purchasing again at off-peak rates was financially equivalent to or better than cycling a battery. In these specific tariff environments, the "fill factor" calculation breaks down because the optimal battery size may be zero — the grid itself is the storage device. While TOU tariff reform has reduced this scenario in most markets, it remains relevant in certain rural Australian and European jurisdictions.
+
+**Three-phase properties.** Both the example and the methodology assume single-phase electrical architecture. Three-phase UK homes (properties above ~23 kW connection, or newer builds with three-phase service) require phase-by-phase load analysis. A battery mounted on Phase 1 cannot reduce demand charges or offset peak consumption on Phase 2 or Phase 3 without phase-balancing circuitry or a three-phase hybrid inverter.
+
+---
+
+## Real-World Example
+
+**Scenario:** A 3-bedroom semi-detached home in Manchester installs a 9.5 kWh GivEnergy AIO with a 4 kW solar array in March 2025. They follow this article's methodology precisely:
+
+- Nightly consumption: 6.5 kWh
+- Solar winter surplus: 4.2 kWh (November estimate from installer)
+- Buffer: 20%, requiring 8.1 kWh capacity
+- **Selection: 9.5 kWh system** ✓ theoretically correct
+
+**Year 1 winter performance (January 2026):**
+- Average daily solar generation: 2.9 kWh (installer had used October data, not December/January)
+- Net surplus after daytime consumption: 0.8 kWh
+- Battery charge level at 5 PM: 23% (2.2 kWh) — due to partial solar charging plus overnight reserve setting of 15%
+- Grid imports from 5 PM to 10 PM (peak rate): 3.8 kWh per evening
+- **Outcome:** The battery was too small for winter self-sufficiency because the installer's fill-factor calculation used autumn irradiance, not winter irradiance
+
+**Resolution:** The homeowners switched to an Octopus off-peak schedule, using cheap overnight grid electricity (7.5p/kWh) to top up the battery before 4:30 AM. This reduced — but did not eliminate — peak-rate imports. A second 9.5 kWh battery unit would have resolved the winter shortfall.
+
+**Lesson:** Always request winter-specific (December) solar irradiance figures from your installer — not annual or autumn averages. Use the [battery sizing calculator](/calculator) to input your postcode and see month-specific generation estimates before committing to a system size.
+
+---
+
+## Engineering Recommendation
+
+The sizing methodology in this article is technically sound. The primary failure mode is not the method but the quality of the inputs — particularly the winter solar irradiance figure and the nightly consumption estimate.
+
+**Proceed with the calculated size if:**
+- Your installer has provided December-specific irradiance data for your roof orientation and tilt (not annual averages)
+- Your nightly consumption figure is based on actual smart meter half-hourly data across at least 4 weeks — not a manual estimate from bill averages
+- Your inverter output rating (kW) has been validated against your peak simultaneous appliance demand, not just the calculated nightly kWh figure
+- You have chosen a modular system with room for future expansion, particularly if EV or heat pump adoption is planned
+
+**Recalibrate the sizing if:**
+- Your installer's generation estimate is described as "annual average" without seasonal breakdown — this is the single most common cause of winter underperformance
+- Your 3-variable calculation produces a number between two available product sizes — always round up, not down
+- Your home's electrical peak load has not been checked against the inverter's continuous and surge rating
+
+**The key decision trigger** is the winter fill factor. If the calculated battery capacity exceeds your winter surplus (what the panels can realistically put in on the worst generation days), you must either add grid top-up scheduling, reduce the battery size to match actual fill capability, or add more solar. A battery that chronically cycles at 30% is losing money, not making it. Run the numbers through the [calculator](/calculator) and compare with the [solar battery cost guide](/cost/solar-battery-cost-uk-2026) before finalising your specification.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How sizing affects UK vs US payback
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Sizing errors that inflate cost
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When UK/US economics don't stack up

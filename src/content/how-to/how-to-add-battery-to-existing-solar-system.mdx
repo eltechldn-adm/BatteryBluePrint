@@ -179,3 +179,84 @@ In some states, utilities will actually PAY you to install a battery if you agre
 Before you buy, make sure a standard 13.5 kWh battery is actually enough for your specific home loads. Use our engineering calculator to see exactly how long your home would run during an outage.
 
 [**Run the Calculator →**](/calculator)
+
+---
+
+## Engineering Reality
+
+Adding a battery to an existing solar system is technically achievable in almost all cases, but the system performance and financial outcome depend on factors that are frequently ignored during the retrofit specification process.
+
+**AC coupling losses are cumulative and non-trivial.** When retrofitting a battery to an existing string-inverter solar system, AC coupling is the standard topology. The DC-AC conversion at the solar inverter, followed by AC-DC conversion into the battery, followed by DC-AC inversion from the battery to the home, produces a round-trip efficiency of approximately 87–92%. In contrast, a new DC-coupled hybrid system achieves 94–97%. For a 10 kWh system cycling 365 times per year, the 5–10% efficiency gap represents 182–365 kWh of annual loss — worth £45–£90 at UK rates or $22–$44 at US rates. This is not a reason to avoid the retrofit, but it must appear in the financial model.
+
+**Existing inverter warranty interaction is frequently misunderstood.** Adding an AC-coupled battery to a system covered by an active solar inverter warranty triggers a warranty grey area. Most inverter manufacturers — SolarEdge, SMA, Fronius, Enphase — explicitly require that AC-coupled batteries be compatible models from an approved list. Installing an unapproved battery brand that interacts with the inverter's grid frequency control system can, in extreme cases, void the inverter warranty. This is not a theoretical concern — it is a documented source of warranty disputes that surfaces when the inverter develops a fault 18 months post-battery retrofit.
+
+**Clipping losses in oversized solar arrays are not recoverable via AC coupling.** One of the strongest arguments for DC-coupled hybrid systems is clipping capture: the ability to divert excess solar production (above the inverter's rated capacity) directly into the battery. AC-coupled retrofits cannot achieve this because the solar panels and battery connect via the same AC bus post-inverter — the inverter's output capacity remains the ceiling. Arrays with a panel:inverter ratio above 1.2:1 (common in UK installations optimised for winter generation) lose the clipping capture benefit permanently in an AC-coupled retrofit.
+
+**Monitoring integration requires deliberate configuration, not automatic inheritance.** Adding a retrofit battery does not automatically integrate its monitoring into the existing solar monitoring app. A SolarEdge monitoring portal showing existing generation data does not automatically include Tesla Powerwall SoC data without third-party integration tools. In practice, most homeowners with retrofit installations end up managing two separate apps or dashboards — an operational inconvenience that is not a safety concern but is worth planning for.
+
+---
+
+## When This Approach Breaks Down
+
+The retrofit strategy is pragmatic and appropriate for most existing solar installations. Several specific circumstances change the calculation significantly.
+
+**SolarEdge and Huawei proprietary inverter ecosystems.** Both SolarEdge and Huawei use proprietary DC communication protocols between their panel optimisers and string inverters. Adding a third-party battery to these systems cannot be DC-coupled without replacing the existing inverter. AC coupling works, but the proprietary monitoring ecosystem may not integrate with the new battery. For SolarEdge specifically, the SolarEdge Home Battery is the only natively integrated battery option; third-party batteries can be AC coupled but lose the Home Battery's deep software integration.
+
+**Micro-inverter arrays — AC coupling is the only option, but limitations apply.** Enphase microinverter systems, by definition, produce AC power at the panel level. Battery retrofit must always be AC coupled for these systems. This is standard and well-documented. However, Enphase's AC coupling frequency-shift islanding control (which signals microinverters to reduce output when the battery is full during an outage) requires Enphase's own gateway device (IQ System Controller) to function. If a non-Enphase battery is AC coupled to an Enphase microinverter system, islanding may not work correctly — the battery attempts to hold AC voltage during grid outage, but the microinverters may continue injecting power because they are not receiving Enphase's frequency shift signal. This is a potentially dangerous condition that requires explicit engineering validation.
+
+**Property sale timing.** A retrofit battery on an aging solar system (10+ years) creates a home sale presentation challenge. A buyer's surveyor may flag the pre-2016 inverter as nearing end-of-life and note that the retrofit battery warranty may effectively terminate with the inverter. The combined perceived value of the solar-plus-battery system may be discounted by a buyer relative to a matched new system. This is not a reason to avoid the retrofit, but it affects the residual value component of the financial case.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Leeds has an 8-year-old 3.5 kW SolarEdge system (2016 vintage) with a string inverter rated for SE3680H. In 2025, they want to add battery storage.
+
+**Option A: Tesla Powerwall 3 (AC coupled)**
+- Powerwall 3 installed: £9,500 (0% VAT)
+- AC coupling to SolarEdge: technically feasible (SolarEdge SE3680H supports external AC sources)
+- Monitoring: separate Tesla app + existing SolarEdge monitoring — no unified dashboard
+- Efficiency: ~90% round-trip
+- SolarEdge compatibility: confirmed for Powerwall 3 as AC device
+
+**Option B: Replace inverter with GivEnergy 5kW Hybrid (DC coupled)**
+- Inverter replacement: £1,800 labour
+- GivEnergy inverter hardware: £1,200
+- GivEnergy 9.5 kWh battery: £3,200
+- Total: £6,200 (0% VAT)
+- Efficiency: ~95% round-trip
+- **Clipping capture benefit**: with the 3.5 kW array and new 5 kW inverter, no clipping occurs — array is undersized relative to inverter
+
+**Financial comparison (5-year horizon):**
+- Option A: £9,500 upfront, £840/year savings → payback 11.3 years
+- Option B: £6,200 upfront, £880/year savings (higher efficiency) → payback 7.0 years
+
+**Chosen option: B.** The inverter had 2 years of warranty remaining and would have needed replacement within 3–5 years at additional cost. Replacing it proactively and gaining DC coupling advantages made the combined investment significantly more cost-effective.
+
+**Lesson:** Before committing to an AC-coupled retrofit, always price the cost of replacing the existing inverter to DC-coupled hybrid architecture — particularly if the inverter is more than 7 years old. The break-even between AC retrofit and DC replacement is often closer than expected. Use the [battery sizing calculator](/calculator) to model both scenarios, and check current system pricing in the [UK cost guide](/cost/solar-battery-cost-uk-2026).
+
+---
+
+## Engineering Recommendation
+
+Adding a battery to existing solar is a sound decision for the vast majority of UK and US homeowners. The engineering complexity is manageable, and the financial case is usually compelling if the inverter compatibility question is resolved correctly at the outset.
+
+**Choose AC-coupled retrofit if:**
+- Your existing inverter is less than 6 years old and carries 4+ years of remaining warranty
+- Your inverter is on the approved compatibility list of the battery you intend to install — verified at firmware level, not just brand level
+- Your solar array is correctly sized for your inverter (panel:inverter ratio below 1.15:1), so clipping capture is not a meaningful consideration
+
+**Choose DC-coupled replacement if:**
+- Your existing inverter is at or approaching end-of-warranty
+- Your solar array is oversized relative to your inverter capacity — DC coupling allows clipping capture that materially improves the investment return
+- You want a single unified monitoring platform rather than two separate apps
+
+**The key decision trigger** is remaining inverter life. Assess honestly: a 10-year-old inverter is statistically near end-of-life. Retrofitting a new battery around an aging inverter that will require replacement in 2–3 years produces two labour visits and two permitting cycles. The economics almost always favour replacing both simultaneously. Use the [battery sizing calculator](/calculator) and the [UK cost guide](/cost/solar-battery-cost-uk-2026) to compare the full 10-year cost of each pathway before committing.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Retrofit-specific planning errors
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Retrofit payback vs new-build comparison
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When retrofitting an older system isn't worth it

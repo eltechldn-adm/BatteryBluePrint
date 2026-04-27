@@ -148,3 +148,85 @@ Demand charges are common on commercial electricity tariffs but rare on resident
 **Q: How do I find historical usage data if I've lost old bills?**
 
 Most utility providers store at least 12–24 months of usage history in your online account. Log in to your utility's customer portal and look for a section called "Usage History," "My Energy," or "Bill History." You can usually download a CSV or PDF of your monthly usage. In the UK, your smart meter data is accessible via your supplier's app or the national smart meter data portal. In Australia, your retailer's app typically shows 12 months of usage. If you can't access historical data online, call your utility's customer service line — they can usually provide historical usage data on request.
+
+---
+
+## Engineering Reality
+
+Electricity bills provide essential battery sizing inputs, but the interpretation of bill data requires careful attention to what is measured, what is estimated, and what is missing from the information presented.
+
+**Monthly kWh totals mask the daily and hourly patterns that actually drive battery sizing.** A utility bill stating "432 kWh in January" is an appropriate rough input for annual energy calculations. It is inadequate for battery sizing because it reveals nothing about when those 432 kWh were consumed. A household that runs the dishwasher, washing machine, and tumble dryer simultaneously at 8 PM draws 7–9 kW for 2 hours — a peak that determines whether a 3.6 kW inverter battery or a 7.6 kW inverter battery is required. Monthly bill data cannot reveal this. Smart meter half-hourly export data, downloadable from UK suppliers via the DCC portal, provides the granularity needed for accurate battery sizing. US customers can request 15-minute interval data from most utilities.
+
+**Estimated versus actual reads affect sizing accuracy.** In the UK, approximately 18% of energy bills issued between 2022–2025 contained at least one estimated reading, according to Ofgem data. An estimated bill may understate or overstate actual consumption by 10–35% depending on the estimation algorithm used. Battery sizing based on an estimated bill produces a proportionally inaccurate result. Homeowners without smart meters who have received multiple consecutive estimated bills should request an actual meter reading before using bill data as a sizing input.
+
+**Export revenue on bills does not indicate battery optimisation performance.** For existing solar owners, the SEG payment line on a UK bill shows total units exported times the SEG rate — not the volume of solar energy generated or consumed. A homeowner who exported 380 kWh in a quarter at 7p/kWh may have self-consumed 620 kWh and exported 380 kWh of the total 1,000 kWh generated. Alternatively, a poorly configured system may have exported 720 kWh and self-consumed only 280 kWh. Both scenarios produce similar generation totals but radically different self-consumption rates — and therefore different battery sizing requirements. Sizing a battery using export payment amounts without knowing the underlying generation and self-consumption split produces systematically incorrect results.
+
+**Seasonal variation in UK bills is frequently larger than homeowners expect.** The ratio of UK summer to winter electricity consumption for a gas-heated home is typically 1:2.5 — monthly consumption in December/January is 2.5 times higher than in June/July. Battery sizing based on an average monthly bill misrepresents both extremes: it oversizes for summer (when a smaller battery would suffice) and undersizes for winter (when the full daily cycling capacity is needed). A proper sizing analysis should explicitly address both the summer and winter monthly totals as separate inputs.
+
+---
+
+## When This Approach Breaks Down
+
+Bill-based sizing analysis is the appropriate starting point for most homeowners. It produces unreliable results in several specific circumstances.
+
+**New builds with no billing history.** A newly built home has no electricity bill history. Sizing must be based on designed load estimates: number of occupants, appliance specifications from the house design specification, expected EV charging, and synthetic daily load profiles for the home's archetype. This is a legitimate engineering exercise but is fundamentally less accurate than actual bill data.
+
+**Properties with dramatic occupancy changes.** A household where one high-consumption occupant recently moved out (a working-age child who moved to university) or where a new work-from-home arrangement has been implemented since the most recent billing year has a historical consumption profile that does not represent future consumption. In these cases, a 3–6 month window of recent bills post-change provides more relevant data than a full annual average.
+
+**Properties with unmetered outbuildings or agricultural connections.** Properties billed at one meter for a house plus a farm building, detached annexe, or outbuilding on the same connection have a consumption total that includes non-domestic loads. Battery sizing based on the total metred consumption will oversize relative to the house's actual needs. Separate metering for the residential component provides the appropriate sizing input.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Southampton downloads a year of smart meter data for battery sizing purposes. Annual total: 4,780 kWh. Simple monthly average: 398 kWh/month.
+
+**On investigation of monthly data:**
+
+| Month | kWh | Key driver |
+|-------|-----|-----------|
+| Jan | 620 kWh | Electric heating supplement, short days |
+| Feb | 540 kWh | Cold month, still used supplement heating |
+| Mar | 420 kWh | Shoulder month |
+| Apr | 350 kWh | Spring, no heating |
+| May | 270 kWh | Long days, low heating |
+| Jun | 220 kWh | Longest days, no heating |
+| Jul | 205 kWh | Peak summer |
+| Aug | 215 kWh | Late summer |
+| Sep | 290 kWh | Cooling shoulder |
+| Oct | 410 kWh | Heating started again |
+| Nov | 530 kWh | Winter arrived |
+| Dec | 710 kWh | Shortest days, highest heating supplement |
+
+**Summer daily average (Jun–Aug):** ~7.0 kWh/day → battery sizing for summer: 7–9 kWh (with 1.2× margin)
+**Winter daily average (Nov–Jan):** ~19.4 kWh/day → battery sizing for winter cycle goals: 14+ kWh
+
+**Conclusion:** A 9.5 kWh battery is adequate for summer full-cycle operation. In winter, it can only cover roughly 50% of daily consumption, cycling fully once per day. The homeowner chose a 9.5 kWh system specifically for summer optimisation, accepting that winter operation would be partial-cycle only — a financially correct decision because winter solar is insufficient to fill a larger battery anyway.
+
+**Lesson:** Reading your bill to mean "I use 4,780 kWh/year, so I need a 4,780 ÷ 365 = 13.1 kWh battery" is incorrect. Seasonal analysis of monthly data reveals that summer self-consumption optimisation is achievable at lower battery capacity than winter full-cycle goals suggest. Use our [battery sizing calculator](/calculator) with your month-by-month data to model both summer and winter performance before committing to a size.
+
+---
+
+## Engineering Recommendation
+
+Electricity bills are the most accessible and legitimate primary source for battery sizing inputs. Extracting the right information from them requires going beyond the headline kWh total to examine seasonal variation, consumption timing, and actual versus estimated readings.
+
+**From your utility bills, extract:**
+1. 12–24 months of monthly kWh totals (actual readings preferred, not estimates)
+2. Summer minimum (June–August average in Northern Hemisphere) and winter maximum (November–January average) monthly consumption separately
+3. Any standing charges, TOU rate structure, or demand charges that affect which component of the bill a battery can actually reduce
+
+**For more accurate half-hourly data (required for precise sizing):**
+- UK: Request smart meter half-hourly data via your supplier's app or the DCC-approved portal (Bright, Hugo, Loop Energy)
+- US: Request 15-minute interval data via the utility's Green Button download service (available from most major US utilities)
+- Australia: Request interval data via your retailer's app or the Ausgrid/Endeavour data portal
+
+**The key decision trigger** for bill-based versus smart-meter-data-based sizing is the degree of seasonal variation in your bills. If your highest monthly bill is more than 2× your lowest (common in most UK households), bill averages will underserve winter and overserve summer goals. Use seasonal monthly data as separate inputs to the [battery sizing calculator](/calculator) to generate summer-and-winter scenarios rather than a single annual average.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Your tariff determines your payback
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Misreading bills is a common planning error
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When your tariff structure signals a poor ROI

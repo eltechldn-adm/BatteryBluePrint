@@ -217,3 +217,85 @@ Sometimes the battery is buggy because it is running code from 2023. If the "Aut
 If a power cycle didn't fix it, you likely have a hardware fault. Before calling a tech, verify the warranty status.
 
 [**How to Check Warranty Status →**](/how-to/how-to-monitor-solar-battery-health)
+
+---
+
+## Engineering Reality
+
+Battery troubleshooting is frequently miscategorised as either "nothing is wrong" (when homeowner attempts resolve it) or "needs a service visit" (at significant cost). The systematic triage approach reduces both false negatives and unnecessary service calls.
+
+**Error codes require model-specific interpretation, not generic lookup.** Battery inverters use proprietary fault code systems — GivEnergy, Tesla, SMA, and Fronius each have their own numerical error taxonomy with no cross-brand standardisation. A code "E031" on a GivEnergy AIO means something entirely different from "E031" on an SMA Sunny Boy Storage. Generic troubleshooting guides that list error codes without specifying the manufacturer and firmware version are unreliable. Always cross-reference fault codes with the specific model's service manual (available from the manufacturer's support portal) before interpreting the fault.
+
+**Grid voltage fluctuations are the most common cause of battery trips in the UK.** The UK grid voltage standard (BS EN 50160) permits voltage to fluctuate between 207V and 253V under normal conditions (±10% of the 230V nominal). In practice, voltage at the meter in some rural areas drops below 220V during peak evening demand and rises above 250V during low-demand periods. Battery inverters programmed with tight voltage protection thresholds trip more frequently in these areas — sometimes up to 3–5 times per week — as a protective response. The fault presents as "unexpected shutdown" or "grid disconnect" in logs. The fix is a modest widening of the voltage protection window in the inverter settings — typically from 207–253V to 202–258V — which requires an engineer visit but solves the problem permanently.
+
+**Capacity under-reading immediately post-installation is not degradation.** New LFP batteries require 3–5 full charge-discharge cycles before the BMS fully calibrates its SoH estimation. A new 13.5 kWh battery that reports 11.2 kWh available after the first charge cycle is not defective — the BMS has not yet accumulated sufficient data to calibrate its capacity model. This "break-in" behaviour is documented in most manufacturer literature but is not prominently communicated to installers or homeowners. Troubleshooting calls received by manufacturers in the first 2 weeks post-installation are dominated by this misunderstood normal behaviour.
+
+**Communication faults between battery and inverter are frequently caused by software updates, not hardware.** When a battery system suddenly displays "No Communication" or "Inverter Not Found" errors after working correctly for months, the most likely cause is a firmware update to one component that introduced a communication protocol mismatch with the other. This is particularly common in systems where the battery and inverter are from the same manufacturer but different hardware generations. The fix is typically a firmware rollback or update of the lagging component — remote diagnostics by the manufacturer's technical support can usually identify and resolve this within 1–2 business days without a physical visit.
+
+---
+
+## When This Approach Breaks Down
+
+The systematic triage process handles most common faults. Several failure modes require escalation beyond standard troubleshooting.
+
+**Thermal events — any sign of heat, swelling, or chemical smell.** No troubleshooting sequence applies if there is visible battery swelling, elevated external case temperature, a chemical or burning smell, or discolouration of any component. LFP chemistry is substantially safer than NMC, but all lithium batteries require immediate isolation and emergency response if any of these signs are present. Isolate the battery using the main DC isolator switch (the red or yellow switch next to the battery), do not use the battery room until professionally inspected, and do not attempt to repower the system without manufacturer technical clearance. This is not a scenario for homeowner troubleshooting.
+
+**Cell imbalance faults on systems beyond Year 5.** Cell imbalance errors — where individual cell groups within the battery module have diverged in SoC by more than the BMS tolerance — can appear benign in the early years and are typically corrected by BMS balancing routines. In batteries beyond Year 5, persistent cell imbalance that does not self-correct after a full charge cycle may indicate that one cell group has degraded significantly faster than others. This requires module-level diagnostic from the manufacturer — typically via a remote diagnostics API — before a warranty claim can be assessed. Standard troubleshooting steps (power cycle, firmware update) are unlikely to resolve a hardware-level cell imbalance.
+
+**Import protection device (MCCB/RCD) nuisance tripping that affects the whole property.** If the battery system installation is associated with nuisance tripping of the main property RCD or MCCB — affecting all circuits, not just the battery circuit — the fault is in the battery's protective circuit design rather than in the battery itself. This may indicate the battery's internal earth fault monitoring is incorrectly configured for the property's earthing arrangement (TN-C-S vs TN-S), or that the neutral-earth link in the battery's island mode configuration is interacting with the property's existing protective conductors. This fault requires an electrician experienced in both battery systems and general domestic wiring, not a solar-only specialist.
+
+---
+
+## Real-World Example
+
+**Scenario:** A household in Coventry experiences intermittent battery shutdowns in January 2026, approximately 3–4 per week. The GivEnergy AIO shows "Grid Overvoltage" in the fault log each time.
+
+**Triage steps taken:**
+1. Fault log reviewed: "Grid OV E058" — confirmed as grid overvoltage, not hardware fault
+2. Smart meter voltage log checked via Hildebrand Glow dongle: June–December recordings showed 248–254V during 06:30–08:00 AM on multiple dates
+3. Manufacturer's technical support contacted with data
+4. Remote diagnostic confirmed: inverter was programmed with a 252V upper trip threshold (factory default) — appropriate for typical urban supply but below the voltage peaks at this address
+
+**Resolution:** Manufacturer's support performed a remote parameter update, widening the overvoltage trip threshold to 256V within the G98 limits applicable to the property's DNO area.
+
+**Duration of fault to resolution:** 9 days (fault identification: 2 days; triage with support team: 3 days; remote parameters update: 4 days to schedule).
+
+**No engineer visit required.** Zero cost to homeowner.
+
+**Lesson:** Grid voltage events are the most common and most frequently misdiagnosed cause of UK residential battery shutdowns. The first diagnostic step for any "unexpected shutdown" fault should always be reviewing the smart meter voltage log via a half-hourly data tool. Use the [battery monitoring guide](/how-to/how-to-monitor-solar-battery-health) to understand how to access and interpret this data.
+
+---
+
+## Engineering Recommendation
+
+Effective troubleshooting is a structured process, not a series of guesses. The majority of battery faults can be diagnosed — and most can be resolved — without emergency service callouts if the right information is assembled before calling support.
+
+**Before contacting installer or manufacturer support, document:**
+1. The exact fault code(s) shown — manufacturer, model number, and firmware version
+2. The time and date of the fault and any abnormal conditions preceding it (recent firmware update, storm, grid outage, unusual load)
+3. Three months of smart meter voltage data, particularly if "grid" faults are occurring
+4. The system's normal operating behaviour — what the battery was doing before the fault appeared
+
+**Tier 1 troubleshooting (homeowner capable):**
+- Power cycle (battery off, inverter off, 10-minute wait, restart in inverter-first sequence)
+- Check broadband/gateway connection if monitoring shows "offline" with no physical fault indicators
+- Confirm firmware is current — check manufacturer's support page for the most recent release
+
+**Tier 2 troubleshooting (requires support contact):**
+- Remote diagnostics via manufacturer's API (most Tier 1 brands offer this — request it before agreeing to a physical visit)
+- Parameter adjustment for voltage protection thresholds (requires authorised engineer remote access)
+
+**Tier 3 escalation (physical visit required):**
+- Any fault that persists after Tier 2 remote diagnostics
+- Any fault involving physical inspection of connections, components, or mounting
+- Any fault involving unusual sounds, smells, or visible damage
+
+**The key decision trigger** for warranty claim versus service charge is the fault's relationship to manufacturing defect versus installation issue or usage pattern. A hardware fault that first appears within 24 months of installation is almost always covered under warranty. A fault that develops in Year 4–5 requires assessment against the warranty terms on capacity and performance rather than standard parts-and-labour coverage. Review the [battery health monitoring guide](/how-to/how-to-monitor-solar-battery-health) to understand what supporting data a warranty claim requires.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Problems often trace to planning mistakes
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When persistent problems signal the wrong battery choice
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How reliability issues affect long-term returns

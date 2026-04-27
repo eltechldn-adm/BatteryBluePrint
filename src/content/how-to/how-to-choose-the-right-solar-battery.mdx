@@ -163,3 +163,80 @@ A battery is the energy storage unit itself. A battery system includes the batte
 **Q: Can I add more capacity later?**
 
 Some batteries are designed to be expandable (BYD Battery-Box, Enphase IQ Battery). Others are fixed-capacity units (Tesla Powerwall). If you think you might want more capacity in the future — for an EV, for example — choose an expandable system from the start.
+
+---
+
+## Engineering Reality
+
+The battery selection framework described in this article correctly identifies the key variables. Several technical realities narrow the decision space more sharply than the headline specifications suggest.
+
+**Inverter rating is frequently the binding constraint, not battery capacity.** A homeowner comparing two 10 kWh batteries with different continuous power ratings (3.6 kW vs 7.6 kW) may underestimate the significance of this difference. During a grid outage, the inverter's continuous output determines what can run simultaneously. A 3.6 kW limit means no induction hob, no kettle, and no tumble dryer running at the same time. For most UK households, this is acceptable during an outage. For US households accustomed to running central AC units alongside cooking appliances, it is not. The battery capacity (kWh) determines duration; the inverter output (kW) determines capability. Both must match the household's actual peak demand.
+
+**Software ecosystem lock-in is permanent from the moment of installation.** Each battery brand uses proprietary communication protocols between the battery, inverter, and monitoring platform. Tesla's CAN-bus protocol, Enphase's powerline communication, and GivEnergy's Modbus-based API are not interoperable. A homeowner who installs a Tesla Powerwall today and wants to add a GivEnergy battery unit in Year 3 cannot do so — the two brands will not communicate in a unified system. The initial brand selection is a 12–15 year commitment. This is the most underappreciated constraint in battery selection guides.
+
+**Battery chemistry is not uniform within LFP.** The article correctly recommends LFP over NMC. However, LFP cells from different manufacturers have measurably different cycle life, thermal characteristics, and calendar aging profiles. CATL LFP cells (used in GivEnergy and BYD products) and EVE Energy LFP cells (used in some server-rack systems) have different capacity retention curves at elevated temperatures. In the UK's relatively temperate climate (average garage temperature 8–18°C), this difference is minor. In southern Europe, Texas, or California, where ambient garage temperatures reach 35–45°C in summer, cell choice within LFP becomes more consequential for long-term cycle life.
+
+**Certification requirements are jurisdiction-specific and non-transferable.** A battery certified to UL 9540A (US fire safety standard) may not be certified to IEC 62619 (EU/UK safety standard). A system installed in the UK must carry IEC 62619 and comply with BS EN 62619. Importing and installing a US-market battery product in a UK property voids the warranty, fails MCS certification requirements, and may void the homeowner's insurance. This is a rare but non-trivial risk for homeowners sourcing batteries through non-standard channels.
+
+---
+
+## When This Approach Breaks Down
+
+The five-step selection framework is appropriate for standard residential new-build and retrofit installations. Several common purchasing situations fall outside this model.
+
+**Households with highly variable consumption patterns.** A household where consumption varies dramatically by day — low consumption on weekdays (remote working light-load), high consumption on weekends (multi-guest occupancy, heavy cooking) — cannot be accurately sized using an average daily consumption figure. The battery may behave correctly on "average" days and fail to meet demand on high-consumption days. A more sophisticated selection process would analyse hourly consumption distribution, not daily averages, and select a battery with sufficient kW output and kWh capacity to meet not the median day but the 90th-percentile demand day.
+
+**Off-grid primary residences.** The selection framework optimises for grid-tied systems with backup capability. True off-grid primary residences require a fundamentally different selection philosophy: maximum cycle life at the operating DoD, robust BMS that handles irregular charging (variable solar, occasional generator), and a chemistry that performs reliably at the location's minimum winter temperature. Some residential lithium batteries are not warranted for off-grid primary use — the charging profile from irregular sources (solar and generator) differs from the continuous grid-topping cycling they are designed for.
+
+**Properties in planned Virtual Power Plant programmes.** Some utilities and VPP aggregators specify the battery hardware required for programme participation. A homeowner who selects a battery independently for optimal personal ROI may find that their chosen product is not compatible with their preferred VPP programme — limiting the income stream that would have improved the payback. Where a VPP programme is part of the financial case, confirm hardware compatibility requirements with the VPP operator before purchasing.
+
+---
+
+## Real-World Example
+
+**Scenario:** A household in Worthing, West Sussex — 4 people, double-income, petrol car, gas boiler — follows the 5-step selection process in February 2026:
+
+1. **Goal:** Daily bill reduction via Octopus Flux arbitrage
+2. **Existing solar:** None — new 4.5 kW system being installed simultaneously
+3. **Budget:** £8,000 system budget including battery
+4. **Power needs:** Peak simultaneous load assessed at 4.2 kW (2 laptops, fridge, TV, kitchen appliances during breakfast)
+5. **Chemistry:** LFP confirmed
+
+**Candidate systems:**
+- Tesla Powerwall 3: £9,500 (over budget)
+- GivEnergy AIO 9.5 kWh + 4.5 kW hybrid inverter: £7,200 (within budget)
+- GivEnergy AIO 13.5 kWh + 4.5 kW hybrid inverter: £9,100 (over budget)
+
+**Selection:** GivEnergy 9.5 kWh system at £7,200. Peak output: 6 kW (sufficient for 4.2 kW simultaneous peak load). Software: GivEnergy portal with Octopus Agile integration.
+
+**Year 1 performance:** Battery cycles fully on 217 days (solar surplus adequate). Partial cycles on 148 days (winter/autumn). On-peak import avoidance: 1,640 kWh. Annual saving: £746 on Octopus Flux (26p/kWh differential × 60% average cycle depth).
+
+**Retrospective insight:** The 9.5 kWh choice was correct. The 13.5 kWh option would have achieved ~8% more savings but taken £1,900 more capital with a 2.5-year longer payback.
+
+**Lesson:** The "bigger is always better" instinct in battery sizing is wrong for financial arbitrage applications. Correctly matching battery capacity to actual daily cycling depth delivers faster payback than oversizing. Use the [battery sizing calculator](/calculator) to model both sizes before deciding, and review [current UK pricing](/cost/solar-battery-cost-uk-2026) to ensure your budget comparison is using 2026 market costs.
+
+---
+
+## Engineering Recommendation
+
+Battery selection is a long-duration commitment — typically 12–15 years — that cannot be reversed without a full system replacement. The decision deserves the same scrutiny as a mortgage product comparison.
+
+**The selection decision should close in this order:**
+1. Confirm your peak kW requirement — this eliminates undersized options before capacity or cost comparisons begin
+2. Confirm inverter compatibility with your existing solar setup — this may eliminate entire brands
+3. Confirm software ecosystem requirements — if you want Home Assistant integration, VPP compatibility, or specific smart tariff API access, filter brands on this before cost
+4. Compare remaining options on cost-per-kWh of usable storage — not hardware list price — using the [UK cost guide](/cost/solar-battery-cost-uk-2026) or [US cost guide](/cost/solar-battery-cost-usa-2026) for calibrated benchmarks
+
+**Do not select based on:**
+- Brand recognition alone — brand premium does not predict long-term cell performance
+- Marketing cycle-life claims without reading the warranty terms carefully — "6,000 cycles" warranties frequently include temperature, DoD, and discharge rate conditions that are not met in real-world use
+
+**The key decision trigger** is inverter compatibility. Any battery that cannot be confirmed as compatible with your existing or planned inverter — at the firmware level, not just the brand level — should be excluded from the shortlist before any other comparison. Everything else is secondary to this foundational technical requirement.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Errors to avoid during the selection process
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How your choice affects payback timelines
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When no product on the market fits your needs

@@ -178,3 +178,80 @@ A rough rule: your solar array (in kW) should be at least equal to your battery 
 
 ### What if I get the size wrong?
 If you buy too small, you can add more battery modules (with a modular system) or add a second battery unit. If you buy too large, you'll simply have more backup capacity than you need—not ideal financially, but not harmful to the system.
+
+---
+
+## Engineering Reality
+
+The three-archetype framework provides a useful entry point, but real system performance diverges from these category definitions in measurable ways.
+
+**Archetype boundaries are not static.** A household classified as a "Bill Buster" (Archetype 1) today may need to re-categorise if electricity prices shift significantly, if they add an EV, or if their utility moves from 1:1 net metering to NEM 3.0-style export devaluation. Battery purchasing decisions made for current circumstances often underperform within 2–3 years due to changes in the household energy profile.
+
+**"Resilience" users frequently underestimate comfort loads.** The critical loads estimate of 5–7 kWh/night includes refrigerator, WiFi, basic lighting, and a gas furnace fan. In practice, households consistently add loads they consider essential that were not in the original list: a second fridge, a CPAP machine, USB device charging for multiple family members, a fish tank pump, baby monitors, and network-attached storage. These individually small loads aggregate to an additional 1.5–3.0 kWh per night. A 13.5 kWh battery that was supposed to provide 24 hours of backup often provides only 16–18 hours once actual critical load inventory is measured rather than estimated.
+
+**Off-grid sizing is particularly sensitive to consecutive low-generation sequences.** The Archetype 3 calculation (3 days × 15 kWh/day = 45 kWh) assumes independent daily generation figures. In reality, extended overcast periods — particularly winter frontal systems in the UK and Northeast US — produce consecutive days of 80–90% generation reduction. A Monte Carlo simulation using historical irradiance data for specific locations shows that "3-day autonomy" in Edinburgh requires approximately 4.5 days of theoretical capacity to achieve 95% reliability (i.e., 95% of winters will not result in a complete discharge). Static worst-case calculations systematically understate the required margin.
+
+**Power demand bottlenecks apply equally across archetypes.** The article identifies heat pumps and EVs as "power hogs." Less obvious is that all three archetypes have distinct kW constraint risks, not just kWh risks. A Bill Buster who runs an induction hob during peak tariff hours (to avoid grid imports) may find their 5–10 kWh battery's 3.6 kW output insufficient to run the hob at full power — the battery clips, imports from the grid, and the arbitrage benefit evaporates.
+
+---
+
+## When This Approach Breaks Down
+
+Archetype classification provides a useful framework but produces incorrect guidance in specific, common scenarios.
+
+**Dual-purpose systems with competing objectives.** Homeowners in California, Texas, and the UK frequently want both daily bill savings and outage backup from the same system. These goals can conflict: a battery optimised for daily arbitrage (cycling to 0% every evening) has no reserve for backup during a grid failure that occurs at 11 PM. Software-managed reserve settings partially resolve this, but the reserve capacity comes directly out of the daily cycling capacity — shrinking effective Archetype 1 or 2 performance.
+
+**Gas-heated homes being electrified.** A property in the middle of electrification — replacing a gas boiler with a heat pump, or gas hob with induction, in stages — cannot be cleanly classified into any archetype. The home's energy profile changes quarter-by-quarter. Buying a battery based on current consumption before electrification is complete will almost certainly result in undersizing relative to final consumption. The sizing decision should follow, not precede, the electrification roadmap.
+
+**Heavily shaded or east-facing solar installations.** Both the Archetype 1 ROI case and the Archetype 2 resilience case assume solar generation that can actually fill the battery. A system with significant shading — from trees, adjacent buildings, or suboptimal roof orientation — may generate only 50–60% of theoretical output. For Archetype 1, this means the battery may only cycle to 50–60%, undermining the daily arbitrage return and pushing payback periods from 7 years to 11+.
+
+**Properties with generator integration.** For Archetype 3 households, generator integration changes the optimal battery size significantly. A 30–50 kWh battery bank sized for 3-day autonomy without a generator can be replaced with a 15–20 kWh battery plus a 3–5 kW generator — at substantially lower capital cost. The generator tops up the battery during solar drought periods, eliminating the need for days of additional stored capacity. This hybrid approach is frequently the most cost-effective path to genuine resilience.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Phoenix, Arizona classifies themselves as Archetype 2 (resilience) based on the article's description. They experience 2–4 hour grid outages 3–4 times per year during monsoon season and want reliable backup. They purchase a 13.5 kWh Tesla Powerwall 3.
+
+**Battery in daily arbitrage mode (primary use):** The system cycles fully each day. By mid-outage season (August), the battery is in daily-cycle mode and is at 15% charge (2 kWh remaining) when a storm triggers a grid failure at 7:30 PM.
+
+- Battery available: 2 kWh
+- Household AC running at 4 kW (Phoenix summer evening)
+- **Battery exhausted in 30 minutes**
+- Grid restored 2 hours later — the homeowners spent 90 minutes without power
+
+**What went wrong:** The battery was correctly sized for resilience but was configured for arbitrage without an automatic backup reserve. Without a minimum reserve setting of 15–20%, the battery had no capacity available when the outage struck.
+
+**Resolution:** Configuring a 20% backup reserve (2.7 kWh) in the Tesla app meant the daily arbitrage cycling depth dropped from 13.5 kWh to 10.8 kWh — a modest reduction in tariff savings — but the battery now consistently had a meaningful reserve during storm season.
+
+**Lesson:** Battery software configuration is as important as battery sizing. A correctly sized battery in the wrong operating mode fails the user's actual objective. Before purchasing, confirm how your chosen system handles the reserve/arbitrage balance. Use the [battery calculator](/calculator) to model both daily savings and backup duration simultaneously, and review the [battery backup sizing guide](/sizing/battery-backup-for-power-outages) for reserve configuration guidance.
+
+---
+
+## Engineering Recommendation
+
+The archetype framework correctly identifies the three dominant use cases. The purchasing decision should be driven by which archetype you will be in at the system's worst-case operating moment — not your average use pattern.
+
+**If your primary goal is bill reduction (Archetype 1):**
+- Size the battery to match your evening peak tariff window consumption precisely — do not oversize expecting backup benefits beyond what the daily cycle profile can deliver
+- Choose a system with smart tariff integration capability; the software is as important as the hardware
+- Confirm the system allows you to define a minimum backup reserve separately from the daily cycling window
+
+**If your primary goal is resilience (Archetype 2):**
+- Measure, do not estimate, your critical loads — conduct a physical inventory with wattage capture before sizing
+- Validate peak kW demand against the battery's continuous and surge output rating, not just kWh capacity
+- Configure a minimum reserve setting before Day 1 of operation; do not rely on manual management during actual outages
+
+**If your goal is extended autonomy (Archetype 3):**
+- Evaluate generator integration as an alternative to buying additional battery units before committing to a multi-battery bank — the economics often favour the hybrid approach
+- Size the solar array to match the battery's maximum recharge rate in the worst solar month, not the average
+
+**The key decision trigger** is whether your sizing calculation is based on worst-case or average conditions. Sizing for average conditions produces a system that performs adequately most of the time and fails precisely when it matters. See the [full sizing calculator](/calculator) and [solar battery cost guide](/cost/solar-battery-cost-uk-2026) to model both average and worst-case scenarios side by side.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Sizing errors are the most costly mistakes
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How size affects your payback timeline
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When your sizing needs don't justify the cost

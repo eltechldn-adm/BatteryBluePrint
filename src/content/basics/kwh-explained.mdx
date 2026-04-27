@@ -199,3 +199,75 @@ Modern LFP batteries achieve 95-97% round-trip efficiency. This means:
 - Loss: 0.3-0.5 kWh per cycle
 
 Over a year of daily cycling, this efficiency loss is worth factoring into your sizing calculations. Our [battery sizing calculator](/calculator) accounts for round-trip efficiency automatically.
+
+---
+
+## Engineering Reality
+
+The kW/kWh distinction sounds straightforward on paper, but it creates systematic errors in real-world battery purchasing decisions because the two numbers interact in ways that are non-obvious.
+
+**Peak demand is not average demand.** Most homeowners check their electricity bill for monthly kWh usage and divide it by days to get a daily average. This is correct for sizing the energy tank (kWh), but it tells you nothing about the peak power draw (kW). A home that averages 10 kWh per day may have demand spikes of 12–18 kW during morning routines — a figure that can exceed the output capacity of most residential inverters.
+
+**Inverter clamp-back silently steals energy.** When your instantaneous demand exceeds the battery's output rating, the inverter does not fail — it silently imports the difference from the grid. Many homeowners assume they are running on battery during an outage or peak tariff window, but a 30-second kettle-and-microwave spike is quietly supplemented by grid power. Monitoring apps often aggregate this into 5-minute intervals, making the event invisible.
+
+**C-rate limitations accelerate degradation.** Repeatedly discharging a battery at its maximum rated C-rate (full capacity in 1 hour) causes measurable cell temperature increases and long-term capacity fade. LFP chemistry is more tolerant than NMC, but sustained high-rate discharge still shortens lifespan relative to manufacturer cycle count figures, which are typically measured at 0.5C or lower.
+
+**Startup surge current is rarely on datasheets.** Induction motors (AC compressors, well pumps, submersible pumps) draw 3–7× their rated running current for 200–500 milliseconds during startup. A motor rated at 2 kW running may require a 10–14 kW surge. Battery inverters have a separate surge rating; if this rating is not explicitly confirmed for the appliances on your critical loads list, surge events will trip the inverter protection circuit.
+
+---
+
+## When This Approach Breaks Down
+
+Understanding kW and kWh gives you a framework, but several common scenarios confound even careful calculations.
+
+**Mixed-use properties and shift workers.** Standard sizing models assume peak demand aligns with conventional morning and evening windows. Households with irregular schedules, night-shift workers, or home businesses running equipment at atypical hours may see demand patterns that invalidate the model entirely. The battery must be sized for actual usage windows, not assumed ones.
+
+**High-density appliance stacking.** In compact properties (flats, studio apartments) where multiple high-draw appliances share circuits — induction hob, kettle, and microwave running concurrently — even a small kitchen can briefly pull 10+ kW. In these cases, the kW constraint dominates and a modest 5 kWh battery with insufficient output rating will trip repeatedly, regardless of how much energy is stored.
+
+**Battery kW output degrades with state of charge.** LFP batteries reduce output power as the state of charge drops below 15–20%. A battery that delivers 5 kW at 80% charge may only deliver 3.2 kW at 10% charge. If your appliance load calculations assume constant power availability from 100% to 0%, you risk unexpected shutdowns near the end of discharge — precisely when backup reliability matters most.
+
+**Variable load assumptions.** Refrigerators and freezers do not draw constant power — they cycle on and off. Mapping their peak compressor draw to your total load calculation will overestimate average kW demand. Conversely, ignoring running-average and accounting only for resting power will underestimate battery drain. Accurate modelling requires cycle frequency data, not just rated wattage.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Austin, Texas installs a 10 kWh battery with a 5 kW continuous output rating. Based on their monthly bill averaging 33 kWh/day, they correctly calculate that 10 kWh covers roughly 7 hours of baseload consumption, sufficient for overnight backup.
+
+**What they did not account for:** Texas summer mornings. At 7 AM, the AC (3.5 kW) cycles on. Simultaneously, the homeowner runs the coffee maker (1.0 kW) and electric shower (8.5 kW).
+
+- Total instantaneous demand: 13.0 kW
+- Battery rated output: 5 kW
+- Grid required to cover gap: 8.0 kW
+
+The system trips on the shower circuit. The battery falls into overload protection. The home loses power for 45 seconds while the inverter reboots — during a period the homeowner assumed they were grid-independent.
+
+**Resolution:** They installed a shower circuit interlock that prevents the electric shower from drawing from the battery sub-panel. This reduced peak demand on the battery to 4.5 kW — within the inverter's rated capacity.
+
+**Lesson:** kWh capacity and kW output are both hard constraints. One failure in the kW dimension negates the value of adequate kWh capacity. Use the [battery sizing calculator](/calculator) to validate both dimensions against your specific appliance list before purchasing.
+
+---
+
+## Engineering Recommendation
+
+The kW/kWh framework is the correct foundation for battery sizing decisions, but it is necessary rather than sufficient. Two equally important parameters — peak demand and surge tolerance — must be validated against your specific appliance profile.
+
+**Proceed with confidence if:**
+- You have audited your peak instantaneous demand (not just daily average kWh) using your smart meter's half-hourly or 15-minute interval data
+- Your battery's continuous kW output rating exceeds your estimated peak simultaneous load with at least a 20% margin
+- Your inverter's stated surge capacity covers the locked rotor current of any induction motors on your critical loads panel
+
+**Reconsider if:**
+- You have calculated only from your monthly kWh average without examining peak demand windows
+- You are relying on a single battery to back up large induction motor loads (central AC, deep well pumps) without confirming the inverter surge rating
+- Your property operates on atypical usage schedules that differ significantly from the assumptions baked into generic sizing models
+
+**The key decision trigger:** Request the full electrical specification sheet for any battery system under consideration and cross-reference the continuous kW *and* surge kW ratings against your peak appliance loads. If the surge rating is not listed, ask specifically — or choose a different system. See our [full solar battery cost guide](/cost/solar-battery-cost-uk-2026) to understand how output ratings affect pricing across market tiers.
+
+---
+
+## Related Reading
+
+- [Common Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — kWh confusion is a top sizing mistake
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How kWh capacity affects your payback
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When capacity needs don't justify the investment

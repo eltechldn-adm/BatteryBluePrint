@@ -214,25 +214,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     <ArticleNextAction category={metadata.category} slug={metadata.slug} />
                 </div>
 
-                <div className="mt-12 space-y-6 border-t pt-8">
-                    <h3 className="text-lg font-semibold">Next Steps</h3>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                        <DocsCallout
-                            title="Calculate your banking needs"
-                            description="Use our engineering-grade tool to size your system."
-                            href="/calculator"
-                            ctaText="Start Sizing"
-                            icon="calculator"
-                        />
-                        <DocsCallout
-                            title="Get the Blueprint"
-                            description="Download a PDF report for your installer."
-                            href="/calculator"
-                            ctaText="Download PDF"
-                            icon="blueprint"
-                            variant="outline"
-                        />
-                    </div>
+                <div className="mt-12 border-t pt-8">
+                    <DocsCallout
+                        title="Ready to size your system?"
+                        description="Use our engineering-grade calculator to get exact battery recommendations based on your load, location, and backup requirements."
+                        href="/calculator"
+                        ctaText="Open Calculator"
+                        icon="calculator"
+                    />
                 </div>
             </article>
         </>

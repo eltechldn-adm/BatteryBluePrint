@@ -358,3 +358,89 @@ Not sure which brand to choose? Compare specs, warranties, and real-world perfor
     Depends on the system. Tesla Powerwalls can be stacked (up to 4 units). Enphase IQ batteries are modular by design. FranklinWH supports expansion up to 3 units. Check with your installer about future expansion before initial install—retrofitting is more expensive.
     </DocsFAQItem>
 </DocsFAQ>
+
+---
+
+## Engineering Reality
+
+The US residential battery storage market is the largest and most incentive-rich globally, but the fragmented regulatory environment across 50 states and 3,300 utilities creates engineering and financial variability that national market guides systematically understate.
+
+**Installer quality in the US market has high variance despite the dominance of national installers.** Tesla Energy, Sunrun, and Sunnova have national scale but subcontract a significant portion of physical installation work to regional electrical contractors whose quality is not uniformly vetted to the same standard as the corporate brand implies. Enphase and FranklinWH rely entirely on certified third-party installer networks. The consequence is that two homeowners in adjacent neighborhoods can receive installations of materially different quality from the same national brand — differing in commissioning thoroughness, BMS configuration, and long-term monitoring setup. Requesting the subcontracting installer's electrician license number, liability insurance, and NEC code compliance certification before authorising the installation is the correct due diligence step that most homeowners skip.
+
+**The 75% solar-charge requirement for residential ITC eligibility is a performance standard, not an installation requirement.** The IRS requires that a battery eligible for the residential ITC (Section 25D) must be charged at least 75% from qualified solar energy on an annual basis. For a grid-tied battery installed with co-located solar panels, this is typically satisfied automatically — the system design preferentially charges from solar before drawing from the grid. However, for batteries in grid-charging-optimised configurations (where the homeowner has programmed night-time grid charging as the primary charge source), ITC eligibility could be questioned if monitoring data showed less than 75% solar sourcing. Maintaining monitoring records confirming the annual solar charge percentage is advisable for any homeowner claiming the ITC in a configuration where grid charging is a significant component.
+
+**Interconnection timelines vary dramatically by state and utility, creating installation-to-commission delays that affect financial modelling.** California's NEM 3.0 applications through PG&E, SCE, and SDG&E have historically taken 30–60 days; New York's PSC interconnection queue adds 45–90 days; Hawaii's HECO interconnection process has taken 6–18 months in high-adoption areas. A homeowner who expects the financial modelling clock to start running from installation day should account for the full interconnection and commissioning delay — during which the battery may be installed but unable to interact with the grid for export or NEM credit purposes.
+
+---
+
+## When This Approach Breaks Down
+
+The US battery storage model is well-adapted for the coastal, high-rate, solar-owner demographic. It requires significantly modified analysis in several important contexts.
+
+**Homeowners in rural electric cooperative service territories.** Rural electric cooperatives serve approximately 14 million US homes and operate under different regulatory frameworks from investor-owned utilities (IOUs) like PG&E, Con Edison, and Duke Energy. Cooperatives are not required to offer net metering, and many do not. A homeowner served by a rural co-op who expects net metering or VPP income — assuming the same framework as IOU customers — will discover their financial assumptions are incorrect. Battery sizing guided by NEM benefit calculations is not applicable in co-op territories without net metering.
+
+**Active military and government security clearance households.** Battery systems with cloud-connected monitoring (Tesla Powerwall's cloud dashboard, Enphase Enlighten, GivEnergy's VRM portal) connect the home's energy system to manufacturer-operated cloud servers that may be located outside the US. For active military personnel with SCIF access or government employees with security clearance obligations, this cloud connectivity may create compliance concerns. Local-only monitoring configurations are technically available for most major battery systems but require specific installer configuration and disable some remote monitoring and OTA firmware update features.
+
+**Townhomes, condominiums, and HOA-governed properties.** Battery installations on properties subject to homeowners association (HOA) governance may require HOA approval before installation, particularly for external battery mounting, inverter placement visible from common areas, or electrical work affecting shared infrastructure. Some HOAs restrict battery installations by reference to fire code provisions more conservative than the local AHJ's adopted building code. California's SB 9 and AB 2518 provide solar installation rights that cannot be prohibited by HOA covenants — but these protections apply specifically to solar; battery-only installations may not carry the same statutory protection in all states.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Austin, Texas installs a 9 kW solar array + 2× Tesla Powerwall 3 (27 kWh total) in September 2025 under Austin Energy's net metering programme.
+
+**Pre-installation engineering checks:**
+- Utility: Austin Energy (municipal utility, not IOU — own net metering rules apply, not ERCOT VPP)
+- Austin Energy net metering: 1:1 credit at retail rate — still on NEM 1.0 equivalent (confirmed)
+- Export cap: Full production permitted (no Austin Energy export limit)
+- Interconnection application submitted: August 2025, approved: 3 weeks (Austin Energy fast-track for residential ≤25 kW)
+
+**Incentive stack:**
+- Federal ITC (30% on eligible basis): Gross cost $28,500 (installation invoice) — less $1,800 main panel upgrade (not eligible) = ITC basis $26,700 × 30% = **$8,010**
+- Texas state incentive: None
+- Austin Energy rebate: $2,500 (Austin Energy Residential Solar Program — confirmed active at time of application)
+
+**Net cost calculation:**
+- Gross: $28,500
+- Austin Energy rebate (reduces ITC basis): -$2,500 → ITC basis adjusted to $24,200 × 30% = $7,260
+- Net out-of-pocket: $28,500 – $2,500 – $7,260 = **$18,740**
+
+**Annual performance:**
+- Solar generation (Austin, 1,780 kWh/kWp/year × 9 kW): 16,020 kWh/year
+- Self-consumption (household 21 kWh/day × 365 = 7,665 kWh imported from solar)
+- Battery storing excess solar (27 kWh capacity, typically 80% utilised in summer): 8,850 kWh stored/year
+- Grid export (NEM 1:1 credit at $0.12/kWh): 1,450 kWh × $0.12 = $174
+- Total annual saving: $7,665 × $0.12 (avoided import) + $174 (NEM credit) = **$1,094/year**
+
+**Payback: $18,740 ÷ $1,094 = 17.1 years**
+
+**Lesson:** Texas's lack of state incentives and Austin Energy's moderate rate ($0.12/kWh) produce a longer payback than the California comparison case, even with a large 27 kWh system and the federal ITC. The resilience value of 27 kWh during Texas grid stress events (approximately 4–8 multi-hour events per year) was the primary non-financial driver for the homeowner's decision. The Austin Energy rebate correctly reduced the ITC basis — failing to make this adjustment would have overclaimed the credit by $750. Use the [US battery sizing calculator](/calculator) and [US state incentives guide](/incentives/us-state-solar-battery-rebates-guide-2026) to model your specific state and utility scenario.
+
+---
+
+## Engineering Recommendation
+
+The US battery storage market offers the strongest combination of hardware quality, incentive accessibility, and installer maturity in the global market — but the 40% variation in regional electricity rates and the fragmentation between IOU, municipal utility, and rural co-op regulatory frameworks means that the correct analysis for any specific installation requires utility-specific and location-specific inputs.
+
+**The US battery installation pre-qualification checklist:**
+1. Confirm utility type: IOU (regulated, net metering typically available), municipal utility (own programs, variable), or rural co-op (net metering not guaranteed) — this determines the applicable financial framework
+2. Confirm interconnection timeline for your utility before setting installation expectations — 3 weeks (Austin Energy) to 18 months (HECO) are genuine US extremes
+3. Request an itemised installation invoice that separates battery hardware, solar hardware, inverter cost allocation, battery-specific electrical work, and other costs — this is required for correct ITC basis calculation
+4. Confirm any state or utility rebate reduces the federal ITC basis before filing Form 5695
+
+**Regional priority summary:**
+- **California:** SGIP + ITC = strongest incentive stack globally for eligible households; confirm HFTD tier first
+- **New York:** NY-Sun + ITC = strong case; confirm ConEd or NYSEG territory and current step incentive rate
+- **Texas:** ITC only; financial case driven by TOU rate access and resilience premium — confirm Austin Energy/CPS Energy/Oncor specific programmes
+- **Florida:** ITC + hurricane resilience case; Florida property tax exemption for solar applies to battery (confirmed under s. 196.175 FS)
+- **Midwest:** ITC only; payback typically 15–25 years at low electricity rates — proceed only with high resilience requirement or medical necessity
+
+**The key decision trigger** for US homeowners is electricity rate + solar system + incentive confirmation. If rate ≥ $0.25/kWh, solar system ≥ 5 kW, and ITC plus any state incentive produces a net system cost below $10,000 for a 13.5 kWh system, the financial case is positive. Use the [battery sizing calculator](/calculator) and [US incentives guide](/incentives/us-federal-solar-battery-tax-credit-itc) to confirm the specific financial case.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How the US compares to other markets
+- [US Federal Solar Battery Tax Credit (ITC)](/incentives/us-federal-solar-battery-tax-credit-itc) — Reduce net cost before calculating payback
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When US state economics don't justify the cost

@@ -226,3 +226,69 @@ For 99.9% of homeowners, **Batteries Won.**
 Hydrogen is cool science, but bad economics. If you want backup, buy LFP.
 
 [**See the Best Battery Options for 2026 →**](/comparisons/best-solar-batteries-2026)
+
+---
+
+## Engineering Reality
+
+The hydrogen versus battery comparison is technically valid but operationally asymmetric. Quantifying the performance gap requires clarity on the specific loss mechanisms in each pathway.
+
+**Electrolyser efficiency has a physical ceiling that is well below battery roundtrip efficiency.** The best commercially available PEM electrolysers (Silyzer 300 scale, not residential units) achieve 70–75% electrical-to-hydrogen efficiency. The best residential-scale electrolysers (ITM Power, Nel Hydrogen) operate at 60–65%. When hydrogen is converted back to electricity via fuel cell, the best residential fuel cells operate at 55–60% electrical efficiency. The combined roundtrip: 60% × 57% = **34% roundtrip efficiency**. Battery roundtrip efficiency (LFP, including inverter): 90–95%. For every 100 kWh of renewable generation stored, a hydrogen system delivers 34 kWh; an LFP battery delivers 90 kWh. This is not a current-technology constraint — it reflects fundamental thermodynamic limits on electrolysis and fuel cell chemistry that cannot be designed away.
+
+**Hydrogen's seasonal storage advantage is mathematically real but economically irrelevant at residential scale.** The legitimate use case for hydrogen compared to batteries is seasonal storage — storing summer solar surplus for winter use over timescales of months, where battery self-discharge (approximately 0.5–1% per month for LFP) is less relevant. However, the capital cost of a hydrogen system capable of storing meaningful seasonal quantities (the equivalent of 500–2,000 kWh of summer surplus) is £80,000–£250,000 at 2026 residential system prices. The equivalent battery storage for daily cycling (9.5–27 kWh) costs £5,000–£18,000 installed. For seasonal needs, grid connectivity is the more economically rational solution than either hydrogen or battery storage at residential scale.
+
+**Safety infrastructure requirements for residential hydrogen storage are not trivially met.** Building regulations for hydrogen storage at residential properties — specifically the flammability range (4–75% vol/vol in air, compared to methane's 5–15%), the invisible flame characteristic, and the requirements for hydrogen-specific leak detection, ventilation, and blast-rated enclosures — add £8,000–£20,000 to residential hydrogen system installation costs beyond the core equipment. These are not optional safety theatre; they are code requirements that apply in all UK and most US jurisdictions. Cost comparisons that exclude safety infrastructure are comparing apples to oranges.
+
+---
+
+## When This Approach Breaks Down
+
+The "batteries win" conclusion is correct for residential applications, but hydrogen has genuinely superior characteristics in specific off-grid and commercial contexts.
+
+**True off-grid properties with multi-month winter darkness.** At latitudes above 60°N — northernmost Scotland, Norway, Iceland, northern Canada — solar generation from November to February is functionally negligible. A property that requires self-sufficient operation through 4 months of sub-minimal solar generation cannot achieve this with any economically viable battery bank. The storage required in kWh for 4 months at 20 kWh/day = 2,400 kWh — approximately 250× what a residential battery system provides and clearly beyond any cost-rational battery bank. In this extreme scenario, hydrogen fuel from electrolysis during summer months becomes competitive despite its thermodynamic penalty, because the alternative (grid extension from 30+ km) is more expensive.
+
+**Industrial-adjacent residential properties with waste heat recovery.** The roundtrip efficiency disadvantage of hydrogen can be partially offset by recovering the waste heat from both the electrolyser (during hydrogen production) and the fuel cell (during power generation) for domestic heating. A combined heat-and-power (CHP) hydrogen system that captures 80% of total heat output achieves effective total energy utilisation of approximately 75% — approaching battery roundtrip efficiency when heat substitution value is included. This applies only to properties with significant year-round domestic heating needs and is not applicable to standard residential applications.
+
+---
+
+## Real-World Example
+
+**Scenario:** A self-build off-grid homebuilder in Sutherland, Scotland (57.5°N latitude) evaluates energy storage options in 2025 for a planned 200m² house with 10 kW solar array.
+
+**Winter generation estimate (December–February), Sutherland:**
+- Peak sun hours/day: 0.8–1.5 hours (vs UK average 3.5 hours)
+- Average December daily generation from 10 kW array: 8–15 kWh
+- Average December daily consumption (well-insulated house with ASHP): 28–35 kWh
+- Daily deficit: 13–27 kWh
+
+**Battery-only option:** 50 kWh storage bank (5× Pylontech US10000 at ~£20,000 installed). Provides backup for 1.5–3 days at design deficit — insufficient for multi-day low-generation periods without grid backup.
+
+**Hydrogen hybrid option:** 10 kW electrolyser + 400 kg hydrogen storage (equiv. ~4,700 kWh) + 5 kW fuel cell. Cost: approximately £180,000. Roundtrip efficiency penalty: ~2,000 kWh of summer generation required to produce 680 kWh of winter electricity output.
+
+**Chosen solution:** Grid extension (15 km overhead line to nearest DNO connection point) at an SSEN estimate of £62,000. Supplemented by 40 kWh battery bank for daily cycling. Combined cost: £82,000 — less than the hydrogen-only option and providing full reliability.
+
+**Lesson:** Even in the most challenging residential renewable scenario in the UK — off-grid, extreme northern latitude — the economic answer is almost always grid connection plus battery storage rather than hydrogen. Where grid connection is genuinely not feasible (remote islands, heritage-designated areas banning overhead infrastructure), hydrogen becomes a serious candidate. For standard UK mainland properties, the comparison is definitively resolved. See [current LFP battery options](/comparisons/best-solar-batteries-2026) for the correct technology choice.
+
+---
+
+## Engineering Recommendation
+
+Hydrogen home storage is a legitimate engineering technology with specific, well-defined use cases. It is not a direct competitor to battery storage for residential applications in 2026 because the thermodynamic efficiency gap and capital cost premium are both too large for the comparison to be rational in standard residential contexts.
+
+**Hydrogen storage becomes worth engineering analysis (not purchase) for residential applications when:**
+- The property is genuinely off-grid with no economically viable grid connection route
+- Storage requirements exceed 200 kWh seasonal (not daily) capacity
+- Waste heat recovery from electrolyser and fuel cell is integrated into the domestic heating system
+- The property owner has the technical capability to commission and maintain hydrogen systems safely
+
+**Battery storage is the correct choice for all other residential applications.** The criteria for this conclusion are not close — at 2026 pricing, LFP batteries are 3× more efficient and 10–30× cheaper per kWh of useful storage capacity than residential hydrogen systems. No projected improvement in hydrogen system economics over the next 5 years will close this gap for standard residential use cases.
+
+**The key decision trigger** is the property's grid connectivity status. If the property has or can obtain a grid connection at reasonable cost, the hydrogen comparison is academic. If genuinely off-grid, commission an engineering feasibility study that includes a detailed hydrogen versus generator-plus-large-battery comparison at current prices — the answer still depends on specific location, load profile, and renewable resource. Review the [best batteries guide](/comparisons/best-solar-batteries-2026) for the starting point of any grid-connected comparison.
+
+---
+
+## Related Reading
+
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When hydrogen storage beats lithium batteries
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Current battery payback vs hydrogen economics
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Technology selection errors to avoid

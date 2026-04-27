@@ -355,3 +355,85 @@ Compare GivEnergy, Tesla, and other UK-available systems:
     Yes. This is called AC coupling. You'll need a compatible hybrid inverter or a separate battery inverter. GivEnergy and Solax systems are popular retrofits. Expect to pay £6,500-£8,500 for a 10 kWh battery + inverter + installation.
     </DocsFAQItem>
 </DocsFAQ>
+
+---
+
+## Engineering Reality
+
+The UK battery storage market is the most tariff-sophisticated in the world — Octopus Energy's Agile, Flux, and Intelligent product range offers a more granular dynamic pricing structure than equivalent products in Australia, the US, or continental Europe. This sophistication creates both higher ceiling potential and more complex optimisation failure modes.
+
+**Octopus Agile's negative rate events are real and financially significant for well-optimised battery systems.** Octopus Agile updates import rates every 30 minutes based on N2EX wholesale market prices. During periods of high renewable generation (strong wind + low demand, typically between 2–5 AM on windy nights), wholesale prices can become negative, meaning the grid operator effectively pays households to consume electricity. Negative Agile rates occur on approximately 40–80 nights per year in the UK (2024 data), with rates reaching -£0.05/kWh to -£0.12/kWh on the most extreme events. A battery system using Home Assistant automation to maximise charging at negative rate periods provides a meaningful additional income stream beyond the standard arbitrage calculation. Standard payback calculations that use an average Agile off-peak rate of 7–10p/kWh understate the income from systems that specifically capture negative rate windows.
+
+**The G98/G99 notification and approval threshold matters for system design.** Residential battery inverters with export capability up to 3.68 kW (single phase) are subject to G98 — a notification obligation to the DNO that does not require explicit approval and is satisfied by the installer. Inverters with export capacity above 3.68 kW on a single phase, or any three-phase installation, are subject to G99 — which requires formal DNO approval, typically taking 28–65 working days and potentially requiring a network impact assessment. A homeowner who installs a 5 kW export-capable inverter without G99 approval is operating in breach of the Grid Code, which creates both legal liability and product warranty risk (some insurers specify G98/G99 compliance as a condition of electrical installation insurance). Confirm the export capability of the proposed inverter against the G98/G99 threshold before installation.
+
+**Retrofit battery installations on older solar systems may face export protection conflicts.** FiT-era solar systems (installed before 2019) typically used export protection devices that prevented the system from functioning as an island during grid disconnection. Some of these systems also have generation meters connected to the original inverter. Adding a hybrid battery inverter to these systems requires careful integration with the existing generation meter and FiT arrangement — incorrectly integrating a new battery inverter can trigger a FiT compliance question about whether the solar generation measurement has been compromised. MCS-certified installers with specific experience in FiT retrofit work should be specified for these older system configurations.
+
+---
+
+## When This Approach Breaks Down
+
+The UK battery value proposition is tariff-dependent. It degrades materially in specific contexts.
+
+**Homeowners on pre-payment meters or standard variable tariff without smart meter access.** Octopus Agile, Flux, and Intelligent Go all require a smart meter with half-hourly settlement capability. As of 2026, approximately 62% of UK homes have a smart meter installed (BEIS figures), but approximately half of these have first-generation SMETS1 meters that may not support full dynamic tariff functionality without upgrade. A homeowner who signs up for Agile on a SMETS1 meter may not receive the half-hourly rate flexibility that makes Agile financially optimal. Confirming smart meter type and settlement capability with Octopus before signing up for a dynamic tariff is necessary to realise the advertised arbitrage potential.
+
+**Properties with EV charging interaction with battery dispatch.** A household with both a home battery and an EV charger connected to the same single-phase supply faces a competing load scenario during Intelligent Go off-peak windows. Both the EV (charging at 7.4 kW typical) and the battery (charging at 3–5 kW typical) simultaneously drawing from the 7p/kWh overnight window creates a combined load of 10–12 kW, which exceeds the standard 100A single-phase residential supply limit (approximately 23 kW) but not the 80A typical recommended maximum for continuous domestic loads. Priority logic between car charging and battery charging must be configured correctly — failing to do so can result in the battery not fully charging during the off-peak window, reducing the arbitrage income.
+
+**Grid export limit restrictions in high-penetration areas.** UK DNOs are increasingly implementing export limits in high-penetration solar areas. Scottish and Southern Electricity Networks (SSEN) and UK Power Networks have issued area-level notices restricting new exports to zero in some constrained grid areas. A homeowner in an affected area who configures their battery for Octopus Outgoing Agile export at peak rates will be unable to export — effectively eliminating the export income component of the financial model. Checking export availability in your postcode via the DNO's online enquiry tool before modelling export income is the correct approach.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Sheffield, South Yorkshire installs a 4 kW solar array + GivEnergy All-In-One 9.5 kWh battery in February 2026 and switches to Octopus Intelligent Go.
+
+**Technical pre-checks:**
+- DNO: Northern Powergrid
+- G98 notification submitted (export ≤3.68 kW single phase): ✓
+- SMETS2 smart meter confirmed: ✓
+- Home Assistant integration with GivEnergy: Configured
+
+**Financial model (Year 1):**
+
+| Income/saving source | Annual value |
+|---------------------|-------------|
+| Overnight arbitrage (Intelligent Go, 7p→24.5p, 8 kWh/day) | £512 |
+| Solar self-consumption saving (avoided import at 24.5p/kWh, April–September) | £370 |
+| Negative rate events captured (Home Assistant, 62 nights at average -4p/kWh, 9 kWh each) | £22 (income) |
+| SEG export (Octopus Outgoing Fixed 15p/kWh, ~500 kWh/year exported) | £75 |
+| **Total Year 1 benefit** | **£979** |
+
+**Net installation cost:**
+- Gross: £8,200 (0% VAT on solar+battery+inverter; £150 VAT on consumer unit upgrade)
+- No additional grant (South Yorkshire not in current active local authority grant scheme)
+- **Net: £8,350**
+
+**Payback: £8,350 ÷ £979 = 8.5 years**
+
+**Lesson:** Sheffield's lower solar irradiance (1,140 kWh/kWp/year) compared to London (1,260 kWh/kWp/year) reduces the self-consumption saving by approximately £90/year compared to the equivalent London installation. The primary income driver is the Intelligent Go arbitrage, not solar income. Home Assistant automation to capture negative rate events added £22/year — modest, but worth the one-time setup effort. Use the [UK battery cost calculator](/calculator) and [UK incentives guide](/incentives/uk-solar-battery-incentives-grants-2026) to model your specific postcode's irradiance and local authority grant availability.
+
+---
+
+## Engineering Recommendation
+
+The UK is the highest-return battery storage market for grid-connected residential installations in 2026, provided the homeowner is on a smart time-of-use tariff and has a solar system of at least 3 kW. Without both conditions, the investment case weakens materially.
+
+**The UK battery optimisation hierarchy (in order of financial impact):**
+1. Tariff selection — Intelligent Go (highest arbitrage for set-and-forget), Agile (highest ceiling for automated systems)
+2. System automation — Home Assistant or equivalent integration maximises arbitrage capture by responding to real-time rate data
+3. Battery sizing — 9.5–10 kWh is the optimal range for most UK households; oversizing above 12 kWh yields diminishing returns for the typical 8–10 kWh/day UK household
+4. Export configuration — Outgoing Agile export maximises export income if DNO export limit is not constrained
+
+**Smart meter requirements:**
+- Confirm SMETS2 or SMETS1-enrolled meter before switching to Agile or Flux
+- Request smart meter half-hourly settlement capability confirmation from Octopus prior to switching
+- If on SMETS1: Request upgrade to SMETS2 at the time of battery installation — most DNOs complete this concurrently with battery G98 notification
+
+**The key decision trigger** for UK homeowners is simple: if you have ≥3 kW solar plus SMETS2 smart meter access and can switch to Intelligent Go or Agile, the financial case for a 9.5–10 kWh battery is typically positive with payback under 9 years. Use the [battery ROI calculator](/calculator) and [UK incentives guide](/incentives/uk-solar-battery-incentives-grants-2026) to confirm the specific financial case for your tariff and postcode.
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Real payback periods for UK homeowners
+- [UK Solar Battery Incentives & Grants 2026](/incentives/uk-solar-battery-incentives-grants-2026) — Available rebates and VAT relief
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When UK tariff structures don't justify the investment

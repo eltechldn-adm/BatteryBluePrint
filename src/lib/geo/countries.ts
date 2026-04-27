@@ -105,39 +105,54 @@ export const DEFAULT_COUNTRY_CODE = 'GB';
 
 /**
  * Best-effort mapping of navigator language/timezone to a supported country.
- * Returns a supported country code or the default.
+ * Timezone is checked first — it reflects physical location, not UI language preference.
+ * Language tag is used as a fallback when timezone is ambiguous.
  */
 export function mapNavigatorToCountry(language: string, timeZone?: string): string {
-    // 1. Try explicit region in language tag (e.g. "en-GB")
-    const region = language.split('-')[1]?.toUpperCase();
-    if (region && SUPPORTED_COUNTRIES[region]) {
-        return region;
-    }
-
-    // 2. Heuristics based on TimeZone (if available)
+    // 1. Timezone-based detection FIRST — most accurate (physical location, not UI language)
     if (timeZone) {
-        if (timeZone.startsWith('Europe/London')) return 'GB';
-        if (timeZone.startsWith('America/New_York')) return 'US';
-        if (timeZone.startsWith('America/Los_Angeles')) return 'US';
-        if (timeZone.startsWith('America/Chicago')) return 'US';
-        if (timeZone.startsWith('America/Denver')) return 'US';
-        if (timeZone.startsWith('Australia/')) return 'AU';
-        if (timeZone.startsWith('Canada/')) return 'CA'; // Covers Atlantic, Central, etc.
-        if (timeZone === 'Europe/Berlin') return 'DE';
+        if (timeZone === 'Europe/London' || timeZone === 'Europe/Belfast') return 'GB';
+        if (timeZone === 'Europe/Berlin' || timeZone === 'Europe/Busingen') return 'DE';
         if (timeZone === 'Europe/Madrid') return 'ES';
         if (timeZone === 'Europe/Rome') return 'IT';
         if (timeZone === 'Europe/Amsterdam') return 'NL';
         if (timeZone === 'Asia/Singapore') return 'SG';
         if (timeZone === 'Africa/Johannesburg') return 'ZA';
+        if (timeZone.startsWith('Australia/')) return 'AU';
+        // Canadian timezones
+        if (
+            timeZone === 'America/Toronto' ||
+            timeZone === 'America/Vancouver' ||
+            timeZone === 'America/Winnipeg' ||
+            timeZone === 'America/Halifax' ||
+            timeZone === 'America/St_Johns' ||
+            timeZone === 'America/Regina' ||
+            timeZone === 'America/Edmonton' ||
+            timeZone.startsWith('Canada/')
+        ) return 'CA';
+        // Mexican timezones — fall through to language or default
+        if (
+            timeZone === 'America/Mexico_City' ||
+            timeZone === 'America/Tijuana' ||
+            timeZone === 'America/Cancun' ||
+            timeZone === 'America/Chihuahua'
+        ) { /* fall through */ }
+        // All other America/ timezones → US
+        else if (timeZone.startsWith('America/')) return 'US';
     }
 
-    // 3. Fallback based on base language if no specific region
-    //    (This is imprecise, so we use it as a last resort before default)
+    // 2. Language tag region as fallback (e.g. "en-GB" → GB, "de-DE" → DE)
+    const region = language.split('-')[1]?.toUpperCase();
+    if (region && SUPPORTED_COUNTRIES[region]) {
+        return region;
+    }
+
+    // 3. Base language fallback for unambiguous languages
     const baseLang = language.split('-')[0].toLowerCase();
-    if (baseLang === 'de') return 'DE'; // German -> Germany (likely)
+    if (baseLang === 'de') return 'DE';
     if (baseLang === 'it') return 'IT';
     if (baseLang === 'nl') return 'NL';
 
-    // Default to GB if all else fails
+    // Default
     return DEFAULT_COUNTRY_CODE;
 }

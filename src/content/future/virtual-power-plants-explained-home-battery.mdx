@@ -176,3 +176,77 @@ In most jurisdictions, VPP earnings are taxable income. The amounts are typicall
 **Q: How do I find VPP programs available in my area?**
 
 Start by checking with your battery manufacturer — Tesla, Enphase, BYD, and Sonnen all have their own VPP programs in various markets. Then check with your electricity retailer, as many now offer VPP or demand response programs. In Australia, the Clean Energy Council maintains a list of accredited VPP operators. In the US, your state's public utilities commission website often lists approved demand response programs. For a broader picture of how batteries earn money beyond VPPs, see our guide on [how to maximise solar battery savings](/how-to/how-to-maximise-solar-battery-savings).
+
+---
+
+## Engineering Reality
+
+Virtual Power Plant programmes provide genuine financial value to homeowners in mature VPP markets, but several programme features that are not prominently disclosed in marketing materials create operational expectations that need explicit management.
+
+**Dispatch events are not predictable in timing or frequency in most VPP contracts.** VPP operators dispatch battery discharge events based on grid need — periods of high demand, insufficient conventional generation, or frequency response service requirements. From the homeowner's perspective, dispatch events occur at times determined by the VPP aggregator, not by the homeowner's schedule. Contracts typically specify maximum annual dispatch events (often 15–40 events/year in UK and Australian programmes) and maximum individual dispatch duration (typically 1–4 hours). However, the timing within these limits is at the aggregator's discretion. A dispatch event beginning at 7 PM when the homeowner is preparing dinner and needs the battery to run kitchen appliances can create a direct conflict between VPP dispatch commitment and home energy needs — a conflict that is resolved in the programme's favour because the dispatch is contractually committed.
+
+**Backup reserve minimum SoC during VPP enrolment.** UK and Australian VPP programmes typically require a minimum committed SoC of 20–30% to be maintained at all times for backup purposes. However, during a dispatch event, the battery is discharged from current SoC toward the grid — potentially reducing available capacity to below the backup minimum if the dispatch event begins from a low SoC state. Well-designed VPP programmes prevent dispatch events when the battery is below a specified floor SoC; poorly designed ones may not. Confirming the programme's dispatch floor SoC policy before signing is a non-trivial contractual detail.
+
+**VPP income projections are retrospective, not prospective.** Tesla's Virtual Power Plant, Octopus Energy's Power-Up dispatches, and Australian VPP operators publish average income per household per year based on prior dispatch seasons. These figures are calculated from the number of dispatch events that occurred and the payment per event in specific market conditions. Future programme income depends on the frequency of grid stress events, which varies significantly between years. A year with mild weather and no extreme demand events may produce substantially lower VPP income than the programme's historical average. VPP income should be treated as a range, not a fixed annuity.
+
+---
+
+## When This Approach Breaks Down
+
+VPP programmes deliver most of their advertised value in markets with mature programme design and predictable grid stress patterns. They underdeliver in specific circumstances.
+
+**Single-occupancy households with high evening consumption dependency.** A household where one person works from home and cooks a substantial evening meal relies heavily on their battery for peak-hour load reduction precisely when a VPP programme is most likely to dispatch. The conflict between VPP dispatch timing (peak grid demand = peak household demand) and household energy need is most acute for single-occupancy households without the scheduling flexibility to shift loads during dispatch events.
+
+**Batteries enrolled in VPP programmes with restrictive exit clauses.** Some VPP programmes — particularly those offering large upfront hardware discounts in exchange for VPP participation — include minimum participation periods (typically 3–5 years) and exit penalties that return part of the hardware subsidy. A homeowner who accepts a VPP enrolment to receive a £2,000 upfront discount and then exits the programme in Year 2 may owe the aggregator £1,200 in recaptured subsidy. These terms are disclosed in programme contracts but are not prominently featured in marketing.
+
+**Grid saturation reducing future VPP dispatch value.** As battery penetration increases in a distribution area, individual battery units become less marginal to the grid — each additional unit provides less incremental grid stabilisation value. VPP aggregators operating in high-penetration areas will progressively have less need to dispatch individual residential batteries, reducing the dispatch frequency and therefore the annual income per enrolled battery. Early VPP participants in markets with high solar+battery penetration (Hawaii, South Australia) have experienced this trajectory — income per battery in some programmes has fallen 40–60% from peak years to current dispatch levels.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Melbourne, Australia enrols a sonnen ecoLinx 15 kWh battery in a VPP programme in Q1 2024, receiving a $2,500 AUD upfront contribution to the battery purchase in exchange for 5-year VPP participation (AGL VPP programme).
+
+**Year 1 VPP performance:**
+- Dispatch events: 28 (within the 40-event maximum)
+- Average dispatch duration: 1.8 hours
+- Average payment per kWh dispatched: $0.17 AUD
+- Average battery kWh per dispatch: 8.5 kWh
+- Annual VPP income: 28 × 1.8 × 8.5 × $0.17 = **$729 AUD** (approx. £370 GBP)
+
+**Year 2 VPP performance:**
+- Dispatch events: 22 (grid was less stressed in this period)
+- Annual VPP income: **$574 AUD** (approx. £290 GBP)
+
+**Net upfront contribution assessment:** After 2 years, $1,303 AUD in VPP income. The upfront $2,500 AUD contribution breaks even in approximately Year 4.3 at Year 2 income rates — slightly longer than the originally projected 3-year break-even.
+
+**Additional observation:** On 3 dispatch events, the household attempted to run an oven and dishwasher simultaneously during the dispatch — and experienced a brief power interruption due to insufficient reserve. The VPP programme's minimum SoC policy had not prevented dispatch from a 28% SoC starting point (floor: 25%), and the household's appliance peak exceeded what the remaining SoC + grid import could supply.
+
+**Lesson:** VPP income is real but variable, and dispatch events can conflict with household consumption when the programme design does not adequately protect the backup floor. Confirming the minimum dispatch floor SoC, the maximum dispatch frequency, and the exit clause terms before enrolling is essential. Use the [battery savings guide](/how-to/how-to-maximise-solar-battery-savings) to understand how VPP income layers with other savings streams, and the [battery ROI calculator](/calculator) to model total returns.
+
+---
+
+## Engineering Recommendation
+
+VPP programmes are a legitimate and growing income stream for battery owners in markets where programmes are mature and well-regulated. They are not a passive income source that requires no management — they introduce a new counterparty (the aggregator) into the household's energy management, with associated contract obligations that need explicit understanding.
+
+**Before enrolling in any VPP programme:**
+- Confirm the maximum annual dispatch events and maximum single-event duration — these determine how frequently and how deeply the VPP draws on your battery
+- Confirm the minimum dispatch floor SoC — ensure the programme cannot dispatch your battery below your backup requirement
+- Read the exit clause — specifically the subsidy recapture terms if you need to exit before the minimum participation period
+- Ask for 3 years of historical dispatch data for the specific programme you are joining — not just headline income figures but dispatch frequency, event timing patterns, and year-over-year income trends
+
+**Compatible programme features to look for:**
+- Real-time dispatch notification (via SMS or app) before dispatch events begin — allowing you to pre-emptively shift loads
+- Customer opt-out for individual dispatch events (most UK programmes allow 3–6 opt-outs per year without penalty)
+- Dynamic payment structures that increase per-event payment in high-demand conditions rather than fixed per-kWh rates
+
+**The key decision trigger** for VPP enrolment is the specifics of the contract terms, not the headline income projection. If the programme allows opt-outs for critical household events, has a reasonable dispatch floor SoC, and carries no exit penalty beyond 12 months, enrolment is straightforward to justify. If the contract includes multi-year lock-in with subsidy recapture, model the financial case conservatively before committing. Review [how to maximise savings](/how-to/how-to-maximise-solar-battery-savings) and run the complete income stack through the [battery ROI calculator](/calculator).
+
+---
+
+## Related Reading
+
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How VPP income changes payback periods
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — VPP enrolment mistakes to avoid
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When VPP income projections are unreliable

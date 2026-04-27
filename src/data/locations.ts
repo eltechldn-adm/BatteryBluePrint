@@ -206,91 +206,11 @@ export function getLocationProfile(locationId: string): LocationProfile {
 
 export function detectLocationFromBrowser(): string {
     if (typeof window === 'undefined') return 'us';
-
-    // A) Primary: Intl.Locale with region (modern browsers)
-    try {
-        if (typeof Intl !== 'undefined' && Intl.Locale && navigator.language) {
-            const locale = new Intl.Locale(navigator.language);
-            if (locale.region) {
-                const region = locale.region.toUpperCase();
-                // Map to supported location IDs
-                if (region === 'GB') return 'uk';
-                if (region === 'US') return 'us';
-                if (region === 'CA') return 'ca';
-                if (region === 'AU') return 'au';
-                if (region === 'DE') return 'de';
-                if (region === 'ZA') return 'za';
-                if (region === 'IN') return 'in';
-                // EU countries
-                if (['FR', 'ES', 'IT', 'NL', 'BE', 'PT', 'AT', 'SE', 'DK', 'FI', 'NO', 'IE', 'PL', 'CZ', 'GR'].includes(region)) {
-                    return 'de'; // Use Germany as EU default
-                }
-            }
-        }
-    } catch (e) {
-        // Fallback to next method
-    }
-
-    // B) Secondary: Timezone-based detection (more reliable than language alone)
-    try {
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-        // UK & Ireland
-        if (timezone.includes('Europe/London') || timezone.includes('Europe/Dublin')) return 'uk';
-
-        // EU countries
-        if (timezone.includes('Europe/Berlin') ||
-            timezone.includes('Europe/Paris') ||
-            timezone.includes('Europe/Madrid') ||
-            timezone.includes('Europe/Rome') ||
-            timezone.includes('Europe/Amsterdam') ||
-            timezone.includes('Europe/Brussels') ||
-            timezone.includes('Europe/Vienna') ||
-            timezone.includes('Europe/') // Other European timezones default to DE
-        ) {
-            return 'de';
-        }
-
-        // Americas
-        if (timezone.includes('America/')) {
-            if (timezone.includes('Toronto') ||
-                timezone.includes('Vancouver') ||
-                timezone.includes('Montreal') ||
-                timezone.includes('Calgary') ||
-                timezone.includes('Edmonton')
-            ) {
-                return 'ca';
-            }
-            return 'us'; // Other Americas default to US
-        }
-
-        // Australia & New Zealand
-        if (timezone.includes('Australia/') || timezone.includes('Pacific/Auckland')) return 'au';
-
-        // South Africa
-        if (timezone.includes('Africa/Johannesburg')) return 'za';
-
-        // India
-        if (timezone.includes('Asia/Kolkata') || timezone.includes('Asia/Calcutta')) return 'in';
-
-    } catch (e) {
-        // Fallback to next method
-    }
-
-    // C) Tertiary: Parse navigator.language
+    
     const locale = navigator.language || 'en-US';
-    if (locale.includes('-')) {
-        const region = locale.split('-')[1].toUpperCase();
-        if (region === 'GB') return 'uk';
-        if (region === 'US') return 'us';
-        if (region === 'CA') return 'ca';
-        if (region === 'AU') return 'au';
-        if (region === 'DE') return 'de';
-        if (region === 'ZA') return 'za';
-        if (region === 'IN') return 'in';
-    }
-
-    // Language prefix fallback
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    
+    // Locale-based detection
     if (locale.startsWith('en-US')) return 'us';
     if (locale.startsWith('en-GB')) return 'uk';
     if (locale.startsWith('en-CA')) return 'ca';
@@ -298,7 +218,17 @@ export function detectLocationFromBrowser(): string {
     if (locale.startsWith('de')) return 'de';
     if (locale.startsWith('af') || locale.startsWith('zu')) return 'za';
     if (locale.startsWith('hi') || locale.startsWith('en-IN')) return 'in';
-
-    // D) Final fallback
-    return 'us';
+    
+    // Timezone-based fallback
+    if (timezone.includes('America/')) {
+        if (timezone.includes('Toronto') || timezone.includes('Vancouver')) return 'ca';
+        return 'us';
+    }
+    if (timezone.includes('Europe/London')) return 'uk';
+    if (timezone.includes('Europe/Berlin') || timezone.includes('Europe/Paris')) return 'de';
+    if (timezone.includes('Australia/')) return 'au';
+    if (timezone.includes('Africa/Johannesburg')) return 'za';
+    if (timezone.includes('Asia/Kolkata') || timezone.includes('Asia/Calcutta')) return 'in';
+    
+    return 'global';
 }

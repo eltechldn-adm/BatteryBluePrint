@@ -15,13 +15,14 @@ import { calculateStorageNeeded, SizingResult } from "@/lib/calc/battery-sizing"
 import { recommendBatteries, RecommendationResult, RecommendedBattery } from "@/lib/calc/recommend-batteries";
 import { BatteryCatalogItem } from "@/lib/batteries/catalog";
 import { analytics } from "@/lib/analytics/track";
-import { FileText, CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown } from "lucide-react";
+import { CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown } from "lucide-react";
 import { LOCATION_PROFILES, getLocationProfile } from "@/data/locations";
 import { ASSUMPTION_TOOLTIPS, LOCATION_PRESET_EXPLANATION } from "@/lib/ui/assumptionTooltips";
 import { useCountry } from "@/lib/geo/useCountry";
 import { getProfileForCountry } from "@/lib/geo/countryProfiles";
 import { track } from "@/lib/analytics/journey";
 import { CalculatorNextSteps } from "@/components/conversion/CalculatorNextSteps";
+import { BlueprintDownload } from "@/components/pdf/BlueprintDownload";
 
 export default function CalculatorPage() {
     const { country, setCountry } = useCountry();
@@ -49,7 +50,6 @@ export default function CalculatorPage() {
 
     const [result, setResult] = useState<SizingResult | null>(null);
     const [recommendations, setRecommendations] = useState<RecommendationResult | null>(null);
-    const [modalOpen, setModalOpen] = useState(false);
     const [hasCalculated, setHasCalculated] = useState(false);
 
     // Recommendations UI state
@@ -411,15 +411,7 @@ export default function CalculatorPage() {
         });
     };
 
-    const handleUnlockPDF = (tier?: string) => {
-        analytics.track('PDF_MODAL_OPENED', { tier });
-        track('cta_click', { id: 'unlock_pdf', tier: tier || 'none' });
 
-        if (tier) {
-            analytics.track('AFFINITY_TIER_CLICKED', { tier });
-        }
-        setModalOpen(true);
-    };
 
     return (
         <div className="min-h-screen flex flex-col relative">
@@ -874,32 +866,28 @@ export default function CalculatorPage() {
                             </CardContent>
                         </Card>
 
-                        {/* Premium Unlock CTA - Under Calculator */}
+                        {/* Blueprint PDF Download (Mobile below calc, Desktop below calc) */}
                         {result && (
-                            <div className="p-8 md:p-10 rounded-2xl bg-gradient-to-br from-[#2D241E] via-[#3D312A] to-[#2D241E] shadow-xl border-2 border-[#4A3D32]">
-                                <div className="space-y-4">
-                                    <h4 className="text-2xl md:text-3xl font-bold flex items-center gap-3 text-[#F5F5DC]">
-                                        <FileText className="w-6 h-6 text-[#F4A460]" />
-                                        Unlock Full Blueprint PDF
-                                    </h4>
-                                    <p className="text-base md:text-lg text-[#DCCFB8] leading-relaxed">
-                                        Includes comparison table, installer checklist, and questions to ask installers.
-                                    </p>
-                                    <div className="flex items-center gap-2 text-sm text-[#F4A460]">
-                                        <CheckCircle2 className="w-4 h-4" />
-                                        <span>Instant download • No signup required</span>
-                                    </div>
-                                    <Button
-                                        size="lg"
-                                        className="w-full h-16 text-xl font-bold rounded-xl shadow-lg transition-all duration-200 bg-[#E35336] hover:bg-[#C94429] text-white border-2 border-[#E35336] hover:border-[#C94429] hover:shadow-[0_0_20px_rgba(227,83,54,0.4)] hover:scale-105 active:scale-100 focus-visible:ring-4 focus-visible:ring-[#E35336]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2D241E] cursor-pointer"
-                                        onClick={() => handleUnlockPDF()}
-                                    >
-                                        Get My PDF
-                                    </Button>
-
-                                </div>
+                            <div className="w-full mt-6">
+                                <BlueprintDownload
+                                    result={result}
+                                    recommendations={recommendations ? [
+                                        ...(recommendations.premium || []),
+                                        ...(recommendations.midRange || []),
+                                        ...(recommendations.diy || []),
+                                    ] : []}
+                                    country={country.name}
+                                    location={effectiveLocation}
+                                    dailyLoad_kWh={parseFloat(dailyLoad) || 10}
+                                    daysOfAutonomy={autonomy[0]}
+                                    winterMode={winterMode}
+                                    dod={dod}
+                                    efficiency={inverterEfficiency}
+                                    reserveBuffer={reserveBuffer}
+                                />
                             </div>
                         )}
+
                     </div>
 
                     {/* Results */}
@@ -1364,7 +1352,7 @@ export default function CalculatorPage() {
                 )
                 }
 
-                {/* PDF functionality removed - static site only */}
+
 
 
             </main>

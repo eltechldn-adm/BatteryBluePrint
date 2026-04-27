@@ -17,7 +17,9 @@ export function InlineTOC() {
     const [isExpanded, setIsExpanded] = useState(true);
 
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll("h2, h3"));
+        // Scope to article prose only — prevents nav/author card headings being captured
+        const scope = document.querySelector(".article-prose") ?? document;
+        const elements = Array.from(scope.querySelectorAll("h2, h3"));
         const headings: TocItem[] = [];
 
         elements.forEach((elem) => {
@@ -76,8 +78,8 @@ export function InlineTOC() {
             </button>
 
             <ul className={cn("inline-toc-list", !isExpanded && "hidden")}>
-                {items.map((item) => (
-                    <li key={item.url} className="inline-toc-item" style={{ paddingLeft: item.level === 3 ? '1rem' : '0' }}>
+                {items.map((item, idx) => (
+                    <li key={`${item.url}-${idx}`} className="inline-toc-item" style={{ paddingLeft: item.level === 3 ? '1rem' : '0' }}>
                         <a
                             href={item.url}
                             className={cn(

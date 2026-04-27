@@ -185,3 +185,81 @@ No. Batteries can be installed as standalone backup systems without solar panels
 
 ### What happens to my battery if the outage lasts longer than its capacity?
 The battery will discharge to its minimum state of charge (typically 5-10%) and then stop supplying power. Your home will lose power until either the grid is restored or the battery recharges from solar. This is why sizing for your specific backup duration goal is critical—read our [battery sizing guide](/sizing/how-to-size-solar-battery-uk-us) for the full methodology.
+
+---
+
+## Engineering Reality
+
+Backup duration estimates are almost universally stated under best-case conditions. Real outage scenarios deviate from these estimates in predictable but often unacknowledged ways.
+
+**Load estimates made in advance consistently undercount real loads.** The critical loads panel strategy sounds precise — fridge, lights, WiFi, furnace fan. But during an actual outage, households routinely add unofficial loads as needs emerge. A CPAP machine for a family member with sleep apnoea, medical refrigeration for insulin, a sump pump during the storm that caused the outage, or a chest freezer stocked before a predicted weather event. These unplanned loads can add 2–4 kWh to the daily critical load estimate. A system sized for 7 kWh/day in laboratory conditions delivers 6–8 hours of backup rather than the calculated 18.
+
+**Battery output derate at low state of charge is rarely disclosed.** LFP inverters reduce their maximum power output as the battery approaches 0–15% state of charge. The Powerwall 3, rated at 11.5 kW continuous, begins reducing output around 15% SoC. This matters for appliance startup events: a well pump or AC unit that successfully starts at 80% SoC may fail to start at 12% SoC because the inverter cannot deliver the required surge current. Critical appliances connected to backup power may lose functionality before the battery technically reaches its minimum discharge threshold.
+
+**Switching time matters for sensitive electronics.** The article notes that standard backup systems switch in 2–5 seconds. Modern residential environments contain more electronics than previous generations: VoIP telephone systems, NAS drives, fibre terminal equipment, smart home hubs, and desktop workstations all have varying tolerance for power interruption. A 3-second switchover causes no visible lighting interruption but will reboot all these devices, potentially corrupting active files on NAS systems or causing 10–15 minutes of reconnection delays on VoIP infrastructure. For properties with these requirements, sub-20ms switchover (UPS-grade) systems like Victron MultiPlus or certain Enphase configurations are the appropriate engineering specification.
+
+**Generator integration adds operational complexity that is frequently underestimated.** Generator-plus-battery is the correct solution for multi-day resilience, as the article notes. However, generator integration requires careful fuel management (generators must be run under sufficient load to avoid "wet stacking" — carbon buildup from partial-load operation), scheduled maintenance, and attention to propane/diesel storage regulations. Homeowners who install a generator and then fail to exercise it monthly often discover, during an actual outage, that the generator fails to start or runs poorly after months of dormancy.
+
+---
+
+## When This Approach Breaks Down
+
+The Life Support and Whole Home backup strategies are well-defined when loads are predictable and grid restoration times are short. They break down in specific operating environments.
+
+**Medical-critical households.** Homes with members dependent on life-critical electrical equipment (ventilators, oxygen concentrators, dialysis machines, infusion pumps) cannot rely on standard residential backup sizing. These devices have specific frequency tolerance, harmonic distortion tolerance, and transfer time requirements that standard residential inverters do not always meet. Medical equipment backup should be validated against device manufacturer specifications and may require UPS-grade upstream protection in addition to — not instead of — a battery backup system.
+
+**Well-pump properties.** Homes on private wells experience a load profile that breaks the standard critical loads model. A submersible pump may draw 3–5 kW and require 10–15 kW surge for startup — more than many residential batteries can supply. During a multi-day outage, the pump may cycle 8–12 times per day, adding 12–20 kWh to the daily critical load. This effectively moves a well-pump household from Archetype 1 (Life Support) to Archetype 3 territory (30+ kWh) regardless of all other load characteristics.
+
+**Urban properties in high-density grid areas.** Residents of high-density urban areas often assume their grid stability is higher than rural areas. In practice, urban distribution infrastructure has different failure modes: substation fires, cable faults in underground networks, and deliberate PSPS de-energisation events. For urban homeowners who assume grid restoration within 4 hours, a single-battery system appears adequate. If local utility historical outage data shows restoration times of 12–24+ hours (publicly available through state regulators), the single-battery backup duration assumption should be revisited.
+
+**Properties with electric vehicle chargers on the main panel.** An automated EV charger — particularly a load-managed smart charger — may interpret a battery system's backup signal as a normal grid event and attempt to begin charging during an outage. Without explicit integration between the EV charger control system and the battery backup gateway, the EV charger can draw 7–11 kW from the battery backup system, depleting it in 1–2 hours. This specific failure mode should be addressed during system commissioning by placing the EV charger circuit outside the critical loads panel and confirming the charger's grid-sensing behaviour.
+
+---
+
+## Real-World Example
+
+**Scenario:** A rural homeowner outside Birmingham, UK installs a 10 kWh GivEnergy AIO system primarily for backup protection after experiencing two 8-hour grid outages in the previous winter. Their estimated critical load is 6 kWh per night.
+
+**November storm outage (2025):**
+- Grid failure: 6:20 PM, battery at 72% charge (7.2 kWh)
+- Evening household activity: cooking (electric induction — not on critical panel), replaced with microwave and kettle (1.8 kWh over two hours)
+- Additional discovered loads: electric blankets (two bedrooms, 150W each), wifi booster for rural broadband box, laptop and phone charging
+- **Actual consumption first 8 hours:** 5.1 kWh (not the estimated 3 kWh for "lights and fridge")
+- Battery remaining at 2:20 AM (8 hours into outage): 31% (3 kWh)
+- Grid restored: 4:00 AM
+- **Outcome:** The battery lasted the outage, but with significantly less margin than expected (3 kWh remaining vs expected 7.2 kWh)
+
+**Key insight:** The homeowners discovered their actual critical load was 5.1 kWh over 8 hours (7.7 kWh/day), not the 6 kWh originally assumed. Additionally, the induction hob exclusion from the critical panel forced behavioural changes (microwave cooking) that were partially but not fully mitigating.
+
+**Lesson:** Outage load profiles differ from normal operating profiles. Conduct a dry run — disconnect from the grid at the inverter level on a calm weekend afternoon and record what you actually use over 4 hours. This is the only reliable way to measure real critical load. Use the [battery backup sizing calculator](/calculator) and update your load inputs after a dry-run measurement.
+
+---
+
+## Engineering Recommendation
+
+Battery backup for power outages is one of the clearest use cases for home energy storage — the value is tangible and immediate during an event. The engineering challenge is accurate load quantification, not conceptual complexity.
+
+**The Life Support strategy (Strategy 1) is appropriate if:**
+- Your grid has a reliable restoration history of under 12 hours for 95%+ of outages (check your utility's published SAIDI/SAIFI statistics)
+- You have verified your critical loads list includes all medical and communications devices your household depends on
+- Your critical loads panel has been professionally designed to exclude EV charger circuits and other high-power loads that could inadvertently connect during an outage
+- You have tested the system's transfer behaviour (a planned manual simulation) before relying on it during an actual emergency
+
+**The Whole Home strategy (Strategy 2) is appropriate if:**
+- You have medical HVAC requirements (e.g., a family member dependent on a specific temperature range)
+- Your property runs a business from home where grid outages have direct financial consequences measured in hours
+- You have already priced the system and confirmed 3+ stacked battery units with matching inverter output for the necessary surge capacity
+
+**Reconsider the scope if:**
+- You are sizing for whole-home backup primarily to "not notice" an outage — this is a legitimate preference but one that drives 3–4x the hardware cost of critical-load-only backup
+- You have a well pump on the property that has not been included in your power demand analysis
+
+**The key decision trigger** is your utility's historical outage restoration time — most UK and US utilities publish this data. If your area averages 4-hour restorations, a 10–14 kWh battery is adequate for most households. If restoration times regularly exceed 12 hours, minimum sizing should increase proportionally. Review the [sizing guide](/sizing/how-to-size-solar-battery-uk-us) and [current cost benchmarks](/cost/solar-battery-cost-uk-2026) to match your backup duration target to a realistic budget.
+
+---
+
+## Related Reading
+
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When backup requirements don't justify the cost
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Backup battery payback timelines
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Backup sizing errors to avoid
