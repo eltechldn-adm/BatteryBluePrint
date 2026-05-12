@@ -67,12 +67,18 @@ export function Header() {
                 </Link>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex items-center gap-8">
+                    <nav className="hidden md:flex items-center gap-8">
                     <Link
                         href="/calculator"
                         className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                     >
                         Calculator
+                    </Link>
+                    <Link
+                        href="/batteries"
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        Batteries
                     </Link>
 
                     {/* Energy Hub Dropdown */}
@@ -194,6 +200,13 @@ export function Header() {
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Calculator
+                        </Link>
+                        <Link
+                            href="/batteries"
+                            className="text-lg font-medium text-foreground py-2 border-b border-border/50"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Batteries
                         </Link>
 
                         <div className="space-y-4 py-2 border-b border-border/50">

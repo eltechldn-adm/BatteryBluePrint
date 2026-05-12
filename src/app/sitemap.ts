@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllArticles, CONTENT_CATEGORIES } from '@/lib/content/mdx';
+import { BATTERY_DATABASE } from '@/data/batteries';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://batteryblueprint.com';
 
@@ -123,5 +124,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...categoryPages, ...articlePages];
+  // Add battery catalog and dynamic product pages
+  const batteryIndexPage: MetadataRoute.Sitemap[0] = {
+    url: `${siteUrl}/batteries`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  };
+
+  const batteryPages: MetadataRoute.Sitemap = BATTERY_DATABASE.map((battery) => ({
+    url: `${siteUrl}/batteries/${battery.id}`,
+    lastModified: new Date(battery.dataVerifiedDate),
+    changeFrequency: 'monthly',
+    priority: 0.5,
+  }));
+
+  return [...staticPages, batteryIndexPage, ...batteryPages, ...categoryPages, ...articlePages];
 }
