@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Zap, Shield, Cpu, ChevronRight, Battery, Sun } from "lucide-react";
+import { Zap, Shield, Cpu, ChevronRight, Battery, Sun, BookOpen } from "lucide-react";
 import { track } from "@/lib/analytics/journey";
 import { useCountry } from "@/lib/geo/useCountry";
 
@@ -243,6 +243,120 @@ export default function Home() {
                                     </p>
                                 </CardContent>
                             </Card>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Featured Guides Section */}
+                <section className="py-20 px-6 border-t border-border/50">
+                    <div className="max-w-5xl mx-auto space-y-10">
+                        <div className="text-center space-y-3">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                                <BookOpen className="w-4 h-4" />
+                                Engineering Guides
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-bold">From the Knowledge Hub</h2>
+                            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                                In-depth technical guides written for homeowners who want to understand their system — not just buy one.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <Link href="/sizing/how-to-size-solar-battery-uk-us" className="group block">
+                                <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 space-y-3">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary uppercase tracking-wide">Sizing</span>
+                                        <span className="text-xs text-muted-foreground">12 min read</span>
+                                    </div>
+                                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">How to Size a Solar Battery Correctly</h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        The engineering step-by-step method for calculating your actual battery requirement — nightly consumption, winter surplus, and backup reserve.
+                                    </p>
+                                    <span className="text-sm font-medium text-primary flex items-center gap-1">Read guide <ChevronRight className="w-3.5 h-3.5" /></span>
+                                </div>
+                            </Link>
+
+                            <Link href="/comparisons/best-solar-batteries-2026" className="group block">
+                                <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 space-y-3">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-secondary/10 text-secondary uppercase tracking-wide">Comparison</span>
+                                        <span className="text-xs text-muted-foreground">14 min read</span>
+                                    </div>
+                                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">Best Solar Batteries 2026: Engineering Comparison</h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        Side-by-side specifications for Powerwall 3, Enphase IQ 5P, FranklinWH, GivEnergy, and 6 others — with honest performance analysis.
+                                    </p>
+                                    <span className="text-sm font-medium text-primary flex items-center gap-1">Read guide <ChevronRight className="w-3.5 h-3.5" /></span>
+                                </div>
+                            </Link>
+
+                            <Link href="/comparisons/lithium-vs-lead-acid" className="group block">
+                                <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 space-y-3">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-secondary/10 text-secondary uppercase tracking-wide">Chemistry</span>
+                                        <span className="text-xs text-muted-foreground">12 min read</span>
+                                    </div>
+                                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">Lithium vs Lead-Acid: Total Cost Analysis</h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        Why LFP batteries are 54% cheaper than lead-acid over 10 years, with cycle life math, safety analysis, and real-world installation constraints.
+                                    </p>
+                                    <span className="text-sm font-medium text-primary flex items-center gap-1">Read guide <ChevronRight className="w-3.5 h-3.5" /></span>
+                                </div>
+                            </Link>
+
+                            <Link href="/cost/uk-solar-battery-incentives" className="group block">
+                                <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 space-y-3">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-accent/10 text-accent uppercase tracking-wide">Incentives</span>
+                                        <span className="text-xs text-muted-foreground">15 min read</span>
+                                    </div>
+                                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">UK Solar Battery Incentives 2026: Complete Guide</h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        0% VAT, Smart Export Guarantee, ECO4, and Home Energy Scotland — which schemes apply to you and how to claim without common errors.
+                                    </p>
+                                    <span className="text-sm font-medium text-primary flex items-center gap-1">Read guide <ChevronRight className="w-3.5 h-3.5" /></span>
+                                </div>
+                            </Link>
+                        </div>
+
+                        {/* Decision Guides Strip */}
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-bold text-center">Decision Guides</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <Link href="/worth-it" className="group flex items-center gap-3 p-4 rounded-xl bg-muted/30 hover:bg-primary/5 border border-transparent hover:border-primary/20 transition-all">
+                                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <ChevronRight className="w-4 h-4 text-primary" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-semibold group-hover:text-primary transition-colors">Is It Worth It?</p>
+                                        <p className="text-xs text-muted-foreground">2026 honest ROI verdict</p>
+                                    </div>
+                                </Link>
+                                <Link href="/when-not-to-buy" className="group flex items-center gap-3 p-4 rounded-xl bg-muted/30 hover:bg-primary/5 border border-transparent hover:border-primary/20 transition-all">
+                                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <ChevronRight className="w-4 h-4 text-primary" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-semibold group-hover:text-primary transition-colors">When NOT to Buy</p>
+                                        <p className="text-xs text-muted-foreground">6 scenarios to avoid</p>
+                                    </div>
+                                </Link>
+                                <Link href="/payback-reality" className="group flex items-center gap-3 p-4 rounded-xl bg-muted/30 hover:bg-primary/5 border border-transparent hover:border-primary/20 transition-all">
+                                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <ChevronRight className="w-4 h-4 text-primary" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-semibold group-hover:text-primary transition-colors">Payback Reality</p>
+                                        <p className="text-xs text-muted-foreground">UK vs US vs AU timelines</p>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="text-center">
+                            <Link href="/guide" className="text-sm text-primary hover:underline font-medium">
+                                Browse all 47 engineering guides →
+                            </Link>
                         </div>
                     </div>
                 </section>

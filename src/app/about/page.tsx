@@ -31,6 +31,23 @@ export default function AboutPage() {
                         </p>
                     </section>
 
+                    {/* Founding Story */}
+                    <section className="space-y-4">
+                        <h2 className="text-2xl font-bold">How BatteryBlueprint Started</h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            BatteryBlueprint was started in 2024 by a UK-based electrical engineer who had spent years specifying battery storage systems professionally — and kept watching homeowners get oversold, undersized, or both.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                            The trigger was a conversation with a neighbour who had been quoted a 5 kWh battery for a property using 18 kWh per day. The installer had not asked for an electricity bill, had not modelled autonomy days, and had not accounted for winter efficiency loss. The quote was professionally presented and completely wrong.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                            Rather than a blog with opinions, we built a tool: a calculator that applies the same sizing methodology used by certified engineers — Depth of Discharge, round-trip efficiency, seasonal derating — to any home's real consumption figures. The guides and decision pages grew from the questions users kept asking after running the calculator.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                            The site covers the UK, US, Australian, and European markets. All technical content is maintained by the BatteryBlueprint Editorial Research Team. We use publicly available engineering standards, utility data, and manufacturer documentation to build our calculators and guides.
+                        </p>
+                    </section>
+
                     {/* What We Are */}
                     <section className="space-y-6">
                         <h2 className="text-2xl font-bold">What BatteryBlueprint Is</h2>
