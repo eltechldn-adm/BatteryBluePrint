@@ -1,15 +1,25 @@
 import { BatteryModel } from "@/data/batteries";
 import { HomeownerProfile, RecommendationScore, RecommendationExplanation, TradeoffAnalysis } from "./types";
+import { RegionProfile } from "@/data/regions/schema";
 
 export function generateExplanation(
     battery: BatteryModel,
     profile: HomeownerProfile,
     score: RecommendationScore,
-    isTop: boolean
+    isTop: boolean,
+    region?: RegionProfile
 ): RecommendationExplanation {
     let whySelected = "";
     const tradeoffs: TradeoffAnalysis = { pros: [], cons: [], warnings: [] };
     const assumptions: string[] = [];
+
+    // Regional notes
+    if (region?.id === 'uk') {
+        assumptions.push("Regional adjustment applied: UK dynamic tariffs increase the value of smart tariff integration.");
+    }
+    if (region?.id === 'us') {
+        assumptions.push("Regional adjustment applied: US code and certification requirements increase the importance of verified UL-compatible systems.");
+    }
 
     // Base logic for selection
     if (isTop) {

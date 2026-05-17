@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRecommendation } from "../store";
+import { useCountry } from "@/lib/geo/useCountry";
 import { SelectionCard } from "./SelectionCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, Sun, Zap, Battery, Home, Settings, Wallet, CloudRain, Shield, ThermometerSun } from "lucide-react";
@@ -7,6 +8,7 @@ import { HomeownerProfile } from "@/lib/recommendation/types";
 
 export function ProfileRefinement() {
     const { profile, updateProfile, startAnalysis, setFlowState } = useRecommendation();
+    const { country } = useCountry();
     const [currentStep, setCurrentStep] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -132,6 +134,12 @@ export function ProfileRefinement() {
                         style={{ width: `${((currentStep) / steps.length) * 100}%` }}
                     />
                 </div>
+            </div>
+
+            {/* Region Note */}
+            <div className="mb-6 text-sm text-muted-foreground bg-muted/30 p-3 rounded-lg flex items-center justify-between">
+                <span>Using selected region: <span className="font-semibold text-foreground">{country.name}</span></span>
+                <span className="text-xs">Change region in site header</span>
             </div>
 
             {/* Header */}

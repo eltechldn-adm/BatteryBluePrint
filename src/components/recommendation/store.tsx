@@ -3,6 +3,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { HomeownerProfile, RecommendationResult } from "@/lib/recommendation/types";
 import { generateBatteryRecommendations } from "@/lib/recommendation/engine";
+import { useCountry } from "@/lib/geo/useCountry";
+import { getRegionByCountryCode } from "@/data/regions";
 
 export type FlowState = 'sizing' | 'refinement' | 'analyzing' | 'results';
 
@@ -10,6 +12,8 @@ interface RecommendationState {
     flowState: FlowState;
     profile: Partial<HomeownerProfile>;
     result: RecommendationResult | null;
+    regionId?: string;
+    staleRegion?: boolean;
 }
 
 interface RecommendationContextType extends RecommendationState {
@@ -30,6 +34,7 @@ const RecommendationContext = createContext<RecommendationContextType | undefine
 export function RecommendationProvider({ children }: { children: ReactNode }) {
     const [state, setState] = useState<RecommendationState>(defaultState);
     const [mounted, setMounted] = useState(false);
+    const { country } = useCountry();
 
     // Load from sessionStorage on mount
     useEffect(() => {
@@ -55,6 +60,16 @@ export function RecommendationProvider({ children }: { children: ReactNode }) {
             sessionStorage.setItem('bb_recommendation_state', JSON.stringify(state));
         }
     }, [state, mounted]);
+
+    // Detect country changes vs stored region
+    useEffect(() => {
+        const currentRegionId = getRegionByCountryCode(country.code)?.id;
+        if (state.flowState === 'results' && state.regionId !== currentRegionId) {
+            setState(prev => ({ ...prev, staleRegion: true }));
+        } else if (state.staleRegion && state.regionId === currentRegionId) {
+            setState(prev => ({ ...prev, staleRegion: false }));
+        }
+    }, [country.code, state.flowState, state.regionId, state.staleRegion]);
 
     const setFlowState = (flowState: FlowState) => {
         setState(prev => ({ ...prev, flowState }));
@@ -83,10 +98,12 @@ export function RecommendationProvider({ children }: { children: ReactNode }) {
             targetUsableKwh: state.profile.targetUsableKwh
         };
 
+        const region = getRegionByCountryCode(country.code);
+
         // Simulate deep engineering analysis
         setTimeout(() => {
-            const result = generateBatteryRecommendations(fullProfile);
-            setState(prev => ({ ...prev, flowState: 'results', result }));
+            const result = generateBatteryRecommendations(fullProfile, region);
+            setState(prev => ({ ...prev, flowState: 'results', result, regionId: region?.id }));
         }, 2000);
     };
 

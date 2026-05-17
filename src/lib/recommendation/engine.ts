@@ -4,8 +4,9 @@ import { getHardExclusions } from "./rules";
 import { scoreBattery } from "./scoring";
 import { generateExplanation } from "./explanations";
 import { determineArchetype } from "./profiles";
+import { RegionProfile } from "@/data/regions/schema";
 
-export function generateBatteryRecommendations(profile: HomeownerProfile): RecommendationResult {
+export function generateBatteryRecommendations(profile: HomeownerProfile, region?: RegionProfile): RecommendationResult {
     // 1. Hard Exclusions
     const { excluded, remaining } = getHardExclusions(profile, BATTERY_DATABASE);
 
@@ -21,7 +22,7 @@ export function generateBatteryRecommendations(profile: HomeownerProfile): Recom
 
     // 2. Score remaining batteries
     const ranked: BatteryRankingResult[] = remaining.map(battery => {
-        const score = scoreBattery(battery, profile);
+        const score = scoreBattery(battery, profile, region);
         // We will generate explanations later once we know the final rank
         return {
             battery,
@@ -64,14 +65,14 @@ export function generateBatteryRecommendations(profile: HomeownerProfile): Recom
     let premiumAlternative = ranked.find(r => r.battery.id !== topRecommendation.battery.id && r.battery.category === 'Premium' && (budgetAlternative ? r.battery.id !== budgetAlternative.battery.id : true)) || null;
 
     // 5. Generate Explanations
-    topRecommendation.explanation = generateExplanation(topRecommendation.battery, profile, topRecommendation.score, true);
+    topRecommendation.explanation = generateExplanation(topRecommendation.battery, profile, topRecommendation.score, true, region);
     
     if (budgetAlternative) {
-        budgetAlternative.explanation = generateExplanation(budgetAlternative.battery, profile, budgetAlternative.score, false);
+        budgetAlternative.explanation = generateExplanation(budgetAlternative.battery, profile, budgetAlternative.score, false, region);
     }
     
     if (premiumAlternative) {
-        premiumAlternative.explanation = generateExplanation(premiumAlternative.battery, profile, premiumAlternative.score, false);
+        premiumAlternative.explanation = generateExplanation(premiumAlternative.battery, profile, premiumAlternative.score, false, region);
     }
 
     return {

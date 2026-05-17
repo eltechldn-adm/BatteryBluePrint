@@ -7,10 +7,12 @@ import { AlternativeCard } from "./AlternativeCard";
 import { ExplanationList } from "../ExplanationBlocks/ExplanationList";
 import { ExclusionAccordion } from "../ExclusionPanel/ExclusionAccordion";
 import { Button } from "@/components/ui/button";
-import { RotateCcw, Sliders } from "lucide-react";
+import { RotateCcw, Sliders, Globe, AlertTriangle } from "lucide-react";
+import { getRegionById } from "@/data/regions";
 
 export function RecommendationResults() {
-    const { result, resetFlow, setFlowState } = useRecommendation();
+    const { result, resetFlow, setFlowState, regionId, staleRegion } = useRecommendation();
+    const region = regionId ? getRegionById(regionId) : undefined;
 
     if (!result) return null;
 
@@ -94,6 +96,28 @@ export function RecommendationResults() {
                         <RotateCcw className="w-3.5 h-3.5 mr-1.5" aria-hidden="true" />
                         Reset
                     </Button>
+                </div>
+            </div>
+
+            {staleRegion && (
+                <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-4 text-sm text-yellow-700 dark:text-yellow-400 flex items-start gap-3">
+                    <AlertTriangle className="w-5 h-5 mt-0.5" />
+                    <div>
+                        <div className="font-semibold">Region changed</div>
+                        <div className="mt-0.5">Your selected region has changed. Recalculate to update the recommendation.</div>
+                    </div>
+                </div>
+            )}
+
+            <div className="bg-muted/30 rounded-xl p-4 text-sm flex items-start gap-3">
+                <Globe className="w-5 h-5 text-primary mt-0.5" />
+                <div>
+                    <div className="font-semibold text-foreground">
+                        {region ? `Regional context applied: ${region.displayName}` : "Global baseline mode"}
+                    </div>
+                    <div className="text-muted-foreground mt-0.5">
+                        {region ? `${region.dominantTariff} tariff • ${region.gridReliability} grid` : "Using standard physics and engineering assumptions without regional bias."}
+                    </div>
                 </div>
             </div>
 

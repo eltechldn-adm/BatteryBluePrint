@@ -1,6 +1,8 @@
 import { BatteryModel } from "@/data/batteries";
 import { HomeownerProfile, RecommendationScore } from "./types";
 import { getDynamicWeights } from "./weights";
+import { applyRegionalModifiers } from "./regionModifiers";
+import { RegionProfile } from "@/data/regions/schema";
 
 function normalize(value: number, min: number, max: number): number {
     if (max === min) return 0.5;
@@ -8,8 +10,11 @@ function normalize(value: number, min: number, max: number): number {
     return (clamped - min) / (max - min);
 }
 
-export function scoreBattery(battery: BatteryModel, profile: HomeownerProfile): RecommendationScore {
-    const weights = getDynamicWeights(profile);
+export function scoreBattery(battery: BatteryModel, profile: HomeownerProfile, region?: RegionProfile): RecommendationScore {
+    let weights = getDynamicWeights(profile);
+    if (region) {
+        weights = applyRegionalModifiers(weights, region);
+    }
     const breakdown = {
         outageResilience: 0,
         smartTariffSuitability: 0,
