@@ -15,7 +15,7 @@ import { calculateStorageNeeded, SizingResult } from "@/lib/calc/battery-sizing"
 import { recommendBatteries, RecommendationResult, RecommendedBattery } from "@/lib/calc/recommend-batteries";
 import { BatteryCatalogItem } from "@/lib/batteries/catalog";
 import { analytics } from "@/lib/analytics/track";
-import { CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown, ArrowRight } from "lucide-react";
+import { CheckCircle2, Sparkles, Info, Globe, RotateCcw, HelpCircle, X, ArrowUpDown } from "lucide-react";
 import { LOCATION_PROFILES, getLocationProfile } from "@/data/locations";
 import { ASSUMPTION_TOOLTIPS, LOCATION_PRESET_EXPLANATION } from "@/lib/ui/assumptionTooltips";
 import { useCountry } from "@/lib/geo/useCountry";
@@ -23,14 +23,9 @@ import { getProfileForCountry } from "@/lib/geo/countryProfiles";
 import { track } from "@/lib/analytics/journey";
 import { CalculatorNextSteps } from "@/components/conversion/CalculatorNextSteps";
 import { BlueprintDownload } from "@/components/pdf/BlueprintDownload";
-import { RecommendationProvider, useRecommendation } from "@/components/recommendation/store";
-import { ProfileRefinement } from "@/components/recommendation/ProfileFlow/ProfileRefinement";
-import { AnalysisLoader } from "@/components/recommendation/AnalysisState/AnalysisLoader";
-import { RecommendationResults } from "@/components/recommendation/ResultCards/RecommendationResults";
 
-function CalculatorInner() {
+export default function CalculatorPage() {
     const { country, setCountry } = useCountry();
-    const { flowState, setFlowState, updateProfile } = useRecommendation();
 
     const [dailyLoad, setDailyLoad] = useState<string>("10");
     const [autonomy, setAutonomy] = useState<number[]>([1]);
@@ -1351,45 +1346,6 @@ function CalculatorInner() {
                                         ));
                                     })()}
                                 </div>
-
-                                {/* PHASE 17.3A: Transition to Recommendation Engine */}
-                                {flowState === 'sizing' && (
-                                    <div className="mt-8 pt-8 border-t border-border/40 text-center animate-in fade-in duration-500">
-                                        <h3 className="text-xl font-bold mb-2">Want a deeper engineering analysis?</h3>
-                                        <p className="text-muted-foreground mb-6">
-                                            The recommendations above are based solely on load mathematics. Click below to refine your profile for specific coupling, climate, and installer constraints.
-                                        </p>
-                                        <Button 
-                                            size="lg" 
-                                            className="w-full sm:w-auto font-semibold shadow-md shadow-primary/20"
-                                            onClick={() => {
-                                                updateProfile({ targetUsableKwh: result.batteryUsableNeeded_kWh });
-                                                setFlowState('refinement');
-                                                setTimeout(() => window.scrollBy({ top: 400, behavior: 'smooth' }), 50);
-                                            }}
-                                        >
-                                            Continue to Engineering Recommendation <ArrowRight className="w-4 h-4 ml-2" />
-                                        </Button>
-                                    </div>
-                                )}
-
-                                {flowState === 'refinement' && (
-                                    <div className="mt-12 pt-12 border-t border-border/40">
-                                        <ProfileRefinement />
-                                    </div>
-                                )}
-                                
-                                {flowState === 'analyzing' && (
-                                    <div className="mt-12 pt-12 border-t border-border/40">
-                                        <AnalysisLoader />
-                                    </div>
-                                )}
-
-                                {flowState === 'results' && (
-                                    <div className="mt-12 pt-12 border-t border-border/40">
-                                        <RecommendationResults />
-                                    </div>
-                                )}
                             </div>
                         </div >
                     </div >
@@ -1555,13 +1511,5 @@ function EmptyTierCard({ tier, delay }: { tier: string, delay: number }) {
                 </div>
             </CardContent>
         </Card>
-    );
-}
-
-export default function CalculatorPage() {
-    return (
-        <RecommendationProvider>
-            <CalculatorInner />
-        </RecommendationProvider>
     );
 }
