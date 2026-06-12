@@ -197,7 +197,6 @@ export default function BatteryCatalog() {
                                         Est: {battery.price_range_usd}
                                     </p>
                                     <Button asChild size="sm">
-                                        {/* TODO: Add link to dynamic battery page once created */}
                                         <Link href={`/batteries/${battery.id}/`}>
                                             View Specs
                                         </Link>

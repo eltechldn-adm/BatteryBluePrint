@@ -3,16 +3,15 @@
  *
  * Regional scoring modifier layer for the BatteryBlueprint recommendation engine.
  *
- * Phase 18.2: This is a STUB implementation — it is a no-op pass-through.
- * The engine is wired to accept a RegionProfile but modifiers are not yet applied.
- *
- * Phase 18.3 will replace applyRegionalModifiers() with the full multiplier logic,
- * add unit tests, and update the engine to call this with the resolved RegionProfile.
+ * Phase 18.3: ACTIVE — applyModifierMap() is live.
+ * Regional scoring multipliers are fully applied when a RegionProfile is provided.
+ * Activation completed in Phase 18.3; the engine passes the resolved RegionProfile
+ * through scoreBattery() → applyRegionalModifiers() → applyModifierMap().
  *
  * Design contract:
  * - Pure function: no side effects, deterministic
  * - Input: current weight map + RegionProfile
- * - Output: adjusted weight map
+ * - Output: adjusted weight map with per-dimension multipliers applied
  * - All multipliers are clamped to [0.5, 2.0] to prevent score collapse
  */
 
@@ -27,8 +26,9 @@ function clamp(value: number): number {
 /**
  * Applies regional scoring multipliers on top of the profile-driven weights.
  *
- * Phase 18.2: STUB — returns weights unchanged.
- * Phase 18.3: Full implementation with per-dimension multipliers.
+ * Phase 18.3: ACTIVE — full implementation.
+ * Each scoring dimension is multiplied by its corresponding regional modifier
+ * and clamped to [0.5, 2.0] before being passed to the scoring engine.
  *
  * @param weights - Current weight map from getDynamicWeights(profile)
  * @param region  - Optional RegionProfile. If undefined, weights are returned unchanged.
@@ -42,16 +42,14 @@ export function applyRegionalModifiers(
         return weights;
     }
 
-    // Phase 18.3: Full implementation activated
     return applyModifierMap(weights, region.scoringModifiers);
 }
 
 /**
- * Phase 18.3 implementation target.
  * Applies a RegionScoringModifiers map to a CategoryWeights object.
  * Each weight is multiplied by its corresponding regional modifier and clamped.
  *
- * @internal — Not exported. Will be activated in Phase 18.3.
+ * @internal — Not exported. Active since Phase 18.3.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function applyModifierMap(

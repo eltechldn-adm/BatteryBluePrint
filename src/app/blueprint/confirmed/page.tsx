@@ -5,6 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 export const metadata: Metadata = {
     title: "Thank You | BatteryBlueprint",
     description: "Your interest has been noted. Return to the calculator to re-run your sizing calculations anytime.",
+    robots: { index: false },
 };
 
 export default function ConfirmedPage() {

@@ -71,6 +71,8 @@ export const metadata: Metadata = {
 import { CountryProviderClient } from "@/components/geo/CountryProviderClient";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { RetentionProvider } from "@/lib/retention/context";
+import { ContinueBanner } from "@/components/retention/ContinueBanner";
 
 // ... imports
 
@@ -136,9 +138,12 @@ export default function RootLayout({
           }}
         />
         <CountryProviderClient>
-          <Header />
-          {children}
-          <Footer />
+          <RetentionProvider>
+            <Header />
+            <ContinueBanner />
+            {children}
+            <Footer />
+          </RetentionProvider>
         </CountryProviderClient>
       </body>
     </html>

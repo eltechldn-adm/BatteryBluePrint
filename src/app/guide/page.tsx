@@ -359,6 +359,62 @@ export default function EnergyHub() {
                     </div>
                 </section>
 
+                {/* Regional Guides Section */}
+                <section className="px-4 sm:px-6 py-12">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="mb-8">
+                            <h2 className="text-3xl font-bold mb-2">Regional Intelligence</h2>
+                            <p className="text-muted-foreground">
+                                Deep-dive analysis of battery economics and architecture for specific regions.
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <Link href="/regions/uk" className="group block">
+                                <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+                                    <CardHeader>
+                                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+                                            <Globe className="w-5 h-5 text-primary" />
+                                        </div>
+                                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                                            UK Solar Battery Intelligence
+                                        </CardTitle>
+                                        <CardDescription className="text-sm leading-relaxed mt-1">
+                                            Ofgem regulations, dynamic tariffs, and AC-coupled architecture.
+                                        </CardDescription>
+                                    </CardHeader>
+                                    <CardContent className="pt-0">
+                                        <div className="flex items-center text-sm text-primary font-medium">
+                                            Read UK guide
+                                            <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                            <Link href="/regions/us" className="group block">
+                                <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+                                    <CardHeader>
+                                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+                                            <Globe className="w-5 h-5 text-primary" />
+                                        </div>
+                                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                                            US Solar Battery Intelligence
+                                        </CardTitle>
+                                        <CardDescription className="text-sm leading-relaxed mt-1">
+                                            IRA tax credits, UL 9540 standards, and microinverter dominance.
+                                        </CardDescription>
+                                    </CardHeader>
+                                    <CardContent className="pt-0">
+                                        <div className="flex items-center text-sm text-primary font-medium">
+                                            Read US guide
+                                            <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
                 {/* Conversion Section */}
                 <section className="px-4 sm:px-6 py-16 md:py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
                     <div className="max-w-3xl mx-auto text-center space-y-6">

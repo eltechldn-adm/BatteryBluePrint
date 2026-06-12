@@ -107,6 +107,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Add region pages
+  const regionPages: MetadataRoute.Sitemap = [
+    {
+      url: `${siteUrl}/regions/uk`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/regions/us`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+  ];
+
   // Add category index pages
   const categoryPages: MetadataRoute.Sitemap = CONTENT_CATEGORIES.map((category) => ({
     url: `${siteUrl}/${category}`,
@@ -139,5 +155,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticPages, batteryIndexPage, ...batteryPages, ...categoryPages, ...articlePages];
+  return [...staticPages, ...regionPages, batteryIndexPage, ...batteryPages, ...categoryPages, ...articlePages];
 }

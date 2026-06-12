@@ -27,10 +27,17 @@ import { RecommendationProvider, useRecommendation } from "@/components/recommen
 import { ProfileRefinement } from "@/components/recommendation/ProfileFlow/ProfileRefinement";
 import { AnalysisLoader } from "@/components/recommendation/AnalysisState/AnalysisLoader";
 import { RecommendationResults } from "@/components/recommendation/ResultCards/RecommendationResults";
+import { useRetention } from "@/lib/retention/context";
+import { ProjectTracker } from "@/components/retention/ProjectTracker";
+import { DriftWarnings } from "@/components/retention/DriftWarnings";
+import { BillEstimator } from "@/components/calculator/BillEstimator";
+import { AdvancedAssumptions } from "@/components/calculator/AdvancedAssumptions";
+import { BatteryCard, EmptyTierCard } from "@/components/calculator/LegacyBatteryCards";
 
 function CalculatorInner() {
     const { country, setCountry } = useCountry();
     const { flowState, setFlowState, updateProfile } = useRecommendation();
+    const { project, isStale, updateLabel, persistCalculatorSnapshot } = useRetention();
 
     const [dailyLoad, setDailyLoad] = useState<string>("10");
     const [autonomy, setAutonomy] = useState<number[]>([1]);
@@ -184,6 +191,29 @@ function CalculatorInner() {
 
         firstInputRef.current?.focus();
     }, []);
+
+    // ─── RETENTION LAYER INTEGRATION ───
+    // Restore saved state from project
+    useEffect(() => {
+        // If project calculator exists and we haven't calculated in this session yet
+        if (project.calculator && !hasCalculated) {
+            const snap = project.calculator;
+            setDailyLoad(snap.dailyLoad_kWh.toString());
+            setAutonomy([snap.daysOfAutonomy]);
+            setDod(snap.dod);
+            setInverterEfficiency(snap.inverterEfficiency);
+            setReserveBuffer(snap.reserveBuffer);
+            setWinterMode(snap.winterMode);
+            setResult(snap.result);
+            setLocation(snap.locationId);
+            setHasCalculated(true);
+        } else if (!project.calculator && hasCalculated) {
+            // If project was cleared (e.g. by Start fresh in ContinueBanner)
+            setResult(null);
+            setRecommendations(null);
+            setHasCalculated(false);
+        }
+    }, [project.calculator, hasCalculated]);
 
     // Save location to localStorage and cookie when changed
     useEffect(() => {
@@ -401,6 +431,19 @@ function CalculatorInner() {
         setRecommendations(recs);
         setHasCalculated(true);
 
+        // Persist to retention project store
+        persistCalculatorSnapshot({
+            dailyLoad_kWh: load,
+            daysOfAutonomy: autonomy[0],
+            dod,
+            inverterEfficiency,
+            reserveBuffer,
+            winterMode,
+            locationId: effectiveLocation,
+            result: res,
+            savedAt: new Date().toISOString(),
+        });
+
         // Smooth scroll to results
         setTimeout(() => {
             resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -578,83 +621,20 @@ function CalculatorInner() {
                                     )}
 
                                     {billEstimatorEnabled && (
-                                        <div className="mt-4 p-4 rounded-xl bg-muted/30 border-2 border-primary/20 space-y-4">
-                                            <div className="flex items-start gap-2">
-                                                <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                                                <p className="text-xs text-muted-foreground leading-relaxed">
-                                                    <strong className="text-foreground">Estimate only.</strong> For accuracy, use the kWh shown on your electricity bill.
-                                                </p>
-                                            </div>
-
-                                            <div className="grid grid-cols-2 gap-3">
-                                                <div className="space-y-2">
-                                                    <Label htmlFor="billAmount" className="text-sm font-medium">Bill Amount ({currencyLabel})</Label>
-                                                    <Input
-                                                        id="billAmount"
-                                                        type="number"
-                                                        value={billAmount}
-                                                        onChange={(e) => setBillAmount(e.target.value)}
-                                                        placeholder="150"
-                                                        className="h-10 rounded-lg"
-                                                        step="0.01"
-                                                    />
-                                                </div>
-                                                <div className="space-y-2">
-                                                    <Label htmlFor="billingPeriod" className="text-sm font-medium">Billing Period</Label>
-                                                    <select
-                                                        id="billingPeriod"
-                                                        value={billingPeriod}
-                                                        onChange={(e) => setBillingPeriod(e.target.value as any)}
-                                                        className="h-10 w-full rounded-lg border-2 border-input bg-background px-3 text-sm focus:border-primary focus:outline-none transition-colors"
-                                                    >
-                                                        <option value="monthly">Monthly</option>
-                                                        <option value="quarterly">Quarterly</option>
-                                                        <option value="yearly">Yearly</option>
-                                                        <option value="custom">Custom Days</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            {billingPeriod === 'custom' && (
-                                                <div className="space-y-2">
-                                                    <Label htmlFor="customDays" className="text-sm font-medium">Number of Days</Label>
-                                                    <Input
-                                                        id="customDays"
-                                                        type="number"
-                                                        value={customDays}
-                                                        onChange={(e) => setCustomDays(e.target.value)}
-                                                        placeholder="30"
-                                                        className="h-10 rounded-lg"
-                                                    />
-                                                </div>
-                                            )}
-
-                                            <div className="space-y-2">
-                                                <Label htmlFor="electricityRate" className="text-sm font-medium">
-                                                    Electricity Rate ({currencyLabel}/kWh) <span className="text-muted-foreground font-normal">— Typical: {typicalRate.toFixed(2)} (edit)</span>
-                                                </Label>
-                                                <Input
-                                                    id="electricityRate"
-                                                    type="number"
-                                                    value={electricityRate}
-                                                    onChange={(e) => {
-                                                        setElectricityRate(e.target.value);
-                                                        setUserOverrides(prev => new Set(prev).add('electricityRate'));
-                                                    }}
-                                                    placeholder={typicalRate.toFixed(2)}
-                                                    className="h-10 rounded-lg"
-                                                    step="0.01"
-                                                />
-                                            </div>
-
-                                            {calculateDailyKwhFromBill() !== null && (
-                                                <div className="pt-2 border-t border-border/50">
-                                                    <p className="text-sm font-semibold text-foreground">
-                                                        Estimated Daily kWh: <span className="text-primary">{calculateDailyKwhFromBill()!.toFixed(1)}</span>
-                                                    </p>
-                                                </div>
-                                            )}
-                                        </div>
+                                        <BillEstimator
+                                            currencyLabel={currencyLabel}
+                                            typicalRate={typicalRate}
+                                            billAmount={billAmount}
+                                            setBillAmount={setBillAmount}
+                                            billingPeriod={billingPeriod}
+                                            setBillingPeriod={setBillingPeriod}
+                                            customDays={customDays}
+                                            setCustomDays={setCustomDays}
+                                            electricityRate={electricityRate}
+                                            setElectricityRate={setElectricityRate}
+                                            onElectricityRateChange={(val) => setUserOverrides(prev => new Set(prev).add('electricityRate'))}
+                                            estimatedDailyKwh={calculateDailyKwhFromBill()}
+                                        />
                                     )}
                                 </div>
 
@@ -691,174 +671,21 @@ function CalculatorInner() {
                                 </div>
 
                                 {/* Advanced Assumptions Section */}
-                                <Accordion type="single" collapsible className="w-full">
-                                    <AccordionItem value="advanced" className="border-0">
-                                        <AccordionTrigger className="text-base font-semibold hover:no-underline py-3 px-4 rounded-xl hover:bg-muted/30">
-                                            <div className="flex items-center gap-2">
-                                                <span>Advanced (Optional)</span>
-                                                {hasUserCustomizedAssumptions && (
-                                                    <span className="px-2 py-0.5 text-xs font-medium rounded-md bg-primary/10 text-primary">Custom</span>
-                                                )}
-                                            </div>
-                                        </AccordionTrigger>
-                                        <AccordionContent className="pt-4 space-y-6 pb-2">
-                                            <p className="text-sm text-muted-foreground mb-4">
-                                                Fine-tune calculation assumptions. Defaults are based on your selected location.
-                                            </p>
-
-                                            {/* DoD */}
-                                            <div className="space-y-3">
-                                                <div className="flex justify-between items-center">
-                                                    <div className="flex items-center">
-                                                        <Label className="text-sm font-semibold">{ASSUMPTION_TOOLTIPS.dod.label}</Label>
-                                                        <Tooltip content={ASSUMPTION_TOOLTIPS.dod.tooltip} ariaLabel="More info about Depth of Discharge" />
-                                                    </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <Input
-                                                            type="number"
-                                                            value={Math.round(dod * 100)}
-                                                            onChange={(e) => handleDodChange(parseFloat(e.target.value) / 100)}
-                                                            className="h-8 w-16 text-center text-sm"
-                                                            min={50}
-                                                            max={95}
-                                                        />
-                                                        <span className="text-sm font-mono">%</span>
-                                                    </div>
-                                                </div>
-                                                <Slider
-                                                    value={[dod * 100]}
-                                                    onValueChange={([v]) => handleDodChange(v / 100)}
-                                                    min={50}
-                                                    max={95}
-                                                    step={1}
-                                                    className="cursor-pointer"
-                                                />
-                                                <p className="text-xs text-muted-foreground">How much of the battery's capacity can be safely used (higher = more usable energy but may reduce lifespan)</p>
-                                            </div>
-
-                                            {/* Inverter Efficiency */}
-                                            <div className="space-y-3">
-                                                <div className="flex justify-between items-center">
-                                                    <div className="flex items-center">
-                                                        <Label className="text-sm font-semibold">{ASSUMPTION_TOOLTIPS.efficiency.label}</Label>
-                                                        <Tooltip content={ASSUMPTION_TOOLTIPS.efficiency.tooltip} ariaLabel="More info about Inverter Efficiency" />
-                                                    </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <Input
-                                                            type="number"
-                                                            value={Math.round(inverterEfficiency * 100)}
-                                                            onChange={(e) => handleEfficiencyChange(parseFloat(e.target.value) / 100)}
-                                                            className="h-8 w-16 text-center text-sm"
-                                                            min={80}
-                                                            max={98}
-                                                        />
-                                                        <span className="text-sm font-mono">%</span>
-                                                    </div>
-                                                </div>
-                                                <Slider
-                                                    value={[inverterEfficiency * 100]}
-                                                    onValueChange={([v]) => handleEfficiencyChange(v / 100)}
-                                                    min={80}
-                                                    max={98}
-                                                    step={1}
-                                                    className="cursor-pointer"
-                                                />
-                                                <p className="text-xs text-muted-foreground">Energy conversion efficiency from DC battery to AC home power (typical: 90-95%)</p>
-                                            </div>
-
-                                            {/* Reserve Buffer */}
-                                            <div className="space-y-3">
-                                                <div className="flex justify-between items-center">
-                                                    <div className="flex items-center">
-                                                        <Label className="text-sm font-semibold">{ASSUMPTION_TOOLTIPS.reserve.label}</Label>
-                                                        <Tooltip content={ASSUMPTION_TOOLTIPS.reserve.tooltip} ariaLabel="More info about Reserve Buffer" />
-                                                    </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <Input
-                                                            type="number"
-                                                            value={Math.round(reserveBuffer * 100)}
-                                                            onChange={(e) => handleReserveBufferChange(parseFloat(e.target.value) / 100)}
-                                                            className="h-8 w-16 text-center text-sm"
-                                                            min={0}
-                                                            max={40}
-                                                        />
-                                                        <span className="text-sm font-mono">%</span>
-                                                    </div>
-                                                </div>
-                                                <Slider
-                                                    value={[reserveBuffer * 100]}
-                                                    onValueChange={([v]) => handleReserveBufferChange(v / 100)}
-                                                    min={0}
-                                                    max={40}
-                                                    step={1}
-                                                    className="cursor-pointer"
-                                                />
-                                                <p className="text-xs text-muted-foreground">Safety margin for unexpected usage or measurement error (recommended: 15%)</p>
-                                            </div>
-
-                                            {/* Winter Buffer */}
-                                            <div className="space-y-3">
-                                                <div className="flex items-center justify-between">
-                                                    <div className="flex items-center">
-                                                        <Label className="text-sm font-semibold">{ASSUMPTION_TOOLTIPS.winter.label}</Label>
-                                                        <Tooltip content={ASSUMPTION_TOOLTIPS.winter.tooltip} ariaLabel="More info about Winter Buffer" />
-                                                    </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <input
-                                                            type="checkbox"
-                                                            id="winterModeAdvanced"
-                                                            className="toggle-premium h-4 w-4 rounded border-2 border-muted text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer"
-                                                            checked={winterMode}
-                                                            onChange={(e) => handleAdvancedWinterModeChange(e.target.checked)}
-                                                        />
-                                                        <Label htmlFor="winterModeAdvanced" className="text-sm cursor-pointer">
-                                                            {winterMode ? 'ON' : 'OFF'}
-                                                        </Label>
-                                                    </div>
-                                                </div>
-                                                {winterMode && (
-                                                    <>
-                                                        <div className="flex justify-between items-center">
-                                                            <Label className="text-xs text-muted-foreground">Buffer Amount</Label>
-                                                            <div className="flex items-center gap-2">
-                                                                <Input
-                                                                    type="number"
-                                                                    value={Math.round(winterBuffer * 100)}
-                                                                    onChange={(e) => handleWinterBufferChange(parseFloat(e.target.value) / 100)}
-                                                                    className="h-8 w-16 text-center text-sm"
-                                                                    min={10}
-                                                                    max={40}
-                                                                />
-                                                                <span className="text-sm font-mono">%</span>
-                                                            </div>
-                                                        </div>
-                                                        <Slider
-                                                            value={[winterBuffer * 100]}
-                                                            onValueChange={([v]) => handleWinterBufferChange(v / 100)}
-                                                            min={10}
-                                                            max={40}
-                                                            step={1}
-                                                            className="cursor-pointer"
-                                                        />
-                                                    </>
-                                                )}
-                                                <p className="text-xs text-muted-foreground">Additional capacity for reduced solar production in winter or cloudy seasons</p>
-                                            </div>
-
-                                            {/* Reset Button */}
-                                            <Button
-                                                variant="outline"
-                                                size="sm"
-                                                onClick={resetToLocationDefaults}
-                                                className="w-full text-sm"
-                                                disabled={!hasUserCustomizedAssumptions}
-                                            >
-                                                <RotateCcw className="w-4 h-4 mr-2" />
-                                                Reset to {locationProfile.label} Defaults
-                                            </Button>
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                </Accordion>
+                                <AdvancedAssumptions
+                                    hasUserCustomizedAssumptions={hasUserCustomizedAssumptions}
+                                    dod={dod}
+                                    handleDodChange={handleDodChange}
+                                    inverterEfficiency={inverterEfficiency}
+                                    handleEfficiencyChange={handleEfficiencyChange}
+                                    reserveBuffer={reserveBuffer}
+                                    handleReserveBufferChange={handleReserveBufferChange}
+                                    winterMode={winterMode}
+                                    handleAdvancedWinterModeChange={handleAdvancedWinterModeChange}
+                                    winterBuffer={winterBuffer}
+                                    handleWinterBufferChange={handleWinterBufferChange}
+                                    resetToLocationDefaults={resetToLocationDefaults}
+                                    locationProfile={locationProfile}
+                                />
 
                                 <Button
                                     onClick={handleCalculate}
@@ -896,17 +723,26 @@ function CalculatorInner() {
                     </div>
 
                     {/* Results */}
-                    <div ref={resultsRef} className="w-full max-w-[560px] justify-self-end space-y-6">
+                    <div ref={resultsRef} data-retention-anchor className="w-full max-w-[560px] justify-self-end space-y-6">
                         {result ? (
                             <>
                                 <Card className={`card-premium bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 rounded-2xl overflow-hidden ${hasCalculated ? 'result-animate' : ''}`}>
-                                    <CardHeader className="pb-3">
+                                    <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
                                         <CardTitle className="text-2xl flex items-center gap-2">
                                             <CheckCircle2 className="w-6 h-6 text-primary" />
                                             Your Results
                                         </CardTitle>
+                                        <div className="flex items-center">
+                                            <Input 
+                                                value={project.label}
+                                                onChange={(e) => updateLabel(e.target.value)}
+                                                placeholder="Name this project..."
+                                                className="h-8 text-sm w-[160px] bg-background/50"
+                                            />
+                                        </div>
                                     </CardHeader>
                                     <CardContent className="space-y-6">
+                                        <DriftWarnings activeLocationId={location} />
 
                                         <div className="grid grid-cols-2 gap-6">
                                             <div className="p-4 rounded-xl bg-background/60">
@@ -1395,9 +1231,7 @@ function CalculatorInner() {
                     </div >
                 )
                 }
-
-
-
+                <ProjectTracker />
 
             </main>
 
@@ -1406,157 +1240,7 @@ function CalculatorInner() {
     );
 }
 
-function BatteryCard({
-    tier,
-    data,
-    targets,
-    whyText,
-    delay
-}: {
-    tier: string,
-    data: RecommendedBattery,
-    targets: SizingResult,
-    whyText: string,
-    delay: number
-}) {
-    const { battery, count, totalNameplate_kWh, totalUsable_kWh } = data;
 
-    // Coverage Calculations with detailed badges
-    const usableCoveragePct = Math.round((totalUsable_kWh / targets.batteryUsableNeeded_kWh) * 100);
-    const nameplateCoveragePct = Math.round((totalNameplate_kWh / targets.batteryNameplateNeeded_kWh) * 100);
-
-    // Determine coverage badge
-    let coverageBadge = { text: "Meets Target", class: "badge-pill-success", icon: "✓" };
-    if (usableCoveragePct >= 100) {
-        coverageBadge = { text: "Meets Target", class: "badge-pill-success", icon: "✓" };
-    } else if (usableCoveragePct >= 95) {
-        coverageBadge = { text: "Close Match", class: "badge-pill-warning", icon: "~" };
-    } else {
-        coverageBadge = { text: "Undersized", class: "badge-pill-error", icon: "!" };
-    }
-
-    const tierClass = tier === "Premium" ? "tier-premium" : tier === "Mid-Range" ? "tier-midrange" : "tier-diy";
-    const borderClass = tier === "Premium" ? "bg-primary" : tier === "Mid-Range" ? "bg-secondary" : "bg-accent";
-
-    return (
-        <Card
-            className="card-premium overflow-hidden rounded-2xl border-0 result-animate"
-            style={{ animationDelay: `${delay}s` }}
-        >
-            <div className={`h-1.5 w-full ${borderClass}`} />
-            <CardContent className="p-5">
-                <div className="flex justify-between items-start mb-3">
-                    <div className="space-y-2">
-                        <div className="flex gap-2 items-center flex-wrap">
-                            <span className={`tier-chip ${tierClass}`}>{tier}</span>
-                            <span className={`badge-pill ${coverageBadge.class}`}>
-                                {coverageBadge.icon} {coverageBadge.text}
-                            </span>
-                            <span className="badge-pill badge-pill-neutral text-xs">
-                                {usableCoveragePct}% coverage
-                            </span>
-                        </div>
-                        <h4 className="font-bold text-lg leading-tight">{battery.brand} {battery.model}</h4>
-                        <p className="text-xs text-muted-foreground italic">{whyText}</p>
-                    </div>
-                    <div className="text-right pl-4">
-                        <div className="text-2xl font-bold text-primary">{count}</div>
-                        <div className="text-xs text-foreground/60 font-medium">Unit{count > 1 ? 's' : ''}</div>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 text-sm py-3 border-y border-border/30 bg-muted/10 -mx-5 px-5 my-3">
-                    <div className="flex flex-col">
-                        <span className="text-xs text-muted-foreground mb-0.5">Total Usable</span>
-                        <span className="font-mono font-semibold text-foreground">{totalUsable_kWh.toFixed(1)} kWh</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-xs text-muted-foreground mb-0.5">Total Nameplate</span>
-                        <span className="font-mono font-semibold text-foreground">{totalNameplate_kWh.toFixed(1)} kWh</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-xs text-muted-foreground mb-0.5">Per Unit</span>
-                        <span className="font-mono text-sm text-foreground/80">{battery.usableKwhPerUnit.toFixed(1)} kWh</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-xs text-muted-foreground mb-0.5">Chemistry</span>
-                        <span className="text-sm text-foreground/80">{battery.chemistry === 'LFP' ? 'LFP' : battery.chemistry === 'NMC' ? 'NMC' : 'Other'}</span>
-                    </div>
-                </div>
-
-                {/* Mini Compare - Collapsible */}
-                <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="specs" className="border-b-0">
-                        <AccordionTrigger className="text-xs font-medium text-muted-foreground hover:text-foreground py-2 hover:no-underline">
-                            View detailed specs
-                        </AccordionTrigger>
-                        <AccordionContent className="pt-2 pb-0">
-                            <div className="space-y-2 text-xs pb-2">
-                                {battery.continuousKwPerUnit && (
-                                    <div className="flex justify-between py-1.5 border-b border-border/20">
-                                        <span className="text-muted-foreground">Continuous Output</span>
-                                        <span className="font-semibold">{battery.continuousKwPerUnit} kW</span>
-                                    </div>
-                                )}
-                                {battery.warrantyYears && (
-                                    <div className="flex justify-between py-1.5 border-b border-border/20">
-                                        <span className="text-muted-foreground">Warranty</span>
-                                        <span className="font-semibold">{battery.warrantyYears} years</span>
-                                    </div>
-                                )}
-                                <div className="flex justify-between py-1.5 border-b border-border/20">
-                                    <span className="text-muted-foreground">Nameplate per unit</span>
-                                    <span className="font-semibold">{battery.nameplateKwhPerUnit || battery.usableKwhPerUnit} kWh</span>
-                                </div>
-                                {battery.sourceNote && (
-                                    <div className="pt-2">
-                                        <p className="text-xs text-muted-foreground italic leading-relaxed">
-                                            {battery.sourceNote}
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-                        </AccordionContent>
-                    </AccordionItem>
-                </Accordion>
-
-                <div className="flex justify-between items-center text-sm pt-2 border-t border-border/20 mt-2">
-                    <p className="text-muted-foreground">
-                        {battery.brand} • {battery.chemistry === 'LFP' ? "LFP" : battery.chemistry === 'NMC' ? "NMC" : "Other"}
-                    </p>
-                </div>
-            </CardContent>
-        </Card>
-    );
-}
-
-function EmptyTierCard({ tier, delay }: { tier: string, delay: number }) {
-    const tierClass = tier === "Premium" ? "tier-premium" : tier === "Mid-Range" ? "tier-midrange" : "tier-diy";
-    const borderClass = tier === "Premium" ? "bg-primary/30" : tier === "Mid-Range" ? "bg-secondary/30" : "bg-accent/30";
-
-    return (
-        <Card
-            className="card-premium overflow-hidden rounded-2xl border-0 result-animate opacity-50"
-            style={{ animationDelay: `${delay}s` }}
-        >
-            <div className={`h-1.5 w-full ${borderClass}`} />
-            <CardContent className="p-5">
-                <div className="flex items-center justify-between mb-3">
-                    <span className={`tier-chip ${tierClass}`}>{tier}</span>
-                </div>
-                <div className="py-8 text-center">
-                    <Info className="w-8 h-8 text-muted-foreground/40 mx-auto mb-3" />
-                    <p className="text-sm text-muted-foreground">
-                        No match found for this tier in your region yet.
-                    </p>
-                    <p className="text-xs text-muted-foreground/70 mt-1">
-                        More models coming soon.
-                    </p>
-                </div>
-            </CardContent>
-        </Card>
-    );
-}
 
 export default function CalculatorPage() {
     return (

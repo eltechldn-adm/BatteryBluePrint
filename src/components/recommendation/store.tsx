@@ -5,6 +5,8 @@ import { HomeownerProfile, RecommendationResult } from "@/lib/recommendation/typ
 import { generateBatteryRecommendations } from "@/lib/recommendation/engine";
 import { useCountry } from "@/lib/geo/useCountry";
 import { getRegionByCountryCode } from "@/data/regions";
+import { useRetention } from "@/lib/retention/context";
+import { ENGINE_VERSION } from "@/lib/retention/store";
 
 export type FlowState = 'sizing' | 'refinement' | 'analyzing' | 'results';
 
@@ -35,6 +37,7 @@ export function RecommendationProvider({ children }: { children: ReactNode }) {
     const [state, setState] = useState<RecommendationState>(defaultState);
     const [mounted, setMounted] = useState(false);
     const { country } = useCountry();
+    const { persistRecommendationSnapshot } = useRetention();
 
     // Load from sessionStorage on mount
     useEffect(() => {
@@ -104,6 +107,15 @@ export function RecommendationProvider({ children }: { children: ReactNode }) {
         setTimeout(() => {
             const result = generateBatteryRecommendations(fullProfile, region);
             setState(prev => ({ ...prev, flowState: 'results', result, regionId: region?.id }));
+
+            // Persist recommendation to retention project store
+            persistRecommendationSnapshot({
+                profile: fullProfile,
+                result,
+                regionId: region?.id,
+                engineVersion: ENGINE_VERSION,
+                savedAt: new Date().toISOString(),
+            });
         }, 2000);
     };
 

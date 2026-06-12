@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CountrySelector } from "@/components/geo/CountrySelector";
+import { ProjectManager } from "@/components/retention/ProjectManager";
 
 const NAV_ITEMS = [
     { label: "Calculator", href: "/calculator" },
@@ -163,6 +164,7 @@ export function Header() {
 
                 {/* CTA & Country */}
                 <div className="hidden md:flex items-center gap-4">
+                    <ProjectManager />
                     <CountrySelector />
                     <Link href="/calculator">
                         <Button size="sm" className="btn-premium shadow-sm">
@@ -194,6 +196,9 @@ export function Header() {
                     )}
                 >
                     <nav className="flex flex-col gap-6">
+                        <div className="py-2 border-b border-border/50">
+                            <ProjectManager />
+                        </div>
                         <Link
                             href="/calculator"
                             className="text-lg font-medium text-foreground py-2 border-b border-border/50"
