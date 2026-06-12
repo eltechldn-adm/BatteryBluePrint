@@ -207,7 +207,7 @@ export function ProjectManager() {
                         </Button>
                         <input 
                             type="file" 
-                            accept=".json" 
+                            accept=".pdf" 
                             className="hidden" 
                             ref={fileInputRef} 
                             onChange={handleFileChange}
