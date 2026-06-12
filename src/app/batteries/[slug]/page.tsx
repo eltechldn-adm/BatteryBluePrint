@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Zap, Shield, Thermometer, Battery as BatteryIcon, Settings2, Info, ArrowLeft, CheckCircle2, AlertTriangle, Link as LinkIcon, ExternalLink, ThumbsUp, ThumbsDown } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { BatteryPriceDisplay } from "@/components/batteries/BatteryPriceDisplay";
 
 interface Props {
     params: Promise<{
@@ -222,13 +223,8 @@ export default async function BatteryProductPage({ params }: Props) {
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <div>
-                                    <p className="text-sm text-muted-foreground mb-1">Estimated Cost</p>
-                                    <p className="font-bold text-xl">{battery.price_range_usd}</p>
-                                </div>
-                                <div className="p-3 rounded-lg bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-900/50">
-                                    <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
-                                        {battery.regionalPriceDisclaimer}
-                                    </p>
+                                    <p className="text-sm text-muted-foreground mb-2">Estimated Cost</p>
+                                    <BatteryPriceDisplay battery={battery} />
                                 </div>
                             </CardContent>
                         </Card>

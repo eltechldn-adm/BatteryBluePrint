@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Zap, Shield, Thermometer, Battery as BatteryIcon, Filter, X } from "lucide-react";
 import Link from "next/link";
+import { useCountry } from "@/lib/geo/CountryProvider";
+import { formatBatteryPrice } from "@/lib/pricing/formatBatteryPrice";
 
 type FilterState = {
     chemistry: string[];
@@ -17,6 +19,7 @@ type FilterState = {
 };
 
 export default function BatteryCatalog() {
+    const { country } = useCountry();
     const [filters, setFilters] = useState<FilterState>({
         chemistry: [],
         coupling: [],
@@ -192,11 +195,25 @@ export default function BatteryCatalog() {
                                     </div>
                                 </div>
                                 
-                                <div className="bg-background/50 p-4 border-t border-border/50 flex items-center justify-between">
-                                    <p className="text-sm font-medium text-muted-foreground">
-                                        Est: {battery.price_range_usd}
-                                    </p>
-                                    <Button asChild size="sm">
+                                <div className="bg-background/50 p-4 border-t border-border/50 flex items-center justify-between gap-4">
+                                    <div className="min-w-0">
+                                        {(() => {
+                                            const price = formatBatteryPrice(battery, country.code);
+                                            return (
+                                                <>
+                                                    <p className="text-sm font-medium text-foreground leading-tight">
+                                                        {price.localDisplay}
+                                                    </p>
+                                                    {price.usdReference && (
+                                                        <p className="text-xs text-muted-foreground mt-0.5">
+                                                            USD ref: {price.usdReference}
+                                                        </p>
+                                                    )}
+                                                </>
+                                            );
+                                        })()}
+                                    </div>
+                                    <Button asChild size="sm" className="shrink-0">
                                         <Link href={`/batteries/${battery.id}/`}>
                                             View Specs
                                         </Link>

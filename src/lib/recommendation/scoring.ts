@@ -112,24 +112,20 @@ export function scoreBattery(battery: BatteryModel, profile: HomeownerProfile, r
     breakdown.longTermRoi = ((cycleScore * 0.6) + (warrantyScore * 0.4)) * weights.longTermRoi;
 
     // 10. Budget Alignment
-    // Estimate cost per usable kWh
+    // Estimate cost per usable kWh using structured numeric fields.
+    // Falls back to the legacy string parser only when numeric fields are absent.
     let budgetScore = 0.5;
-    if (battery.price_range_usd) {
-        // Extract numbers
-        const numbers = battery.price_range_usd.match(/\d+/g);
-        if (numbers && numbers.length > 0) {
-            // Take the lowest number found as base cost approx
-            // Adjust based on typical formats like $3,500
-            const costStr = battery.price_range_usd.replace(/[^0-9]/g, '');
-            // Simple heuristic to get a rough cost. e.g., "$3,500 - $4,200" -> 35004200 is wrong.
-            // Split by '-' or ' ' to get bounds.
-            const parts = battery.price_range_usd.split('-');
-            const minCost = parseInt(parts[0].replace(/[^0-9]/g, ''), 10);
-            if (!isNaN(minCost) && battery.usable_kWh_per_unit) {
-                const costPerKwh = minCost / battery.usable_kWh_per_unit;
-                // lower cost is better for budget alignment
-                budgetScore = 1 - normalize(costPerKwh, 250, 1000);
-            }
+    if (battery.price_min_usd !== null && battery.usable_kWh_per_unit) {
+        const costPerKwh = battery.price_min_usd / battery.usable_kWh_per_unit;
+        // Lower cost per kWh = better budget alignment
+        budgetScore = 1 - normalize(costPerKwh, 250, 1000);
+    } else if (battery.price_range_usd) {
+        // Legacy fallback: extract first number from the string
+        const parts = battery.price_range_usd.split("-");
+        const minCost = parseInt(parts[0].replace(/[^0-9]/g, ""), 10);
+        if (!isNaN(minCost) && battery.usable_kWh_per_unit) {
+            const costPerKwh = minCost / battery.usable_kWh_per_unit;
+            budgetScore = 1 - normalize(costPerKwh, 250, 1000);
         }
     }
     breakdown.budgetAlignment = budgetScore * weights.budgetAlignment;
