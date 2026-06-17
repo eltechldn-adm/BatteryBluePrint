@@ -4,8 +4,8 @@
  * src/lib/retention/context.tsx
  *
  * React context that wraps the retention ProjectStore and makes it
- * available throughout the app. Provides auto-save hooks and
- * returning-visitor detection.
+ * available throughout the app. Integrates session management with
+ * 1-hour inactivity expiry.
  */
 
 import React, {
@@ -41,6 +41,13 @@ import {
     defaultProject,
     defaultMeta,
 } from "./store";
+import {
+    checkAndRenewSession,
+    getSessionExpiresAt,
+    formatSessionRemaining,
+    getSessionRemainingMs,
+} from "./session";
+import { STORAGE_KEYS } from "./types";
 
 // ─── Context Type ─────────────────────────────────────────────────────────────
 
@@ -49,6 +56,11 @@ interface RetentionContextType {
     meta: VisitMeta;
     isReturning: boolean;
     isStale: boolean;
+
+    // Session
+    sessionExpiresAt: Date | null;
+    sessionTimeRemaining: string;
+    sessionWasReset: boolean;
 
     // Mutations
     updateLabel: (label: string) => void;
@@ -69,28 +81,54 @@ const RetentionContext = createContext<RetentionContextType | undefined>(undefin
 // ─── Provider ─────────────────────────────────────────────────────────────────
 
 export function RetentionProvider({ children }: { children: ReactNode }) {
-    // Initialize with default state to match server render and prevent hydration mismatch
     const [project, setProject] = useState<Project>(() => defaultProject());
     const [meta, setMeta] = useState<VisitMeta>(() => defaultMeta());
     const [isReturning, setIsReturning] = useState(false);
     const [isStale, setIsStale] = useState(false);
     const [isHydrated, setIsHydrated] = useState(false);
 
-    // On mount: hydrate from localStorage, record visit, evaluate returning state
+    // Session state
+    const [sessionExpiresAt, setSessionExpiresAt] = useState<Date | null>(null);
+    const [sessionTimeRemaining, setSessionTimeRemaining] = useState("—");
+    const [sessionWasReset, setSessionWasReset] = useState(false);
+
+    // On mount: check session expiry first, then hydrate from localStorage
     useEffect(() => {
+        // 1. Check & renew session — this may wipe the project list if expired
+        const wasReset = checkAndRenewSession(STORAGE_KEYS.PROJECT_LIST);
+        setSessionWasReset(wasReset);
+        setSessionExpiresAt(getSessionExpiresAt());
+
+        // 2. Load project data (from localStorage — survives session expiry)
         const loadedProject = loadProject();
         setProject(loadedProject);
-        
+
+        // 3. Record visit & returning visitor state
         const returning = isReturningVisitor(1);
         setIsReturning(returning);
-        
         const updatedMeta = recordVisit();
         setMeta(updatedMeta);
-        
+
         setIsStale(isRecommendationStale(loadedProject));
         setIsHydrated(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    // Live countdown timer — updates every 30 seconds
+    useEffect(() => {
+        if (!isHydrated) return;
+
+        const tick = () => {
+            const remaining = getSessionRemainingMs();
+            setSessionTimeRemaining(remaining > 0 ? formatSessionRemaining() : "Expired");
+        };
+
+        tick(); // immediate first tick
+        const interval = setInterval(tick, 30_000);
+        return () => clearInterval(interval);
+    }, [isHydrated]);
+
+    // ─── Mutations ────────────────────────────────────────────────────────────
 
     const updateLabel = useCallback((label: string) => {
         setProject(prev => setProjectLabel(prev, label));
@@ -153,6 +191,9 @@ export function RetentionProvider({ children }: { children: ReactNode }) {
                 meta,
                 isReturning,
                 isStale,
+                sessionExpiresAt,
+                sessionTimeRemaining,
+                sessionWasReset,
                 updateLabel,
                 persistCalculatorSnapshot,
                 persistRecommendationSnapshot,

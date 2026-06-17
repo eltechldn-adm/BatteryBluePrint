@@ -39,7 +39,7 @@ function CalculatorInner() {
     const { flowState, setFlowState, updateProfile } = useRecommendation();
     const { project, isStale, updateLabel, persistCalculatorSnapshot } = useRetention();
 
-    const [dailyLoad, setDailyLoad] = useState<string>("10");
+    const [dailyLoad, setDailyLoad] = useState<string>("");
     const [autonomy, setAutonomy] = useState<number[]>([1]);
     const [winterMode, setWinterMode] = useState<boolean>(false);
 

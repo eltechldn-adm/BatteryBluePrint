@@ -1,10 +1,17 @@
 /**
  * src/lib/retention/store.ts
  *
- * ProjectStore — client-side localStorage persistence for BatteryBlueprint projects.
+ * ProjectStore — client-side persistence for BatteryBlueprint projects.
+ *
+ * Storage architecture:
+ * - Active project data    → localStorage  (survives tab close, expires via session check)
+ * - Project LIST / index   → sessionStorage (auto-cleared when browser/tab closes)
+ * - Session expiry         → localStorage  (checked on mount in context.tsx)
+ *
+ * Export format: real PDF with embedded JSON metadata (jsPDF).
+ * Import format: .pdf file — JSON payload extracted from PDF Keywords metadata.
  *
  * Fully static-export safe. No PII. No backend. No cookies.
- * All operations degrade gracefully if localStorage is unavailable.
  */
 
 import {
@@ -20,8 +27,6 @@ import {
 } from "./types";
 
 // ─── Engine Version ───────────────────────────────────────────────────────────
-// Increment this when the recommendation engine's scoring logic changes
-// so saved snapshots can be flagged as potentially stale.
 export const ENGINE_VERSION = "17.4";
 
 // ─── ID Generation ───────────────────────────────────────────────────────────
@@ -30,7 +35,6 @@ function generateId(): string {
     if (typeof crypto !== "undefined" && crypto.randomUUID) {
         return crypto.randomUUID();
     }
-    // Fallback for old browsers
     return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 
@@ -60,9 +64,28 @@ function lsRemove(key: string): void {
     if (typeof window === "undefined") return;
     try {
         window.localStorage.removeItem(key);
+    } catch { /* no-op */ }
+}
+
+// ─── Safe sessionStorage helpers ─────────────────────────────────────────────
+// Project list is stored here so it auto-clears when the tab/browser closes.
+
+function ssGet<T>(key: string): T | null {
+    if (typeof window === "undefined") return null;
+    try {
+        const raw = window.sessionStorage.getItem(key);
+        if (!raw) return null;
+        return JSON.parse(raw) as T;
     } catch {
-        // no-op
+        return null;
     }
+}
+
+function ssSet(key: string, value: unknown): void {
+    if (typeof window === "undefined") return;
+    try {
+        window.sessionStorage.setItem(key, JSON.stringify(value));
+    } catch { /* quota — degrade */ }
 }
 
 // ─── Default builders ────────────────────────────────────────────────────────
@@ -105,13 +128,9 @@ export function defaultMeta(): VisitMeta {
 export function loadProject(): Project {
     const stored = lsGet<Project>(STORAGE_KEYS.PROJECT);
     if (stored && stored.schemaVersion === 1) {
-        // Gracefully handle legacy v1 without checklist
-        if (!stored.checklist) {
-            stored.checklist = {};
-        }
+        if (!stored.checklist) stored.checklist = {};
         return stored;
     }
-    // No valid project — attempt migration from old sessionStorage key
     const migrated = migrateFromSessionStorage();
     if (migrated) {
         lsSet(STORAGE_KEYS.PROJECT, migrated);
@@ -121,14 +140,14 @@ export function loadProject(): Project {
 }
 
 /**
- * Get the list of all stored project IDs
+ * Get the list of all stored project IDs (from sessionStorage — session-scoped).
  */
 export function getProjectList(): string[] {
-    return lsGet<string[]>(STORAGE_KEYS.PROJECT_LIST) || [];
+    return ssGet<string[]>(STORAGE_KEYS.PROJECT_LIST) || [];
 }
 
 /**
- * Get all fully hydrated projects
+ * Get all fully hydrated projects.
  */
 export function getAllProjects(): Project[] {
     const list = getProjectList();
@@ -141,24 +160,26 @@ export function getAllProjects(): Project[] {
 }
 
 /**
- * Save the project to localStorage, dual-writing to the index.
+ * Save the project to localStorage, dual-writing to the session index.
  */
 export function saveProject(project: Project): Project {
     const updated: Project = { ...project, updatedAt: new Date().toISOString() };
-    lsSet(STORAGE_KEYS.PROJECT, updated); // Active pointer
-    
-    // Dual write to multi-project store
+    lsSet(STORAGE_KEYS.PROJECT, updated);
+
+    // Dual-write to per-project key in localStorage (data survives tab close)
     lsSet(`bb_project_${updated.id}`, updated);
+
+    // Write project list to sessionStorage (session-scoped index)
     const list = getProjectList();
     if (!list.includes(updated.id)) {
         list.push(updated.id);
-        lsSet(STORAGE_KEYS.PROJECT_LIST, list);
+        ssSet(STORAGE_KEYS.PROJECT_LIST, list);
     }
     return updated;
 }
 
 /**
- * Switch the active project to a different stored project.
+ * Switch the active project.
  */
 export function switchProject(id: string): Project | null {
     const p = lsGet<Project>(`bb_project_${id}`);
@@ -175,9 +196,8 @@ export function switchProject(id: string): Project | null {
 export function deleteProject(id: string): void {
     lsRemove(`bb_project_${id}`);
     const list = getProjectList().filter(x => x !== id);
-    lsSet(STORAGE_KEYS.PROJECT_LIST, list);
-    
-    // If active was deleted, clear it
+    ssSet(STORAGE_KEYS.PROJECT_LIST, list);
+
     const active = lsGet<Project>(STORAGE_KEYS.PROJECT);
     if (active && active.id === id) {
         clearProject();
@@ -185,7 +205,7 @@ export function deleteProject(id: string): void {
 }
 
 /**
- * Clear the active project and return a brand-new one.
+ * Clear the active project and return a fresh one.
  */
 export function clearProject(): Project {
     lsRemove(STORAGE_KEYS.PROJECT);
@@ -241,7 +261,7 @@ export function achieveMilestone(
     milestones: MilestoneState,
     id: MilestoneId
 ): MilestoneState {
-    if (milestones[id]) return milestones; // already achieved
+    if (milestones[id]) return milestones;
     return { ...milestones, [id]: new Date().toISOString() };
 }
 
@@ -251,16 +271,14 @@ export function achieveMilestone(
 export function toggleChecklistItem(project: Project, itemId: string): Project {
     const isChecked = !project.checklist[itemId];
     const newChecklist = { ...project.checklist, [itemId]: isChecked };
-    
-    // Auto-unlock checklist_started
+
     let newMilestones = achieveMilestone(project.milestones, "checklist_started");
-    
-    // Auto-unlock checklist_complete if all main sections are done
+
     const allDone = CHECKLIST_ITEMS.every(item => newChecklist[item.id]);
     if (allDone) {
         newMilestones = achieveMilestone(newMilestones, "checklist_complete");
     }
-    
+
     return saveProject({
         ...project,
         checklist: newChecklist,
@@ -293,10 +311,6 @@ export function loadMeta(): VisitMeta {
     return stored ?? defaultMeta();
 }
 
-/**
- * Record a new visit. Call this once on app mount (client-side only).
- * Returns the updated meta.
- */
 export function recordVisit(): VisitMeta {
     const meta = loadMeta();
     const now = new Date().toISOString();
@@ -305,15 +319,11 @@ export function recordVisit(): VisitMeta {
         lastVisit: now,
         visitCount: meta.visitCount + 1,
     };
-    // Ensure firstVisit is set
     if (!meta.firstVisit) updated.firstVisit = now;
     lsSet(STORAGE_KEYS.META, updated);
     return updated;
 }
 
-/**
- * Record that a named trigger has fired. Used for frequency-cap enforcement.
- */
 export function recordTriggerFired(triggerName: string): void {
     const meta = loadMeta();
     const updated: VisitMeta = {
@@ -326,9 +336,6 @@ export function recordTriggerFired(triggerName: string): void {
     lsSet(STORAGE_KEYS.META, updated);
 }
 
-/**
- * Check if a trigger is allowed to fire (enforces 24h minimum cap).
- */
 export function isTriggerAllowed(triggerName: string, minHours = 24): boolean {
     const meta = loadMeta();
     const lastFired = meta.triggerLastFired[triggerName];
@@ -339,9 +346,6 @@ export function isTriggerAllowed(triggerName: string, minHours = 24): boolean {
 
 // ─── Session Helpers ──────────────────────────────────────────────────────────
 
-/**
- * Returns true if the user has been away for more than `thresholdHours` hours.
- */
 export function isReturningVisitor(thresholdHours = 1): boolean {
     const meta = loadMeta();
     if (meta.visitCount <= 1) return false;
@@ -351,10 +355,6 @@ export function isReturningVisitor(thresholdHours = 1): boolean {
 
 // ─── Migration ────────────────────────────────────────────────────────────────
 
-/**
- * Attempt to migrate the old Phase 17 sessionStorage recommendation state
- * into a new Project. Called once on first load.
- */
 function migrateFromSessionStorage(): Project | null {
     if (typeof window === "undefined") return null;
     try {
@@ -383,25 +383,242 @@ function migrateFromSessionStorage(): Project | null {
     }
 }
 
-// ─── Export / Import ─────────────────────────────────────────────────────────
+// ─── Export / Import (PDF) ────────────────────────────────────────────────────
 
 /**
- * Serialize a project into a compliant JSON export payload.
+ * Serialize a project payload into a real PDF Blob.
+ *
+ * The PDF contains a human-readable summary and embeds the full JSON payload
+ * in the PDF's Keywords metadata property (invisible to users, readable by code).
+ *
+ * Uses jsPDF (already a project dependency).
  */
-export function exportProject(project: Project): string {
+export async function exportProjectAsPDF(project: Project): Promise<Blob> {
+    // Dynamic import to avoid SSR issues
+    const { jsPDF } = await import("jspdf");
+
     const payload: ProjectExportPayload = {
         schemaVersion: 1,
         exportedAt: new Date().toISOString(),
-        project
+        project,
     };
-    return JSON.stringify(payload, null, 2);
+    const jsonStr = JSON.stringify(payload);
+
+    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+
+    // ── PDF Metadata (carries the import payload) ─────────────────────────
+    doc.setProperties({
+        title: `BatteryBlueprint Project — ${project.label}`,
+        subject: "Battery Sizing Project Export",
+        author: "BatteryBlueprint.com",
+        keywords: `BB_PAYLOAD:${jsonStr}`,
+        creator: "BatteryBlueprint",
+    });
+
+    // ── Colours & layout ──────────────────────────────────────────────────
+    const PRIMARY   = [227, 83, 54]  as [number, number, number]; // #E35336
+    const DARK      = [20, 20, 30]   as [number, number, number];
+    const MID       = [90, 90, 110]  as [number, number, number];
+    const LIGHT     = [245, 245, 248] as [number, number, number];
+    const W = 210; // A4 width mm
+
+    // Header bar
+    doc.setFillColor(...PRIMARY);
+    doc.rect(0, 0, W, 28, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(18);
+    doc.setFont("helvetica", "bold");
+    doc.text("BatteryBlueprint", 14, 12);
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text("Engineering-Grade Battery Sizing", 14, 20);
+
+    // Project name
+    doc.setFillColor(...LIGHT);
+    doc.rect(0, 28, W, 18, "F");
+    doc.setTextColor(...DARK);
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text(project.label, 14, 40);
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(...MID);
+    doc.text(
+        `Exported: ${new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}   |   Project ID: ${project.id.slice(0, 8)}…`,
+        14, 46
+    );
+
+    let y = 58;
+
+    const section = (title: string) => {
+        doc.setFillColor(...PRIMARY);
+        doc.rect(14, y - 4, 3, 6, "F");
+        doc.setTextColor(...DARK);
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "bold");
+        doc.text(title, 20, y);
+        y += 8;
+    };
+
+    const row = (label: string, value: string) => {
+        doc.setFontSize(9);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(...MID);
+        doc.text(label, 14, y);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(...DARK);
+        doc.text(value, 80, y);
+        y += 6;
+    };
+
+    // ── Sizing Results ────────────────────────────────────────────────────
+    if (project.calculator) {
+        const c = project.calculator;
+        section("Battery Sizing Results");
+        row("Daily Load", `${c.dailyLoad_kWh} kWh`);
+        row("Days of Autonomy", `${c.daysOfAutonomy}`);
+        row("Depth of Discharge", `${(c.dod * 100).toFixed(0)}%`);
+        row("Efficiency", `${(c.inverterEfficiency * 100).toFixed(0)}%`);
+        row("Winter Mode", c.winterMode ? "Yes" : "No");
+        if (c.result) {
+            row("Usable Capacity Needed", `${c.result.batteryUsableNeeded_kWh.toFixed(1)} kWh`);
+            row("Nameplate Capacity Needed", `${c.result.batteryNameplateNeeded_kWh.toFixed(1)} kWh`);
+        }
+        y += 4;
+    }
+
+    // ── Recommendation ────────────────────────────────────────────────────
+    if (project.recommendation) {
+        const r = project.recommendation;
+        section("Top Recommendation");
+        if (r.result?.topRecommendation) {
+            const top = r.result.topRecommendation;
+            row("Battery", top.battery?.name ?? "—");
+            row("Score", top.score?.total?.toFixed(0) ?? "—");
+        } else {
+            row("Status", "No specific battery matched");
+        }
+        y += 4;
+    }
+
+    // ── Milestones ────────────────────────────────────────────────────────
+    section("Milestones");
+    const milestoneLabels: Record<string, string> = {
+        sizing_complete:         "Sizing complete",
+        recommendation_complete: "Recommendation complete",
+        checklist_started:       "Checklist started",
+        checklist_complete:      "Checklist complete",
+        report_exported:         "Report exported",
+    };
+    const mIds = Object.keys(milestoneLabels) as (keyof typeof milestoneLabels)[];
+    for (const mId of mIds) {
+        const achieved = project.milestones[mId as keyof typeof project.milestones];
+        row(
+            milestoneLabels[mId],
+            achieved
+                ? `✓ ${new Date(achieved).toLocaleDateString("en-GB")}`
+                : "Pending"
+        );
+    }
+    y += 4;
+
+    // ── Checklist ─────────────────────────────────────────────────────────
+    if (Object.keys(project.checklist).length > 0) {
+        section("Installation Checklist");
+        const ITEMS = [
+            { id: "research_specs",    label: "Review battery spec sheets" },
+            { id: "research_warranty", label: "Check warranty terms" },
+            { id: "installer_quotes",  label: "Get 3 installer quotes" },
+            { id: "installer_reviews", label: "Check installer reviews" },
+            { id: "tech_inverter",     label: "Verify inverter compatibility" },
+            { id: "tech_space",        label: "Confirm installation space" },
+            { id: "fin_incentives",    label: "Check local rebates" },
+            { id: "fin_roi",           label: "Calculate payback period" },
+        ];
+        for (const item of ITEMS) {
+            const done = project.checklist[item.id];
+            row(done ? `☑ ${item.label}` : `☐ ${item.label}`, "");
+            y -= 2; // tighten rows for checklist
+        }
+        y += 4;
+    }
+
+    // ── Notes ─────────────────────────────────────────────────────────────
+    if (project.notes?.trim()) {
+        section("Notes");
+        doc.setFontSize(9);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(...DARK);
+        const lines = doc.splitTextToSize(project.notes, W - 28);
+        doc.text(lines, 14, y);
+        y += lines.length * 5 + 4;
+    }
+
+    // ── Footer ────────────────────────────────────────────────────────────
+    doc.setFillColor(...LIGHT);
+    doc.rect(0, 282, W, 15, "F");
+    doc.setFontSize(7);
+    doc.setTextColor(...MID);
+    doc.text(
+        "Generated by BatteryBlueprint.com — Engineering-grade battery sizing. Not professional electrical advice.",
+        W / 2,
+        290,
+        { align: "center" }
+    );
+    doc.text("Import this file at batteryblueprint.com to restore your project.", W / 2, 294, { align: "center" });
+
+    return doc.output("blob") as Blob;
 }
 
 /**
- * Validate an imported JSON string payload before hydration.
+ * Validate an imported PDF file.
+ *
+ * Reads the PDF as text, extracts the BB_PAYLOAD JSON from the Keywords
+ * metadata field, then validates the schema.
  */
-export function validateProjectImport(jsonStr: string): { valid: false; error: string } | { valid: true; payload: ProjectExportPayload; collision: boolean } {
+export function validateProjectImportFromPDF(
+    arrayBuffer: ArrayBuffer
+): { valid: false; error: string } | { valid: true; payload: ProjectExportPayload; collision: boolean } {
     try {
+        // Decode the PDF binary as latin-1 (preserves byte values) to scan for our marker
+        const bytes = new Uint8Array(arrayBuffer);
+        let pdfStr = "";
+        for (let i = 0; i < bytes.length; i++) {
+            pdfStr += String.fromCharCode(bytes[i]);
+        }
+
+        // Find BB_PAYLOAD marker in Keywords metadata
+        const marker = "BB_PAYLOAD:";
+        const markerIdx = pdfStr.indexOf(marker);
+        if (markerIdx === -1) {
+            return { valid: false, error: "No save data found in this PDF. Make sure you are importing a file exported directly from the new version of BatteryBlueprint." };
+        }
+
+        // Extract JSON — it ends at the next PDF stream delimiter
+        // Keywords field in PDF is enclosed in parentheses: /Keywords (BB_PAYLOAD:{...})
+        let jsonStart = markerIdx + marker.length;
+        // Find the closing delimiter: could be ) for PDF string or end of Keywords
+        // We look for the matching unescaped )
+        let jsonStr = "";
+        let depth = 0;
+        let i = jsonStart;
+        while (i < pdfStr.length) {
+            const ch = pdfStr[i];
+            if (ch === "(" ) { depth++; }
+            else if (ch === ")") {
+                if (depth === 0) break; // end of PDF string
+                depth--;
+            } else if (ch === "\\" ) {
+                i++; // skip escaped char
+            }
+            jsonStr += ch;
+            i++;
+        }
+
+        if (!jsonStr) {
+            return { valid: false, error: "Could not extract project data from PDF. The file may be corrupted." };
+        }
+
         const payload = JSON.parse(jsonStr) as Partial<ProjectExportPayload>;
         if (payload.schemaVersion !== 1) {
             return { valid: false, error: "Unsupported schema version or invalid file." };
@@ -410,9 +627,13 @@ export function validateProjectImport(jsonStr: string): { valid: false; error: s
             return { valid: false, error: "Corrupted project data." };
         }
         const list = getProjectList();
-        return { valid: true, payload: payload as ProjectExportPayload, collision: list.includes(payload.project.id) };
-    } catch {
-        return { valid: false, error: "Invalid JSON format." };
+        return {
+            valid: true,
+            payload: payload as ProjectExportPayload,
+            collision: list.includes(payload.project.id),
+        };
+    } catch (e) {
+        return { valid: false, error: "Failed to read PDF. Ensure you are using a PDF exported from BatteryBlueprint." };
     }
 }
 
@@ -425,12 +646,11 @@ export function importProject(payload: ProjectExportPayload, asCopy: boolean): P
         project.id = generateId();
         project.label = `${project.label} (Copy)`;
     }
-    
-    // Enforce max 5 rule if new
+
     const list = getProjectList();
     if (!list.includes(project.id) && list.length >= 5) {
-        throw new Error("Maximum of 5 projects reached.");
+        throw new Error("Maximum of 5 projects reached. Delete a project first.");
     }
-    
+
     return saveProject(project);
 }

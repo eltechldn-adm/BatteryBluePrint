@@ -25,6 +25,9 @@ export async function generateStaticParams() {
     }));
 }
 
+// Any [category] not returned above is a 404 — do not attempt dynamic rendering.
+export const dynamicParams = false;
+
 // Category metadata: descriptions and related links for empty categories
 const CATEGORY_META: Record<string, {
     title: string;

@@ -2,18 +2,20 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRetention } from "@/lib/retention/context";
-import { getAllProjects, exportProject, validateProjectImport, importProject } from "@/lib/retention/store";
+import { getAllProjects, exportProjectAsPDF, validateProjectImportFromPDF, importProject } from "@/lib/retention/store";
 import { Project, ProjectExportPayload } from "@/lib/retention/types";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { FolderOpen, Download, Upload, Trash2, CheckCircle2, AlertTriangle, FileJson } from "lucide-react";
+import { FolderOpen, Download, Upload, Trash2, CheckCircle2, AlertTriangle, FileText, Clock, Timer } from "lucide-react";
+import Link from "next/link";
 
 export function ProjectManager() {
-    const { project: activeProject, switchProject, deleteProject } = useRetention();
+    const { project: activeProject, switchProject, deleteProject, sessionTimeRemaining, sessionWasReset } = useRetention();
     const [open, setOpen] = useState(false);
     const [projects, setProjects] = useState<Project[]>([]);
     const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [exportingId, setExportingId] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Collision State
@@ -26,7 +28,7 @@ export function ProjectManager() {
             setError(null);
             setCollisionPayload(null);
         }
-    }, [open, activeProject.id]); // re-fetch if active project changes
+    }, [open, activeProject.id]);
 
     const handleSwitch = (id: string) => {
         switchProject(id);
@@ -43,27 +45,34 @@ export function ProjectManager() {
         }
     };
 
-    const handleExport = (project: Project) => {
-        const jsonStr = exportProject(project);
-        const blob = new Blob([jsonStr], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `batteryblueprint_${project.label.replace(/\s+/g, "_").toLowerCase()}_${new Date().toISOString().split("T")[0]}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+    const handleExport = async (project: Project) => {
+        setExportingId(project.id);
+        try {
+            const blob = await exportProjectAsPDF(project);
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `batteryblueprint_${project.label.replace(/\s+/g, "_").toLowerCase()}_${new Date().toISOString().split("T")[0]}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        } catch (err) {
+            setError("Failed to generate PDF. Please try again.");
+        } finally {
+            setExportingId(null);
+        }
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
 
+        // Read as ArrayBuffer for PDF parsing
         const reader = new FileReader();
         reader.onload = (event) => {
-            const content = event.target?.result as string;
-            const validation = validateProjectImport(content);
+            const arrayBuffer = event.target?.result as ArrayBuffer;
+            const validation = validateProjectImportFromPDF(arrayBuffer);
 
             if (!validation.valid) {
                 setError(validation.error);
@@ -76,7 +85,6 @@ export function ProjectManager() {
                 try {
                     importProject(validation.payload, false);
                     setProjects(getAllProjects());
-                    // Switch to the newly imported project
                     switchProject(validation.payload.project.id);
                     setOpen(false);
                 } catch (err: any) {
@@ -84,9 +92,9 @@ export function ProjectManager() {
                 }
             }
         };
-        reader.readAsText(file);
-        
-        // Reset input
+        reader.readAsArrayBuffer(file);
+
+        // Reset input so same file can be re-selected
         if (fileInputRef.current) fileInputRef.current.value = "";
     };
 
@@ -108,7 +116,7 @@ export function ProjectManager() {
             <DialogTrigger asChild>
                 <Button variant="ghost" size="sm" className="flex items-center gap-2 text-muted-foreground hover:text-foreground w-full md:w-auto justify-start md:justify-center px-0 md:px-3">
                     <FolderOpen className="w-4 h-4" />
-                    Projects ({projects.length || 1}/5)
+                    Projects ({projects.length}/5)
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md bg-background border-border shadow-2xl">
@@ -120,6 +128,25 @@ export function ProjectManager() {
                 </DialogHeader>
 
                 <div className="py-4 space-y-4">
+                    {/* Session Reset Banner */}
+                    {sessionWasReset && (
+                        <div className="p-3 bg-amber-50 dark:bg-amber-950/20 text-amber-700 dark:text-amber-300 text-sm rounded-lg flex items-start gap-2">
+                            <Timer className="w-4 h-4 mt-0.5 shrink-0" />
+                            <span>Your previous session expired. Project list has been reset. Your last active project data is still available.</span>
+                        </div>
+                    )}
+
+                    {/* Session Timer */}
+                    <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
+                        <div className="flex items-center gap-1.5">
+                            <Clock className="w-3.5 h-3.5" />
+                            <span>Session expires in <strong className="text-foreground">{sessionTimeRemaining}</strong></span>
+                        </div>
+                        <Link href="/projects" className="text-primary hover:underline" onClick={() => setOpen(false)}>
+                            View dashboard →
+                        </Link>
+                    </div>
+
                     {error && (
                         <div className="p-3 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 text-sm rounded-lg flex items-start gap-2">
                             <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
@@ -147,12 +174,12 @@ export function ProjectManager() {
                     ) : (
                         <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
                             {projects.length === 0 && (
-                                <p className="text-sm text-muted-foreground italic">No projects found.</p>
+                                <p className="text-sm text-muted-foreground italic">No projects in this session. Import a PDF to restore a previous project.</p>
                             )}
                             {projects.map(p => {
                                 const isActive = p.id === activeProject.id;
                                 return (
-                                    <div key={p.id} className={`p-3 rounded-xl border ${isActive ? 'border-primary bg-primary/5' : 'border-border/50 bg-muted/20'} flex flex-col gap-2`}>
+                                    <div key={p.id} className={`p-3 rounded-xl border ${isActive ? "border-primary bg-primary/5" : "border-border/50 bg-muted/20"} flex flex-col gap-2`}>
                                         <div className="flex justify-between items-start">
                                             <div>
                                                 <div className="flex items-center gap-2">
@@ -169,13 +196,23 @@ export function ProjectManager() {
                                                         Switch
                                                     </Button>
                                                 )}
-                                                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => handleExport(p)} title="Export JSON">
-                                                    <Download className="w-3.5 h-3.5" />
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="h-7 w-7"
+                                                    onClick={() => handleExport(p)}
+                                                    title="Export as PDF"
+                                                    disabled={exportingId === p.id}
+                                                >
+                                                    {exportingId === p.id
+                                                        ? <span className="w-3.5 h-3.5 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                                                        : <Download className="w-3.5 h-3.5" />
+                                                    }
                                                 </Button>
-                                                <Button 
-                                                    variant="ghost" 
-                                                    size="icon" 
-                                                    className={`h-7 w-7 ${confirmDeleteId === p.id ? 'text-red-500 bg-red-50 dark:bg-red-950/30' : ''}`}
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className={`h-7 w-7 ${confirmDeleteId === p.id ? "text-red-500 bg-red-50 dark:bg-red-950/30" : ""}`}
                                                     onClick={() => handleDelete(p.id)}
                                                     title="Delete Project"
                                                 >
@@ -193,23 +230,23 @@ export function ProjectManager() {
                 {!collisionPayload && (
                     <div className="pt-4 border-t flex justify-between items-center">
                         <p className="text-xs text-muted-foreground">
-                            {projects.length} / 5 Projects limit
+                            {projects.length} / 5 this session
                         </p>
-                        <Button 
-                            variant="outline" 
-                            size="sm" 
+                        <Button
+                            variant="outline"
+                            size="sm"
                             className="gap-2"
                             disabled={projects.length >= 5}
                             onClick={() => fileInputRef.current?.click()}
                         >
                             <Upload className="w-4 h-4" />
-                            Import Project
+                            Import PDF
                         </Button>
-                        <input 
-                            type="file" 
-                            accept=".pdf" 
-                            className="hidden" 
-                            ref={fileInputRef} 
+                        <input
+                            type="file"
+                            accept=".pdf"
+                            className="hidden"
+                            ref={fileInputRef}
                             onChange={handleFileChange}
                         />
                     </div>

@@ -29,6 +29,10 @@ export async function generateStaticParams() {
     }));
 }
 
+// Any [category]/[slug] not returned above is a 404 — do not attempt dynamic rendering.
+export const dynamicParams = false;
+
+
 export async function generateMetadata({ params }: ArticlePageProps) {
     const { category, slug } = await params;
 
