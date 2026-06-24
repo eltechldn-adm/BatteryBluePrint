@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Calculator, List } from "lucide-react";
+import { Calculator, List } from "lucide-react";
 import { track } from "@/lib/analytics/journey";
 import { Button } from "@/components/ui/button";
 

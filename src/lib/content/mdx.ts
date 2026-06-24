@@ -1,7 +1,4 @@
 
-import { ContextualInArticleCTA } from '@/components/content/ConversionCTAs';
-import { DocsCallout } from '@/components/docs/DocsCallout';
-import { DocsFAQ, DocsFAQItem } from '@/components/docs/DocsFAQ';
 import { CONTENT_MANIFEST, ManifestArticle } from './content-manifest.generated';
 
 // BUILD-TIME VALIDATION

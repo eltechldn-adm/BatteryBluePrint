@@ -51,7 +51,7 @@ export function applyRegionalModifiers(
  *
  * @internal — Not exported. Active since Phase 18.3.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 function applyModifierMap(
     weights: CategoryWeights,
     modifiers: RegionScoringModifiers

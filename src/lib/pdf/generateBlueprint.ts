@@ -1,3 +1,4 @@
+ 
 /**
  * generateBlueprint.ts
  * BatteryBlueprint PDF export — brand-aligned to batteryblueprint.com
@@ -107,13 +108,13 @@ export async function generateBlueprintPDF(inputs: BlueprintInputs): Promise<Blo
 
   const fillBox = (rx: number, ry: number, rw: number, rh: number, color: RGB, r = 0) => {
     doc.setFillColor(...color);
-    r > 0 ? doc.roundedRect(rx, ry, rw, rh, r, r, 'F') : doc.rect(rx, ry, rw, rh, 'F');
+    if (r > 0) doc.roundedRect(rx, ry, rw, rh, r, r, 'F'); else doc.rect(rx, ry, rw, rh, 'F');
   };
 
   const strokeBox = (rx: number, ry: number, rw: number, rh: number, color: RGB, w = 0.5, r = 0) => {
     doc.setDrawColor(...color);
     doc.setLineWidth(w);
-    r > 0 ? doc.roundedRect(rx, ry, rw, rh, r, r, 'S') : doc.rect(rx, ry, rw, rh, 'S');
+    if (r > 0) doc.roundedRect(rx, ry, rw, rh, r, r, 'S'); else doc.rect(rx, ry, rw, rh, 'S');
   };
 
   // Measures text lines without drawing or advancing y

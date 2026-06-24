@@ -59,10 +59,10 @@ export function generateBatteryRecommendations(profile: HomeownerProfile, region
     const topRecommendation = ranked[0];
     
     // Find a budget alternative (highest scoring non-premium, or lower cost)
-    let budgetAlternative = ranked.find(r => r.battery.id !== topRecommendation.battery.id && r.battery.category !== 'Premium') || null;
+    const budgetAlternative = ranked.find(r => r.battery.id !== topRecommendation.battery.id && r.battery.category !== 'Premium') || null;
     
     // Find a premium/scalable alternative
-    let premiumAlternative = ranked.find(r => r.battery.id !== topRecommendation.battery.id && r.battery.category === 'Premium' && (budgetAlternative ? r.battery.id !== budgetAlternative.battery.id : true)) || null;
+    const premiumAlternative = ranked.find(r => r.battery.id !== topRecommendation.battery.id && r.battery.category === 'Premium' && (budgetAlternative ? r.battery.id !== budgetAlternative.battery.id : true)) || null;
 
     // 5. Generate Explanations
     topRecommendation.explanation = generateExplanation(topRecommendation.battery, profile, topRecommendation.score, true, region);

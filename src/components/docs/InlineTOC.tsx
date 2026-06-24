@@ -43,6 +43,7 @@ export function InlineTOC() {
             }
         });
 
+         
         setItems(headings);
 
         const observer = new IntersectionObserver(

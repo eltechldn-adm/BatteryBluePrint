@@ -16,17 +16,12 @@ import {
     Sparkles,
     Zap,
     Globe,
-    Timer,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CountrySelector } from "@/components/geo/CountrySelector";
 
 
-const NAV_ITEMS = [
-    { label: "Calculator", href: "/calculator" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
-];
+
 
 const HUB_ITEMS = [
     { label: "Basics", href: "/basics", icon: BookOpen, desc: "Core concepts" },

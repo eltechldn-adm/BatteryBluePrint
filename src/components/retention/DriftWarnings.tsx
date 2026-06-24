@@ -28,6 +28,7 @@ export function DriftWarnings({ activeLocationId }: { activeLocationId?: string 
     let warningsShown = 0;
 
     const savedDateStr = project.recommendation ? new Date(project.recommendation.savedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : null;
+    // eslint-disable-next-line react-hooks/purity
     const daysAgo = project.recommendation ? Math.floor((Date.now() - new Date(project.recommendation.savedAt).getTime()) / (1000 * 60 * 60 * 24)) : 0;
     const ageText = daysAgo === 0 ? "today" : daysAgo === 1 ? "yesterday" : `${daysAgo} days ago`;
 

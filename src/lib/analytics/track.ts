@@ -1,3 +1,4 @@
+ 
 import { track, JourneyEventName } from "@/lib/analytics/journey";
 
 // Shim to redirect legacy analytics calls to the new Journey system

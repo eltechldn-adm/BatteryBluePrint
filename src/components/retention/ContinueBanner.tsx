@@ -45,6 +45,7 @@ export function ContinueBanner() {
         const dismissed = sessionStorage.getItem(BANNER_DISMISSED_KEY);
         if (dismissed) return;
 
+         
         setVisible(true);
     }, [isReturning, project.calculator, project.recommendation]);
 

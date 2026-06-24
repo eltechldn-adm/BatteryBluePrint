@@ -41,6 +41,7 @@ export function RecommendationProvider({ children }: { children: ReactNode }) {
 
     // Load from sessionStorage on mount
     useEffect(() => {
+         
         setMounted(true);
         const saved = sessionStorage.getItem('bb_recommendation_state');
         if (saved) {
@@ -68,6 +69,7 @@ export function RecommendationProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         const currentRegionId = getRegionByCountryCode(country.code)?.id;
         if (state.flowState === 'results' && state.regionId !== currentRegionId) {
+             
             setState(prev => ({ ...prev, staleRegion: true }));
         } else if (state.staleRegion && state.regionId === currentRegionId) {
             setState(prev => ({ ...prev, staleRegion: false }));

@@ -32,7 +32,6 @@ import {
     saveRecommendationSnapshot,
     achieveMilestone,
     isRecommendationStale,
-    loadMeta,
     recordVisit,
     isReturningVisitor,
     toggleChecklistItem as storeToggleChecklistItem,
@@ -96,6 +95,7 @@ export function RetentionProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         // 1. Check & renew session — this may wipe the project list if expired
         const wasReset = checkAndRenewSession(STORAGE_KEYS.PROJECT_LIST);
+         
         setSessionWasReset(wasReset);
         setSessionExpiresAt(getSessionExpiresAt());
 
@@ -111,7 +111,7 @@ export function RetentionProvider({ children }: { children: ReactNode }) {
 
         setIsStale(isRecommendationStale(loadedProject));
         setIsHydrated(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     }, []);
 
     // Live countdown timer — updates every 30 seconds

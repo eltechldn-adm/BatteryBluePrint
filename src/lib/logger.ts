@@ -1,3 +1,4 @@
+ 
 /**
  * Safe logger for server-side operations
  * strips sensitive fields before logging

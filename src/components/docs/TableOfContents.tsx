@@ -38,6 +38,7 @@ export function TableOfContents() {
             }
         });
 
+         
         setItems(headings);
 
         const observer = new IntersectionObserver(

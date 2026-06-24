@@ -19,7 +19,7 @@ export function GlobalUsersNotice() {
                                 Not in the UK or US?
                             </h4>
                             <p className="text-muted-foreground text-sm leading-relaxed">
-                                Most of our cost and incentive data is tailored for these regions, but the physics of batteries works the same everywhere! Here's how to adapt this guide:
+                                Most of our cost and incentive data is tailored for these regions, but the physics of batteries works the same everywhere! Here&apos;s how to adapt this guide:
                             </p>
                         </div>
 

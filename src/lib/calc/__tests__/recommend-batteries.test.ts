@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { recommendBatteries } from '../recommend-batteries';
 import { BATTERY_DATABASE } from '@/data/batteries';
 

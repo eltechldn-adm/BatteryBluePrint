@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Download, Mail, FileText, CheckCircle, Loader2, X, AlertCircle } from 'lucide-react';
+import { Mail, FileText, CheckCircle, Loader2, X, AlertCircle } from 'lucide-react';
 import type { SizingResult } from '@/lib/calc/battery-sizing';
 import type { RecommendedBattery } from '@/lib/calc/recommend-batteries';
 

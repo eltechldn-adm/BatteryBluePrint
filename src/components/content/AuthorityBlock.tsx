@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ShieldCheck } from 'lucide-react';
 
 interface AuthorityBlockProps {

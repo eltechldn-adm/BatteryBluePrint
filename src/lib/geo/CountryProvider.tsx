@@ -19,6 +19,7 @@ export function CountryProvider({ children }: { children: React.ReactNode }) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+         
         setMounted(true);
 
         // Version key — bump this whenever the default or detection logic changes
