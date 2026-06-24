@@ -493,7 +493,7 @@ export async function exportProjectAsPDF(project: Project): Promise<Blob> {
         section("Top Recommendation");
         if (r.result?.topRecommendation) {
             const top = r.result.topRecommendation;
-            row("Battery", top.battery?.name ?? "—");
+            row("Battery", top.battery ? `${top.battery.brand} ${top.battery.model}` : "—");
             row("Score", top.score?.total?.toFixed(0) ?? "—");
         } else {
             row("Status", "No specific battery matched");
@@ -596,7 +596,7 @@ export function validateProjectImportFromPDF(
 
         // Extract JSON — it ends at the next PDF stream delimiter
         // Keywords field in PDF is enclosed in parentheses: /Keywords (BB_PAYLOAD:{...})
-        let jsonStart = markerIdx + marker.length;
+        const jsonStart = markerIdx + marker.length;
         // Find the closing delimiter: could be ) for PDF string or end of Keywords
         // We look for the matching unescaped )
         let jsonStr = "";
@@ -632,7 +632,7 @@ export function validateProjectImportFromPDF(
             payload: payload as ProjectExportPayload,
             collision: list.includes(payload.project.id),
         };
-    } catch (e) {
+    } catch {
         return { valid: false, error: "Failed to read PDF. Ensure you are using a PDF exported from BatteryBlueprint." };
     }
 }
