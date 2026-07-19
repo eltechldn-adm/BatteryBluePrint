@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { recommendBatteries } from '../recommend-batteries';
-import { BATTERY_DATABASE } from '@/data/batteries';
+import { BATTERY_CATALOG } from '@/lib/batteries/catalog';
 
 describe('recommendBatteries', () => {
     it('should recommend correct counts for small load (5 usable needed)', () => {
@@ -15,10 +15,11 @@ describe('recommendBatteries', () => {
         // Wait, Enphase 4.96 * 2 = 9.92 usable. Tesla 13.5. 9.92 < 13.5.
         // So logic picks Enphase?
 
-        process.stdout.write(`    DEBUG: Premium model picked: ${result.premium?.battery.id} count: ${result.premium?.count}\n`);
+        process.stdout.write(`    DEBUG: Premium model picked: ${result.premium?.[0]?.battery.id} count: ${result.premium?.[0]?.count}
+`);
 
-        if (result.premium?.battery.id === 'enphase-iq5p') {
-            expect(result.premium.count).toBe(2);
+        if (result.premium?.[0]?.battery.id === 'enphase-iq5p') {
+            expect(result.premium?.[0]?.count).toBe(2);
         }
     });
 
@@ -63,15 +64,16 @@ describe('recommendBatteries', () => {
             }
         });
 
-        process.stdout.write(`    DEBUG: US recommendations: ${allBatteries.map(b => b.id).join(', ')}\n`);
+        process.stdout.write(`    DEBUG: US recommendations: ${allBatteries.map(b => b.id).join(', ')}
+`);
     });
 
     it('should filter batteries by region - EU excludes US-only models', () => {
         // Find a US-only battery (if exists)
-        const usOnlyBattery = BATTERY_DATABASE.find(b => 
-            b.availableIn.includes('US') && 
-            !b.availableIn.includes('EU') && 
-            !b.availableIn.includes('GLOBAL')
+        const usOnlyBattery = BATTERY_CATALOG.find(b => 
+            b.regionAvailability['US'] && 
+            !b.regionAvailability['EU'] && 
+            !b.regionAvailability['GLOBAL']
         );
 
         if (usOnlyBattery) {
@@ -90,14 +92,16 @@ describe('recommendBatteries', () => {
                 throw new Error(`US-only battery ${usOnlyBattery.id} appeared in EU recommendations`);
             }
 
-            process.stdout.write(`    DEBUG: EU recommendations exclude US-only ${usOnlyBattery.id}\n`);
+            process.stdout.write(`    DEBUG: EU recommendations exclude US-only ${usOnlyBattery.id}
+`);
         } else {
-            process.stdout.write(`    DEBUG: No US-only batteries found in database\n`);
+            process.stdout.write(`    DEBUG: No US-only batteries found in database
+`);
         }
     });
 
     it('should include GLOBAL batteries in all regions', () => {
-        const globalBattery = BATTERY_DATABASE.find(b => b.availableIn.includes('GLOBAL'));
+        const globalBattery = BATTERY_CATALOG.find(b => b.regionAvailability['GLOBAL']);
 
         if (globalBattery) {
             // Test multiple regions
@@ -118,7 +122,8 @@ describe('recommendBatteries', () => {
                     throw new Error(`No batteries available for region ${region}`);
                 }
 
-                process.stdout.write(`    DEBUG: ${region} has ${allBatteries.length} recommendations\n`);
+                process.stdout.write(`    DEBUG: ${region} has ${allBatteries.length} recommendations
+`);
             });
         }
     });
@@ -140,7 +145,8 @@ describe('recommendBatteries', () => {
             }
         }
 
-        process.stdout.write(`    DEBUG: IN has ${totalRecommendations} recommendations, limitedCatalog=${result.limitedCatalog}\n`);
+        process.stdout.write(`    DEBUG: IN has ${totalRecommendations} recommendations, limitedCatalog=${result.limitedCatalog}
+`);
     });
 });
 

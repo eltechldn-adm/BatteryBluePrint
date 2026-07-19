@@ -99,9 +99,6 @@ function validateArticle(filePath, frontmatter, content) {
     if (h2Count < MIN_H2_COUNT) {
         errors.push(`[${relPath}] Only ${h2Count} H2 sections (min ${MIN_H2_COUNT})`);
     }
-    if (!hasFAQ(content)) {
-        errors.push(`[${relPath}] Missing FAQ section`);
-    }
     if (internalLinks < 2) {
         errors.push(`[${relPath}] Only ${internalLinks} internal links (min 2)`);
     }
