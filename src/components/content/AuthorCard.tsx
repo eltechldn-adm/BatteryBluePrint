@@ -15,7 +15,7 @@ export function AuthorCard() {
                 </h3>
                 <p className="text-sm text-muted-foreground max-w-2xl">
                     Research-led guides and tools built for homeowners sizing solar battery storage.
-                    Our content is verified by engineers and strictly verified against <Link href="/methodology" className="text-primary hover:underline">methodology standards</Link>.
+                    Our content is compiled by the BatteryBlueprint Editorial Research Team and strictly verified against <Link href="/methodology" className="text-primary hover:underline">methodology standards</Link>.
                 </p>
                 <div className="text-xs text-muted-foreground pt-1 flex gap-3">
                     <Link href="/editorial-team" className="hover:text-primary transition-colors">About Us</Link>

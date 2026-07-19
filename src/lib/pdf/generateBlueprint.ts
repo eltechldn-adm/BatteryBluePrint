@@ -499,7 +499,7 @@ export async function generateBlueprintPDF(inputs: BlueprintInputs): Promise<Blo
   // ── SECTION 2 ────────────────────────────────────────────────────────────────
   // Section 2 always starts on its own page (content is too long to share page 1)
   newPage();
-  sectionHeading('2.  Recommended Batteries', 'Models from our engineering-verified catalog that match your sizing requirements.');
+  sectionHeading('2.  Recommended Batteries', 'Models from our data-verified catalog that match your sizing requirements.');
   drawRecsTable();
   drawCoverageNote();
 

@@ -6,7 +6,7 @@ import { Calculator, ShieldCheck, Mail, Award, Cpu, BookOpen } from "lucide-reac
 
 export const metadata: Metadata = {
     title: "Editorial Team & Contributors | BatteryBlueprint",
-    description: "Meet the engineering-led team behind BatteryBlueprint. We are a collective of technical analysts, solar installers, and software engineers dedicated to transparency.",
+    description: "Meet the BatteryBlueprint Editorial Research Team. We are an independent educational publishing platform dedicated to transparency.",
     alternates: {
         canonical: "https://batteryblueprint.com/editorial-team",
     },
@@ -62,7 +62,7 @@ export default function EditorialTeamPage() {
                 <div className="text-center space-y-4">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight">The BatteryBlueprint Editorial Team</h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        A team of electrical engineers, energy policy analysts, and solar installation professionals dedicated to bias-free battery storage guidance.
+                        BatteryBlueprint Editorial Research Team: an independent educational publishing platform dedicated to bias-free battery storage guidance.
                     </p>
                 </div>
 
@@ -124,19 +124,11 @@ export default function EditorialTeamPage() {
                         <strong>BatteryBlueprint was founded to cut through that noise.</strong>
                     </p>
                     <p>
-                        We are not a sales team. We are an <strong>engineering-first editorial collective</strong>.
+                        We are not a sales team. We are a <strong>data-driven editorial collective</strong>.
                         Our mission is to help homeowners size their battery systems correctly, understand the true ROI, and avoid predatory contracts.
                     </p>
                     <p>
-                        Our content is researched, written, and verified by diverse contributors with backgrounds in:
-                    </p>
-                    <ul>
-                        <li>Electrical Engineering (PV & Storage focus)</li>
-                        <li>Policy Analysis (ITC, SGIP, NEM 3.0)</li>
-                        <li>Software Development (Simulation & Modeling)</li>
-                    </ul>
-                    <p className="text-sm text-muted-foreground italic mt-4">
-                        *Note: While our team includes engineering professionals, BatteryBlueprint is a publishing platform, not a licensed engineering firm. All content is for educational planning purposes only.
+                        Our content is researched, written, and verified by diverse contributors with backgrounds in energy policy, technical research, and data modeling.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 my-8 not-prose">

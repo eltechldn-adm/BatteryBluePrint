@@ -53,7 +53,7 @@ export default function EditorialPolicyPage() {
 
                 <h2>1. Editorial Independence</h2>
                 <p>
-                    Our content is written by engineers and technical analysts, not salespeople.
+                    Our content is compiled by the BatteryBlueprint Editorial Research Team.
                     <strong>We do not accept payment from manufacturers, installers, or utility companies</strong> to influence our reviews, rankings, or calculator results.
                 </p>
                 <p>
