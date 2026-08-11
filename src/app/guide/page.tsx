@@ -80,7 +80,7 @@ const CATEGORY_INFO: Record<ContentCategory, { icon: React.ElementType; descript
 const RECOMMENDED_ARTICLES = [
     {
         category: "basics" as ContentCategory,
-        slug: "what-is-a-solar-battery",
+        slug: "kwh-explained",
         title: "What is a Solar Battery?",
         description: "Start here to understand the fundamentals",
     },

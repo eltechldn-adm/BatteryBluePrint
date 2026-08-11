@@ -101,13 +101,13 @@ const CATEGORY_DECISION_PAGE: Record<string, { href: string; label: string; desc
 
 // Per-category "Start Here" article slug
 const CATEGORY_START_ARTICLE: Record<string, string> = {
-    basics: 'what-is-a-solar-battery',
+    basics: 'kwh-explained',
     sizing: 'how-much-battery-storage-do-i-need',
     cost: 'is-solar-battery-storage-worth-it',
     comparisons: 'best-solar-batteries-2026',
     'how-to': 'how-to-choose-the-right-solar-battery',
     incentives: 'us-federal-solar-battery-tax-credit-itc',
-    future: 'future-of-home-battery-storage-2026-2030',
+    future: 'hydrogen-home-storage-vs-batteries',
     markets: 'us-solar-battery-cost-2026',
 };
 
