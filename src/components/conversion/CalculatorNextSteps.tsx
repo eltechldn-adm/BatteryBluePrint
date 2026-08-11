@@ -78,7 +78,7 @@ export function CalculatorNextSteps() {
 
                 {/* 3. Cost & Payback */}
                 <Link
-                    href="/cost/solar-battery-payback-period"
+                    href="/payback-reality"
                     onClick={() => handleTrack('payback_guide')}
                     className="group block"
                 >

@@ -192,7 +192,7 @@ export default function WorthItPage() {
                 </p>
 
                 <p>
-                    Begin by <Link href="/calculator" className="text-primary hover:underline">running your numbers through the calculator</Link>. Then review the <Link href="/cost/solar-battery-payback-period" className="text-primary hover:underline">payback period guide</Link> and the <Link href="/payback-reality" className="text-primary hover:underline">payback reality breakdown by market</Link> to understand what is realistic for your specific location.
+                    Begin by <Link href="/calculator" className="text-primary hover:underline">running your numbers through the calculator</Link>. Then review the <Link href="/payback-reality" className="text-primary hover:underline">payback period guide</Link> and the <Link href="/payback-reality" className="text-primary hover:underline">payback reality breakdown by market</Link> to understand what is realistic for your specific location.
                 </p>
 
                 <hr />

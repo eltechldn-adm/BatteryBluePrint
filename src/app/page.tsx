@@ -304,7 +304,7 @@ export default function Home() {
                                 </div>
                             </Link>
 
-                            <Link href="/cost/uk-solar-battery-incentives" className="group block">
+                            <Link href="/incentives/uk-solar-battery-incentives-grants-2026" className="group block">
                                 <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 space-y-3">
                                     <div className="flex items-center gap-2">
                                         <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-accent/10 text-accent uppercase tracking-wide">Incentives</span>

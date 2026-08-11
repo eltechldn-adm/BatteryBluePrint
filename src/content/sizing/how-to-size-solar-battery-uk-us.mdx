@@ -185,7 +185,7 @@ The optimal battery size differs between UK and US homes due to different consum
 
 **US homes** use significantly more energy (25-30 kWh/day average), with higher overnight consumption (8-15 kWh). US homes also tend to have more high-power appliances (central AC, electric dryers, pool pumps). Most US homes need 10-20kWh for meaningful self-sufficiency.
 
-For detailed cost information by region, see our [Solar Battery Cost Guide](/cost/solar-battery-cost-uk-2026).
+For detailed cost information by region, see our [Solar Battery Cost Guide](/markets/uk-solar-battery-cost-2026).
 
 ## Common Questions (FAQ)
 
@@ -271,7 +271,7 @@ The sizing methodology in this article is technically sound. The primary failure
 - Your 3-variable calculation produces a number between two available product sizes — always round up, not down
 - Your home's electrical peak load has not been checked against the inverter's continuous and surge rating
 
-**The key decision trigger** is the winter fill factor. If the calculated battery capacity exceeds your winter surplus (what the panels can realistically put in on the worst generation days), you must either add grid top-up scheduling, reduce the battery size to match actual fill capability, or add more solar. A battery that chronically cycles at 30% is losing money, not making it. Run the numbers through the [calculator](/calculator) and compare with the [solar battery cost guide](/cost/solar-battery-cost-uk-2026) before finalising your specification.
+**The key decision trigger** is the winter fill factor. If the calculated battery capacity exceeds your winter surplus (what the panels can realistically put in on the worst generation days), you must either add grid top-up scheduling, reduce the battery size to match actual fill capability, or add more solar. A battery that chronically cycles at 30% is losing money, not making it. Run the numbers through the [calculator](/calculator) and compare with the [solar battery cost guide](/markets/uk-solar-battery-cost-2026) before finalising your specification.
 
 ---
 
@@ -280,8 +280,8 @@ The sizing methodology in this article is technically sound. The primary failure
 - [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How sizing affects UK vs US payback
 - [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Sizing errors that inflate cost
 - [When NOT to Buy a Solar Battery](/when-not-to-buy) — When UK/US economics don't stack up
-- [How Much Battery Storage Do I Need?](/sizing/how-much-battery-storage-do-i-need) — The three-archetype sizing framework
-- [UK Solar Battery Incentives 2026](/cost/uk-solar-battery-incentives) — How incentives reduce the cost of the correctly-sized system
+- [How Much Battery Storage Do I Need?](/sizing/how-to-size-solar-battery-uk-us) — The three-archetype sizing framework
+- [UK Solar Battery Incentives 2026](/incentives/uk-solar-battery-incentives-grants-2026) — How incentives reduce the cost of the correctly-sized system
 
 ---
 
@@ -294,5 +294,274 @@ Solar generation estimates, consumption benchmarks, and sizing formulas in this 
 3. **UK G98/G99 Connection Requirements** — Engineering Recommendation for connecting low-voltage generating plants to the distribution network (the technical basis for UK export limits): [energynetworks.org](https://www.energynetworks.org)
 4. **Octopus Energy — Agile Tariff Rate Structure** — Time-of-use rate structures used as the basis for TOU sizing examples: [octopus.energy/uk/agile](https://octopus.energy/uk/agile)
 5. **IEC 62619:2022 — Safety for Stationary Lithium Systems** — Depth of discharge and charge limits referenced in this sizing guide: [iec.ch](https://www.iec.ch)
+
+*Prepared by the BatteryBlueprint Editorial Research Team using publicly available manufacturer documentation, regulator guidance, standards and market data.*
+
+
+## Representative Homeowner Scenarios
+
+
+The most common question we get isn't technical—it's practical: *"Is 10kWh enough?"*
+
+The answer depends entirely on **why** you are buying a battery.
+Are you just trying to save a few pennies on evening rates?
+Are you trying to keep the lights on during a 2-hour blackout?
+Or are you trying to survive a 3-day grid collapse in winter?
+
+These three goals require vastly different battery sizes. Let’s break down the three "Archetypes" of battery buyers and the capacity they typically need.
+
+---
+
+## Archetype 1: The "Bill Buster" (ROI Focused)
+**Goal:** Maximize financial savings. Buy low, sell high. Zero grid usage at peak times.
+**Backup Priority:** Low. Used mainly for convenience.
+
+If you are strictly focused on Return on Investment (ROI), **smaller is better.**
+You want a battery that cycles 100% of its capacity every single day to tackle the "Time of Use" rates.
+
+*   **Strategy:** Size the battery to cover *only* the peak rate window (e.g., 4 PM – 9 PM).
+*   **Typical Usage:** During these 5 hours, the average efficient home might use 3–6 kWh.
+*   **Recommended Size:** 5 kWh to 10 kWh.
+*   **Why?** If you buy 20 kWh, you might cover the peak window and then have remaining charge left over when rates drop to "Off-Peak" cheap levels. Using stored battery power when grid power is cheap is financially inefficient.
+
+**Verdict:** **5 - 10 kWh** is usually the ROI sweet spot for most standard homes.
+
+---
+
+## Archetype 2: The "Resilience" User (Backup Focused)
+**Goal:** Keep the fridge, wifi, and lights on during occasional storms or rolling blackouts.
+**Backup Priority:** Medium. Needs to last 12–24 hours.
+
+This is the most common customer today. You aren't prepper-level, but you hate when the power goes out. You want to sleep through a blackout without the CPAP machine turning off.
+
+*   **Strategy:** Determine "Critical Loads."
+*   **Critical Load List:** Fridge (1.5 kWh/day), Wifi (0.2 kWh), LED Lights (0.5 kWh), Gas Furnace Fan (2 kWh), Minimal Kitchen use.
+*   **Total Critical Need:** ~5–7 kWh per night.
+*   **Recommended Size:** 13.5 kWh to 15 kWh (e.g., One Tesla Powerwall or equivalent).
+*   **Why?** A 13.5 kWh battery allows you to burn 7 kWh overnight and still wake up with 50% battery remaining—perfect buffer in case the next day is cloudy and solar recharge is slow.
+
+**Verdict:** **13 - 15 kWh** is the standard "whole home backup" size for moderate usage.
+
+---
+
+## Archetype 3: The "Off-Grid" / Survivor
+**Goal:** Total independence. Indefinite survival during long outages or completely disconnected living.
+**Backup Priority:** Extreme. Needs to survive 3 days of bad weather (autonomy).
+
+This requires a completely different mindset. You aren't sizing for "average" days; you are sizing for the **Worst Case Scenario**.
+
+*   **Scenario:** It’s December. It’s raining for 3 days straight. Solar production is near zero (10% of normal).
+*   **Requirement:** You need 3 days of "Autonomy" (Days of storage without recharge).
+*   **Math:** If you use 15 kWh/day × 3 days = 45 kWh required.
+*   **Recommended Size:** 30 kWh to 50 kWh+.
+*   **Why?** You need massive tanks because you cannot rely on the "pump" (solar) to refill them reliably in winter.
+
+**Verdict:** **30 kWh+** (Multiple stacked units or large server-rack banks) is required for true independence.
+
+---
+
+## What Usually Eats Your Capacity?
+
+People overestimate how far 10 kWh goes because they forget about the "Power Hogs." If you want to run these on battery, you need to scale up—big time.
+
+1.  **Electric Heating (Heat Pumps/Resistive):** The biggest killer. A heat pump can pull 3-4 kW continuously. A 13.5 kWh battery will be dead in **3 hours** of heating.
+2.  **EV Charging:** An electric car battery is massive (60–100 kWh). Trying to charge a car with a home battery is like trying to fill a swimming pool with a bucket. It will drain your home battery in 1 hour and only give the car ~30 miles of range.
+3.  **Electric Stoves/Ovens:** Baking a turkey? That oven pulls 2-3 kW.
+
+If you have these "Hogs" and want to back them up, you automatically move into **Archetype 3**. You need 2-3x the standard storage.
+
+---
+
+## Rules of Thumb by Home Size
+
+While manual calculation is best, here are general averages we see in the field (USA/UK Standards):
+
+| Home Size | ROI Focus (kWh) | Backup Focus (kWh) | Off-Grid Focus (kWh) |
+| :--- | :--- | :--- | :--- |
+| **Small Appt / Condo** | 3.6 - 5 kWh | 5 - 10 kWh | 15+ kWh |
+| **Average 3-Bed Home** | 5 - 10 kWh | 10 - 15 kWh | 30+ kWh |
+| **Large Family Home** | 10 - 15 kWh | 20 - 27 kWh | 50+ kWh |
+| **Large + EV + Heat Pump** | 15 - 20 kWh | 30 - 40 kWh | 80+ kWh |
+
+---
+
+## FAQ
+
+<DocsFAQ>
+    <DocsFAQItem question='Can I settle for "Critical Load" backup?'>
+    Yes. This is a smart way to save money. You install a "Critical Loads Panel." When the grid dies, the battery *only* powers that panel (Fridge, Wifi, Lights). It disconnects the AC, Oven, and Dryer. This makes a small 10 kWh battery feel like a huge 20 kWh battery because you cut out the waste.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="Can't I just charge my EV from the battery?">
+    Technically yes, but practically no. It doesn't make sense to drain your house's emergency power just to add 10% to your car. Most smart chargers allow you to charge the EV *only* from excess solar during the day, bypassing the home battery entirely.
+    </DocsFAQItem>
+
+    <DocsFAQItem question="What if I get it wrong?">
+    Start modular. Buy a system that allows expansion. Don't buy a brand that is a "closed box" integrated unit if you aren't sure. Systems like Enphase, FranklinWH, or Sol-Ark allow you to add more battery modules later without replacing the main inverter.
+    </DocsFAQItem>
+</DocsFAQ>
+
+---
+
+## Calculate Your Exact Number
+
+Charts and averages are helpful, but your home is unique.
+A 2,000 sq ft home in Arizona needs different storage than a 2,000 sq ft home in Maine.
+
+Use our calculator to input your specific appliances and location. We'll tell you which Archetype you fit into and exactly how many kWh you need.
+
+[**Run the Calculator →**](/calculator)
+
+Also check out:
+[**Understanding Solar Battery Costs (2026)**](/markets/uk-solar-battery-cost-2026)
+
+---
+
+## The Hidden Variables That Change Your Number
+
+The three archetypes above are starting points. Several real-world factors can push your requirement up or down significantly.
+
+### 1. Your Climate Zone
+
+Solar generation varies dramatically by location. A 10kW solar array in Phoenix, Arizona generates roughly 1,800 kWh/month. The same array in Manchester, UK generates around 700 kWh/month. This affects how quickly your battery recharges each day.
+
+In cloudy climates, you need **more battery capacity** to bridge multiple consecutive low-generation days. In sunny climates, a smaller battery cycles more efficiently because it recharges fully each day.
+
+### 2. Your Utility Rate Structure
+
+If you're on a **Time-of-Use (TOU) tariff**, the optimal battery size is driven by your peak/off-peak rate differential, not just your consumption. You want enough capacity to cover your entire evening peak period without drawing from the grid.
+
+If you have **1:1 Net Metering**, the financial case for a large battery is weaker—the grid effectively acts as free storage. In this case, size for backup only, not daily cycling.
+
+### 3. EV Charging
+
+Adding an electric vehicle to your home's energy profile dramatically increases storage requirements. A typical EV needs 10-15 kWh per 40 miles of daily driving. If you want to charge your EV from solar + battery rather than the grid, add this to your daily storage requirement.
+
+For most homeowners, the practical approach is to charge the EV directly from solar during the day (using a smart charger that follows solar generation) rather than routing through the home battery. This avoids the round-trip efficiency loss and doesn't deplete your backup reserve.
+
+### 4. Seasonal Variation
+
+Always size for your **worst month**, not your average. In the northern hemisphere, December and January have the shortest days and lowest solar generation. A system that works perfectly in July may leave you drawing heavily from the grid in December.
+
+Our calculator uses month-by-month solar irradiance data for your specific location to ensure your system is sized for year-round performance, not just summer.
+
+---
+
+## Modular vs Fixed Capacity Systems
+
+One of the most important decisions when sizing is whether to buy a **fixed capacity** system or a **modular** system.
+
+**Fixed capacity systems** (like the Tesla Powerwall) come in set sizes. If you need more storage later, you add another complete unit. This is simple but can be expensive if your needs grow.
+
+**Modular systems** (like Enphase IQ Battery, FranklinWH, or BYD Battery-Box) allow you to add individual battery modules to increase capacity. This is ideal if you're unsure about your future needs or want to start smaller and expand as your EV or consumption grows.
+
+**Our recommendation:** If you're uncertain, start with a modular system sized for Archetype 1 or 2, with the inverter sized for your eventual target capacity. Adding battery modules later is much cheaper than replacing the entire system.
+
+---
+
+## Common Questions (FAQ)
+
+### Is 10kWh enough for most homes?
+For daily self-consumption cycling (storing solar for evening use), 10kWh is sufficient for most 3-4 bedroom homes in the UK and US. For backup power, 10kWh covers 12-24 hours of essential loads. If you want 2+ days of backup or have an EV, you'll need 20kWh or more.
+
+### Should I buy more battery than I need now?
+Generally no—oversizing wastes capital on capacity that sits unused. However, if your inverter supports expansion, buy the right-sized inverter for your eventual goal and start with a smaller battery bank. This is the most cost-effective approach.
+
+### How do I know if my solar array is big enough to fill the battery?
+A rough rule: your solar array (in kW) should be at least equal to your battery capacity (in kWh) divided by your peak sun hours. For example, a 10kWh battery in a location with 4 peak sun hours needs at least a 2.5kW solar array to fully recharge in one day. Our [battery sizing guide](/sizing/how-to-size-solar-battery-uk-us) covers this calculation in detail.
+
+### What if I get the size wrong?
+If you buy too small, you can add more battery modules (with a modular system) or add a second battery unit. If you buy too large, you'll simply have more backup capacity than you need—not ideal financially, but not harmful to the system.
+
+---
+
+## Engineering Reality
+
+The three-archetype framework provides a useful entry point, but real system performance diverges from these category definitions in measurable ways.
+
+**Archetype boundaries are not static.** A household classified as a "Bill Buster" (Archetype 1) today may need to re-categorise if electricity prices shift significantly, if they add an EV, or if their utility moves from 1:1 net metering to NEM 3.0-style export devaluation. Battery purchasing decisions made for current circumstances often underperform within 2–3 years due to changes in the household energy profile.
+
+**"Resilience" users frequently underestimate comfort loads.** The critical loads estimate of 5–7 kWh/night includes refrigerator, WiFi, basic lighting, and a gas furnace fan. In practice, households consistently add loads they consider essential that were not in the original list: a second fridge, a CPAP machine, USB device charging for multiple family members, a fish tank pump, baby monitors, and network-attached storage. These individually small loads aggregate to an additional 1.5–3.0 kWh per night. A 13.5 kWh battery that was supposed to provide 24 hours of backup often provides only 16–18 hours once actual critical load inventory is measured rather than estimated.
+
+**Off-grid sizing is particularly sensitive to consecutive low-generation sequences.** The Archetype 3 calculation (3 days × 15 kWh/day = 45 kWh) assumes independent daily generation figures. In reality, extended overcast periods — particularly winter frontal systems in the UK and Northeast US — produce consecutive days of 80–90% generation reduction. A Monte Carlo simulation using historical irradiance data for specific locations shows that "3-day autonomy" in Edinburgh requires approximately 4.5 days of theoretical capacity to achieve 95% reliability (i.e., 95% of winters will not result in a complete discharge). Static worst-case calculations systematically understate the required margin.
+
+**Power demand bottlenecks apply equally across archetypes.** The article identifies heat pumps and EVs as "power hogs." Less obvious is that all three archetypes have distinct kW constraint risks, not just kWh risks. A Bill Buster who runs an induction hob during peak tariff hours (to avoid grid imports) may find their 5–10 kWh battery's 3.6 kW output insufficient to run the hob at full power — the battery clips, imports from the grid, and the arbitrage benefit evaporates.
+
+---
+
+## When This Approach Breaks Down
+
+Archetype classification provides a useful framework but produces incorrect guidance in specific, common scenarios.
+
+**Dual-purpose systems with competing objectives.** Homeowners in California, Texas, and the UK frequently want both daily bill savings and outage backup from the same system. These goals can conflict: a battery optimised for daily arbitrage (cycling to 0% every evening) has no reserve for backup during a grid failure that occurs at 11 PM. Software-managed reserve settings partially resolve this, but the reserve capacity comes directly out of the daily cycling capacity — shrinking effective Archetype 1 or 2 performance.
+
+**Gas-heated homes being electrified.** A property in the middle of electrification — replacing a gas boiler with a heat pump, or gas hob with induction, in stages — cannot be cleanly classified into any archetype. The home's energy profile changes quarter-by-quarter. Buying a battery based on current consumption before electrification is complete will almost certainly result in undersizing relative to final consumption. The sizing decision should follow, not precede, the electrification roadmap.
+
+**Heavily shaded or east-facing solar installations.** Both the Archetype 1 ROI case and the Archetype 2 resilience case assume solar generation that can actually fill the battery. A system with significant shading — from trees, adjacent buildings, or suboptimal roof orientation — may generate only 50–60% of theoretical output. For Archetype 1, this means the battery may only cycle to 50–60%, undermining the daily arbitrage return and pushing payback periods from 7 years to 11+.
+
+**Properties with generator integration.** For Archetype 3 households, generator integration changes the optimal battery size significantly. A 30–50 kWh battery bank sized for 3-day autonomy without a generator can be replaced with a 15–20 kWh battery plus a 3–5 kW generator — at substantially lower capital cost. The generator tops up the battery during solar drought periods, eliminating the need for days of additional stored capacity. This hybrid approach is frequently the most cost-effective path to genuine resilience.
+
+---
+
+## Real-World Example
+
+**Scenario:** A homeowner in Phoenix, Arizona classifies themselves as Archetype 2 (resilience) based on the article's description. They experience 2–4 hour grid outages 3–4 times per year during monsoon season and want reliable backup. They purchase a 13.5 kWh Tesla Powerwall 3.
+
+**Battery in daily arbitrage mode (primary use):** The system cycles fully each day. By mid-outage season (August), the battery is in daily-cycle mode and is at 15% charge (2 kWh remaining) when a storm triggers a grid failure at 7:30 PM.
+
+- Battery available: 2 kWh
+- Household AC running at 4 kW (Phoenix summer evening)
+- **Battery exhausted in 30 minutes**
+- Grid restored 2 hours later — the homeowners spent 90 minutes without power
+
+**What went wrong:** The battery was correctly sized for resilience but was configured for arbitrage without an automatic backup reserve. Without a minimum reserve setting of 15–20%, the battery had no capacity available when the outage struck.
+
+**Resolution:** Configuring a 20% backup reserve (2.7 kWh) in the Tesla app meant the daily arbitrage cycling depth dropped from 13.5 kWh to 10.8 kWh — a modest reduction in tariff savings — but the battery now consistently had a meaningful reserve during storm season.
+
+**Lesson:** Battery software configuration is as important as battery sizing. A correctly sized battery in the wrong operating mode fails the user's actual objective. Before purchasing, confirm how your chosen system handles the reserve/arbitrage balance. Use the battery calculator to model both daily savings and backup duration simultaneously, and review the [battery backup sizing guide](/sizing/battery-backup-for-power-outages) for reserve configuration guidance.
+
+---
+
+## Engineering Recommendation
+
+The archetype framework correctly identifies the three dominant use cases. The purchasing decision should be driven by which archetype you will be in at the system's worst-case operating moment — not your average use pattern.
+
+**If your primary goal is bill reduction (Archetype 1):**
+- Size the battery to match your evening peak tariff window consumption precisely — do not oversize expecting backup benefits beyond what the daily cycle profile can deliver
+- Choose a system with smart tariff integration capability; the software is as important as the hardware
+- Confirm the system allows you to define a minimum backup reserve separately from the daily cycling window
+
+**If your primary goal is resilience (Archetype 2):**
+- Measure, do not estimate, your critical loads — conduct a physical inventory with wattage capture before sizing
+- Validate peak kW demand against the battery's continuous and surge output rating, not just kWh capacity
+- Configure a minimum reserve setting before Day 1 of operation; do not rely on manual management during actual outages
+
+**If your goal is extended autonomy (Archetype 3):**
+- Evaluate generator integration as an alternative to buying additional battery units before committing to a multi-battery bank — the economics often favour the hybrid approach
+- Size the solar array to match the battery's maximum recharge rate in the worst solar month, not the average
+
+**The key decision trigger** is whether your sizing calculation is based on worst-case or average conditions. Sizing for average conditions produces a system that performs adequately most of the time and fails precisely when it matters. See the [full sizing calculator](/calculator) and [solar battery cost guide](/markets/uk-solar-battery-cost-2026) to model both average and worst-case scenarios side by side.
+
+---
+
+## Related Reading
+
+- [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Sizing errors are the most costly mistakes
+- [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — How size affects your payback timeline
+- [When NOT to Buy a Solar Battery](/when-not-to-buy) — When your sizing needs don't justify the cost
+- [How to Size a Solar Battery Correctly: UK and US Guide](/sizing/how-to-size-solar-battery-uk-us) — The engineering step-by-step method
+- [Battery Backup for Power Outages](/sizing/battery-backup-for-power-outages) — Sizing specifically for resilience and backup duration
+
+---
+
+## Sources and References
+
+Sizing figures and archetype benchmarks in this guide are based on industry field data, government energy statistics, and battery manufacturer specifications.
+
+1. **NREL — Residential Energy Storage Market Summary** — US Department of Energy research on residential battery sizing patterns and typical cycle depths: [nrel.gov/publications](https://www.nrel.gov/publications/)
+2. **Ofgem — Smart Meter Data and Half-Hourly Settlements** — UK regulator guidance on reading half-hourly consumption data for battery sizing: [ofgem.gov.uk/check-if-energy-supplier-offers-smart-export-guarantee](https://www.ofgem.gov.uk/check-if-energy-supplier-offers-smart-export-guarantee)
+3. **BEIS — UK Household Energy Consumption Statistics** — Annual UK household electricity consumption data by property type: [gov.uk/government/collections/energy-consumption-in-the-uk](https://www.gov.uk/government/collections/energy-consumption-in-the-uk)
+4. **EIA — US Residential Energy Consumption Survey (RECS)** — US Energy Information Administration data on average household electricity consumption by region: [eia.gov/consumption/residential](https://www.eia.gov/consumption/residential/)
+5. **Tesla Powerwall 3 — Performance Specifications** — Continuous power output and capacity specifications for Archetype 1/2 sizing examples: [tesla.com/powerwall](https://www.tesla.com/powerwall)
 
 *Prepared by the BatteryBlueprint Editorial Research Team using publicly available manufacturer documentation, regulator guidance, standards and market data.*

@@ -212,7 +212,7 @@ export default function HiddenCostsPage() {
                 </ol>
 
                 <p>
-                    Add a 15–25% contingency buffer to any headline quote before modelling payback. <Link href="/calculator" className="text-primary hover:underline">Use the calculator</Link> with the true expected total cost, not the headline figure. Review the <Link href="/cost/solar-battery-cost-uk-2026" className="text-primary hover:underline">UK cost guide</Link> or <Link href="/cost/solar-battery-cost-usa-2026" className="text-primary hover:underline">US cost guide</Link> for regional cost benchmarks that include typical additional costs.
+                    Add a 15–25% contingency buffer to any headline quote before modelling payback. <Link href="/calculator" className="text-primary hover:underline">Use the calculator</Link> with the true expected total cost, not the headline figure. Review the <Link href="/markets/uk-solar-battery-cost-2026" className="text-primary hover:underline">UK cost guide</Link> or <Link href="/markets/us-solar-battery-cost-2026" className="text-primary hover:underline">US cost guide</Link> for regional cost benchmarks that include typical additional costs.
                 </p>
 
                 <hr />
