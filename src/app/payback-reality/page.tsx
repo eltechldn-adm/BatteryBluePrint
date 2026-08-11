@@ -158,7 +158,7 @@ export default function PaybackRealityPage() {
                         <thead>
                             <tr className="border-b bg-muted/50">
                                 <th className="text-left p-3 font-semibold">Region / Scenario</th>
-                                <th className="text-left p-3 font-semibold">Net Cost (after ITC)</th>
+                                <th className="text-left p-3 font-semibold">Net Cost (historical ITC scenario — credit expired Dec 2025)</th>
                                 <th className="text-left p-3 font-semibold">Annual Saving</th>
                                 <th className="text-left p-3 font-semibold">Real Payback</th>
                             </tr>

@@ -115,7 +115,7 @@ export default function WorthItPage() {
 
                 <p><strong>Case B: Poor outcome</strong></p>
                 <p>
-                    A homeowner in Columbus, Ohio installs a 13.5 kWh Tesla Powerwall without solar at $16,000 gross ($11,200 net after ITC). Their tariff is a fixed $0.13/kWh with no TOU option from their rural electric cooperative. Annual saving from grid arbitrage: approximately $380. Payback: 29.5 years. Not viable.
+                    A homeowner in Columbus, Ohio installs a 13.5 kWh Tesla Powerwall without solar at $16,000 gross. No federal tax credit is available for this 2026 purchase — the Section 25D residential ITC was terminated for systems placed in service after December 2025. Their tariff is a fixed $0.13/kWh with no TOU option from their rural electric cooperative. Annual saving from grid arbitrage: approximately $380. Payback at full $16,000 cost: 42 years. Not viable.
                 </p>
 
                 <p>

@@ -113,7 +113,7 @@ export default function MethodologyPage() {
                 <ol>
                     <li><strong>Access to Time-of-Use (TOU) Rates</strong>: Arbitrage savings (buy low, sell high). We model a conservative 15¢/kWh spread.</li>
                     <li><strong>Resilience Value</strong>: The "Insurance Value" of avoiding spoiled food and hotel stays during outages. Modeled at $200/day of avoided outage.</li>
-                    <li><strong>Incentives</strong>: Direct cash rebates (e.g., SGIP) or tax credits (30% Federal ITC).</li>
+                    <li><strong>Incentives</strong>: Direct cash rebates (e.g., California SGIP, NY-Sun) or state tax credits where available. Note: the US federal Section 25D residential ITC expired for new installations after December 2025.</li>
                 </ol>
 
                 <h3>Levelized Cost of Storage (LCOS)</h3>
@@ -132,7 +132,7 @@ export default function MethodologyPage() {
                     Incentive programs are legally binding and complex. Our methodology for verifying rebates includes:
                 </p>
                 <ul>
-                    <li><strong>Legislation Review</strong>: We read the actual bill text (e.g., Inflation Reduction Act Section 25D).</li>
+                    <li><strong>Legislation Review</strong>: We read the actual bill text and subsequent amendments (e.g., the "One Big Beautiful Bill" H.R. 1, July 2025, which terminated Section 25D for residential installations placed in service after December 2025).</li>
                     <li><strong>Program Status Checks</strong>: We verify if a program is "Open," "Waitlisted," or "Closed" (e.g., SGIP Step status).</li>
                     <li><strong>Cap Analysis</strong>: Many rebates have funding caps. We note when a program is nearing exhaustion.</li>
                 </ul>
@@ -152,15 +152,13 @@ export default function MethodologyPage() {
 
                 <h2>6. Update Cadence</h2>
                 <p>
-                    <strong>Quarterly Refresh</strong>: Pricing, interest rates, and incentive availability are reviewed every quarter.
-                    <br />
-                    <strong>Annual Deep Dive</strong>: Every January, we completely rebuild our "Best of" lists and pricing benchmarks for the new year.
+                    <strong>Update Cadence</strong>: Pricing benchmarks, incentive availability, and programme status are reviewed when legislation changes or on a best-efforts basis. We cannot guarantee a fixed quarterly cadence. Always verify current programme status with the administering authority before making a purchase decision.
                 </p>
 
                 <hr />
 
                 <p className="text-sm text-muted-foreground mt-12">
-                    <em>Methodology Version 2.1. Last Updated: February 2026.
+                    <em>Methodology Version 2.2. Last Updated: August 2026.
                         Questions about our math? Email <a href="mailto:engineering@batteryblueprint.com">engineering@batteryblueprint.com</a>.</em>
                 </p>
             </div>

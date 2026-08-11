@@ -165,7 +165,7 @@ export default function WhenNotToBuyPage() {
 
                 <p><strong>Who should not have bought:</strong></p>
                 <p>
-                    A homeowner in rural Ohio purchased a 13.5 kWh Tesla Powerwall in 2024 at $15,800 gross ($11,060 net after ITC). Their utility — a rural electric cooperative — has a flat $0.116/kWh tariff and does not offer net metering or TOU rates. Annual saving from self-consumption (without solar): approximately $420. Payback: 26.3 years. The battery will require replacement before payback is achieved.
+                    A homeowner in rural Ohio purchased a 13.5 kWh Tesla Powerwall in 2024 at $15,800 gross ($11,060 net after the then-available 30% Section 25D ITC). Their utility — a rural electric cooperative — has a flat $0.116/kWh tariff and does not offer net metering or TOU rates. Annual saving from self-consumption (without solar): approximately $420. Payback: 26.3 years. The battery will require replacement before payback is achieved. Note: the Section 25D federal ITC that reduced this 2024 installation cost is no longer available for installations placed in service from January 2026 onwards.
                 </p>
 
                 <p>

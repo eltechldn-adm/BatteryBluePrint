@@ -74,9 +74,9 @@ export default function USRegionPage() {
                         <div className="p-4 rounded-lg bg-card border border-border flex gap-4">
                             <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-1" />
                             <div>
-                                <h3 className="font-semibold mb-1">30% Federal Tax Credit (IRA)</h3>
+                                <h3 className="font-semibold mb-1">Federal Incentives — Section 25D Ended December 2025</h3>
                                 <p className="text-sm text-muted-foreground leading-relaxed">
-                                    The Federal Residential Clean Energy Credit (Section 25D) provides a 30% tax credit on the total installed cost of battery storage systems with at least 3 kWh of capacity. This applies through 2032.
+                                    <strong>Update (August 2026):</strong> The Section 25D Residential Clean Energy Credit was terminated for property placed in service after 31 December 2025 by H.R. 1 (signed July 2025). No federal residential battery tax credit is available for new 2026 purchases. Unused credits from eligible pre-2026 installations can still be carried forward. Check state programmes — California SGIP (limited/waitlist), New York NY-Sun, and Massachusetts SMART remain active with their own eligibility conditions.
                                 </p>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ export default function USRegionPage() {
                         <ul className="space-y-2 list-disc list-inside text-muted-foreground">
                             <li>You are in a state with full 1-to-1 Net Metering and a highly reliable grid (low outage frequency).</li>
                             <li>Your utility does not offer Time-of-Use rates or demand charges.</li>
-                            <li>You do not have federal tax liability to claim the 30% credit (though some state rebates may still apply).</li>
+                            <li>No federal residential tax credit is currently available for new 2026 battery purchases — state rebates may still apply in your state.</li>
                         </ul>
                     </section>
 
