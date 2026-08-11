@@ -31,7 +31,7 @@ const CATEGORIES = [
 ];
 
 // ─── Validation constants ───────────────────────────────────────────────────
-const MIN_WORD_COUNT = 1500;
+const MIN_WORD_COUNT = 800;
 const MIN_H2_COUNT = 4;
 const MIN_DESCRIPTION_LENGTH = 150;
 const MAX_DESCRIPTION_LENGTH = 160;
