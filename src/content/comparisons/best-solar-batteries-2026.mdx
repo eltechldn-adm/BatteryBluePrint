@@ -19,10 +19,12 @@ BatteryBlueprint compares residential energy storage systems using manufacturer-
 
 - **Continuous Output (kW):** The sustained AC power the battery can provide according to the manufacturer.
 - **Peak Output (kW):** The surge AC power available for starting heavy loads.
-- **Usable Capacity (kWh):** The actual energy available for discharge as published.
+- **Published Energy / Capacity:** The actual energy available for discharge as published.
 - **Warranty Duration:** The manufacturer's stated term and cycle or throughput limit.
 
 This page contains no BatteryBlueprint-derived metrics; all values are manufacturer-reported. Pricing is excluded from this technical comparison because manufacturer-direct MSRPs are rarely published or fixed across regions. For financial return estimates, see our [Solar Battery Payback Reality](/payback-reality) or use the [battery calculator](/calculator).
+
+*Note: Manufacturers use different capacity terminology. Values below preserve the terminology used in the cited manufacturer documentation and may not represent an identical measurement basis.*
 
 ---
 
@@ -31,12 +33,13 @@ This page contains no BatteryBlueprint-derived metrics; all values are manufactu
 A fully integrated AC-coupled system with a built-in hybrid solar inverter.
 
 *   **Chemistry:** Lithium-ion.
-*   **Manufacturer Usable Capacity:** 13.5 kWh.
+*   **Published Energy / Capacity:** 13.5 kWh nominal battery energy.
 *   **Manufacturer Continuous Power Output:** 11.5 kW.
 *   **Architecture:** Built-in Hybrid Solar Inverter.
+*   **Regional Specification Basis:** North American specification.
 
 **Key Technical Attributes:**
-*   11.5 kW continuous output is the highest in this comparison.
+*   11.5 kW continuous output for heavy load starting.
 *   Manufacturer publishes a 185 A LRA (Locked Rotor Amps) load start capability.
 *   Integrated solar inverter reduces balance-of-system hardware on new installations.
 
@@ -47,10 +50,11 @@ A fully integrated AC-coupled system with a built-in hybrid solar inverter.
 An AC-coupled system designed for grid-agnostic operation.
 
 *   **Chemistry:** LFP (Lithium Iron Phosphate).
-*   **Manufacturer Usable Capacity:** 15.0 kWh.
+*   **Published Energy / Capacity:** 15 kWh AC per unit.
 *   **Manufacturer Continuous Power Output:** 10.0 kW.
-*   **Manufacturer Peak Power Output:** 15.0 kW.
+*   **Manufacturer Peak Power Output:** 15.0 kW for 10 seconds.
 *   **Architecture:** AC Coupled with dedicated generator port.
+*   **Regional Specification Basis:** US specification.
 
 **Key Technical Attributes:**
 *   Features a dedicated generator input terminal on the "aGate" controller for automatic generator switching during extended grid outages.
@@ -63,9 +67,10 @@ An AC-coupled system designed for grid-agnostic operation.
 A distributed, highly modular AC-coupled architecture.
 
 *   **Chemistry:** LFP (Lithium Iron Phosphate).
-*   **Manufacturer Usable Capacity:** 5.0 kWh (per unit).
+*   **Published Energy / Capacity:** 5.0 kWh nominal capacity.
 *   **Manufacturer Continuous Power Output:** 3.84 kW (per unit).
 *   **Architecture:** AC Coupled (Distributed).
+*   **Regional Specification Basis:** US specification.
 
 **Key Technical Attributes:**
 *   Systems scale in 5 kWh increments.
@@ -79,13 +84,14 @@ A distributed, highly modular AC-coupled architecture.
 An AC-coupled system widely available in the UK.
 
 *   **Chemistry:** LFP (Lithium Iron Phosphate).
-*   **Manufacturer Usable Capacity:** 13.5 kWh.
+*   **Published Energy / Capacity:** 13.5 kWh usable battery pack.
 *   **Manufacturer Continuous Power Output:** 6.0 kW.
-*   **Manufacturer Peak Power Output:** 7.2 kW.
+*   **Manufacturer Peak Power Output:** 7.2 kW peak (off-grid operation).
 *   **Architecture:** AC Coupled.
+*   **Regional Specification Basis:** UK specification.
 
 **Key Technical Attributes:**
-*   Manufacturer documentation supports API access for local energy management systems.
+*   GivEnergy provides a documented cloud API for authenticated third-party integrations.
 *   12-year published manufacturer warranty.
 
 ---
@@ -94,13 +100,15 @@ An AC-coupled system widely available in the UK.
 
 | Specification | Tesla Powerwall 3 | FranklinWH aPower 2 | Enphase IQ 5P | GivEnergy AIO |
 |---------------|-------------------|---------------------|---------------|---------------|
-| **Manufacturer Usable Capacity** | 13.5 kWh | 15.0 kWh | 5.0 kWh | 13.5 kWh |
+| **Regional Specification Basis** | North American | US | US | UK |
+| **Published Energy / Capacity** | 13.5 kWh nominal | 15 kWh AC per unit | 5.0 kWh nominal | 13.5 kWh usable |
 | **Chemistry** | Lithium-ion | LFP | LFP | LFP |
 | **Published Cycle/Throughput Limit** | Manufacturer does not publish | 60 MWh | 6,000 cycles | Unlimited within 12 years |
 | **Published Warranty Length** | 10 years | 15 years | 15 years | 12 years |
-| **Reported Efficiency Basis** | AC Round-Trip: 89% | AC Round-Trip: 89% | DC Round-Trip: 96% | AC Round-Trip: N/A (Discharge only: N/A) |
+| **Reported Efficiency Basis** | AC Round-Trip: 89% | AC Round-Trip: 90% | DC Round-Trip: 96% | AC Round-Trip: N/A |
 | **Architecture** | Hybrid Inverter | AC Coupled | AC Coupled | AC Coupled |
 | **Manufacturer Continuous Power** | 11.5 kW | 10.0 kW | 3.84 kW | 6.0 kW |
+| **Manufacturer Peak Power** | Not explicitly stated | 15.0 kW (10 sec) | 7.68 kW (3 sec) | 7.2 kW (off-grid) |
 | **Dedicated Generator Port** | No | Yes | Via Controller | No |
 
 *(Note: Efficiency figures cannot be directly compared between AC round-trip and DC round-trip measurement bases.)*
@@ -114,7 +122,7 @@ Determines instantaneous load capability.
 *   **3-5 kW:** Sufficient for standard 120V/230V household loads (refrigerators, lighting, electronics).
 *   **10 kW+:** Required for starting and running heavy 240V loads like central air conditioning without grid support.
 
-### 2. Usable Capacity (kWh)
+### 2. Published Energy / Capacity
 Determines duration of backup or arbitrage operation.
 
 ### 3. Chemistry
@@ -127,11 +135,11 @@ Determines duration of backup or arbitrage operation.
 
 ### High-Power Demand Properties
 - **Specification Match:** Tesla Powerwall 3
-- **Data:** 11.5 kW continuous output is the highest in this comparison, supported by a 185 A LRA capability.
+- **Data:** 11.5 kW continuous output, supported by a 185 A LRA capability.
 
 ### Extended Outage / Grid Independence
 - **Specification Match:** FranklinWH aPower 2
-- **Data:** The only system in this comparison with a dedicated generator input terminal on the primary controller for hybrid operation.
+- **Data:** Contains a dedicated generator input terminal on the primary controller for hybrid operation.
 
 ### Modular / Redundant Architectures
 - **Specification Match:** Enphase IQ Battery 5P
@@ -153,7 +161,7 @@ Battery brand comparisons on specification sheets represent controlled-condition
 
 ## Summary
 
-All four systems reviewed are mature, well-supported products that meet their published specifications under controlled conditions. The selection criteria should be driven by technical requirements.
+All four manufacturers publish technical specifications and warranty documentation for the systems compared here. The selection criteria should be driven by technical requirements.
 
 Before selecting hardware, model your specific consumption profile and tariff using the [battery calculator](/calculator) to determine required capacity and output.
 
@@ -169,10 +177,11 @@ Related Technical Resources:
 Data reviewed: August 2026. The following primary manufacturer documents were used to verify specifications:
 
 1. **Tesla Powerwall 3:** 
-   - Official Datasheet & Specifications: [tesla.com/support/energy/powerwall/learn/powerwall-specifications](https://www.tesla.com/support/energy/powerwall/learn/powerwall-specifications)
+   - Official Datasheet (North America): [tesla.com/support/energy/powerwall/learn/powerwall-specifications](https://www.tesla.com/support/energy/powerwall/learn/powerwall-specifications)
 2. **FranklinWH aPower 2:** 
-   - Official Product Specifications: [franklinwh.com/apower](https://www.franklinwh.com/apower)
+   - Official Datasheet: [franklinwh.com/document/apower-2-datasheet](https://www.franklinwh.com/document/apower-2-datasheet)
 3. **Enphase IQ Battery 5P:** 
-   - Official Datasheet & Warranty limits (6,000 cycles / 15 years): [enphase.com/store/batteries](https://enphase.com/store/batteries)
+   - Official Datasheet & Warranty: [enphase.com/store/batteries/iq-battery-5p](https://enphase.com/store/batteries/iq-battery-5p)
 4. **GivEnergy All-In-One:** 
    - Official Datasheet: [givenergy.co.uk/products/all-in-one](https://www.givenergy.co.uk/products/all-in-one)
+   - Cloud API Documentation: [givenergy.cloud/docs/api/v1](https://givenergy.cloud/docs/api/v1)

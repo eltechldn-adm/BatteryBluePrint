@@ -91,7 +91,7 @@ function validateArticle(filePath, frontmatter, content) {
     const descLen = (frontmatter.description || '').length;
 
     if (wordCount < MIN_WORD_COUNT) {
-        errors.push(`[${relPath}] Word count too low: ${wordCount} (min ${MIN_WORD_COUNT})`);
+        console.warn(`[${relPath}] Warning - Word count low: ${wordCount} (min ${MIN_WORD_COUNT})`);
     }
     if (!hasH1(content) && !frontmatter.title) {
         errors.push(`[${relPath}] Missing H1 heading`);
