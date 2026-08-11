@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "US Solar Battery Intelligence | BatteryBlueprint",
-    description: "Complete guide to solar battery storage in the US. Understand the 30% federal tax credit, TOU tariffs, UL 9540 standards, and the best architecture for American homes.",
+    description: "Complete guide to solar battery storage in the US. Understand the Section 25D expiration, current state rebates, TOU tariffs, UL 9540 standards, and the best architecture for American homes.",
     alternates: {
         canonical: "https://batteryblueprint.com/regions/us",
     },
