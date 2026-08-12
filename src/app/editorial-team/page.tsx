@@ -155,7 +155,7 @@ export default function EditorialTeamPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-sm text-muted-foreground">
-                                    We verify every claim. Learn more about our <Link href="/methodology" className="text-primary hover:underline">methodology</Link> and data sources.
+                                    We prioritize primary-source checking. Learn more about our <Link href="/methodology" className="text-primary hover:underline">methodology</Link> and data sources.
                                 </p>
                             </CardContent>
                         </Card>
@@ -163,11 +163,11 @@ export default function EditorialTeamPage() {
 
                     <h2>How We Work</h2>
                     <p>
-                        Accuracy is our currency. Every article on this site goes through a rigorous review process:
+                        Every article on this site focuses on primary-source verification:
                     </p>
                     <ol>
                         <li><strong>Topic Selection</strong>: We focus on high-impact questions homeowners are asking (e.g., "Is LFP better than NMC?").</li>
-                        <li><strong>Engineering Review</strong>: All technical claims (Voltage, Amperage, kWh) are checked against NEC standards and manufacturer datasheets.</li>
+                        <li><strong>Primary-Source Checking</strong>: All technical claims (Voltage, Amperage, kWh) are checked against manufacturer datasheets and technical documentation.</li>
                         <li><strong>Policy Verification</strong>: Incentive data is cross-referenced with official government legislation (IRS, CPUC, etc.).</li>
                     </ol>
                     <p>

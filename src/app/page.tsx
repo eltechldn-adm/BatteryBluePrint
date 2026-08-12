@@ -183,7 +183,7 @@ export default function Home() {
                                                     <div className="tier-chip tier-premium text-xs px-2.5 py-1">Premium</div>
                                                 </div>
                                                 <h4 className="font-bold text-base mb-1">Powerwall 3</h4>
-                                                <p className="text-xs text-muted-foreground">Tesla • 13.5 kWh usable</p>
+                                                <p className="text-xs text-muted-foreground">Tesla • 13.5 kWh capacity</p>
                                             </div>
                                             <div className="text-right flex-shrink-0">
                                                 <div className="text-xl font-bold text-primary">1</div>
@@ -239,7 +239,7 @@ export default function Home() {
                                     </div>
                                     <h3 className="text-xl font-bold">Hardware Matching</h3>
                                     <p className="text-muted-foreground leading-relaxed">
-                                        Match calculated loads against empirically verified specifications for component systems (e.g., Powerwall 3, Enphase 5P, SLIC).
+                                        Match calculated loads against manufacturer-published specifications for component systems (e.g., Powerwall 3, Enphase 5P, SLIC).
                                     </p>
                                 </CardContent>
                             </Card>
@@ -282,7 +282,7 @@ export default function Home() {
                                         <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-secondary/10 text-secondary uppercase tracking-wide">Comparison</span>
                                         <span className="text-xs text-muted-foreground">14 min read</span>
                                     </div>
-                                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">Best Solar Batteries 2026: Engineering Comparison</h3>
+                                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">Residential Battery Technical Specification Comparison</h3>
                                     <p className="text-sm text-muted-foreground leading-relaxed">
                                         Side-by-side specifications for Powerwall 3, Enphase IQ 5P, FranklinWH, GivEnergy, and 6 others — with honest performance analysis.
                                     </p>
@@ -355,7 +355,7 @@ export default function Home() {
 
                         <div className="text-center">
                             <Link href="/guide" className="text-sm text-primary hover:underline font-medium">
-                                Browse all 47 engineering guides →
+                                Browse the engineering knowledge hub →
                             </Link>
                         </div>
                     </div>

@@ -71,11 +71,11 @@ export const US_REGION: RegionProfile = {
             type: 'tax-credit',
             status: 'active',
             valueDescription:
-                'A 30% federal tax credit on the cost of solar panels, battery storage (≥3 kWh), and qualifying installation labour. Applies to the total installed system cost. The credit is non-refundable but can be carried forward to future tax years.',
+                'A historical 30% federal tax credit on the cost of solar panels, battery storage (≥3 kWh), and qualifying installation labour (expired post-2025). Applies to the total installed system cost. The credit is non-refundable but can be carried forward to future tax years.',
             stackable: true,
             installerRequired: false, // No specific installer certification required by IRS
             expiryNote:
-                'The 30% rate applies through 2032. Steps down to 26% in 2033, 22% in 2034, then expires for residential in 2035 unless renewed. Introduced by the Inflation Reduction Act (2022).',
+                'The 30% rate expired for residential properties placed in service after 2025. Introduced by the Inflation Reduction Act (2022), it was terminated early by H.R. 1 in 2025.',
             sourceUrl:
                 'https://www.energy.gov/eere/solar/homeowners-guide-federal-tax-credit-solar-photovoltaics',
             lastVerified: '2026-05-17',
@@ -94,7 +94,7 @@ export const US_REGION: RegionProfile = {
         },
     ],
     incentiveSummary:
-        'The most significant US incentive is the 30% Federal Residential Clean Energy Credit (IRA Section 25D), which applies to solar panels and battery systems with at least 3 kWh of capacity, through 2032. This is available to any US homeowner with federal tax liability and does not require a specific installer certification. Additional state, utility, and local incentives vary widely — the DSIRE database (dsireusa.org) is the authoritative source for state-level programmes. Some states (California, New York) have particularly strong incentive stacks.',
+        'The formerly significant US incentive was the Federal Residential Clean Energy Credit (IRA Section 25D), which applied to solar panels and battery systems with at least 3 kWh of capacity, but it expired for systems placed in service after 2025. This is available to any US homeowner with federal tax liability and does not require a specific installer certification. Additional state, utility, and local incentives vary widely — the DSIRE database (dsireusa.org) is the authoritative source for state-level programmes. Some states (California, New York) have particularly strong incentive stacks.',
 
     // === Regulatory Constraints ===
     regulatoryConstraints: [
@@ -161,7 +161,7 @@ export const US_REGION: RegionProfile = {
     dataConfidence: 'high',
     lastReviewed: '2026-05-17',
     reviewNote:
-        'IRA Section 25D rates confirmed through 2032. State incentives change frequently — users should always verify via DSIRE. Monitor NEM 3.0 spread to additional states beyond California.',
+        'IRA Section 25D rates expired for residential installations after 2025. State incentives change frequently — users should always verify via DSIRE. Monitor NEM 3.0 spread to additional states beyond California.',
 
     // === Future Hooks ===
     installerNetworkAvailable: false,

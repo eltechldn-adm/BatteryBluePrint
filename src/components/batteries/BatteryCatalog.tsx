@@ -164,19 +164,19 @@ export default function BatteryCatalog() {
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                 <BatteryIcon className="w-3.5 h-3.5" /> Usable Capacity
                                             </p>
-                                            <p className="font-semibold">{battery.usable_kWh_per_unit} kWh</p>
+                                            <p className="font-semibold">{battery.usable_kWh_per_unit !== null ? `${battery.usable_kWh_per_unit} kWh` : "Not published"}</p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                 <Zap className="w-3.5 h-3.5" /> Peak Output
                                             </p>
-                                            <p className="font-semibold">{battery.peak_output_kW || battery.continuous_output_kW} kW</p>
+                                            <p className="font-semibold">{battery.peak_output_kW !== null ? `${battery.peak_output_kW} kW` : (battery.continuous_output_kW !== null ? `${battery.continuous_output_kW} kW` : "Not published")}</p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                 <Shield className="w-3.5 h-3.5" /> Cycle Life
                                             </p>
-                                            <p className="font-semibold">{battery.cycle_life?.toLocaleString()} cycles</p>
+                                            <p className="font-semibold">{battery.cycle_life !== null ? `${battery.cycle_life.toLocaleString()} cycles` : "Not published"}</p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">

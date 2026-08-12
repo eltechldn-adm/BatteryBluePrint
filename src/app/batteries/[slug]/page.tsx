@@ -176,15 +176,15 @@ export default async function BatteryProductPage({ params }: Props) {
                             <div className="grid sm:grid-cols-2 gap-4">
                                 <div className="p-4 rounded-lg bg-card/50 border border-border/50 space-y-1">
                                     <p className="text-sm text-muted-foreground">Usable Capacity</p>
-                                    <p className="text-2xl font-bold">{battery.usable_kWh_per_unit} <span className="text-sm font-normal text-muted-foreground">kWh</span></p>
+                                    <p className="text-2xl font-bold">{battery.usable_kWh_per_unit !== null ? <>{battery.usable_kWh_per_unit} <span className="text-sm font-normal text-muted-foreground">kWh</span></> : <span className="text-lg font-normal text-muted-foreground italic">Not published</span>}</p>
                                 </div>
                                 <div className="p-4 rounded-lg bg-card/50 border border-border/50 space-y-1">
                                     <p className="text-sm text-muted-foreground">Continuous Output</p>
-                                    <p className="text-2xl font-bold">{battery.continuous_output_kW} <span className="text-sm font-normal text-muted-foreground">kW</span></p>
+                                    <p className="text-2xl font-bold">{battery.continuous_output_kW !== null ? <>{battery.continuous_output_kW} <span className="text-sm font-normal text-muted-foreground">kW</span></> : <span className="text-lg font-normal text-muted-foreground italic">Not published</span>}</p>
                                 </div>
                                 <div className="p-4 rounded-lg bg-card/50 border border-border/50 space-y-1">
                                     <p className="text-sm text-muted-foreground">Peak Output</p>
-                                    <p className="text-2xl font-bold">{battery.peak_output_kW || 'N/A'} <span className="text-sm font-normal text-muted-foreground">kW {battery.peak_duration_sec ? `(${battery.peak_duration_sec}s)` : ''}</span></p>
+                                    <p className="text-2xl font-bold">{battery.peak_output_kW !== null ? <>{battery.peak_output_kW} <span className="text-sm font-normal text-muted-foreground">kW {battery.peak_duration_sec ? `(${battery.peak_duration_sec}s)` : ''}</span></> : <span className="text-lg font-normal text-muted-foreground italic">Not published</span>}</p>
                                 </div>
                                 <div className="p-4 rounded-lg bg-card/50 border border-border/50 space-y-1">
                                     <p className="text-sm text-muted-foreground">Chemistry</p>
@@ -245,7 +245,7 @@ export default async function BatteryProductPage({ params }: Props) {
                                 </div>
                                 <div className="space-y-1">
                                     <p className="text-sm text-muted-foreground">Cycle Life (Est.)</p>
-                                    <p className="font-semibold text-lg">{battery.cycle_life?.toLocaleString() || 'Not specified'}</p>
+                                    <p className="font-semibold text-lg">{battery.cycle_life !== null ? `${battery.cycle_life.toLocaleString()} Cycles` : 'Not published'}</p>
                                 </div>
                                 <div className="space-y-1">
                                     <p className="text-sm text-muted-foreground">End of Life Capacity</p>

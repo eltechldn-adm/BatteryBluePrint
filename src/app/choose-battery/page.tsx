@@ -195,7 +195,7 @@ export default function ChooseBatteryPage() {
                 </ol>
 
                 <p>
-                    The <Link href="/comparisons/best-solar-batteries-2026" className="text-primary hover:underline">best solar batteries 2026 comparison</Link> evaluates the leading products against these criteria with current specifications.
+                    The <Link href="/comparisons/best-solar-batteries-2026" className="text-primary hover:underline">residential battery comparison</Link> evaluates the leading products against these criteria with current specifications.
                 </p>
 
                 <h2>When This Doesn&apos;t Work</h2>
