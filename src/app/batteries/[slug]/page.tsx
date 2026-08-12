@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     return {
-        title: `${battery.brand} ${battery.model} Solar Battery Specs & Review (2026) | BatteryBlueprint`,
-        description: `Engineering specifications, pricing, and features for the ${battery.brand} ${battery.model}. Usable capacity: ${battery.usable_kWh_per_unit} kWh. Peak output: ${battery.peak_output_kW || battery.continuous_output_kW} kW.`,
+        title: `${battery.brand} ${battery.model} Technical Specifications & Planning Profile (2026) | BatteryBlueprint`,
+        description: `Engineering specifications, pricing, and features for the ${battery.brand} ${battery.model}. ${battery.capacity_basis === 'nominal' ? 'Nameplate' : 'Rated'} capacity: ${battery.usable_kWh_per_unit} kWh. Peak output: ${battery.peak_output_kW ? battery.peak_output_kW + " kW" : "Not published"}.`,
         alternates: {
             canonical: `https://batteryblueprint.com/batteries/${battery.id}`,
         }
@@ -184,8 +184,25 @@ export default async function BatteryProductPage({ params }: Props) {
                                 </div>
                                 <div className="p-4 rounded-lg bg-card/50 border border-border/50 space-y-1">
                                     <p className="text-sm text-muted-foreground">Peak Output</p>
-                                    <p className="text-2xl font-bold">{battery.peak_output_kW !== null ? <>{battery.peak_output_kW} <span className="text-sm font-normal text-muted-foreground">kW {battery.peak_duration_sec ? `(${battery.peak_duration_sec}s)` : ''}</span></> : <span className="text-lg font-normal text-muted-foreground italic">Not published</span>}</p>
+                                    {battery.peak_output_kW !== null ? (
+                                        <>
+                                            <p className="text-2xl font-bold">
+                                                {battery.peak_output_kW} <span className="text-sm font-normal text-muted-foreground">kW</span>
+                                            </p>
+                                            {(battery.peak_duration_sec || battery.peak_output_context) && (
+                                                <p className="text-xs text-muted-foreground">
+                                                    {[
+                                                        battery.peak_duration_sec ? `for up to ${battery.peak_duration_sec}s` : null,
+                                                        battery.peak_output_context ?? null,
+                                                    ].filter(Boolean).join(' — ')}
+                                                </p>
+                                            )}
+                                        </>
+                                    ) : (
+                                        <p className="text-lg font-normal text-muted-foreground italic">Not published</p>
+                                    )}
                                 </div>
+
                                 <div className="p-4 rounded-lg bg-card/50 border border-border/50 space-y-1">
                                     <p className="text-sm text-muted-foreground">Chemistry</p>
                                     <p className="text-2xl font-bold">{battery.chemistry}</p>

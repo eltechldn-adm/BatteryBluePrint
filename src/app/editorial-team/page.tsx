@@ -124,11 +124,11 @@ export default function EditorialTeamPage() {
                         <strong>BatteryBlueprint was founded to cut through that noise.</strong>
                     </p>
                     <p>
-                        We are not a sales team. We are a <strong>data-driven editorial collective</strong>.
+                        We are not a sales team. We are a <strong>BatteryBlueprint Editorial Research Team</strong>.
                         Our mission is to help homeowners size their battery systems correctly, understand the true ROI, and avoid predatory contracts.
                     </p>
                     <p>
-                        Our content is researched, written, and verified by diverse contributors with backgrounds in energy policy, technical research, and data modeling.
+                        Our content is researched, written, and verified by our publishing team.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 my-8 not-prose">
@@ -141,7 +141,7 @@ export default function EditorialTeamPage() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-sm text-muted-foreground">
-                                    We don't guess. We build <Link href="/calculator" className="text-primary hover:underline">calculators</Link> based on physics, load profiles, and NREL weather data.
+                                    We don't guess. We build <Link href="/calculator" className="text-primary hover:underline">calculators</Link> based on physics and load profiles.
                                 </p>
                             </CardContent>
                         </Card>
@@ -163,11 +163,11 @@ export default function EditorialTeamPage() {
 
                     <h2>How We Work</h2>
                     <p>
-                        Every article on this site focuses on primary-source verification:
+                        We prioritise primary manufacturer, regulator and government sources for material technical and policy claims.
                     </p>
                     <ol>
                         <li><strong>Topic Selection</strong>: We focus on high-impact questions homeowners are asking (e.g., "Is LFP better than NMC?").</li>
-                        <li><strong>Primary-Source Checking</strong>: All technical claims (Voltage, Amperage, kWh) are checked against manufacturer datasheets and technical documentation.</li>
+                        <li><strong>Primary-Source Checking</strong>: We prioritise primary sources for technical claims.</li>
                         <li><strong>Policy Verification</strong>: Incentive data is cross-referenced with official government legislation (IRS, CPUC, etc.).</li>
                     </ol>
                     <p>

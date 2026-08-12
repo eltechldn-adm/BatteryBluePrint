@@ -81,7 +81,7 @@ const RECOMMENDED_ARTICLES = [
     {
         category: "basics" as ContentCategory,
         slug: "kwh-explained",
-        title: "What is a Solar Battery?",
+        title: "kW vs kWh: The Most Important Constants in Solar Storage",
         description: "Start here to understand the fundamentals",
     },
 ];

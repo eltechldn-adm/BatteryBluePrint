@@ -69,9 +69,9 @@ export const US_REGION: RegionProfile = {
             id: 'us-ira-25d',
             name: 'Federal Residential Clean Energy Credit (IRA Section 25D)',
             type: 'tax-credit',
-            status: 'active',
+            status: 'expired',
             valueDescription:
-                'A historical 30% federal tax credit on the cost of solar panels, battery storage (≥3 kWh), and qualifying installation labour (expired post-2025). Applies to the total installed system cost. The credit is non-refundable but can be carried forward to future tax years.',
+                'A historical 30% federal tax credit on the cost of solar panels, battery storage (≥3 kWh), and qualifying installation labour (expired post-2025). Applies to the total installed system cost.',
             stackable: true,
             installerRequired: false, // No specific installer certification required by IRS
             expiryNote:
@@ -94,7 +94,7 @@ export const US_REGION: RegionProfile = {
         },
     ],
     incentiveSummary:
-        'The formerly significant US incentive was the Federal Residential Clean Energy Credit (IRA Section 25D), which applied to solar panels and battery systems with at least 3 kWh of capacity, but it expired for systems placed in service after 2025. This is available to any US homeowner with federal tax liability and does not require a specific installer certification. Additional state, utility, and local incentives vary widely — the DSIRE database (dsireusa.org) is the authoritative source for state-level programmes. Some states (California, New York) have particularly strong incentive stacks.',
+        'The formerly significant US incentive was the Federal Residential Clean Energy Credit (IRA Section 25D), which applied to solar panels and battery systems with at least 3 kWh of capacity, but it expired for systems placed in service after 2025. Additional state, utility, and local incentives vary widely — the DSIRE database (dsireusa.org) is the authoritative source for state-level programmes. Some states (California, New York) have particularly strong incentive stacks.',
 
     // === Regulatory Constraints ===
     regulatoryConstraints: [
@@ -151,10 +151,10 @@ export const US_REGION: RegionProfile = {
         smartTariffSuitabilityMultiplier: 1.3,
         // Microinverter-dominant → AC-coupled retrofits are the norm
         retrofitFriendlinessMultiplier: 1.4,
-        // Good Net Metering / IRA credit → long-term ROI story is strong
-        longTermRoiMultiplier: 1.3,
+        // Federal tax credit expired; ROI relies solely on state/utility incentives and net metering.
+        longTermRoiMultiplier: 1.0,
         // Federal tax credit makes premium systems more accessible
-        budgetAlignmentMultiplier: 1.1,
+        budgetAlignmentMultiplier: 1.0,
     },
 
     // === Data Quality ===

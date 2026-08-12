@@ -10,98 +10,82 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${siteUrl}/calculator`,
-      lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${siteUrl}/guide`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${siteUrl}/about`,
-      lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
     },
     {
       url: `${siteUrl}/contact`,
-      lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
     },
     {
       url: `${siteUrl}/editorial-team`,
-      lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
     },
     {
       url: `${siteUrl}/editorial-policy`,
-      lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
     },
     {
       url: `${siteUrl}/methodology`,
-      lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
     },
     {
       url: `${siteUrl}/privacy`,
-      lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${siteUrl}/terms`,
-      lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     // Decision pages
     {
       url: `${siteUrl}/worth-it`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${siteUrl}/when-not-to-buy`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${siteUrl}/hidden-costs`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${siteUrl}/common-mistakes`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${siteUrl}/payback-reality`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${siteUrl}/choose-battery`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
@@ -111,13 +95,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const regionPages: MetadataRoute.Sitemap = [
     {
       url: `${siteUrl}/regions/uk`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${siteUrl}/regions/us`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
@@ -126,7 +108,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Add category index pages
   const categoryPages: MetadataRoute.Sitemap = CONTENT_CATEGORIES.map((category) => ({
     url: `${siteUrl}/${category}`,
-    lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.7,
   }));
@@ -143,7 +124,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Add battery catalog and dynamic product pages
   const batteryIndexPage: MetadataRoute.Sitemap[0] = {
     url: `${siteUrl}/batteries`,
-    lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   };

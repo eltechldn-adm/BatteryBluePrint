@@ -52,7 +52,7 @@ export default function BatteriesIndexPage() {
                                 </Link>
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/50 px-4 py-3 rounded-lg border border-border/50">
                                     <Shield className="w-4 h-4 text-primary" />
-                                    <span>Data verified by Editorial Desk</span>
+                                    <span>Data backed by manufacturer specifications</span>
                                 </div>
                             </div>
                         </div>

@@ -63,7 +63,7 @@ export default function MethodologyPage() {
                     The required <strong>Nameplate Capacity (C_total)</strong> is calculated as:
                 </p>
                 <div className="p-4 bg-muted/50 rounded-lg font-mono text-sm my-4">
-                    C_total = (Daily Load × Days of Autonomy) / (DoD × Efficiency × TempFactor)
+                    Nameplate Capacity = (Daily Load × Days of Autonomy × Winter Multiplier × Reserve Multiplier) / (Efficiency × Depth of Discharge)
                 </div>
 
                 <h3>Variable Definitions</h3>
@@ -72,7 +72,8 @@ export default function MethodologyPage() {
                     <li><strong>Days of Autonomy</strong>: The number of days the system must run without solar input (critical for off-grid or storm resilience).</li>
                     <li><strong>DoD (Depth of Discharge)</strong>: We assume a safe DoD of <strong>80%</strong> for most calculations to prolong battery life, even if manufacturers claim 100%.</li>
                     <li><strong>Efficiency</strong>: We apply a standard <strong>90% round-trip efficiency</strong> factor (AC-to-DC-to-AC losses).</li>
-                    <li><strong>TempFactor (Winter Mode)</strong>: If "Winter Mode" is enabled, we apply an additional <strong>20% buffer</strong> (1.2 multiplier to capacity) to account for Lithium-Ion voltage sag in cold temperatures.</li>
+                    <li><strong>Reserve Multiplier</strong>: We default to a <strong>15%</strong> reserve buffer (1.15 multiplier) for safety margin.</li>
+                    <li><strong>Winter Multiplier</strong>: If "Winter Mode" is enabled, we apply an additional <strong>20% buffer</strong> (1.2 multiplier) to account for higher heating demands and lower array efficiency in cold temperatures.</li>
                 </ul>
 
                 <h2>2. Data Sourcing Standards</h2>
@@ -84,14 +85,13 @@ export default function MethodologyPage() {
                 <h3>Tier 1: Primary Engineering Data (Preferred)</h3>
                 <ul>
                     <li><strong>Manufacturer Datasheets</strong>: Source of truth for C-rates, cycle life, and continuous power output.</li>
-                    <li><strong>Independent Lab Testing</strong>: PVEL (PV Evolution Labs) or DNV reporting.</li>
-                    <li><strong>Government Tables</strong>: NREL "Annual Technology Baseline" (ATB) for future cost projections.</li>
+                    
+                    
                 </ul>
 
                 <h3>Tier 2: Market Data</h3>
                 <ul>
-                    <li><strong>Verified Quotes</strong>: Anonymized quotes from real users (verified via Reddit r/solar and forums).</li>
-                    <li><strong>Wholesale Listings</strong>: CED Greentech and local distributor pricing lists.</li>
+                    
                 </ul>
 
                 <h3>Excluded Data</h3>
@@ -139,7 +139,6 @@ export default function MethodologyPage() {
 
                 <h2>5. Safety & Compliance</h2>
                 <p>
-                    All "How-To" and installation content is vetted against:
                 </p>
                 <ul>
                     <li><strong>NEC 2023 (National Electrical Code)</strong>: Specifically Article 690 (Solar) and 706 (Energy Storage).</li>

@@ -73,6 +73,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { RetentionProvider } from "@/lib/retention/context";
 import { ContinueBanner } from "@/components/retention/ContinueBanner";
+import { AdSenseLoader } from "@/components/layout/AdSenseLoader";
 
 // ... imports
 
@@ -91,13 +92,7 @@ export default function RootLayout({
       >
         {/* Subtle grain texture overlay */}
         <div className="grain-overlay" aria-hidden="true" />
-        <Script
-          id="adsense-init"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7088331504377019"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        <AdSenseLoader />
         {/* Google Analytics 4 — G-SGGPTYRHXL */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SGGPTYRHXL"

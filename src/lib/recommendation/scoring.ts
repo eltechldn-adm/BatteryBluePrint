@@ -10,6 +10,18 @@ function normalize(value: number, min: number, max: number): number {
     return (clamped - min) / (max - min);
 }
 
+/**
+ * Helper to safely extract confirmed usable capacity.
+ * Prevents non-usable capacity bases (nominal, ac, etc.) from being
+ * silently treated as comparable usable capacity in scoring dimensions.
+ */
+function getConfirmedUsableCapacity(battery: BatteryModel): number | null {
+    if (battery.capacity_basis === 'usable') {
+        return battery.usable_kWh_per_unit;
+    }
+    return null;
+}
+
 export function scoreBattery(battery: BatteryModel, profile: HomeownerProfile, region?: RegionProfile): RecommendationScore {
     let weights = getDynamicWeights(profile);
     if (region) {
@@ -29,10 +41,22 @@ export function scoreBattery(battery: BatteryModel, profile: HomeownerProfile, r
     };
 
     // 1. Outage Resilience
-    // Higher capacity and peak output yields better resilience
-    const capacityScore = normalize(battery.usable_kWh_per_unit || 0, 2, 15);
-    const outputScore = normalize(battery.peak_output_kW || battery.continuous_output_kW || 0, 2, 12);
-    breakdown.outageResilience = ((capacityScore * 0.5) + (outputScore * 0.5)) * weights.outageResilience;
+    // This dimension represents usable stored energy / outage duration.
+    // ONLY batteries with confirmed 'usable' capacity are scored directly.
+    // Batteries with 'nominal', 'ac', or other bases are treated neutrally (0.5)
+    // rather than inventing a derating factor to guess their usable capacity.
+    const confirmedCapacity = getConfirmedUsableCapacity(battery);
+    const capacityScore = confirmedCapacity !== null
+        ? normalize(confirmedCapacity, 2, 15)
+        : 0.5;
+
+    // Power delivery score: measures the battery's sustained power capability.
+    // We use continuous_output_kW as the primary measure of sustained delivery.
+    // peak_output_kW is intentionally NOT used here: peak figures are
+    // time-limited (seconds) or condition-limited and do not represent
+    // what the battery can sustain during a multi-hour outage.
+    const powerDeliveryScore = normalize(battery.continuous_output_kW ?? 0, 2, 12);
+    breakdown.outageResilience = ((capacityScore * 0.5) + (powerDeliveryScore * 0.5)) * weights.outageResilience;
 
     // 2. Smart Tariff Suitability
     // Specific models like GivEnergy or Tesla are great for this
@@ -98,11 +122,14 @@ export function scoreBattery(battery: BatteryModel, profile: HomeownerProfile, r
     // 8. Space Efficiency
     let spaceScore = 0.5;
     if (battery.dimensions_mm) {
-        // volume in liters
-        const volumeLiters = (battery.dimensions_mm.h * battery.dimensions_mm.w * battery.dimensions_mm.d) / 1000000;
-        const kwhPerLiter = (battery.usable_kWh_per_unit || 1) / volumeLiters;
-        // higher energy density is better for tight spaces
-        spaceScore = normalize(kwhPerLiter, 0.05, 0.15);
+        const confirmedUsable = getConfirmedUsableCapacity(battery);
+        if (confirmedUsable !== null) {
+            // volume in liters
+            const volumeLiters = (battery.dimensions_mm.h * battery.dimensions_mm.w * battery.dimensions_mm.d) / 1000000;
+            const kwhPerLiter = confirmedUsable / volumeLiters;
+            // higher energy density is better for tight spaces
+            spaceScore = normalize(kwhPerLiter, 0.05, 0.15);
+        }
     }
     breakdown.spaceEfficiency = spaceScore * weights.spaceEfficiency;
 
@@ -114,18 +141,22 @@ export function scoreBattery(battery: BatteryModel, profile: HomeownerProfile, r
     // 10. Budget Alignment
     // Estimate cost per usable kWh using structured numeric fields.
     // Falls back to the legacy string parser only when numeric fields are absent.
+    // Only scores if usable capacity is confirmed to avoid misrepresenting cost.
     let budgetScore = 0.5;
-    if (battery.price_min_usd !== null && battery.usable_kWh_per_unit) {
-        const costPerKwh = battery.price_min_usd / battery.usable_kWh_per_unit;
-        // Lower cost per kWh = better budget alignment
-        budgetScore = 1 - normalize(costPerKwh, 250, 1000);
-    } else if (battery.price_range_usd) {
-        // Legacy fallback: extract first number from the string
-        const parts = battery.price_range_usd.split("-");
-        const minCost = parseInt(parts[0].replace(/[^0-9]/g, ""), 10);
-        if (!isNaN(minCost) && battery.usable_kWh_per_unit) {
-            const costPerKwh = minCost / battery.usable_kWh_per_unit;
+    const confirmedUsable = getConfirmedUsableCapacity(battery);
+    if (confirmedUsable !== null) {
+        if (battery.price_min_usd !== null) {
+            const costPerKwh = battery.price_min_usd / confirmedUsable;
+            // Lower cost per kWh = better budget alignment
             budgetScore = 1 - normalize(costPerKwh, 250, 1000);
+        } else if (battery.price_range_usd) {
+            // Legacy fallback: extract first number from the string
+            const parts = battery.price_range_usd.split("-");
+            const minCost = parseInt(parts[0].replace(/[^0-9]/g, ""), 10);
+            if (!isNaN(minCost)) {
+                const costPerKwh = minCost / confirmedUsable;
+                budgetScore = 1 - normalize(costPerKwh, 250, 1000);
+            }
         }
     }
     breakdown.budgetAlignment = budgetScore * weights.budgetAlignment;

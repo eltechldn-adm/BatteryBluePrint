@@ -61,7 +61,7 @@ export default function EditorialPolicyPage() {
                 </p>
                 <ul>
                     <li><strong>Datasheet Specifications</strong>: Verified chemistry, C-rates, and cycle life.</li>
-                    <li><strong>Field Performance</strong>: Real-world round-trip efficiency data.</li>
+                    
                     <li><strong>Warranty Terms</strong>: Contractual throughput guarantees, not marketing claims.</li>
                 </ul>
                 <p>
@@ -70,7 +70,7 @@ export default function EditorialPolicyPage() {
 
                 <h2>2. Review & verification Process</h2>
                 <p>
-                    Every article and guide on BatteryBlueprint undergoes a multi-step review process before publication.
+                    Content may use AI-assisted tooling for drafting, structuring, and research workflows, but final published claims are checked against cited sources where material.
                 </p>
                 <h3>Step 1: Technical Research</h3>
                 <p>
@@ -90,11 +90,9 @@ export default function EditorialPolicyPage() {
                     We verify that claimed ROIs account for efficiency losses (DC-to-AC conversion) and battery degradation over time.
                 </p>
 
-                <h3>Step 3: Quarterly Audits</h3>
+                <h3>Step 3: Best-Efforts Updates</h3>
                 <p>
-                    The energy industry moves fast. A battery that was "best value" in 2024 might be obsolete by 2026.
-                    We commit to a <strong>Quarterly Data Refresh</strong> for all pricing and incentive guides.
-                    Pages are stamped with a "Last Updated" date so you know exactly how fresh the data is.
+                    Updates are performed when important information changes or on a best-efforts basis. We do not guarantee a fixed quarterly refresh cycle.
                 </p>
 
                 <h2>3. Advertising & Revenue Transparency</h2>
@@ -116,7 +114,7 @@ export default function EditorialPolicyPage() {
                     If you purchase a product through these links, we may earn a small commission at no extra cost to you.
                 </p>
                 <p>
-                    <strong>Our Promise:</strong> We will never link to a product we wouldn't use in our own homes just to earn a commission.
+                    <strong>Our Promise:</strong> Any commercial relationship is kept separate from editorial analysis.
                     Commercial intent never overrides technical reality.
                 </p>
 
@@ -130,8 +128,6 @@ export default function EditorialPolicyPage() {
                 </p>
                 <ol>
                     <li>Update the article immediately.</li>
-                    <li>Add a <strong>"Correction Note"</strong> at the top of the article explaining what was changed and when.</li>
-                    <li>Clear any server-side caches to ensure the fix propagates instantly.</li>
                 </ol>
                 <p>
                     If you spot a technical error, please report it to <a href="mailto:corrections@batteryblueprint.com">corrections@batteryblueprint.com</a>.
@@ -144,22 +140,22 @@ export default function EditorialPolicyPage() {
                     However, AI is never the final authority.
                 </p>
                 <ul>
-                    <li><strong>No Hallucinations</strong>: All data points (prices, voltages, laws) are manually verified against primary sources.</li>
-                    <li><strong>Human Oversight</strong>: Every piece of content is reviewed by a human technical editor for tone, accuracy, and safety.</li>
+                    <li><strong>No Hallucinations</strong>: All data points (prices, voltages, laws) rely on manufacturer-published specifications.</li>
+                    <li><strong>Human Oversight</strong>: Content is reviewed for tone, accuracy, and safety.</li>
                     <li><strong>Safety Critical</strong>: For "How-To" guides involving high-voltage DC electricity, we adhere to NFPA 855 and NEC standards, which AI models often overlook.</li>
                 </ul>
 
                 <h2>6. Conflict of Interest</h2>
                 <p>
-                    Our contributors are required to disclose any financial holdings in energy companies they cover.
+                    
                     Currently, BatteryBlueprint has <strong>no exclusive partnership</strong> with any single battery manufacturer (e.g., Tesla, LG, Enphase).
-                    We are 100% reader-supported and independent.
+                    We are independent.
                 </p>
 
                 <hr />
 
                 <p className="text-sm text-muted-foreground mt-12">
-                    <em>Policy Last Updated: February 2026. This document is reviewed annually to ensure it reflects our evolving high standards.</em>
+                    <em>Policy Last Updated: August 2026. This document is reviewed annually to ensure it reflects our evolving high standards.</em>
                 </p>
             </div>
         </div>

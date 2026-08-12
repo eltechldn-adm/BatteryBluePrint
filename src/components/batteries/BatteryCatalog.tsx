@@ -162,7 +162,7 @@ export default function BatteryCatalog() {
                                     <div className="grid grid-cols-2 gap-4 py-4 border-y border-border/50">
                                         <div className="space-y-1">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
-                                                <BatteryIcon className="w-3.5 h-3.5" /> Usable Capacity
+                                                <BatteryIcon className="w-3.5 h-3.5" /> {battery.capacity_basis === 'nominal' ? "Nominal Capacity" : "Usable Capacity"}
                                             </p>
                                             <p className="font-semibold">{battery.usable_kWh_per_unit !== null ? `${battery.usable_kWh_per_unit} kWh` : "Not published"}</p>
                                         </div>
@@ -170,7 +170,7 @@ export default function BatteryCatalog() {
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                 <Zap className="w-3.5 h-3.5" /> Peak Output
                                             </p>
-                                            <p className="font-semibold">{battery.peak_output_kW !== null ? `${battery.peak_output_kW} kW` : (battery.continuous_output_kW !== null ? `${battery.continuous_output_kW} kW` : "Not published")}</p>
+                                            <p className="font-semibold">{battery.peak_output_kW !== null ? `${battery.peak_output_kW} kW` : "Not published"}</p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">

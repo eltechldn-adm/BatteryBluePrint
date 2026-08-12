@@ -206,7 +206,7 @@ export default function Home() {
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why BatteryBlueprint?</h2>
                             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                                Calculations based on physics and NREL data, not salesperson estimates.
+                                Calculations based on physics and engineering principles, not salesperson estimates.
                             </p>
                         </div>
                         <div className="grid md:grid-cols-3 gap-8">
@@ -284,7 +284,7 @@ export default function Home() {
                                     </div>
                                     <h3 className="text-lg font-bold group-hover:text-primary transition-colors">Residential Battery Technical Specification Comparison</h3>
                                     <p className="text-sm text-muted-foreground leading-relaxed">
-                                        Side-by-side specifications for Powerwall 3, Enphase IQ 5P, FranklinWH, GivEnergy, and 6 others — with honest performance analysis.
+                                        Side-by-side specifications for Powerwall 3, Enphase IQ 5P, FranklinWH, GivEnergy, and other principal systems — with honest performance analysis.
                                     </p>
                                     <span className="text-sm font-medium text-primary flex items-center gap-1">Read guide <ChevronRight className="w-3.5 h-3.5" /></span>
                                 </div>
