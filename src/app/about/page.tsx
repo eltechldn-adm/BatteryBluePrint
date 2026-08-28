@@ -38,10 +38,7 @@ export default function AboutPage() {
                             BatteryBlueprint is an independent educational publishing and software platform. Its tools and guides synthesise publicly available manufacturer documentation, engineering standards, regulator guidance and energy-market data.
                         </p>
                         <p className="text-muted-foreground leading-relaxed">
-                            The trigger was seeing quotes for 5 kWh batteries for properties using 18 kWh per day. Installers had not asked for an electricity bill, had not modelled autonomy days, and had not accounted for winter efficiency loss. The quotes were presented professionally but were completely wrong.
-                        </p>
-                        <p className="text-muted-foreground leading-relaxed">
-                            Rather than a blog with opinions, we built a tool: a calculator that applies industry-standard sizing formulas — Depth of Discharge, round-trip efficiency, seasonal derating — to any home's real consumption figures. The guides and decision pages grew from the questions users kept asking after running the calculator.
+                            Rather than a blog with opinions, we built a tool: a calculator that applies industry-standard sizing formulas — Depth of Discharge, round-trip efficiency, seasonal derating — to any home's real consumption figures.
                         </p>
                         <p className="text-muted-foreground leading-relaxed">
                             The site covers the UK, US, Australian, and European markets. All technical content is maintained by the BatteryBlueprint Editorial Research Team. We use publicly available engineering standards, utility data, and manufacturer documentation to build our calculators and guides.

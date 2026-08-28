@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Editorial Policy & Standards | BatteryBlueprint",
-    description: "Our commitment to engineering integrity. We do not accept payment for reviews. Learn about our rigorous fact-checking and correction standards.",
+    description: "Our commitment to engineering integrity. We do not accept payment for recommendations. Learn about our correction standards.",
     alternates: {
         canonical: "https://batteryblueprint.com/editorial-policy",
     },
     openGraph: {
         title: "Editorial Policy & Standards | BatteryBlueprint",
-        description: "Our commitment to engineering integrity. We do not accept payment for reviews.",
+        description: "Our commitment to engineering integrity. We do not accept payment for recommendations.",
         url: "https://batteryblueprint.com/editorial-policy",
         type: "website",
     },
@@ -54,13 +54,13 @@ export default function EditorialPolicyPage() {
                 <h2>1. Editorial Independence</h2>
                 <p>
                     Our content is compiled by the BatteryBlueprint Editorial Research Team.
-                    <strong>We do not accept payment from manufacturers, installers, or utility companies</strong> to influence our reviews, rankings, or calculator results.
+                    <strong>We do not accept payment from manufacturers, installers, or utility companies</strong> to influence our recommendations or calculator results.
                 </p>
                 <p>
                     When we recommend a battery system (e.g., Tesla Powerwall vs. Enphase IQ), that recommendation is based purely on data:
                 </p>
                 <ul>
-                    <li><strong>Datasheet Specifications</strong>: Verified chemistry, C-rates, and cycle life.</li>
+                    <li><strong>Datasheet Specifications</strong>: Reported chemistry, C-rates, and cycle life.</li>
                     
                     <li><strong>Warranty Terms</strong>: Contractual throughput guarantees, not marketing claims.</li>
                 </ul>
@@ -85,9 +85,9 @@ export default function EditorialPolicyPage() {
 
                 <h3>Step 2: Physics Check</h3>
                 <p>
-                    Calculations are audited for unit consistency.
+                    Our calculator enforces unit consistency.
                     We ensure that kWh (energy) and kW (power) are never confused—a common error in solar media.
-                    We verify that claimed ROIs account for efficiency losses (DC-to-AC conversion) and battery degradation over time.
+                    We model ROIs to account for efficiency losses (DC-to-AC conversion) and battery degradation over time.
                 </p>
 
                 <h3>Step 3: Best-Efforts Updates</h3>
@@ -130,9 +130,8 @@ export default function EditorialPolicyPage() {
                     However, AI is never the final authority.
                 </p>
                 <ul>
-                    <li><strong>No Hallucinations</strong>: All data points (prices, voltages, laws) rely on manufacturer-published specifications.</li>
-                    <li><strong>Human Oversight</strong>: Content is reviewed for tone, accuracy, and safety.</li>
-                    <li><strong>Safety Critical</strong>: For "How-To" guides involving high-voltage DC electricity, we adhere to NFPA 855 and NEC standards, which AI models often overlook.</li>
+                    <li><strong>Data Sources</strong>: Technical specifications are sourced from manufacturer documentation.</li>
+                    <li><strong>Scope</strong>: Content is generated and reviewed on a best-efforts basis. It is for educational purposes only.</li>
                 </ul>
 
                 <h2>6. Conflict of Interest</h2>

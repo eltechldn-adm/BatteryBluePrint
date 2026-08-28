@@ -85,13 +85,6 @@ export default function MethodologyPage() {
                 <h3>Tier 1: Primary Engineering Data (Preferred)</h3>
                 <ul>
                     <li><strong>Manufacturer Datasheets</strong>: Source of truth for C-rates, cycle life, and continuous power output.</li>
-                    
-                    
-                </ul>
-
-                <h3>Tier 2: Market Data</h3>
-                <ul>
-                    
                 </ul>
 
                 <h3>Excluded Data</h3>
@@ -138,8 +131,6 @@ export default function MethodologyPage() {
                 </ul>
 
                 <h2>5. Safety & Compliance</h2>
-                <p>
-                </p>
                 <ul>
                     <li><strong>NEC 2023 (National Electrical Code)</strong>: Specifically Article 690 (Solar) and 706 (Energy Storage).</li>
                     <li><strong>NFPA 855</strong>: Standard for the Installation of Stationary Energy Storage Systems.</li>

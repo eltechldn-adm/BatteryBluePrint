@@ -683,7 +683,7 @@ export const BATTERY_DATABASE: BatteryModel[] = [
         sourceUrls: [{ label: 'Fox ESS ECS Series Official', url: 'https://www.fox-ess.com/', type: 'manufacturer' }],
         dataVerifiedDate: '2026-05-12',
         regionalPriceDisclaimer: 'Price ranges are indicative only and vary by installer, region, incentives, and required electrical work.',
-        editorialSummary: "The Fox ESS ECS series is a high-voltage, stackable battery system that competes aggressively in the mid-range market. It offers robust performance and scalable capacity when paired with Fox's proprietary hybrid inverters.",
+        editorialSummary: "The Fox ESS ECS series is a high-voltage, stackable battery system that is positioned for the mid-range market. It offers robust performance and scalable capacity when paired with Fox's proprietary hybrid inverters.",
         bestFor: ["Scalable high-voltage DC setups", "Installers seeking quick, wire-free module stacking", "Mid-range budget installations"],
         notIdealFor: ["Integration with non-Fox hybrid inverters", "Extreme cold weather environments"],
         engineeringVerdict: "The ECS series successfully mimics the high-voltage plug-and-play architecture of premium brands like BYD, but at a more accessible price point. The 4.0 kW continuous output from a 4.03 kWh module is excellent, representing a 1C discharge rate capable of handling sharp inductive loads. Because it operates at high voltage, it improves system efficiency by reducing current and minimizing heat loss during inversion. It appears highly suitable for standard residential self-consumption.",
