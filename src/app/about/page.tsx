@@ -100,9 +100,9 @@ export default function AboutPage() {
 
                     {/* Advertising & Affiliate Disclosure */}
                     <section className="space-y-4">
-                        <h2 className="text-2xl font-bold">Advertising & Affiliate Disclosure</h2>
+                        <h2 className="text-2xl font-bold">Advertising Disclosure</h2>
                         <p className="text-muted-foreground leading-relaxed">
-                            BatteryBlueprint is may display advertising and may include affiliate links to products or services. If you purchase through an affiliate link, we may earn a small commission at no extra cost to you. This helps us keep the calculator and guides free for everyone.
+                            BatteryBlueprint may display advertising. This helps us keep the calculator and guides free for everyone.
                         </p>
                         <p className="text-muted-foreground leading-relaxed">
                             All editorial content — including battery recommendations, sizing guides, and comparison articles — is written independently of our advertising relationships. We do not accept payment to promote specific products or manufacturers. Our battery catalog is based on publicly available technical specifications and manufacturer datasheets.

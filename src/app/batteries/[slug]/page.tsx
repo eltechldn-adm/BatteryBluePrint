@@ -32,9 +32,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return { title: "Battery Not Found" };
     }
 
+    const capacityLabelMap: Record<string, string> = {
+        'usable': 'Usable Capacity',
+        'nominal': 'Nominal Battery Energy',
+        'ac': 'Published AC Energy',
+        'nameplate': 'Nameplate Capacity',
+        'manufacturer-stated': 'Manufacturer Stated Capacity',
+        'unknown': 'Capacity'
+    };
+    const capacityLabel = capacityLabelMap[battery.capacity_basis] || 'Capacity';
+
     return {
         title: `${battery.brand} ${battery.model} Technical Specifications & Planning Profile (2026) | BatteryBlueprint`,
-        description: `Engineering specifications, pricing, and features for the ${battery.brand} ${battery.model}. ${battery.capacity_basis === 'nominal' ? 'Nameplate' : 'Rated'} capacity: ${battery.usable_kWh_per_unit} kWh. Peak output: ${battery.peak_output_kW ? battery.peak_output_kW + " kW" : "Not published"}.`,
+        description: `Engineering specifications, pricing, and features for the ${battery.brand} ${battery.model}. ${capacityLabel}: ${battery.usable_kWh_per_unit} kWh. Peak output: ${battery.peak_output_kW ? battery.peak_output_kW + " kW" : "Not published"}.`,
         alternates: {
             canonical: `https://batteryblueprint.com/batteries/${battery.id}`,
         }
@@ -48,6 +58,16 @@ export default async function BatteryProductPage({ params }: Props) {
     if (!battery) {
         notFound();
     }
+
+    const capacityLabelMap: Record<string, string> = {
+        'usable': 'Usable Capacity',
+        'nominal': 'Nominal Battery Energy',
+        'ac': 'Published AC Energy',
+        'nameplate': 'Nameplate Capacity',
+        'manufacturer-stated': 'Manufacturer Stated Capacity',
+        'unknown': 'Capacity'
+    };
+    const capacityLabel = capacityLabelMap[battery.capacity_basis] || 'Capacity';
 
     return (
         <div className="flex flex-col min-h-screen pb-12">
@@ -94,7 +114,7 @@ export default async function BatteryProductPage({ params }: Props) {
                             </Button>
                             <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card/50 px-4 py-3 rounded-lg border border-border/50">
                                 <Shield className="w-4 h-4 text-primary" />
-                                Data verified {battery.dataVerifiedDate}
+                                Source data reviewed {battery.dataVerifiedDate}
                             </div>
                         </div>
                     </div>
@@ -113,7 +133,7 @@ export default async function BatteryProductPage({ params }: Props) {
                             <Card className="bg-green-50/50 dark:bg-green-950/20 border-green-200 dark:border-green-900/50">
                                 <CardHeader className="pb-3">
                                     <CardTitle className="text-lg flex items-center gap-2 text-green-800 dark:text-green-400">
-                                        <ThumbsUp className="w-5 h-5" /> Best Considered For
+                                        <ThumbsUp className="w-5 h-5" /> Suitable Scenarios
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
@@ -149,7 +169,7 @@ export default async function BatteryProductPage({ params }: Props) {
                         {/* Engineering Verdict */}
                         <section className="space-y-4 article-prose prose prose-slate dark:prose-invert max-w-none">
                             <h2 className="text-2xl font-bold flex items-center gap-2 border-b border-border/50 pb-2">
-                                <Zap className="w-6 h-6 text-primary" /> Engineering Verdict
+                                <Zap className="w-6 h-6 text-primary" /> Planning Analysis
                             </h2>
                             <p className="leading-relaxed">{battery.engineeringVerdict}</p>
                         </section>
@@ -157,7 +177,7 @@ export default async function BatteryProductPage({ params }: Props) {
                         {/* Real-World Considerations */}
                         <section className="space-y-4 article-prose prose prose-slate dark:prose-invert max-w-none">
                             <h2 className="text-2xl font-bold border-b border-border/50 pb-2">
-                                Real-World Considerations
+                                Practical Considerations
                             </h2>
                             <p className="leading-relaxed">{battery.realWorldConsiderations}</p>
                         </section>
@@ -175,7 +195,7 @@ export default async function BatteryProductPage({ params }: Props) {
                             <h2 className="text-2xl font-bold border-b border-border/50 pb-2">Technical Specifications</h2>
                             <div className="grid sm:grid-cols-2 gap-4">
                                 <div className="p-4 rounded-lg bg-card/50 border border-border/50 space-y-1">
-                                    <p className="text-sm text-muted-foreground">Usable Capacity</p>
+                                    <p className="text-sm text-muted-foreground">{capacityLabel}</p>
                                     <p className="text-2xl font-bold">{battery.usable_kWh_per_unit !== null ? <>{battery.usable_kWh_per_unit} <span className="text-sm font-normal text-muted-foreground">kWh</span></> : <span className="text-lg font-normal text-muted-foreground italic">Not published</span>}</p>
                                 </div>
                                 <div className="p-4 rounded-lg bg-card/50 border border-border/50 space-y-1">

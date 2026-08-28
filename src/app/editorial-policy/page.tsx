@@ -68,7 +68,7 @@ export default function EditorialPolicyPage() {
                     If a product has poor thermal management or strictly limits discharge rates, we will say so—regardless of how popular the brand is.
                 </p>
 
-                <h2>2. Review & verification Process</h2>
+                <h2>2. Review & Verification Process</h2>
                 <p>
                     Content may use AI-assisted tooling for drafting, structuring, and research workflows, but final published claims are checked against cited sources where material.
                 </p>
@@ -86,7 +86,7 @@ export default function EditorialPolicyPage() {
                 <h3>Step 2: Physics Check</h3>
                 <p>
                     Calculations are audited for unit consistency.
-                    We ensure that kWh (energy) and kW await (power) are never confused—a common error in solar media.
+                    We ensure that kWh (energy) and kW (power) are never confused—a common error in solar media.
                     We verify that claimed ROIs account for efficiency losses (DC-to-AC conversion) and battery degradation over time.
                 </p>
 
@@ -106,16 +106,6 @@ export default function EditorialPolicyPage() {
                     These ads are automatically served based on your browsing history and context.
                     <strong>We do not manually select these advertisers</strong>, and their presence does not constitute an endorsement by BatteryBlueprint.
                     Our editorial team has zero visibility into which ads are served to you.
-                </p>
-
-                <h3>Affiliate Links</h3>
-                <p>
-                    In the future, we may include affiliate links to vetted retail partners (e.g., independent battery distributors or Amazon for DIY tools).
-                    If you purchase a product through these links, we may earn a small commission at no extra cost to you.
-                </p>
-                <p>
-                    <strong>Our Promise:</strong> Any commercial relationship is kept separate from editorial analysis.
-                    Commercial intent never overrides technical reality.
                 </p>
 
                 <h2>4. Corrections Policy</h2>
@@ -147,7 +137,6 @@ export default function EditorialPolicyPage() {
 
                 <h2>6. Conflict of Interest</h2>
                 <p>
-                    
                     Currently, BatteryBlueprint has <strong>no exclusive partnership</strong> with any single battery manufacturer (e.g., Tesla, LG, Enphase).
                     We are independent.
                 </p>

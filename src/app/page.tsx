@@ -228,7 +228,7 @@ export default function Home() {
                                     </div>
                                     <h3 className="text-xl font-bold">Resilience Buffers</h3>
                                     <p className="text-muted-foreground leading-relaxed">
-                                        Winter temperature coefficients, aging degradation, and Depth-of-Discharge (DoD) limits are built into every calculation.
+                                        Winter temperature coefficients and Depth-of-Discharge (DoD) limits are built into every calculation.
                                     </p>
                                 </CardContent>
                             </Card>

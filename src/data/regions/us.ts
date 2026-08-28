@@ -153,7 +153,6 @@ export const US_REGION: RegionProfile = {
         retrofitFriendlinessMultiplier: 1.4,
         // Federal tax credit expired; ROI relies solely on state/utility incentives and net metering.
         longTermRoiMultiplier: 1.0,
-        // Federal tax credit makes premium systems more accessible
         budgetAlignmentMultiplier: 1.0,
     },
 
