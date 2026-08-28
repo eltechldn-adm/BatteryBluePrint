@@ -10,6 +10,17 @@ import Link from "next/link";
 import { useCountry } from "@/lib/geo/CountryProvider";
 import { formatBatteryPrice } from "@/lib/pricing/formatBatteryPrice";
 
+const getCapacityLabel = (basis: string | undefined) => {
+    switch(basis) {
+        case 'usable': return 'Usable Capacity';
+        case 'nominal': return 'Nominal Battery Energy';
+        case 'ac': return 'Published AC Energy';
+        case 'nameplate': return 'Nameplate Capacity';
+        case 'manufacturer-stated': return 'Manufacturer-Stated Capacity';
+        default: return 'Capacity';
+    }
+};
+
 type FilterState = {
     chemistry: string[];
     coupling: string[];
@@ -162,7 +173,7 @@ export default function BatteryCatalog() {
                                     <div className="grid grid-cols-2 gap-4 py-4 border-y border-border/50">
                                         <div className="space-y-1">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
-                                                <BatteryIcon className="w-3.5 h-3.5" /> {battery.capacity_basis === 'nominal' ? "Nominal Capacity" : "Usable Capacity"}
+                                                <BatteryIcon className="w-3.5 h-3.5" /> {getCapacityLabel(battery.capacity_basis)}
                                             </p>
                                             <p className="font-semibold">{battery.usable_kWh_per_unit !== null ? `${battery.usable_kWh_per_unit} kWh` : "Not published"}</p>
                                         </div>
@@ -170,7 +181,12 @@ export default function BatteryCatalog() {
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                                                 <Zap className="w-3.5 h-3.5" /> Peak Output
                                             </p>
-                                            <p className="font-semibold">{battery.peak_output_kW !== null ? `${battery.peak_output_kW} kW` : "Not published"}</p>
+                                            <p className="font-semibold">
+                                                {battery.peak_output_kW !== null ? `${battery.peak_output_kW} kW` : "Not published"}
+                                                {battery.peak_output_kW !== null && battery.peak_output_context && (
+                                                    <span className="block text-[10px] font-normal text-muted-foreground leading-tight mt-0.5">{battery.peak_output_context}</span>
+                                                )}
+                                            </p>
                                         </div>
                                         <div className="space-y-1">
                                             <p className="text-xs text-muted-foreground flex items-center gap-1">
