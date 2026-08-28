@@ -183,8 +183,13 @@ export default function BatteryCatalog() {
                                             </p>
                                             <p className="font-semibold">
                                                 {battery.peak_output_kW !== null ? `${battery.peak_output_kW} kW` : "Not published"}
-                                                {battery.peak_output_kW !== null && battery.peak_output_context && (
-                                                    <span className="block text-[10px] font-normal text-muted-foreground leading-tight mt-0.5">{battery.peak_output_context}</span>
+                                                {battery.peak_output_kW !== null && (battery.peak_duration_sec || battery.peak_output_context) && (
+                                                    <span className="block text-[10px] font-normal text-muted-foreground leading-tight mt-0.5">
+                                                        {[
+                                                            battery.peak_duration_sec ? `for up to ${battery.peak_duration_sec}s` : null,
+                                                            battery.peak_output_context
+                                                        ].filter(Boolean).join(' — ')}
+                                                    </span>
                                                 )}
                                             </p>
                                         </div>
