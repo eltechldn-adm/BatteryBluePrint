@@ -386,40 +386,40 @@ The US battery storage model is well-adapted for the coastal, high-rate, solar-o
 **Scenario:** A hypothetical homeowner in Austin, Texas models a 9 kW solar array + 2× Tesla Powerwall 3 (27 kWh total) installation for 2026. *This is a modelled scenario illustrating market economics, not a documented outcome.*
 
 **Pre-installation engineering checks (Modelled Assumptions):**
-- Utility: Austin Energy (municipal utility, not IOU — own net metering rules apply, not ERCOT VPP)
-- Austin Energy net metering: Modelled at historical 1:1 retail rate equivalent.
-- Export cap: Full production permitted (no modelled export limit)
-- Interconnection timeline: 3 weeks (modelled fast-track assumption)
+- Utility: Austin Energy
+- Tariff structure: Value of Solar (VoS) credit at $0.1025/kWh for all solar generation; no traditional net metering.
+- Average import rate: Modelled at $0.12/kWh (tiered structure).
+- Export cap: Full production permitted (no modelled export limit).
+- Interconnection timeline: 3 weeks (modelled assumption).
 
-**Incentive stack:**
-- Federal ITC: $0 (Not available for 2026 purchases; Section 25D expired December 2025)
-- Texas state incentive: None
-- Austin Energy rebate: $2,500 (Austin Energy Residential Solar Program — modelled assumption based on historical rates)
+**Incentive stack (Incremental battery model):**
+- Federal ITC: $0 (Not available for 2026 purchases; Section 25D expired December 2025).
+- Texas state incentive: None.
+- Austin Energy battery rebate: $0 (The Austin Energy Residential Solar Program rebate applies to solar, not battery equipment).
 
-**Net cost calculation:**
-- Gross battery system cost (2x Powerwall 3): $23,000 (incremental investment for storage only)
-- Austin Energy battery rebate: -$2,500 (modelled assumption based on historical rate)
-- Federal ITC: $0 (Expired for 2026)
-- Net incremental cost for storage: **$20,500**
+**Net cost calculation (Battery only):**
+- Gross battery system cost (2x Powerwall 3): $23,000 (incremental investment for storage only).
+- Austin Energy battery rebate: $0.
+- Federal ITC: $0.
+- Net incremental cost for storage: **$23,000**.
 
 **Annual Energy Balance (Modelled):**
-- Total solar generation (Austin, 1,780 kWh/kWp/year × 9 kW): 16,020 kWh/year
-- Total household consumption: 14,000 kWh/year
-- Direct household solar consumption: 5,500 kWh/year
-- Solar energy sent to battery: 7,500 kWh/year
-- Battery charging losses (~10%): 750 kWh/year lost
-- Battery energy delivered to loads: 6,750 kWh/year
-- Grid export: 3,020 kWh/year (16,020 - 5,500 - 7,500)
-- Grid import: 1,750 kWh/year (14,000 - 5,500 - 6,750)
+- Total solar generation (Austin, 1,780 kWh/kWp/year × 9 kW): 16,020 kWh/year.
+- Total household consumption: 14,000 kWh/year.
+- Direct household solar consumption: 5,500 kWh/year.
+- Solar energy sent to battery: 7,500 kWh/year.
+- Battery charging losses (~10%): 750 kWh/year lost.
+- Battery energy delivered to loads: 6,750 kWh/year.
 
 **Financial performance (Battery incremental value):**
-- The battery delivers 6,750 kWh/year to avoid peak/evening grid imports.
-- Total annual saving from battery: 6,750 kWh × $0.12 = **$810/year**
-- *Note: This assumes a tariff structure where avoided import provides a $0.12/kWh advantage over export.*
+- The battery stores solar energy that would have earned the VoS credit ($0.1025/kWh).
+- The stored energy displaces grid import ($0.12/kWh).
+- Value of battery shifting: $0.12 (avoided import) - $0.1025 (foregone VoS credit) = $0.0175/kWh.
+- Total annual saving from battery: 6,750 kWh × $0.0175/kWh = **$118.13/year**.
 
-**Payback: $20,500 ÷ $810 = 25.3 years**
+**Incremental Battery Payback: $23,000 ÷ $118.13 = 194.7 years**
 
-**Lesson:** Texas's lack of state incentives and Austin's moderate rate ($0.12/kWh) produce a longer payback than the California comparison case, especially with the expiration of the federal ITC. The resilience value of 27 kWh during potential grid stress events is the primary non-financial driver for the modelled decision. Use the US battery sizing calculator and [US state incentives guide](/incentives/us-state-solar-battery-rebates-guide-2026) to model your specific state and utility scenario.
+**Lesson:** In Austin, the Value of Solar (VoS) tariff pays a fixed rate for all solar production, meaning the battery provides very little financial arbitrage value compared to just exporting the solar. With no battery-specific rebates and the expiration of the federal ITC, the incremental payback for adding a battery is exceptionally long. The resilience value of 27 kWh during potential grid stress events is the almost exclusive driver for the modelled decision. Use the US battery sizing calculator and [US state incentives guide](/incentives/us-state-solar-battery-rebates-guide-2026) to model your specific state and utility scenario.
 
 ---
 

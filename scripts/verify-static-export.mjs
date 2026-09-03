@@ -49,7 +49,7 @@ const countHtml = (dir) => {
         if (entry.isDirectory()) {
             count += countHtml(full);
         } else {
-            if (entry.name.endsWith('.html.html')) {
+            if (entry.name.endsWith('.html.html') || / \d+\.html$/.test(entry.name)) {
                 console.error(`❌ [STATIC EXPORT FAIL] Duplicate suffix detected: ${full}`);
                 failed = true;
             } else if (entry.name.endsWith('.html')) {
