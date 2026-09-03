@@ -181,7 +181,7 @@ export default function HiddenCostsPage() {
                     <li><strong>Properties with legacy FiT solar installations</strong> — inverter compatibility assessment and generation meter integration costs are commonly missed</li>
                 </ul>
 
-                <h2>Real-World Example</h2>
+                <h2>Illustrative Scenario</h2>
 
                 <p>
                     A homeowner in Cardiff, Wales received a headline quote of £7,400 for a SunSynk 9.5 kWh battery and installation. During the site survey, the following additional costs were identified:

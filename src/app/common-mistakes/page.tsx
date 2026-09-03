@@ -184,18 +184,18 @@ export default function CommonMistakesPage() {
                 </p>
 
                 <p>
-                    A hypothetical household in Sacramento, California is quoted a 13.5 kWh battery installation at $17,900 for a system installed in December 2025 (eligible for Section 25D). The installer&apos;s projected payback is 6.2 years. Reviewing the quote reveals:
+                    A hypothetical household in Sacramento, California is quoted a 13.5 kWh battery installation at $17,900 for a system installed in early 2026. The installer&apos;s projected payback is 6.2 years. Reviewing the quote reveals:
                 </p>
 
                 <ul>
-                    <li>A $2,100 panel upgrade has been included in the ITC basis — overclaiming the credit by $630</li>
-                    <li>The tariff has not been switched from SCE Standard Rate to TOU-D — this omission costs approximately $380/year in missed arbitrage saving</li>
-                    <li>An SGIP rebate has not been applied for — at $315/kWh for a moderate-income eligible household, the missed rebate is approximately $4,252 on a 13.5 kWh system</li>
-                    <li>VPP income has been modelled at $450/year, which exceeds the conservative planning range of 60–70% of operator averages</li>
+                    <li>The installer has mistakenly included a 30% Federal ITC ($5,370) in the net cost projection, failing to account for the expiration of Section 25D for 2026 purchases. The valid 2026 credit is $0.</li>
+                    <li>The tariff has not been switched from SCE Standard Rate to TOU-D — this omission costs approximately $380/year in missed arbitrage saving.</li>
+                    <li>An SGIP rebate has not been applied for — at $315/kWh for a moderate-income eligible household, the missed rebate is approximately $4,252 on a 13.5 kWh system.</li>
+                    <li>VPP income has been modelled at $450/year, which exceeds the conservative planning range of 60–70% of operator averages.</li>
                 </ul>
 
                 <p>
-                    Corrected net cost (SGIP applied, ITC basis corrected): $17,900 − $4,252 (SGIP) − $4,320 (30% of $14,400 corrected basis) = $9,328. Annual saving on TOU after tariff switch: ~$1,400. Illustrative payback: approximately 6.7 years — close to the installer&apos;s projection, but for entirely different reasons than presented.
+                    Corrected net cost (SGIP applied, Federal ITC removed): $17,900 − $4,252 (SGIP) − $0 (Federal ITC) = $13,648. Annual saving on TOU after tariff switch: ~$1,400. Illustrative payback: approximately 9.7 years — significantly longer than the installer&apos;s projection due to the removal of the expired federal credit, offset partially by the discovered state rebate.
                 </p>
 
                 <h2>Recommendation</h2>

@@ -211,7 +211,7 @@ export default function ChooseBatteryPage() {
                     <li><strong>Properties with atypical consumption profiles:</strong> Night-shift workers, remote workers with unusual load shapes, or EV owners with overnight departure schedules may have load profiles that require custom dispatch scheduling — confirm the battery management system supports custom schedule definition.</li>
                 </ul>
 
-                <h2>Real-World Example</h2>
+                <h2>Illustrative Scenario</h2>
 
                 <p>
                     A household in Edinburgh, Scotland with 4 kW solar, 11 kWh/day average consumption, and Octopus Agile access applied the framework:

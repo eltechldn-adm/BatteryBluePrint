@@ -161,7 +161,7 @@ export default function WhenNotToBuyPage() {
                     <li><strong>Your solar system is approaching end-of-inverter-warranty.</strong> Installing a battery on a solar system whose inverter requires replacement in 2–3 years creates near-term additional cost that should be modelled into the payback.</li>
                 </ul>
 
-                <h2>Real-World Example</h2>
+                <h2>Illustrative Scenario</h2>
 
                 <p><strong>Who should not have bought:</strong></p>
                 <p>
