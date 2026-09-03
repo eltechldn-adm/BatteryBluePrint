@@ -291,13 +291,13 @@ The efficiency gap between AC and DC coupling is analytically clear, but its pra
 
 ---
 
-## Illustrative Scenario
+## Illustrative Fault Scenario
 
-**Scenario:** A hypothetical homeowner in Bristol installs a 5 kW solar array with a GivEnergy 9.5 kWh hybrid inverter (DC-coupled). Their roof has 20 panels producing a Voc of 400V at 25°C. In February 2026, an overnight temperature of -6°C causes panel Voc to rise to 447V — within the inverter's 450V DC input maximum, but close enough to trigger transient overvoltage protection on sunrise. *This is a modelled scenario illustrating market economics, not a documented outcome.*
+**Scenario:** A hypothetical homeowner in Bristol installs a 5 kW solar array with a 9.5 kWh hybrid inverter (DC-coupled). Their roof has 20 panels producing a Voc of 400V at 25°C. In this hypothetical configuration, an overnight temperature of -6°C would cause panel Voc to rise to 447V — within the inverter's 450V DC input maximum, but close enough to trigger transient overvoltage protection on sunrise.
 
-**What happened:** For three mornings during the cold spell, the system failed to start solar generation until 10:15 AM — nearly two hours after sunrise. The BMS log confirmed repeated MPPT overvoltage faults. Lost generation over three days: approximately 4.2 kWh.
+**Modelled behaviour:** Under these conditions, the system would fail to start solar generation until ambient temperatures rose (e.g., 10:15 AM). The calculated consequence of this transient overvoltage fault is an estimated 4.2 kWh of lost generation over a three-day cold spell.
 
-**Resolution:** The installer modified the string configuration, removing two panels from the series string and rewiring them in parallel. Voc at -10°C dropped to 411V, providing adequate headroom. Post-modification, the system performed correctly throughout the remaining winter.
+**Resolution:** A competent installer would prevent or resolve this by modifying the string configuration — for example, removing two panels from the series string and rewiring them in parallel. This drops the modelled Voc at -10°C to 411V, providing adequate headroom for the inverter to perform correctly throughout the winter.
 
 **Lesson:** DC-coupled system design demands seasonal Voc calculations, not just standard test condition (STC) calculations. This is a detail that belongs in every installer's design review. If your installer is not providing a winter Voc calculation alongside the standard generation estimate, ask for one. Use the [battery sizing calculator](/calculator) to check your array parameters, or consult our [how to size guide](/sizing/how-to-size-solar-battery-uk-us) for design methodology.
 

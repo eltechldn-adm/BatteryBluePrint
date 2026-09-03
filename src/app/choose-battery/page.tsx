@@ -214,7 +214,7 @@ export default function ChooseBatteryPage() {
                 <h2>Illustrative Scenario</h2>
 
                 <p>
-                    A household in Edinburgh, Scotland with 4 kW solar, 11 kWh/day average consumption, and Octopus Agile access applied the framework:
+                    Assume a hypothetical household in Edinburgh, Scotland with 4 kW solar, 11 kWh/day average consumption, and Octopus Agile access applies the framework. <em>This is a modelled scenario illustrating market economics, not a documented outcome.</em>
                 </p>
 
                 <ol>
@@ -227,7 +227,7 @@ export default function ChooseBatteryPage() {
                 </ol>
 
                 <p>
-                    Year 1 outcome: £1,080 annual saving (£560 arbitrage + £380 self-consumption + £140 SEG export). Net installation cost: £7,900. Projected payback: 7.3 years. This outcome was consistent with the <Link href="/payback-reality" className="text-primary hover:underline">UK payback benchmarks</Link> for the solar+Agile scenario.
+                    Modelled Year 1 outcome: £1,080 annual saving (£560 arbitrage + £380 self-consumption + £140 SEG export). Net installation cost: £7,900. Projected payback: 7.3 years. This modelled outcome is consistent with the <Link href="/payback-reality" className="text-primary hover:underline">UK payback benchmarks</Link> for the solar+Agile scenario.
                 </p>
 
                 <h2>Recommendation</h2>

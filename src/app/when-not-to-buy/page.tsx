@@ -163,13 +163,13 @@ export default function WhenNotToBuyPage() {
 
                 <h2>Illustrative Scenario</h2>
 
-                <p><strong>Who should not have bought:</strong></p>
+                <p><strong>Who should not buy:</strong></p>
                 <p>
-                    A homeowner in rural Ohio purchased a 13.5 kWh Tesla Powerwall in 2024 at $15,800 gross ($11,060 net after the then-available 30% Section 25D ITC). Their utility — a rural electric cooperative — has a flat $0.116/kWh tariff and does not offer net metering or TOU rates. Annual saving from self-consumption (without solar): approximately $420. Payback: 26.3 years. The battery will require replacement before payback is achieved. Note: the Section 25D federal ITC that reduced this 2024 installation cost is no longer available for installations placed in service from January 2026 onwards.
+                    Assume an illustrative scenario where a hypothetical homeowner in rural Ohio considers purchasing a 13.5 kWh battery in 2026 at $15,800 gross. <em>This is a modelled scenario illustrating market economics, not a documented outcome.</em> Because the Section 25D federal ITC expired at the end of 2025, the net cost remains $15,800. Their utility — a rural electric cooperative — has a flat $0.116/kWh tariff and does not offer net metering or TOU rates. Modelled annual saving from self-consumption (without solar): approximately $420. Modelled payback: over 37 years. The battery will require replacement before payback is achieved.
                 </p>
 
                 <p>
-                    The homeowner was sold the system on the premise of &ldquo;eliminating electricity bills&rdquo; and &ldquo;energy independence.&rdquo; Neither premise was accurate for their specific grid and tariff context.
+                    In this hypothetical example, the homeowner is sold the system on the premise of &ldquo;eliminating electricity bills&rdquo; and &ldquo;energy independence.&rdquo; Neither premise is accurate for their specific grid and tariff context.
                 </p>
 
                 <h2>Recommendation</h2>

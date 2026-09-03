@@ -184,17 +184,17 @@ export default function HiddenCostsPage() {
                 <h2>Illustrative Scenario</h2>
 
                 <p>
-                    A homeowner in Cardiff, Wales received a headline quote of £7,400 for a SunSynk 9.5 kWh battery and installation. During the site survey, the following additional costs were identified:
+                    Assume an illustrative scenario where a hypothetical homeowner in Cardiff, Wales receives a headline quote of £7,400 for a 9.5 kWh battery and installation. <em>This is a modelled scenario illustrating market economics, not a documented outcome.</em> During the site survey, the following additional modelled costs are identified:
                 </p>
 
                 <ul>
                     <li>Consumer unit upgrade required: £1,100</li>
                     <li>Extended cable run (battery in garage, 18 metres from main panel): £420</li>
-                    <li>Existing SolarEdge inverter incompatible with AC coupling without firmware upgrade: £180 for upgrade service</li>
+                    <li>Existing inverter incompatible with AC coupling without firmware upgrade: £180 for upgrade service</li>
                 </ul>
 
                 <p>
-                    Total cost on installation day: £9,100 — 23% above the quoted headline price. The homeowner had budgeted £7,400 and did not have the additional £1,700 readily available, causing a 6-week delay to the installation. The final payback period at £9,100 net cost was 9.8 years, versus the 7.5 years presented in the initial quote pack.
+                    Modelled total cost on installation day: £9,100 — 23% above the quoted headline price. Under these assumptions, the homeowner who budgeted £7,400 without a contingency faces a £1,700 shortfall, potentially delaying the installation. The modelled payback period at £9,100 net cost extends to 9.8 years, versus the 7.5 years presented in the initial quote pack.
                 </p>
 
                 <h2>Recommendation</h2>
