@@ -109,20 +109,20 @@ export default function CommonMistakesPage() {
                     Battery capacity degrades at 1.5–2.5% per year. An installer who projects a 10-year payback based on Year 1 performance is implicitly assuming constant performance. In reality, Year 10 performance may be 20% below Year 1, meaning the cumulative saving over 10 years is approximately 10% below the linear projection. For a payback model near the margin of viability, this degradation factor is the difference between marginally positive and marginally negative.
                 </p>
 
-                <h2>Mistake 5: Mis-claiming the Federal ITC (US)</h2>
+                <h2>Mistake 5: Mis-claiming the Federal ITC — or Assuming It Still Applies (US)</h2>
 
                 <p>
-                    The US federal Investment Tax Credit (30% of eligible installed cost) is the single most valuable battery incentive available globally. It is also the most commonly mis-claimed. Three errors appear repeatedly:
+                    The US federal Section 25D Residential Clean Energy Credit (30% of eligible installed cost) was terminated for property placed in service after 31 December 2025. It is no longer available for new 2026 residential battery purchases. Homeowners still make three recurring errors related to this credit:
                 </p>
 
                 <ul>
-                    <li><strong>Including non-eligible costs in the ITC basis.</strong> Main panel upgrades, structural reinforcements, and homeowner-supplied components are not eligible for the ITC. Including them overstates the credit and creates IRS audit risk.</li>
-                    <li><strong>Claiming the full credit in Year 1 without sufficient tax liability.</strong> The ITC is a non-refundable credit. If your federal tax liability in Year 1 is $3,000 and your ITC is $4,800, you claim $3,000 in Year 1 and carry forward $1,800 to Year 2. Failing to plan for this cash flow timing affects payback calculations.</li>
-                    <li><strong>Not reducing the ITC basis by state and utility rebates received.</strong> A state rebate or utility incentive that reduces your installed cost must be deducted from the ITC basis before calculating the 30% credit. Failure to do this results in overclaiming the federal credit.</li>
+                    <li><strong>Treating the credit as currently available for a 2026 installation.</strong> If your system was placed in service on or after 1 January 2026, no Section 25D credit applies, regardless of when you signed a contract or paid a deposit. Do not include a federal credit in your payback model for a new 2026 purchase.</li>
+                    <li><strong>For eligible 2025 or earlier filers — including non-eligible costs in the ITC basis.</strong> Main panel upgrades, structural reinforcements, and homeowner-supplied components are not eligible costs. Including them overstates the credit and creates IRS audit risk.</li>
+                    <li><strong>For carry-forward situations — not understanding that carry-forward does not convert a 2026 installation into a qualifying installation.</strong> If you had unused credit from a qualifying pre-2026 installation, that credit carries forward to future tax years. The carry-forward applies to the original qualifying system, not to a new 2026 purchase.</li>
                 </ul>
 
                 <p>
-                    Review the <Link href="/incentives/us-federal-solar-battery-tax-credit-itc" className="text-primary hover:underline">US Federal ITC guide</Link> for the complete eligibility framework before filing.
+                    Review the <Link href="/incentives/us-federal-solar-battery-tax-credit-itc" className="text-primary hover:underline">US Federal ITC status guide</Link> for the expiration details, carry-forward rules, and state alternatives.
                 </p>
 
                 <h2>Mistake 6: Installing Without Confirming Grid Export Limits</h2>
@@ -177,21 +177,25 @@ export default function CommonMistakesPage() {
                     These risks are not eliminable. They are manageable by: applying to incentive programmes before signing contracts, selecting installers with financial stability evidence (chartered status, established trading history), and selecting battery brands with strong independent warranty-backed support.
                 </p>
 
-                <h2>Real-World Example</h2>
+                <h2>Illustrative Scenario</h2>
 
                 <p>
-                    A homeowner in Sacramento, California was quoted a 13.5 kWh Powerwall installation at $17,900. The payback projection from the installer was 6.2 years. Post-installation review revealed:
+                    <em>This is a hypothetical example constructed to illustrate the types of errors described above. The household and quoted figures are illustrative assumptions, not a specific documented case.</em>
+                </p>
+
+                <p>
+                    A hypothetical household in Sacramento, California is quoted a 13.5 kWh battery installation at $17,900 for a system installed in December 2025 (eligible for Section 25D). The installer&apos;s projected payback is 6.2 years. Reviewing the quote reveals:
                 </p>
 
                 <ul>
-                    <li>Non-eligible panel upgrade ($2,100) had been included in the ITC basis — over-claimed credit: $630</li>
-                    <li>Tariff had not been switched from SCE Standard Rate to TOU-D — missed annual saving: approximately $380</li>
-                    <li>SGIP rebate had not been applied for (homeowner was in a moderate-income tier eligible for $315/kWh, or $4,252 on 13.5 kWh)</li>
-                    <li>VPP income had been modelled at $450/year; actual Year 1 VPP income: $190</li>
+                    <li>A $2,100 panel upgrade has been included in the ITC basis — overclaiming the credit by $630</li>
+                    <li>The tariff has not been switched from SCE Standard Rate to TOU-D — this omission costs approximately $380/year in missed arbitrage saving</li>
+                    <li>An SGIP rebate has not been applied for — at $315/kWh for a moderate-income eligible household, the missed rebate is approximately $4,252 on a 13.5 kWh system</li>
+                    <li>VPP income has been modelled at $450/year, which exceeds the conservative planning range of 60–70% of operator averages</li>
                 </ul>
 
                 <p>
-                    True net cost (corrected for ITC error and missed SGIP): $17,900 – $4,252 (SGIP) – $4,470 (corrected ITC) = $9,178. Annual saving on TOU (after tariff switch): $1,420. True payback: 6.5 years — ironically close to the installer&apos;s projection, but for entirely different reasons than presented.
+                    Corrected net cost (SGIP applied, ITC basis corrected): $17,900 − $4,252 (SGIP) − $4,320 (30% of $14,400 corrected basis) = $9,328. Annual saving on TOU after tariff switch: ~$1,400. Illustrative payback: approximately 6.7 years — close to the installer&apos;s projection, but for entirely different reasons than presented.
                 </p>
 
                 <h2>Recommendation</h2>

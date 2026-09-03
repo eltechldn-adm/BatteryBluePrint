@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Solar Battery Payback Reality: UK vs US vs Global 2026",
-    description: "Real payback period data for solar battery storage across major markets in 2026. Not projections — documented outcomes, with the variables that determine them.",
+    description: "Modelled payback planning ranges for solar battery storage across major markets in 2026, with the variables that determine them.",
     alternates: {
         canonical: "https://batteryblueprint.com/payback-reality",
     },
@@ -158,9 +158,9 @@ export default function PaybackRealityPage() {
                         <thead>
                             <tr className="border-b bg-muted/50">
                                 <th className="text-left p-3 font-semibold">Region / Scenario</th>
-                                <th className="text-left p-3 font-semibold">Net Cost (historical ITC scenario — credit expired Dec 2025)</th>
+                                <th className="text-left p-3 font-semibold">Net Cost (illustrative — no federal residential ITC available for 2026 purchases)</th>
                                 <th className="text-left p-3 font-semibold">Annual Saving</th>
-                                <th className="text-left p-3 font-semibold">Real Payback</th>
+                                <th className="text-left p-3 font-semibold">Modelled Payback</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -177,22 +177,22 @@ export default function PaybackRealityPage() {
                                 <td className="p-3 font-semibold text-green-700 dark:text-green-400">6.8–10.9 years</td>
                             </tr>
                             <tr className="border-b">
-                                <td className="p-3">Texas (solar + ITC, no state incentive)</td>
-                                <td className="p-3">$10,500–$13,000</td>
+                                <td className="p-3">Texas (solar, no state incentive, no federal ITC for 2026)</td>
+                                <td className="p-3">$14,500–$18,000</td>
                                 <td className="p-3">$800–$1,100</td>
-                                <td className="p-3 font-semibold text-yellow-700 dark:text-yellow-400">9.5–16.3 years</td>
+                                <td className="p-3 font-semibold text-yellow-700 dark:text-yellow-400">13.2–22.5 years</td>
                             </tr>
                             <tr className="border-b">
-                                <td className="p-3">Florida (solar + ITC, resilience focus)</td>
-                                <td className="p-3">$11,000–$14,000</td>
+                                <td className="p-3">Florida (solar, resilience focus, no federal ITC for 2026)</td>
+                                <td className="p-3">$15,000–$19,000</td>
                                 <td className="p-3">$700–$950</td>
-                                <td className="p-3 font-semibold text-yellow-700 dark:text-yellow-400">11.6–20.0 years</td>
+                                <td className="p-3 font-semibold text-yellow-700 dark:text-yellow-400">15.8–27.1 years</td>
                             </tr>
                             <tr className="border-b">
-                                <td className="p-3">Midwest (no solar, fixed rate, ITC only)</td>
-                                <td className="p-3">$10,500–$12,000</td>
+                                <td className="p-3">Midwest (no solar, fixed rate, no state incentive)</td>
+                                <td className="p-3">$14,000–$16,000</td>
                                 <td className="p-3">$280–$420</td>
-                                <td className="p-3 font-semibold text-red-700 dark:text-red-400">25–43 years</td>
+                                <td className="p-3 font-semibold text-red-700 dark:text-red-400">33–57 years</td>
                             </tr>
                         </tbody>
                     </table>
@@ -304,10 +304,14 @@ export default function PaybackRealityPage() {
                     <li><strong>Electricity rates decrease due to policy change.</strong> The UK had a planned reduction in standing charges in 2025. Large-scale nuclear expansion programmes (UK, France) could reduce wholesale electricity prices, compressing the arbitrage opportunity battery storage depends on.</li>
                 </ul>
 
-                <h2>Real-World Example</h2>
+                <h2>Illustrative Comparison</h2>
 
                 <p>
-                    Two near-identical households in comparable UK properties — detached 4-bedroom, 4 kW solar, similar consumption — produced markedly different payback outcomes in 2026 based solely on tariff selection:
+                    <em>The following comparison uses hypothetical assumptions to illustrate the effect of tariff selection on modelled payback. The households and values are not drawn from a specific documented case.</em>
+                </p>
+
+                <p>
+                    Two comparable UK households — detached 4-bedroom, 4 kW solar, similar consumption — produce markedly different modelled payback outcomes based solely on tariff selection:
                 </p>
 
                 <ul>

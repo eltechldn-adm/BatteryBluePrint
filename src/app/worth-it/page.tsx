@@ -59,7 +59,7 @@ export default function WorthItPage() {
                 </p>
 
                 <p>
-                    In 2026, the best financial outcomes for battery storage occur when all three functions stack. A California homeowner on a time-of-use tariff with NEM 3.0 net metering, an existing solar system, and SGIP rebate eligibility can achieve payback in 5–7 years on a 13.5 kWh system. A UK homeowner on Octopus Intelligent Go with a 4 kW solar array can achieve payback in 6–9 years. These are genuine, documented outcomes — not marketing projections.
+                    In 2026, the best financial outcomes for battery storage occur when all three functions stack. A California homeowner on a time-of-use tariff with NEM 3.0 net metering, an existing solar system, and SGIP rebate eligibility can achieve payback in 5–7 years on a 13.5 kWh system. A UK homeowner on Octopus Intelligent Go with a 4 kW solar array can achieve payback in 6–9 years. These modelled planning ranges reflect published tariff, hardware, and incentive data for 2026 — not guaranteed outcomes for any individual household.
                 </p>
 
                 <p>
@@ -99,27 +99,33 @@ export default function WorthItPage() {
                     <li><strong>High battery penetration markets with saturated grid export rates.</strong> In some South Australian and California grid areas, high solar penetration has driven feed-in tariff rates and VPP dispatch rates to levels that reduce or eliminate the arbitrage opportunity that justified battery investment 3–5 years ago.</li>
                 </ul>
 
-                <h2>Real-World Example</h2>
+                <h2>Illustrative Scenarios</h2>
 
-                <p><strong>Case A: Strong positive outcome</strong></p>
+                <p><strong>Modelled Scenario A: Strong positive outcome</strong></p>
                 <p>
-                    A homeowner in Bristol, UK with a 4 kW solar array installs a GivEnergy 9.5 kWh battery in early 2026 and switches to Octopus Intelligent Go (7p/kWh off-peak, 24.5p/kWh peak). Year 1 outcomes:
+                    <em>This is a hypothetical planning example based on 2026 published tariff and hardware pricing assumptions. It is not a report from a specific verified installation.</em>
+                </p>
+                <p>
+                    A household in Bristol, UK with a 4 kW solar array installs a GivEnergy 9.5 kWh battery in early 2026 and switches to Octopus Intelligent Go (7p/kWh off-peak, 24.5p/kWh peak). Modelled Year 1 outcomes:
                 </p>
                 <ul>
                     <li>Overnight arbitrage saving: £512/year</li>
                     <li>Solar self-consumption saving: £480/year</li>
                     <li>SEG export income: £96/year</li>
                     <li>Total: £1,088/year on a £8,200 net investment</li>
-                    <li>Payback: 7.5 years</li>
+                    <li>Modelled payback: 7.5 years</li>
                 </ul>
 
-                <p><strong>Case B: Poor outcome</strong></p>
+                <p><strong>Modelled Scenario B: Poor outcome</strong></p>
                 <p>
-                    A homeowner in Columbus, Ohio installs a 13.5 kWh Tesla Powerwall without solar at $16,000 gross. No federal tax credit is available for this 2026 purchase — the Section 25D residential ITC was terminated for systems placed in service after December 2025. Their tariff is a fixed $0.13/kWh with no TOU option from their rural electric cooperative. Annual saving from grid arbitrage: approximately $380. Payback at full $16,000 cost: 42 years. Not viable.
+                    <em>This is a hypothetical planning example. The household and figures are illustrative assumptions based on publicly available tariff data.</em>
+                </p>
+                <p>
+                    A household in Columbus, Ohio installs a 13.5 kWh Tesla Powerwall without solar at $16,000 gross. No federal tax credit is available for this 2026 purchase — the Section 25D residential ITC was terminated for systems placed in service after December 2025. Their tariff is a fixed $0.13/kWh with no TOU option from their rural electric cooperative. Annual saving from grid arbitrage: approximately $380. Modelled payback at full $16,000 cost: 42 years. Not viable.
                 </p>
 
                 <p>
-                    The difference between these two outcomes is not the battery — the same technology underlies both. The difference is the tariff structure and the presence of solar generation. <Link href="/calculator" className="text-primary hover:underline">Use the calculator</Link> to determine which case your situation more closely resembles before committing.
+                    The difference between these two modelled outcomes is not the battery — the same technology underlies both. The difference is the tariff structure and the presence of solar generation. <Link href="/calculator" className="text-primary hover:underline">Use the calculator</Link> to determine which scenario your situation more closely resembles before committing.
                 </p>
 
                 <h2>The 2026 Verdict by Market</h2>
