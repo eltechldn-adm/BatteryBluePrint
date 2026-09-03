@@ -250,13 +250,13 @@ The systematic triage process handles most common faults. Several failure modes 
 
 **Scenario:** A hypothetical household in Coventry experiences intermittent battery shutdowns in January 2026, approximately 3–4 per week. The GivEnergy AIO shows "Grid Overvoltage" in the fault log each time.
 
-**Triage steps taken:**
-1. Fault log reviewed: "Grid OV E058" — confirmed as grid overvoltage, not hardware fault
-2. Smart meter voltage log checked via Hildebrand Glow dongle: June–December recordings showed 248–254V during 06:30–08:00 AM on multiple dates
+**Modelled Triage Steps:**
+1. Fault log reviewed: "Grid OV E058" — modelled as grid overvoltage, not hardware fault
+2. Smart meter voltage log checked via Hildebrand Glow dongle: assumed June–December recordings showing 248–254V during 06:30–08:00 AM on multiple dates
 3. Manufacturer's technical support contacted with data
-4. Remote diagnostic confirmed: inverter was programmed with a 252V upper trip threshold (factory default) — appropriate for typical urban supply but below the voltage peaks at this address
+4. Remote diagnostic findings (modelled): inverter was programmed with a 252V upper trip threshold (factory default) — appropriate for typical urban supply but below the voltage peaks at this address
 
-**Resolution:** Manufacturer's support performed a remote parameter update, widening the overvoltage trip threshold to 256V within the G98 limits applicable to the property's DNO area.
+**Modelled Resolution:** Manufacturer's support performs a remote parameter update, widening the overvoltage trip threshold to 256V within the G98 limits applicable to the property's DNO area.
 
 **Duration of fault to resolution:** 9 days (fault identification: 2 days; triage with support team: 3 days; remote parameters update: 4 days to schedule).
 

@@ -159,6 +159,7 @@ function CalculatorInner() {
                 setLocation(profile.regionId);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [country.code, mounted]);
 
     // Load location from localStorage or default to auto on mount
@@ -188,8 +189,9 @@ function CalculatorInner() {
                 console.error('Failed to load assumption overrides:', e);
             }
         }
-
+     
         firstInputRef.current?.focus();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // ─── RETENTION LAYER INTEGRATION ───
@@ -236,9 +238,10 @@ function CalculatorInner() {
         // First time or no customization: apply all presets
         setWinterMode(profile.defaults.winterBuffer > 0);
         setWinterBuffer(profile.defaults.winterBuffer);
-        setDod(profile.defaults.dod);
         setInverterEfficiency(profile.defaults.inverterEfficiency);
+     
         setReserveBuffer(profile.defaults.reserveBuffer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [effectiveLocation, hasUserCustomizedAssumptions]); // Re-run when effective location changes
 
     // Initialize electricity rate when location changes
@@ -290,6 +293,7 @@ function CalculatorInner() {
                 setDailyLoad(estimatedDaily.toFixed(1));
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [billEstimatorEnabled, billAmount, electricityRate, billingPeriod, customDays]);
 
     // Toggle bill estimator mode

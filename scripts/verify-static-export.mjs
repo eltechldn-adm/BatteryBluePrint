@@ -41,13 +41,21 @@ if (failed) {
     process.exit(1);
 }
 
-// 3. Count HTML files
+// 3. Count HTML files and check for duplicate suffixes
 const countHtml = (dir) => {
     let count = 0;
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         const full = path.join(dir, entry.name);
-        if (entry.isDirectory()) count += countHtml(full);
-        else if (entry.name.endsWith('.html')) count++;
+        if (entry.isDirectory()) {
+            count += countHtml(full);
+        } else {
+            if (entry.name.endsWith('.html.html')) {
+                console.error(`❌ [STATIC EXPORT FAIL] Duplicate suffix detected: ${full}`);
+                failed = true;
+            } else if (entry.name.endsWith('.html')) {
+                count++;
+            }
+        }
     }
     return count;
 };

@@ -224,12 +224,12 @@ The Life Support and Whole Home backup strategies are well-defined when loads ar
 - Grid failure: 6:20 PM, battery at 72% charge (7.2 kWh)
 - Evening household activity: cooking (electric induction — not on critical panel), replaced with microwave and kettle (1.8 kWh over two hours)
 - Additional discovered loads: electric blankets (two bedrooms, 150W each), wifi booster for rural broadband box, laptop and phone charging
-- **Actual consumption first 8 hours:** 5.1 kWh (not the estimated 3 kWh for "lights and fridge")
+- **Modelled consumption first 8 hours:** 5.1 kWh (not the estimated 3 kWh for "lights and fridge")
 - Battery remaining at 2:20 AM (8 hours into outage): 31% (3 kWh)
 - Grid restored: 4:00 AM
 - **Outcome:** The battery lasted the outage, but with significantly less margin than expected (3 kWh remaining vs expected 7.2 kWh)
 
-**Key insight:** The homeowners discovered their actual critical load was 5.1 kWh over 8 hours (7.7 kWh/day), not the 6 kWh originally assumed. Additionally, the induction hob exclusion from the critical panel forced behavioural changes (microwave cooking) that were partially but not fully mitigating.
+**Modelled Insight:** The model assumes the critical load was 5.1 kWh over 8 hours (7.7 kWh/day), not the 6 kWh originally assumed. Additionally, the induction hob exclusion from the critical panel models forced behavioural changes (microwave cooking) that were partially but not fully mitigating.
 
 **Lesson:** Outage load profiles differ from normal operating profiles. Conduct a dry run — disconnect from the grid at the inverter level on a calm weekend afternoon and record what you actually use over 4 hours. This is the only reliable way to measure real critical load. Use the [battery backup sizing calculator](/calculator) and update your load inputs after a dry-run measurement.
 

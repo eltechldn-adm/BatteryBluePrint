@@ -223,7 +223,7 @@ export default function ChooseBatteryPage() {
                     <li><strong>Chemistry:</strong> LFP (default)</li>
                     <li><strong>Coupling:</strong> AC coupled (existing 5-year-old SolarEdge inverter retained)</li>
                     <li><strong>Smart integration:</strong> Required — Home Assistant + Agile API for 30-minute dispatch optimisation</li>
-                    <li><strong>Selected product:</strong> GivEnergy 9.5 kWh All-In-One — open API, 10-year warranty, AC coupling compatible, Home Assistant integration documented</li>
+                    <li><strong>Modelled product selection:</strong> GivEnergy 9.5 kWh All-In-One — open API, 10-year warranty, AC coupling compatible, Home Assistant integration documented</li>
                 </ol>
 
                 <p>
