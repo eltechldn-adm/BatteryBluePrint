@@ -16,14 +16,8 @@ import { usePathname } from "next/navigation";
 // ============================================================
 
 const ALLOWED_ROUTES = new Set([
-  // Core / Company pages
+  // Core pages
   "/",
-  "/about",
-  "/contact",
-  "/terms",
-  "/privacy",
-  "/editorial-policy",
-  "/editorial-team",
   "/methodology",
   "/guide",
   // Tool
@@ -99,7 +93,7 @@ const ALLOWED_ROUTES = new Set([
   "/future/sodium-ion-batteries-home-storage",
   "/future/solid-state-batteries-home-storage",
   "/future/vehicle-to-home-v2h-ev-as-home-battery",
-  "/future/virtual-power-plants-explained-home-battery",
+  // (removed: /future/virtual-power-plants-explained-home-battery — deleted, redirects to /incentives/virtual-power-plant-income-guide/)
   // markets articles
   "/markets/australia-solar-battery-cost-2026",
   "/markets/canada-solar-battery-cost-2026",

@@ -31,7 +31,7 @@ export default function TermsPage() {
                         Legal
                     </div>
                     <h1 className="text-4xl font-bold mb-4 tracking-tight">Terms of Service</h1>
-                    <p className="text-muted-foreground">Last updated: February 2026</p>
+                    <p className="text-muted-foreground">Last updated: September 2026</p>
                 </div>
 
                 <Card className="card-premium rounded-2xl border-0">
@@ -51,7 +51,7 @@ export default function TermsPage() {
                         <div>
                             <h2 className="text-xl font-bold mb-3">Advertising & Affiliate Links</h2>
                             <p className="text-muted-foreground leading-relaxed">
-                                BatteryBlueprint displays advertisements via Google AdSense and may include affiliate links to products or services. Clicking an affiliate link and making a purchase may result in a commission paid to BatteryBlueprint at no additional cost to you. Advertising relationships do not influence our editorial content or battery recommendations.
+                                BatteryBlueprint may display advertising, including advertising served through Google AdSense when enabled. The site may in future include affiliate links to products or services; where present, clicking an affiliate link and making a purchase may result in a commission paid to BatteryBlueprint at no additional cost to you. Any advertising or affiliate relationships do not influence our editorial content or battery recommendations.
                             </p>
                         </div>
                         <div>
