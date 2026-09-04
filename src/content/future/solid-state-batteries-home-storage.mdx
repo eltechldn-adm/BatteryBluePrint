@@ -3,7 +3,7 @@ title: "Solid-State Batteries for Home Storage: 2026 Update"
 description: "Solid-state batteries offer reduced thermal-runaway risk and higher energy density. A 2026 technical guide to chemistry, manufacturing barriers, and timelines."
 slug: "solid-state-batteries-home-storage"
 category: "future"
-updated: "2026-04-14"
+updated: "2026-09-04"
 ---
 
 If you follow energy news, you have heard the hype.
@@ -11,12 +11,11 @@ If you follow energy news, you have heard the hype.
 They are often touted as the "Forever Battery."
 They promise to pack the same energy into half the physical volume of a lithium-ion battery, charge rapidly, and significantly reduce the risk of thermal runaway.
 
-Toyota has been promising them "in 3 years" since 2012.
+Toyota has been targeting them for years.
 QuantumScape went public specifically to build them.
-Samsung SDI says they are shipping in 2027.
-Companies like Enphase have solid-state units on their residential roadmaps for 2026/2027.
+Samsung SDI has aggressive automotive timelines.
 
-But in early 2026, you cannot walk into a hardware store and buy one. Why?
+But in late 2026, you cannot walk into a hardware store and buy a residential solid-state battery. Why?
 Because building a solid-state battery in a lab is one thing; manufacturing them reliably at scale is incredibly hard.
 
 This guide explains the physics of SSBs, the manufacturing challenges delaying them, and realistically when you might hang one on your wall.
@@ -25,12 +24,12 @@ This guide explains the physics of SSBs, the manufacturing challenges delaying t
 
 ## Part 1: The Liquid Problem
 
-To understand why Solid-State is better, you have to understand why current batteries are dangerous.
+To understand why Solid-State is better, you have to understand the architecture of current batteries.
 
 ### The "Swimming Pool" Architecture
 A standard Lithium-Ion battery uses a **Liquid Electrolyte** (organic solvents) to move ions between the Anode and Cathode.
 *   **The Good**: Ions swim very fast in liquid. This gives great power.
-*   **The Risk**: That liquid electrolyte is an organic solvent. It is flammable. If the battery overheats, the liquid can evaporate, build pressure, and in worst-case scenarios contribute to thermal runaway and fire.
+*   **The Risk**: That liquid electrolyte is an organic solvent. It is flammable. If the battery overheats, the liquid can evaporate, build pressure, and in worst-case scenarios contribute to thermal runaway and fire. Modern Lithium Iron Phosphate (LFP) chemistries mitigate this risk significantly compared to older NMC chemistries, but the liquid remains.
 
 ### The Solid Solution
 A Solid-State Battery replaces the liquid pool with a **Solid Electrolyte** (glass, ceramic, or polymer).
@@ -40,27 +39,26 @@ A Solid-State Battery replaces the liquid pool with a **Solid Electrolyte** (gla
 
 ---
 
-## Part 2: The Three Chemistries (The Race)
+## Part 2: The Three Chemistries (The Automotive Race)
 
-There is no single "Solid-State Battery." There are three competing technologies.
+There is no single "Solid-State Battery." The primary development pathways are driven entirely by automotive research and development.
 
 ### 1. Oxides (The Ceramic)
 *   **Material**: LLZO (Lithium Lanthanum Zirconium Oxide).
 *   **Pros**: Incredibly stable. High voltage.
 *   **Cons**: Brittle. If you drop it, it cracks like a dinner plate.
-*   **Likely Winner For**: Small electronics and potentially home storage (where weight doesn't matter).
+*   **Likely Winner For**: Small electronics and potentially some automotive applications.
 
 ### 2. Sulfides (The Glass)
 *   **Material**: LGPS (Lithium Germanium Phosphorus Sulfide).
 *   **Pros**: Soft and malleable. Ions move incredibly fast (high power).
-*   **Cons**: Moisture sensitivity. If air touches it, it turns into Hydrogen Sulfide gas (rotten eggs / poison). It requires expensive dry rooms to manufacture.
+*   **Cons**: Moisture sensitivity. If air touches it, it turns into Hydrogen Sulfide gas. It requires expensive dry rooms to manufacture.
 *   **Champion**: **Toyota** and **Samsung SDI**.
 
 ### 3. Polymers and Composites (The Plastic/Resin)
 *   **Material**: PEO (Polyethylene Oxide) or composite blends.
 *   **Pros**: Easier to manufacture using existing roll-to-roll processes.
 *   **Cons**: Historically only worked when heated, though modern composites operate at room temperature.
-*   **Likely Winner For**: **Home Storage**. Companies like Enphase are targeting solid polymer or composite electrolytes for their upcoming residential solid-state batteries, rather than the pure ceramic or sulfide structures used in EV research.
 
 ---
 
@@ -75,39 +73,33 @@ When you charge a battery with a pure lithium metal anode, the lithium doesn't a
 
 ### The Problem of Pressure
 To prevent dendrites and keep the solid layers touching, you have to squeeze the battery. Hard.
-Many SSB prototypes require **Isostatic Pressing** at 3,000 PSI to work.
-*   **In a Lab**: You put the cell in a vice. Easy.
-*   **In a Car**: You can't put a 3,000 PSI hydraulic press inside a Honda Civic.
-*   **In a Home**: A heavy steel clamp is fine for a Powerwall, which is why home storage might actually get SSBs *before* cars do.
+Many SSB prototypes require **Isostatic Pressing** at high pressures to work reliably. Engineering this constraint into a commercial product—whether a car or a residential wall unit—remains a core challenge.
 
 ---
 
 ## Part 4: The Timeline (Realistic Expectations)
 
-Forget the press releases. Here is the engineering reality.
+Forget the press releases. Here is the engineering reality, clearly distinguishing automotive timelines from residential timelines.
 
-### 2026-2027: The Premium Niche
-*   **Vehicles**: We will see SSBs in $150,000 supercars (like the Porsche Mission X) or limited-run Toyotas.
-*   **Electronics**: Wearables and medical devices.
+### The Automotive Timeline (Late 2020s to Early 2030s)
+Automotive manufacturers (OEMs) are driving all serious solid-state investment because EVs urgently need higher energy density (longer range in the same space) and faster charge acceptance. 
+*   **Late 2020s**: We will see initial commercial solid-state or semi-solid-state deployments in premium, low-volume automotive platforms.
+*   **Early 2030s**: Broader automotive commercialisation as manufacturing yields improve and costs decline.
 
-### 2028-2029: Semi-Solid State
-*   **Technology**: Using a "gel" instead of a pure solid. (Like NIO and WeView).
-*   **Application**: High-end EVs (1,000 km range).
-*   **Home Storage**: Too expensive.
-
-### 2030+: Mass Adoption
-*   **Scale**: This is when SSB manufacturing yield is expected to mature.
-*   **Home Storage**: You will see wider availability, but they will still launch at a premium price per kWh compared to mature LFP technology. They will not halve the cost of home storage on day one.
+### The Residential Timeline (Mid-to-Late 2030s)
+Residential energy storage does not share the automotive urgency for extreme energy density or rapid 15-minute charging. A battery sitting on a garage wall is perfectly fine being 20% larger and taking 4 hours to charge via solar.
+*   Because residential storage relies on mature, commoditised supply chains to hit consumer price points, residential solid-state product launches are unlikely until the **mid-to-late 2030s**.
+*   Current claims that major residential brands will launch solid-state home batteries in 2026 or 2027 are entirely unsupported by primary manufacturer documentation or supply chain realities.
 
 ---
 
 ## Part 5: Investment Landscape
 
-If you want to invest in the future, know the players.
+If you want to invest in the future, know the players in the automotive race.
 
-*   **QuantumScape (QS)**: The Volkswagen-backed darling. Using an "Anode-Free" design with a ceramic separator. High risk, high reward.
+*   **QuantumScape (QS)**: The Volkswagen-backed darling. Using an "Anode-Free" design with a ceramic separator. 
 *   **Solid Power (SLDP)**: Backed by Ford/BMW. Using Sulfide-based electrolyte. They are trying to be a "materials supplier" rather than a battery maker.
-*   **Samsung SDI**: The quiet giant. They have already built a pilot line for their sulfide battery and are consistently hitting milestones without the SPAC hype.
+*   **Samsung SDI**: The quiet giant. They have aggressive automotive timelines and have consistently hit milestones for their sulfide batteries.
 
 ---
 
@@ -122,7 +114,7 @@ If you want to invest in the future, know the players.
       </span>
     </summary>
     <div className="text-muted-foreground mt-4 leading-relaxed">
-      **Safety and Density.** Current LFP batteries last 15+ years and are very safe, but SSBs offer a reduced risk of thermal runaway and potentially longer lifespans because there is no liquid to degrade. They also take up much less space, which is great for tight installations.
+      **You don't.** Current LFP batteries are very safe and cost-effective. While SSBs will eventually offer a reduced risk of thermal runaway and potentially longer lifespans, LFP technology is more than adequate for residential use today.
     </div>
   </details>
 
@@ -134,66 +126,48 @@ If you want to invest in the future, know the players.
       </span>
     </summary>
     <div className="text-muted-foreground mt-4 leading-relaxed">
-      **No.** 99% of LFP batteries sold today (Tesla, Enphase) use liquid electrolyte. Some marketing teams use the term "Solid State" loosely to describe the lack of moving parts, but chemically, they are still liquid-based.
+      **No.** 99% of LFP batteries sold today use liquid electrolyte. Some marketing teams use the term "Solid State" loosely to describe the lack of moving parts, but chemically, they are still liquid-based.
     </div>
   </details>
 
   <details className="group border rounded-lg bg-card p-4 [&_summary]:cursor-pointer">
     <summary className="flex items-center justify-between font-medium text-foreground list-none">
-      Will SSBs be cheaper?
+      Will SSBs be cheaper for my home?
       <span className="transition group-open:rotate-180">
         <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </span>
     </summary>
     <div className="text-muted-foreground mt-4 leading-relaxed">
-      **No, not initially.** Solid-state residential batteries will launch at a premium price per kWh compared to mature LFP technology. While they use fewer materials, manufacturing them requires expensive new factories. Until those factories scale up, SSBs will be a premium product.
+      **No, not initially.** When solid-state residential batteries eventually launch (mid-to-late 2030s), they will launch at a premium price per kWh compared to mature LFP technology. They will not halve the cost of home storage on day one.
     </div>
   </details>
 </div>
 
 ## The "Semi-Solid" Bridge Technology
 
-While we wait for pure solid-state, a hybrid solution has emerged: **Semi-Solid Batteries**.
-*   **Concept**: Instead of a hard ceramic, they use a "Clay-like" electrolyte that is 90% solid and 10% liquid.
+While we wait for pure solid-state, a hybrid automotive solution has emerged: **Semi-Solid Batteries**.
+*   **Concept**: Instead of a hard ceramic, they use a "Clay-like" electrolyte that is mostly solid but contains some liquid.
 *   **Benefits**: It is much easier to manufacture because it flows like a paste but provides almost the same safety benefits.
-*   **Industry Development Example**: The **NIO ET7** (Chinese EV) is currently shipping with a 150 kWh Semi-Solid pack from **WeLion**. It has a CLTC laboratory-rated range of 1,000 km.
-*   **Home Potential**: This tech is the most likely candidate for home storage in 2027 because it uses existing lithium factories with minor modifications.
+*   **Industry Development Example**: The **NIO ET7** (Chinese EV) is currently shipping with a 150 kWh Semi-Solid pack from **WeLion**.
 
-## The Patent Landscape (Who Owns the IP?)
+## Safety Comparison: LFP vs Solid State
 
-A war is being fought in the patent courts.
-1.  **Toyota**: Holds 1,300+ solid-state patents. They focused heavily on Sulfide electrolytes. Their strategy is "all or nothing."
-2.  **Panasonic**: The quiet partner. They are working with Toyota but also supplying Tesla with high-end traditional cells.
-3.  **QuantumScape**: Holds key IP on the "Ceramic Separator" that is flexible. This is their moat. If it works, they win. If it cracks, they are worth zero.
+Current residential storage is dominated by Lithium Iron Phosphate (LFP) chemistry, which is fundamentally safer than earlier NMC chemistries.
 
-## The Volkswagen Effect: Standardizing the Future
-
-Volkswagen Group has created a subsidiary called **PowerCo SE**. Their strategy is unique.
-They are building a "Unified Cell" format (prismatic) that can accept *any* chemistry.
-*   **Today**: It holds LFP jelly rolls.
-*   **Tomorrow**: It holds High-Nickel NMC.
-*   **2028**: It holds QuantumScape Solid State layers.
-*   **Why this matters**: This "Plug-and-Play" manufacturing means that when Solid State is ready, VW doesn't need to build new factories. They just swap the "guts" of the unified cell. This will drastically speed up deployment compared to Tesla, who bets everything on the specific form factor of the 4680 cell.
-
-## Safety Comparison: Liquid vs Solid
-
-Why is the industry obsessed with solid electrolytes? It comes down to the "Thermal Runaway" temperature.
-
-| Chemistry | Electrolyte State | Runaway Temp | Self-Extinguishing? |
+| Chemistry | Electrolyte State | Runaway Temp | Safety Profile |
 | :--- | :--- | :--- | :--- |
-| **NMC (Liquid)** | Organic Solvent | 200°C | No (Need Water) |
-| **LFP (Liquid)** | Organic Solvent | 270°C | No (Harder to ignite) |
-| **Semi-Solid** | Gel / Clay | 350°C | Yes (Slow Burn) |
-| **Solid State** | Ceramic / Polymer | **High** | **Significantly Reduced Risk** |
+| **NMC (Early EV/Storage)** | Organic Solvent | 200°C | Lower (Prone to thermal runaway) |
+| **LFP (Current Standard)** | Organic Solvent | 270°C | High (Significantly harder to ignite) |
+| **Solid State (Future)** | Ceramic / Polymer | **High** | **Highest (Significantly Reduced Risk)** |
 
-**The Conclusion**: A solid-state battery significantly mitigates the risk of catastrophic thermal runaway compared to early NMC liquid lithium-ion, making it an extremely safe choice for home integration, though it does not completely eliminate all risks inherent to energy storage.
+**The Conclusion**: Current LFP technology is extremely safe for residential use. Solid-state will eventually offer another step-change in safety, but waiting a decade for that incremental improvement is unnecessary for most homeowners.
 
 ## The Recycling Question: Is it Easier or Harder?
 
 One hidden benefit of solid-state batteries is **recyclability**.
-*   **Lithium-Ion**: You have to shred the battery under water or inert gas to prevent the liquid electrolyte from exploding. It is a messy, toxic process.
-*   **Solid-State**: Because there is no liquid, you can mechanically crush the battery in open air. The solid electrolyte separates easily from the metal lithium anode.
-*   **Value**: The "Black Mass" (shredded battery guts) from a solid-state battery is much higher value because it contains pure lithium metal, not just lithium ions trapped in graphite. This suggests that in 2035, your old solid-state battery might actually have a *positive* scrap value, whereas today you have to pay someone to take your old LFP unit.
+*   **Lithium-Ion**: You have to shred the battery under water or inert gas to prevent the liquid electrolyte from igniting. It is a messy, expensive process.
+*   **Solid-State**: Because there is no flammable liquid solvent, mechanical processing is much safer and simpler.
+*   **Value**: The "Black Mass" from a solid-state battery is much higher value because it contains pure lithium metal.
 
 ## Related Articles
 *   **[Sodium-Ion Battery Guide](/future/sodium-ion-batteries-home-storage)**
@@ -202,8 +176,9 @@ One hidden benefit of solid-state batteries is **recyclability**.
 
 ## The Verdict
 
-Solid-State is real, but it is not relevant for your 2026 renovation.
-Don't wait for the perfect battery. The batteries we have today (LFP) are safe, cheap, and available now.
+Solid-State batteries are a genuine automotive technology revolution, but they are not relevant for your 2026 home renovation.
+
+Do not delay your solar and storage investment waiting for the "perfect battery" of the mid-2030s. The batteries we have today (LFP) are safe, reliable, and available now.
 
 [**See Available Batteries for 2026 →**](/comparisons/best-solar-batteries-2026)
 
@@ -211,68 +186,38 @@ Don't wait for the perfect battery. The batteries we have today (LFP) are safe, 
 
 ## Engineering Reality
 
-Solid-state battery development has accelerated significantly since 2020, but the gap between laboratory-demonstrated performance and manufacturing-scale residential product availability involves several engineering constraints that timeline projections routinely underestimate.
+Solid-state battery development has accelerated significantly, but the gap between laboratory-demonstrated performance and manufacturing-scale residential product availability involves several engineering constraints that timeline projections routinely underestimate.
 
-**The electrolyte fabrication challenge is production-scale, not laboratory-scale.** Demonstrating solid-state cell performance in a laboratory context involves small-format cells (typically 1–10 Ah) manufactured by hand or semi-automated processes using pristine conditions. The electrochemical performance of these cells — cycle life, ion conductivity, interface stability — is genuine and reproducible. The challenge is fabricating large-format solid electrolyte layers (required for the 50–100 Ah cells used in residential modules) with uniform thickness, zero pinhole defects, and adequate mechanical flexibility over millions of production cycles. Toyota and QuantumScape have each described this process as the primary bottleneck — not the underlying chemistry.
+**The electrolyte fabrication challenge is production-scale, not laboratory-scale.** Demonstrating solid-state cell performance in a laboratory context involves small-format cells. The challenge is fabricating large-format solid electrolyte layers with uniform thickness, zero pinhole defects, and adequate mechanical flexibility over millions of production cycles. Toyota and QuantumScape have each described this process as the primary bottleneck — not the underlying chemistry.
 
-**Solid-state battery manufacturing requires capital equipment that does not yet exist at commercial scale.** LFP manufacturing uses wet-chemistry electrode coating processes and conventional lithium-salt liquid electrolyte filling — both mature technologies with established equipment supply chains. Solid-state manufacturing requires ceramic or polymer electrolyte layer deposition at scale (physical vapour deposition, atomic layer deposition, or solid-state sintering at wafer scale). The equipment to do this for high-volume battery production does not exist at commercial scale. Building this equipment supply chain — the equivalent of what took LFP manufacturing 15 years — is the constraint that determines commercialisation timelines, not the performance of current-generation laboratory cells.
-
-**"Solid-state" encompasses multiple distinct chemistries with different maturity profiles.** The term "solid-state battery" covers oxide electrolytes (garnet-type LLZO), sulphide electrolytes (LGPS), and polymer electrolytes — each with meaningfully different performance profiles, safety characteristics, and manufacturing challenges. Toyota's announced commercialisation timeline refers specifically to sulphide electrolyte cells. QuantumScape's technology uses an oxide-based approach. These are not interchangeable, and a breakthrough in one solid electrolyte chemistry does not automatically translate to others. Media coverage that treats "solid-state" as a single technology category systematically overstates the convergence of the field.
-
----
-
-## When This Approach Breaks Down
-
-The "don't wait for solid-state" guidance is robust for standard residential applications in 2026. More nuanced analysis applies in specific scenarios.
-
-**High-value properties with architectural installation constraints.** The primary performance advantage that solid-state batteries will eventually offer residential homeowners — beyond safety improvements — is dramatically higher energy density. For luxury residential properties where a 9.5 kWh LFP battery requires 200–250 litres of cabinet space, a future solid-state unit offering the same capacity in 100 litres could genuinely resolve an architectural constraint that no current product addresses. For properties where installation space is genuinely the binding constraint, the long-term value of solid-state's energy density improvement is worth factoring into a new-build specification — specifically specifying battery bay dimensions that can accommodate either current or future products.
-
-**Electric vehicle rapid charging infrastructure.** The most commercially significant near-term solid-state application is not home storage — it is EV fast charging. Solid-state cells can accept higher charge rates than liquid LFP because the solid electrolyte is mechanically more resistant to lithium dendrite growth at high current densities. A homeowner who is planning both home battery storage and a high-power EV charging installation should monitor EV battery technology rather than home storage technology — the breakthroughs most likely to affect their overall energy investment will arrive via EV first.
-
----
-
-## Illustrative Scenario
-
-**Scenario:** The engineering design lead of a UK new-build development (50 units, planning submission 2026, expected completion 2028) must specify home battery infrastructure for all units. *This is a modelled scenario illustrating market economics, not a documented outcome.*
-
-**Option A: Specify for 2026 LFP technology only**
-- Each unit: 9.5 kWh GivEnergy AIO mounting bay (H: 750mm × W: 450mm × D: 250mm)
-- Battery circuit capacity: 50A dedicated MCB
-- All units standardised — lowest cost infrastructure
-
-**Option B: Specify for LFP now with future-proofing allocation**
-- Each unit: 750mm × 450mm × 250mm (as Option A) PLUS a secondary space reserve of H: 500mm × W: 450mm × D: 200mm adjacent
-- Battery circuit capacity: 100A dedicated MCB (accommodating a second unit or future higher-power product)
-- Cost premium: £380/unit for additional conduit and MCB capacity
-
-**Modelled Decision:** Under these assumptions, the model favours Option B at a £380/unit premium across 50 units = £19,000 total. The modelled reasoning: if solid-state products delivering 20+ kWh in the current LFP form factor become available by 2030, retrofitting a second storage unit to units built with Option A specification would cost £1,200–£1,800 per unit in additional electrical work. The £380 premium now models the prevention of a much larger future cost.
-
-**Lesson:** For new builds, infrastructure future-proofing costs far less during construction than retrofit. Specifying for both current LFP and future expanded capacity is sound engineering practice even if solid-state timelines are uncertain. See [current battery options](/comparisons/best-solar-batteries-2026) for the hardware that actually needs specifying today.
+**Residential storage economics require mature supply chains.** LFP manufacturing uses mature wet-chemistry processes with established equipment supply chains. Solid-state manufacturing requires completely new capital equipment that does not yet exist at commercial scale. The automotive sector will absorb the initial high costs of this new equipment. The residential storage market, which operates on much tighter consumer margins, will not adopt solid-state technology until automotive scale has commoditised the manufacturing process in the mid-to-late 2030s.
 
 ---
 
 ## Engineering Recommendation
 
-Solid-state batteries are a genuine technology with a clear commercial development trajectory, not vaporware. The engineering question for residential homeowners is not whether solid-state will eventually reach the residential market, but whether the improvements it offers are worth waiting for versus installing best-available LFP technology now.
+Solid-state batteries are a genuine technology with a clear automotive development trajectory, not vaporware. However, they are fundamentally irrelevant to residential energy storage decisions in 2026.
 
-**The answer for 2026 residential decisions is unambiguous:** LFP provides adequate energy density, excellent safety, mature warranty support, and a proven financial return at current UK and US market prices. The improvements solid-state would offer — primarily higher energy density and potentially faster charge acceptance — do not address the binding constraints for most UK residential applications.
+**The answer for 2026 residential decisions is unambiguous:** LFP provides adequate energy density, excellent safety, mature warranty support, and a proven financial return at current market prices. The improvements solid-state would eventually offer — primarily higher volumetric energy density — do not address the binding constraints for most residential applications.
 
 **For new builds and major renovations (2026–2028):**
-- Specify electrical infrastructure capacity (MCB rating, conduit sizing, dedicated circuit capacity) to accommodate both a current LFP unit and a future higher-capacity second unit
-- Do not delay build schedule or battery installation waiting for technology that has no confirmed UK residential product availability date
+- Do not delay build schedules or battery installations waiting for technology that has no confirmed residential product availability date in this decade.
+- Specify electrical infrastructure capacity to accommodate current LFP units.
 
-**For existing homeowners with installed LFP batteries:**
-- Solid-state development is not a reason to consider early replacement of a functioning, warranted LFP system
-- LFP battery replacement should be triggered by end-of-warranty capacity decline (below 80% of original), not by the availability of a new chemistry option
-
-**The key decision trigger** for any technology-timing decision remains a financial rather than technological question: does the available technology at today's prices deliver a financially justified outcome at current tariff rates? If yes, install now. If the technology case is marginal, track the market through a [current UK cost guide](/markets/uk-solar-battery-cost-2026) review and use the [battery sizing calculator](/calculator) to confirm the specific numbers for your installation.
+**The key decision trigger** for any technology-timing decision remains a financial rather than technological question: does the available LFP technology at today's prices deliver a financially justified outcome at current tariff rates? If yes, install now.
 
 ---
+
+## Sources and Primary References
+
+1. **Samsung SDI** — Official solid-state battery roadmaps and technology development status.
+2. **Toyota Motor Corporation** — Solid-state battery commercialisation timelines and joint venture documentation.
+3. **QuantumScape** — Shareholder letters and technical performance metrics.
+
+*Prepared by the BatteryBlueprint Editorial Research Team using publicly available manufacturer documentation, regulator guidance, standards and market data.*
 
 ## Related Reading
 
 - [When NOT to Buy a Solar Battery](/when-not-to-buy) — Should you wait for solid-state technology?
 - [Solar Battery Payback Reality: UK vs US vs Global](/payback-reality) — Current payback while solid-state matures
 - [Biggest Mistakes Homeowners Make with Solar Batteries](/common-mistakes) — Mistakes buyers make waiting for new chemistry
-
-*Prepared by the BatteryBlueprint Editorial Research Team using publicly available manufacturer documentation, regulator guidance, standards and market data.*

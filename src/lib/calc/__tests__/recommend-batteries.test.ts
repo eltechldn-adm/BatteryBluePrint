@@ -12,32 +12,28 @@ describe('recommendBatteries', () => {
         const result = recommendBatteries({ batteryUsableNeeded_kWh: 5.1 });
 
         expect(result.premium).not.toBeNull();
+        expect(result.midRange).not.toBeNull();
+        expect(result.diy).not.toBeNull();
+
         // Premium must contain at least one recommendation
         expect(result.premium.length).toBeGreaterThanOrEqual(1);
 
         process.stdout.write(`    DEBUG: Premium model picked: ${result.premium?.[0]?.battery.id} count: ${result.premium?.[0]?.count}\n`);
 
-        // Direct assertion: if Enphase IQ5P is in the premium tier, it must require 2 units for 5.1 kWh
-        const enphaseResult = result.premium.find((r: { battery: { id: string }; count: number }) => r.battery.id === 'enphase-iq5p');
-        if (enphaseResult) {
-            expect(enphaseResult.count).toBe(2);
+        const allRecommendations = [...result.premium, ...result.midRange, ...result.diy];
+        const enphaseResult = allRecommendations.find((r: { battery: { id: string }; count: number }) => r.battery.id === 'enphase-iq5p');
+        
+        if (!enphaseResult) {
+            throw new Error('enphase-iq5p was not found in any recommendation category');
         }
+
+        expect(enphaseResult.count).toBe(2);
     });
 
     it('should always round UP count', () => {
-        // Target 14 kWh usable needed.
-        // Tesla (13.5 usable): Needs 2 (27 usable).
-        // Enphase (4.96 usable): Needs 3 (14.88). 
-        // Which is picked? 
-        // Tesla Total: 27. Enphase Total: 14.88.
-        // Sort logic picks smallest total usable. So Enphase (14.88) wins.
-
         const result = recommendBatteries({ batteryUsableNeeded_kWh: 14.0 });
 
-        // Premium must have at least one recommendation
         expect(result.premium.length).toBeGreaterThanOrEqual(1);
-
-        // Check whichever is picked provides >= 14
         expect(result.premium[0]?.totalUsable_kWh).toBeGreaterThanOrEqual(14.0);
     });
 
@@ -55,14 +51,11 @@ describe('recommendBatteries', () => {
             locationTag: 'US'
         });
 
-        // US should have access to US-specific batteries
         const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
             .map(r => r.battery);
 
-        // Must have at least one recommendation
         expect(allBatteries.length).toBeGreaterThanOrEqual(1);
 
-        // All returned batteries should be available in US or GLOBAL
         allBatteries.forEach(battery => {
             const isAvailable = battery.regionAvailability['US'] || battery.regionAvailability['GLOBAL'];
             if (!isAvailable) {
@@ -73,68 +66,66 @@ describe('recommendBatteries', () => {
         process.stdout.write(`    DEBUG: US recommendations: ${allBatteries.map(b => b.id).join(', ')}\n`);
     });
 
-    it('should filter batteries by region - EU excludes US-only models', () => {
-        // Find a US-only battery (if exists)
+    it('should filter batteries by region - EU excludes US-only models (optional)', () => {
         const usOnlyBattery = BATTERY_CATALOG.find(b => 
             b.regionAvailability['US'] && 
             !b.regionAvailability['EU'] && 
             !b.regionAvailability['GLOBAL']
         );
 
-        if (usOnlyBattery) {
-            const result = recommendBatteries({ 
+        if (!usOnlyBattery) {
+            process.stdout.write(`    DEBUG: No US-only batteries found in database, skipping test\n`);
+            return;
+        }
+
+        const result = recommendBatteries({ 
+            batteryUsableNeeded_kWh: 10,
+            locationTag: 'EU'
+        });
+
+        const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
+            .map(r => r.battery);
+
+        const hasUsOnlyBattery = allBatteries.some(b => b.id === usOnlyBattery.id);
+        if (hasUsOnlyBattery) {
+            throw new Error(`US-only battery ${usOnlyBattery.id} appeared in EU recommendations`);
+        }
+
+        process.stdout.write(`    DEBUG: EU recommendations exclude US-only ${usOnlyBattery.id}\n`);
+    });
+
+    it('should include GLOBAL batteries in all regions (optional)', () => {
+        const globalBattery = BATTERY_CATALOG.find(b => b.regionAvailability['GLOBAL']);
+
+        if (!globalBattery) {
+            process.stdout.write(`    DEBUG: No GLOBAL batteries found in database, skipping test\n`);
+            return;
+        }
+
+        const regions = ['US', 'EU', 'UK', 'AU', 'CA'];
+        regions.forEach(region => {
+            const result = recommendBatteries({
                 batteryUsableNeeded_kWh: 10,
-                locationTag: 'EU'
+                locationTag: region
             });
 
             const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
                 .map(r => r.battery);
 
-            // US-only battery should NOT appear in EU recommendations
-            const hasUsOnlyBattery = allBatteries.some(b => b.id === usOnlyBattery.id);
-            if (hasUsOnlyBattery) {
-                throw new Error(`US-only battery ${usOnlyBattery.id} appeared in EU recommendations`);
+            if (allBatteries.length === 0) {
+                throw new Error(`No batteries available for region ${region}`);
             }
 
-            process.stdout.write(`    DEBUG: EU recommendations exclude US-only ${usOnlyBattery.id}\n`);
-        } else {
-            process.stdout.write(`    DEBUG: No US-only batteries found in database\n`);
-        }
-    });
-
-    it('should include GLOBAL batteries in all regions', () => {
-        const globalBattery = BATTERY_CATALOG.find(b => b.regionAvailability['GLOBAL']);
-
-        if (globalBattery) {
-            // Test multiple regions
-            const regions = ['US', 'EU', 'UK', 'AU', 'CA'];
-            regions.forEach(region => {
-                const result = recommendBatteries({
-                    batteryUsableNeeded_kWh: 10,
-                    locationTag: region
-                });
-
-                const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
-                    .map(r => r.battery);
-
-                // At least one battery should be available
-                if (allBatteries.length === 0) {
-                    throw new Error(`No batteries available for region ${region}`);
-                }
-
-                process.stdout.write(`    DEBUG: ${region} has ${allBatteries.length} recommendations\n`);
-            });
-        }
+            process.stdout.write(`    DEBUG: ${region} has ${allBatteries.length} recommendations\n`);
+        });
     });
 
     it('should set limitedCatalog flag when fewer than 3 batteries available', () => {
-        // Find a region with limited catalog or create a scenario
         const result = recommendBatteries({
             batteryUsableNeeded_kWh: 10,
-            locationTag: 'IN' // India might have limited catalog
+            locationTag: 'IN' 
         });
 
-        // Check if limitedCatalog flag is set appropriately
         const totalRecommendations = [...result.premium, ...result.midRange, ...result.diy].length;
 
         if (totalRecommendations < 3) {
@@ -147,7 +138,6 @@ describe('recommendBatteries', () => {
     });
 });
 
-// Helper wrappers
 function describe(name: string, fn: () => void) {
     console.log(`Group: ${name}`);
     fn();
@@ -167,9 +157,14 @@ function it(name: string, fn: () => void) {
         failedTests++;
     }
 }
-function expect(actual: number | object | null | undefined) {
+function expect(actual: any) {
     return {
-        toBe: (expected: number | object | null) => {
+        toBe: (expected: any) => {
+            if (typeof expected === 'number') {
+                if (typeof actual !== 'number' || Number.isNaN(actual) || !Number.isFinite(actual)) {
+                    throw new Error(`Expected finite number ${expected}, got ${actual}`);
+                }
+            }
             if (actual !== expected) throw new Error(`Expected ${expected}, got ${actual}`);
         },
         not: {
@@ -181,7 +176,10 @@ function expect(actual: number | object | null | undefined) {
             if (actual !== null && actual !== undefined) throw new Error(`Expected null, got ${actual}`);
         },
         toBeGreaterThanOrEqual: (expected: number) => {
-            if (actual === null || (actual as number) < expected) throw new Error(`Expected >= ${expected}, got ${actual}`);
+            if (typeof actual !== 'number' || Number.isNaN(actual) || !Number.isFinite(actual)) {
+                throw new Error(`Expected a finite number >= ${expected}, got ${actual}`);
+            }
+            if (actual < expected) throw new Error(`Expected >= ${expected}, got ${actual}`);
         }
     };
 }

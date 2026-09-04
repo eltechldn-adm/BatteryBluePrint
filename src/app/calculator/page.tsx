@@ -159,7 +159,7 @@ function CalculatorInner() {
                 setLocation(profile.regionId);
             }
         }
-    }, [country.code, mounted, location]);
+    }, [country.code, mounted]);
 
     // Load location from localStorage or default to auto on mount
     useEffect(() => {
@@ -190,7 +190,6 @@ function CalculatorInner() {
         }
 
         firstInputRef.current?.focus();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // ─── RETENTION LAYER INTEGRATION ───
@@ -240,7 +239,7 @@ function CalculatorInner() {
         setDod(profile.defaults.dod);
         setInverterEfficiency(profile.defaults.inverterEfficiency);
         setReserveBuffer(profile.defaults.reserveBuffer);
-    }, [effectiveLocation, hasUserCustomizedAssumptions, locationProfile]); // Re-run when effective location changes
+    }, [effectiveLocation, hasUserCustomizedAssumptions]); // Re-run when effective location changes
 
     // Initialize electricity rate when location changes
     useEffect(() => {
@@ -291,7 +290,6 @@ function CalculatorInner() {
                 setDailyLoad(estimatedDaily.toFixed(1));
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [billEstimatorEnabled, billAmount, electricityRate, billingPeriod, customDays]);
 
     // Toggle bill estimator mode
