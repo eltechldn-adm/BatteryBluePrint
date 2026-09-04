@@ -82,40 +82,46 @@ describe('recommendBatteries', () => {
         expect(hasUsOnlyBattery).toBe(false);
     });
 
-    it('should include GLOBAL batteries in all regions', () => {
-        const globalBattery = BATTERY_CATALOG.find(b => b.regionAvailability['GLOBAL']);
-
-        if (!globalBattery) {
-            throw new Error('Prerequisite failed: No GLOBAL battery found in catalog');
+    it('should rely on GLOBAL fallback for unrepresented location tags', () => {
+        const nonGlobalBattery = BATTERY_CATALOG.find(b => !b.regionAvailability['GLOBAL']);
+        if (!nonGlobalBattery) {
+            throw new Error('Prerequisite failed: No non-GLOBAL battery found in catalog');
         }
 
-        const regions = ['US', 'EU', 'UK', 'AU', 'CA'];
-        let assertionsMade = 0;
-        regions.forEach(region => {
-            const result = recommendBatteries({
-                batteryUsableNeeded_kWh: 10,
-                locationTag: region
-            });
-
-            const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
-                .map(r => r.battery);
-
-            expect(allBatteries.length).toBeGreaterThanOrEqual(1);
-            assertionsMade++;
-        });
-        expect(assertionsMade).toBe(5);
-    });
-
-    it('should maintain invariant: isLimitedCatalog equals totalRecommendations < 3', () => {
         const result = recommendBatteries({
             batteryUsableNeeded_kWh: 10,
-            locationTag: 'IN'
+            locationTag: 'XY'
         });
 
-        const totalRecommendations = [...result.premium, ...result.midRange, ...result.diy].length;
-        const expectedFlag = totalRecommendations < 3;
+        const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
+            .map(r => r.battery);
 
-        expect(result.metadata.isLimitedCatalog).toBe(expectedFlag);
+        expect(allBatteries.length).toBeGreaterThanOrEqual(1);
+
+        allBatteries.forEach(battery => {
+            if (battery.regionAvailability['GLOBAL'] !== true) {
+                throw new Error(`Battery ${battery.id} returned for unrepresented region 'XY' but lacks GLOBAL availability`);
+            }
+            if (battery.id === nonGlobalBattery.id) {
+                throw new Error(`Non-GLOBAL battery ${battery.id} incorrectly returned for unrepresented region 'XY'`);
+            }
+        });
+    });
+
+    it('should maintain invariant: isLimitedCatalog equals filteredSize < 8', () => {
+        const resultLimited = recommendBatteries({
+            batteryUsableNeeded_kWh: 10,
+            locationTag: 'XY'
+        });
+        const expectedLimited = resultLimited.metadata.filteredSize < 8;
+        expect(resultLimited.metadata.isLimitedCatalog).toBe(expectedLimited);
+
+        const resultNotLimited = recommendBatteries({
+            batteryUsableNeeded_kWh: 10,
+            locationTag: 'US'
+        });
+        const expectedNotLimited = resultNotLimited.metadata.filteredSize < 8;
+        expect(resultNotLimited.metadata.isLimitedCatalog).toBe(expectedNotLimited);
     });
 });
 
