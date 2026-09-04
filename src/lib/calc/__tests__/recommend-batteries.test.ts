@@ -12,15 +12,15 @@ describe('recommendBatteries', () => {
         const result = recommendBatteries({ batteryUsableNeeded_kWh: 5.1 });
 
         expect(result.premium).not.toBeNull();
-        // Enphase fits best (10.0 total vs 13.5 total)
-        // Enphase 5.0 * 2 = 10.0 usable. Tesla 13.5. 10.0 < 13.5.
-        // So logic picks Enphase
+        // Premium must contain at least one recommendation
+        expect(result.premium.length).toBeGreaterThanOrEqual(1);
 
-        process.stdout.write(`    DEBUG: Premium model picked: ${result.premium?.[0]?.battery.id} count: ${result.premium?.[0]?.count}
-`);
+        process.stdout.write(`    DEBUG: Premium model picked: ${result.premium?.[0]?.battery.id} count: ${result.premium?.[0]?.count}\n`);
 
-        if (result.premium?.[0]?.battery.id === 'enphase-iq5p') {
-            expect(result.premium?.[0]?.count).toBe(2);
+        // Direct assertion: if Enphase IQ5P is in the premium tier, it must require 2 units for 5.1 kWh
+        const enphaseResult = result.premium.find((r: { battery: { id: string }; count: number }) => r.battery.id === 'enphase-iq5p');
+        if (enphaseResult) {
+            expect(enphaseResult.count).toBe(2);
         }
     });
 
@@ -34,16 +34,19 @@ describe('recommendBatteries', () => {
 
         const result = recommendBatteries({ batteryUsableNeeded_kWh: 14.0 });
 
+        // Premium must have at least one recommendation
+        expect(result.premium.length).toBeGreaterThanOrEqual(1);
+
         // Check whichever is picked provides >= 14
         expect(result.premium[0]?.totalUsable_kWh).toBeGreaterThanOrEqual(14.0);
     });
 
-    it('should return 3 distinct categories', () => {
+    it('should return 3 distinct categories with at least one entry each', () => {
         const result = recommendBatteries({ batteryUsableNeeded_kWh: 10 });
 
-        expect(result.premium).not.toBeNull();
-        expect(result.midRange).not.toBeNull(); // We added Ruixu
-        expect(result.diy).not.toBeNull();
+        expect(result.premium.length).toBeGreaterThanOrEqual(1);
+        expect(result.midRange.length).toBeGreaterThanOrEqual(1);
+        expect(result.diy.length).toBeGreaterThanOrEqual(1);
     });
 
     it('should filter batteries by region - US includes region-specific models', () => {
@@ -56,6 +59,9 @@ describe('recommendBatteries', () => {
         const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
             .map(r => r.battery);
 
+        // Must have at least one recommendation
+        expect(allBatteries.length).toBeGreaterThanOrEqual(1);
+
         // All returned batteries should be available in US or GLOBAL
         allBatteries.forEach(battery => {
             const isAvailable = battery.regionAvailability['US'] || battery.regionAvailability['GLOBAL'];
@@ -64,8 +70,7 @@ describe('recommendBatteries', () => {
             }
         });
 
-        process.stdout.write(`    DEBUG: US recommendations: ${allBatteries.map(b => b.id).join(', ')}
-`);
+        process.stdout.write(`    DEBUG: US recommendations: ${allBatteries.map(b => b.id).join(', ')}\n`);
     });
 
     it('should filter batteries by region - EU excludes US-only models', () => {
@@ -91,11 +96,9 @@ describe('recommendBatteries', () => {
                 throw new Error(`US-only battery ${usOnlyBattery.id} appeared in EU recommendations`);
             }
 
-            process.stdout.write(`    DEBUG: EU recommendations exclude US-only ${usOnlyBattery.id}
-`);
+            process.stdout.write(`    DEBUG: EU recommendations exclude US-only ${usOnlyBattery.id}\n`);
         } else {
-            process.stdout.write(`    DEBUG: No US-only batteries found in database
-`);
+            process.stdout.write(`    DEBUG: No US-only batteries found in database\n`);
         }
     });
 
@@ -105,9 +108,8 @@ describe('recommendBatteries', () => {
         if (globalBattery) {
             // Test multiple regions
             const regions = ['US', 'EU', 'UK', 'AU', 'CA'];
-            
             regions.forEach(region => {
-                const result = recommendBatteries({ 
+                const result = recommendBatteries({
                     batteryUsableNeeded_kWh: 10,
                     locationTag: region
                 });
@@ -120,15 +122,14 @@ describe('recommendBatteries', () => {
                     throw new Error(`No batteries available for region ${region}`);
                 }
 
-                process.stdout.write(`    DEBUG: ${region} has ${allBatteries.length} recommendations
-`);
+                process.stdout.write(`    DEBUG: ${region} has ${allBatteries.length} recommendations\n`);
             });
         }
     });
 
     it('should set limitedCatalog flag when fewer than 3 batteries available', () => {
         // Find a region with limited catalog or create a scenario
-        const result = recommendBatteries({ 
+        const result = recommendBatteries({
             batteryUsableNeeded_kWh: 10,
             locationTag: 'IN' // India might have limited catalog
         });
@@ -142,15 +143,14 @@ describe('recommendBatteries', () => {
             }
         }
 
-        process.stdout.write(`    DEBUG: IN has ${totalRecommendations} recommendations, limitedCatalog=${result.metadata.isLimitedCatalog}
-`);
+        process.stdout.write(`    DEBUG: IN has ${totalRecommendations} recommendations, limitedCatalog=${result.metadata.isLimitedCatalog}\n`);
     });
 });
 
 // Helper wrappers
-function describe(name: string, fn: () => void) { 
-    console.log(`Group: ${name}`); 
-    fn(); 
+function describe(name: string, fn: () => void) {
+    console.log(`Group: ${name}`);
+    fn();
     if (failedTests > 0) {
         console.error(`\nFAILED ${failedTests} tests.`);
         process.exit(1);
@@ -159,11 +159,11 @@ function describe(name: string, fn: () => void) {
     }
 }
 function it(name: string, fn: () => void) {
-    try { 
-        fn(); 
-        console.log(`  PASS: ${name}`); 
-    } catch (e) { 
-        console.error(`  FAIL: ${name}`, e); 
+    try {
+        fn();
+        console.log(`  PASS: ${name}`);
+    } catch (e) {
+        console.error(`  FAIL: ${name}`, e);
         failedTests++;
     }
 }
