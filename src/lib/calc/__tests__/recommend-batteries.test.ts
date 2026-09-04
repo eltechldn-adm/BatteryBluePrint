@@ -1,6 +1,8 @@
 import { recommendBatteries } from '../recommend-batteries';
 import { BATTERY_CATALOG } from '@/lib/batteries/catalog';
 
+let failedTests = 0;
+
 describe('recommendBatteries', () => {
     it('should recommend correct counts for small load (5.1 usable needed)', () => {
         // Tesla 13.5 usable -> 1 unit
@@ -146,23 +148,37 @@ describe('recommendBatteries', () => {
 });
 
 // Helper wrappers
-function describe(name: string, fn: () => void) { console.log(`Group: ${name}`); fn(); }
-function it(name: string, fn: () => void) {
-    try { fn(); console.log(`  PASS: ${name}`); }
-    catch (e) { console.error(`  FAIL: ${name}`, e); }
+function describe(name: string, fn: () => void) { 
+    console.log(`Group: ${name}`); 
+    fn(); 
+    if (failedTests > 0) {
+        console.error(`\nFAILED ${failedTests} tests.`);
+        process.exit(1);
+    } else {
+        console.log(`\nALL TESTS PASSED.`);
+    }
 }
-function expect(actual: number | object | null) {
+function it(name: string, fn: () => void) {
+    try { 
+        fn(); 
+        console.log(`  PASS: ${name}`); 
+    } catch (e) { 
+        console.error(`  FAIL: ${name}`, e); 
+        failedTests++;
+    }
+}
+function expect(actual: number | object | null | undefined) {
     return {
         toBe: (expected: number | object | null) => {
             if (actual !== expected) throw new Error(`Expected ${expected}, got ${actual}`);
         },
         not: {
             toBeNull: () => {
-                if (actual === null) throw new Error(`Expected not null, got null`);
+                if (actual === null || actual === undefined) throw new Error(`Expected not null, got ${actual}`);
             }
         },
         toBeNull: () => {
-            if (actual !== null) throw new Error(`Expected null, got ${actual}`);
+            if (actual !== null && actual !== undefined) throw new Error(`Expected null, got ${actual}`);
         },
         toBeGreaterThanOrEqual: (expected: number) => {
             if (actual === null || (actual as number) < expected) throw new Error(`Expected >= ${expected}, got ${actual}`);
