@@ -1,19 +1,18 @@
-// @ts-nocheck
 import { recommendBatteries } from '../recommend-batteries';
 import { BATTERY_CATALOG } from '@/lib/batteries/catalog';
 
 describe('recommendBatteries', () => {
-    it('should recommend correct counts for small load (5 usable needed)', () => {
+    it('should recommend correct counts for small load (5.1 usable needed)', () => {
         // Tesla 13.5 usable -> 1 unit
-        // Enphase ~4.96 usable -> 2 units (4.96 * 1 is < 5, so 2)
+        // Enphase 5.0 usable -> 2 units (5.0 * 1 is < 5.1, so 2)
 
         // Input is now "batteryUsableNeeded_kWh" (DC side)
-        const result = recommendBatteries({ batteryUsableNeeded_kWh: 5.0 });
+        const result = recommendBatteries({ batteryUsableNeeded_kWh: 5.1 });
 
         expect(result.premium).not.toBeNull();
-        // Enphase fits best (9.92 total vs 13.5 total)? 
-        // Wait, Enphase 4.96 * 2 = 9.92 usable. Tesla 13.5. 9.92 < 13.5.
-        // So logic picks Enphase?
+        // Enphase fits best (10.0 total vs 13.5 total)
+        // Enphase 5.0 * 2 = 10.0 usable. Tesla 13.5. 10.0 < 13.5.
+        // So logic picks Enphase
 
         process.stdout.write(`    DEBUG: Premium model picked: ${result.premium?.[0]?.battery.id} count: ${result.premium?.[0]?.count}
 `);
@@ -34,7 +33,7 @@ describe('recommendBatteries', () => {
         const result = recommendBatteries({ batteryUsableNeeded_kWh: 14.0 });
 
         // Check whichever is picked provides >= 14
-        expect(result.premium?.totalUsable_kWh).toBeGreaterThanOrEqual(14.0);
+        expect(result.premium[0]?.totalUsable_kWh).toBeGreaterThanOrEqual(14.0);
     });
 
     it('should return 3 distinct categories', () => {
@@ -52,13 +51,12 @@ describe('recommendBatteries', () => {
         });
 
         // US should have access to US-specific batteries
-        const allBatteries = [result.premium, result.midRange, result.diy]
-            .filter(r => r !== null)
-            .map(r => r!.battery);
+        const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
+            .map(r => r.battery);
 
         // All returned batteries should be available in US or GLOBAL
         allBatteries.forEach(battery => {
-            const isAvailable = battery.availableIn.includes('US') || battery.availableIn.includes('GLOBAL');
+            const isAvailable = battery.regionAvailability['US'] || battery.regionAvailability['GLOBAL'];
             if (!isAvailable) {
                 throw new Error(`Battery ${battery.id} is not available in US but was recommended`);
             }
@@ -82,9 +80,8 @@ describe('recommendBatteries', () => {
                 locationTag: 'EU'
             });
 
-            const allBatteries = [result.premium, result.midRange, result.diy]
-                .filter(r => r !== null)
-                .map(r => r!.battery);
+            const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
+                .map(r => r.battery);
 
             // US-only battery should NOT appear in EU recommendations
             const hasUsOnlyBattery = allBatteries.some(b => b.id === usOnlyBattery.id);
@@ -113,9 +110,8 @@ describe('recommendBatteries', () => {
                     locationTag: region
                 });
 
-                const allBatteries = [result.premium, result.midRange, result.diy]
-                    .filter(r => r !== null)
-                    .map(r => r!.battery);
+                const allBatteries = [...result.premium, ...result.midRange, ...result.diy]
+                    .map(r => r.battery);
 
                 // At least one battery should be available
                 if (allBatteries.length === 0) {
@@ -136,16 +132,15 @@ describe('recommendBatteries', () => {
         });
 
         // Check if limitedCatalog flag is set appropriately
-        const totalRecommendations = [result.premium, result.midRange, result.diy]
-            .filter(r => r !== null).length;
+        const totalRecommendations = [...result.premium, ...result.midRange, ...result.diy].length;
 
         if (totalRecommendations < 3) {
-            if (!result.limitedCatalog) {
+            if (!result.metadata.isLimitedCatalog) {
                 throw new Error('limitedCatalog should be true when fewer than 3 batteries available');
             }
         }
 
-        process.stdout.write(`    DEBUG: IN has ${totalRecommendations} recommendations, limitedCatalog=${result.limitedCatalog}
+        process.stdout.write(`    DEBUG: IN has ${totalRecommendations} recommendations, limitedCatalog=${result.metadata.isLimitedCatalog}
 `);
     });
 });
@@ -170,7 +165,7 @@ function expect(actual: number | object | null) {
             if (actual !== null) throw new Error(`Expected null, got ${actual}`);
         },
         toBeGreaterThanOrEqual: (expected: number) => {
-            if (actual < expected) throw new Error(`Expected >= ${expected}, got ${actual}`);
+            if (actual === null || (actual as number) < expected) throw new Error(`Expected >= ${expected}, got ${actual}`);
         }
     };
 }

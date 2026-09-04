@@ -66,6 +66,10 @@ if (htmlCount < 10) {
     process.exit(1);
 }
 
+if (failed) {
+    process.exit(1);
+}
+
 console.log(`\n✅ STATIC EXPORT OK: out/ exists with ${htmlCount} HTML pages.`);
 console.log(`   Required files: ${REQUIRED_FILES.join(', ')} — all present.`);
 console.log(`   Ready for Cloudflare Pages deployment.\n`);
