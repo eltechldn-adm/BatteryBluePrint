@@ -108,20 +108,47 @@ describe('recommendBatteries', () => {
         });
     });
 
-    it('should maintain invariant: isLimitedCatalog equals filteredSize < 8', () => {
+    it('isLimitedCatalog is true when filteredSize < 8 (premium-only GLOBAL fixture)', () => {
+        // Premium tier + unrepresented region 'XY' → GLOBAL fallback, tier=premium only.
+        // Catalog has 4 GLOBAL premium entries: tesla-pw3, enphase-iq5p, sonnen-eco, lg-resu16h.
+        // filteredSize = 4, which is < 8, so isLimitedCatalog must be true.
         const resultLimited = recommendBatteries({
             batteryUsableNeeded_kWh: 10,
-            locationTag: 'XY'
+            locationTag: 'XY',
+            tierFilter: 'premium'
         });
-        const expectedLimited = resultLimited.metadata.filteredSize < 8;
-        expect(resultLimited.metadata.isLimitedCatalog).toBe(expectedLimited);
 
+        const limitedFilteredSize = resultLimited.metadata.filteredSize;
+
+        // Prove filteredSize > 0 (non-empty result)
+        expect(limitedFilteredSize).toBeGreaterThanOrEqual(1);
+
+        // Prove filteredSize < 8 is actually true for this fixture
+        if (limitedFilteredSize >= 8) {
+            throw new Error(`Limited fixture expected filteredSize < 8, got ${limitedFilteredSize}. Catalog may have changed.`);
+        }
+
+        // The flag must match the invariant
+        expect(resultLimited.metadata.isLimitedCatalog).toBe(true);
+    });
+
+    it('isLimitedCatalog is false when filteredSize >= 8 (US all-tier fixture)', () => {
+        // US region includes US-specific + GLOBAL batteries across all tiers.
+        // Current catalog yields >= 9 entries for US, so filteredSize >= 8 → isLimitedCatalog must be false.
         const resultNotLimited = recommendBatteries({
             batteryUsableNeeded_kWh: 10,
             locationTag: 'US'
         });
-        const expectedNotLimited = resultNotLimited.metadata.filteredSize < 8;
-        expect(resultNotLimited.metadata.isLimitedCatalog).toBe(expectedNotLimited);
+
+        const notLimitedFilteredSize = resultNotLimited.metadata.filteredSize;
+
+        // Prove filteredSize >= 8 is actually true for this fixture
+        if (notLimitedFilteredSize < 8) {
+            throw new Error(`Non-limited fixture expected filteredSize >= 8, got ${notLimitedFilteredSize}. Catalog may have changed.`);
+        }
+
+        // The flag must match the invariant
+        expect(resultNotLimited.metadata.isLimitedCatalog).toBe(false);
     });
 });
 
